@@ -1,11 +1,18 @@
+import React from 'react';
+
 function TemporaryWelcomePage() {
   return (
-    <div style={{
-      textAlign: 'center',
-      fontSize: 40,
-    }}>
-      Welcome to Courseapp
-    </div>
+    <React.Fragment>
+      <div style={{
+        textAlign: 'center',
+        fontSize: 40,
+      }}>
+        Welcome to Courseapp
+      </div>
+      <div>
+        <a href="/login">Login</a>
+      </div>
+    </React.Fragment>
   )
 }
 
