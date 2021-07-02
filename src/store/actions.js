@@ -5,6 +5,8 @@ import {
   AUTH_LOGOUT,
 } from './types';
 
+import { login } from '../api/auth';
+
 export const authLoginRequest = () => {
   return {
     type: AUTH_LOGIN_REQUEST,
@@ -25,14 +27,14 @@ export const authLoginFailure = error => {
   };
 };
 
-export const loginAction = credentials => {
-  return async function (dispatch, getState, { api, history }) {
+export const loginAction = (credentials, history, location) => {
+  return async function (dispatch, getState) {
     dispatch(authLoginRequest());
     try {
-      await api.auth.login(credentials);
+      await login(credentials);
       dispatch(authLoginSuccess());
       // Redirect
-      const { from } = history.location.state || { from: { pathname: '/' } };
+      const { from } = location.state || { from: { pathname: '/' }}
       history.replace(from);
     } catch (error) {
       dispatch(authLoginFailure(error));

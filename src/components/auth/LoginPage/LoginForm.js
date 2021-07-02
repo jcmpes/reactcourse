@@ -1,15 +1,16 @@
 import React from 'react';
-import FormField from "../../shared/FormField";
+import { Button, FormField } from "../../shared";
 
-function LoginForm() {
+function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = React.useState({
     username: '',
     password: '',
   });
 
-  const handleFormSubmit = ev => {
-
-  }
+  const handleSubmit = ev => {
+    ev.preventDefault();
+    onSubmit(credentials)
+  };
 
   const handleChange = ev => {
     const newCredentials = {
@@ -17,25 +18,33 @@ function LoginForm() {
       [ev.target.name]: ev.target.value,
     }
     setCredentials(newCredentials);
-  }
+  };
+
+  const { username, password } = credentials;
 
   return (
     <div className="loginForm">
-      <form className="loginForm">
+      <form className="loginForm" onSubmit={handleSubmit}>
         <FormField 
           type="text"
           label="email or username: "
           name="username"
-          value={credentials.username}
+          value={username}
           onChange={handleChange}
         />
         <FormField
           type="password"
           label="password: "
           name="password"
-          value={credentials.password}
+          value={password}
           onChange={handleChange}
         />
+        <Button
+          type="submit"
+          disabled={!username | !password}
+        >
+          Log In
+        </Button>
       </form>
     </div>
   )
