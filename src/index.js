@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
 import configureStore from './store';
 
-const accessToken = localStorage.get('auth');
+const accessToken = localStorage.getItem('auth');
 configureClient({ accessToken });
 
 const store = configureStore({

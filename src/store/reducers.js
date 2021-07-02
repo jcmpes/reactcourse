@@ -8,6 +8,10 @@ import {
 
 export const initialState = {
   auth: false,
+  ui: {
+    loading: false,
+    error: null,
+  }
 }
 
 export function auth(state = initialState.auth, action) {
