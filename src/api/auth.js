@@ -1,9 +1,9 @@
 import client, { configureClient, resetClient } from "./client";
 
 export const login = credentials => {
-  return client.post('/api/v1/loginJWT', credentials).then(({ accessToken }) => {
-    configureClient({ accessToken });
-    localStorage.setItem('auth', accessToken);
+  return client.post('/api/v1/loginJWT', credentials).then(({ token }) => {
+    configureClient({ token });
+    localStorage.setItem('auth', token);
   });
 };
 
