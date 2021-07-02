@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { loginAction } from '../../../store/actions';
 import LoginForm from './LoginForm';
 
-const history = useHistory();
-const location = useLocation();
 
 function LoginPage() {
+  const history = useHistory();
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const handleSubmit = credentials => {
