@@ -5,11 +5,20 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { configureClient } from './api/client';
+import configureStore from '../store';
+
+const accessToken = localStorage.get('auth');
+configureClient({ accessToken });
+
+const store = configureStore({
+  preloadedState: { auth: !!accessToken },
+})
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <App store={store} />
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
