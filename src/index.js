@@ -6,7 +6,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
-import configureStore from '../store';
+import configureStore from './store';
 
 const accessToken = localStorage.get('auth');
 configureClient({ accessToken });
