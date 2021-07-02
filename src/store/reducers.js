@@ -1,7 +1,6 @@
 import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
-  AUTH_LOGIN_FAILURE,
   AUTH_LOGOUT,
   UI_RESET_ERROR
 } from './types';
