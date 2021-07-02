@@ -3,7 +3,7 @@ import { Button, FormField } from "../../shared";
 
 function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = React.useState({
-    username: '',
+    email: '',
     password: '',
   });
 
@@ -20,16 +20,16 @@ function LoginForm({ onSubmit }) {
     setCredentials(newCredentials);
   };
 
-  const { username, password } = credentials;
+  const { email, password } = credentials;
 
   return (
     <div className="loginForm">
       <form className="loginForm" onSubmit={handleSubmit}>
         <FormField 
           type="text"
-          label="email or username: "
-          name="username"
-          value={username}
+          label="email: "
+          name="email"
+          value={email}
           onChange={handleChange}
         />
         <FormField
@@ -41,7 +41,7 @@ function LoginForm({ onSubmit }) {
         />
         <Button
           type="submit"
-          disabled={!username | !password}
+          disabled={!email | !password}
         >
           Log In
         </Button>
