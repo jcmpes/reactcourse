@@ -7,7 +7,7 @@ import {
 
 export const initialState = {
   auth: {
-    logged: false,
+    isLogged: false,
     username: '',
   },
   ui: {
@@ -19,9 +19,9 @@ export const initialState = {
 export function auth(state = initialState.auth, action) {
   switch (action.type) {
     case AUTH_LOGIN_SUCCESS:
-      return { logged: true, username: action.payload };
+      return { isLogged: true, username: action.payload };
     case AUTH_LOGOUT:
-      return { logged: false, username: '' };
+      return { isLogged: false, username: '' };
     default:
       return state;
   }

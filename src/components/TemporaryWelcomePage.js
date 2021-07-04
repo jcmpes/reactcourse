@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../api/auth';
 import { authLogout } from '../store/actions';
-import { getIsLogged } from '../store/selectors';
-import { getUsername } from '../store/selectors';
+import { getAuth } from '../store/selectors';
 import { Button } from '../components/shared';
 
-function TemporaryWelcomePage({ isLogged, onLogout, username }) {
+function TemporaryWelcomePage({ auth, onLogout }) {
   const handleLogoutClick = () => {
     logout().then(onLogout);
   };
@@ -26,17 +25,16 @@ function TemporaryWelcomePage({ isLogged, onLogout, username }) {
           fontSize: 40,
         }}
       >
-        Welcome to Courseapp, {username}
+        Welcome to Courseapp{auth.username ? `, ${auth.username}` : ''}
       </div>
       <div>We hope you survive the experience...</div>
-      {isLogged ? <Button {...propsButton} /> : <Link {...propsLink} />}
+      {auth.isLogged ? <Button {...propsButton} /> : <Link {...propsLink} />}
     </React.Fragment>
   );
 }
 
 const mapStateToProps = state => ({
-  isLogged: getIsLogged(state),
-  username: getUsername(state),
+  auth: getAuth(state),
 });
 
 const mapDispatchToProps = {
