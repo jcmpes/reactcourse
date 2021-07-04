@@ -25,14 +25,14 @@ const RegisterForm = ({ onSubmit }) => {
     <div className="registerForm">
       <form className="registerForm" onSubmit={handleSubmit}>
         <FormField
-          type="text"
+          type="email"
           label="email: "
           name="email"
           value={email}
           onChange={handleChange}
         />
         <FormField
-          type="text"
+          type="password"
           label="password: "
           name="password"
           value={password}
