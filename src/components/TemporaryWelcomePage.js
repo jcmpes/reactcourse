@@ -22,6 +22,7 @@ function TemporaryWelcomePage({ auth, onLogout }) {
     children: 'Register',
   };
 
+  const { isLogged, username } = auth;
 
   return (
     <React.Fragment>
