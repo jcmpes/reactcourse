@@ -32,8 +32,9 @@ function TemporaryWelcomePage({ auth, onLogout }) {
           fontSize: 40,
         }}
       >
-        Welcome to Courseapp
+        Welcome to Courseapp, {username}
       </div>
+      <div>We hope you survive the experience...</div>
       {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
       <br />
       {!isLogged && <Link {...propsRegisterLink} />}
