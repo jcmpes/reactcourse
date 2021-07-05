@@ -1,5 +1,6 @@
 import client, { configureClient, resetClient } from './client';
 
+// Log in
 export const login = credentials => {
   return client
     .post('/api/v1/loginJWT', credentials)
@@ -8,11 +9,22 @@ export const login = credentials => {
       localStorage.setItem('auth', token);
       return displayName;
     });
+
 };
 
+// Log out
 export const logout = () => {
   return Promise.resolve().then(() => {
     resetClient();
     localStorage.removeItem('auth');
   });
 };
+
+// Register
+export const register = (credentials) => {
+  return client
+    .post('/api/v1/register', credentials)
+    .then((data) => data)
+    .catch((error) => console.error('Error', error));
+};
+

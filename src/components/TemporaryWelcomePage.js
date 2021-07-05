@@ -12,10 +12,16 @@ function TemporaryWelcomePage({ auth, onLogout }) {
   };
 
   const propsButton = { onClick: handleLogoutClick, children: 'Log Out' };
-  const propsLink = {
+
+  const propsLoginLink = {
     to: '/login',
     children: 'Log In',
   };
+  const propsRegisterLink = {
+    to: '/register',
+    children: 'Register',
+  };
+
 
   return (
     <React.Fragment>
@@ -25,13 +31,16 @@ function TemporaryWelcomePage({ auth, onLogout }) {
           fontSize: 40,
         }}
       >
-        Welcome to Courseapp{auth.username ? `, ${auth.username}` : ''}
+        Welcome to Courseapp
       </div>
-      <div>We hope you survive the experience...</div>
-      {auth.isLogged ? <Button {...propsButton} /> : <Link {...propsLink} />}
+      {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
+      <br />
+      {!isLogged && <Link {...propsRegisterLink} />}
+
     </React.Fragment>
   );
 }
+
 
 const mapStateToProps = state => ({
   auth: getAuth(state),
