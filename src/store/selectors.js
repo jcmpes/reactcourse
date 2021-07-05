@@ -1,1 +1,1 @@
-export const getIsLogged = state => state.auth;
+export const getAuth = state => state.auth;

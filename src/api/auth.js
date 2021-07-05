@@ -1,11 +1,15 @@
 import client, { configureClient, resetClient } from './client';
 
 // Log in
-export const login = (credentials) => {
-  return client.post('/api/v1/loginJWT', credentials).then(({ token }) => {
-    configureClient({ token });
-    localStorage.setItem('auth', token);
-  });
+export const login = credentials => {
+  return client
+    .post('/api/v1/loginJWT', credentials)
+    .then(({ token, displayName }) => {
+      configureClient({ token });
+      localStorage.setItem('auth', token);
+      return displayName;
+    });
+
 };
 
 // Log out
@@ -23,3 +27,4 @@ export const register = (credentials) => {
     .then((data) => data)
     .catch((error) => console.error('Error', error));
 };
+
