@@ -1,23 +1,25 @@
 import React from 'react';
-import { Button, FormField } from "../../shared";
+import { Button, FormField, Checkbox } from "../../shared";
 
 function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = React.useState({
     email: '',
     password: '',
+    remember: false,
   });
-
+      
+  const handleChange = ev => {
+    setCredentials(oldCredentials => ({
+      ...oldCredentials,
+      [ev.target.name]: ev.target.type === 'checkbox' 
+      ? 
+      ev.target.checked : ev.target.value
+    }));
+  };
+      
   const handleSubmit = ev => {
     ev.preventDefault();
     onSubmit(credentials)
-  };
-
-  const handleChange = ev => {
-    const newCredentials = {
-      ...credentials,
-      [ev.target.name]: ev.target.value,
-    }
-    setCredentials(newCredentials);
   };
 
   const { email, password } = credentials;
@@ -38,6 +40,15 @@ function LoginForm({ onSubmit }) {
           name="password"
           value={password}
           onChange={handleChange}
+        />
+        <Checkbox 
+         className={'checkbox'}
+         name={'remember'}
+         text={'Remember Sesion'}
+         type={'checkbox'}
+         disabled={!credentials.email || !credentials.password}
+         checked={credentials.remember}
+         onChange={handleChange}
         />
         <Button
           type="submit"
