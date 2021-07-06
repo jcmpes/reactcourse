@@ -77,7 +77,6 @@ export const loginAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authLoginRequest());
     try {
-      console.log(credentials);
       const username = await login(credentials);
       dispatch(authLoginSuccess(username));
       // Redirect
