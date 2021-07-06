@@ -1,23 +1,23 @@
 import client, { configureClient, resetClient } from './client';
+import storage from '../utils/storage';
 
 // Log in
-export const login = credentials => {
+export const login = ({ remember, ...credentials }) => {
   return client
     .post('/api/v1/loginJWT', credentials)
-    .then(({ token, displayName }) => {
-      configureClient({ token });
-      localStorage.setItem('auth', token);
+    .then(({token, displayName}) => {
+      configureClient( {token} );
+      if (remember) {
+        storage.set('auth',token);
+      }      
       return displayName;
-    });
-
+    })
+    
 };
 
 // Log out
 export const logout = () => {
-  return Promise.resolve().then(() => {
-    resetClient();
-    localStorage.removeItem('auth');
-  });
+  return Promise.resolve().then(resetClient).then(storage.clear);
 };
 
 // Register
