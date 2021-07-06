@@ -28,3 +28,11 @@ export const register = (credentials) => {
     .catch((error) => console.error('Error', error));
 };
 
+// Forgot Password
+export const forgotPassword = email => {
+  return client
+    .post('/api/v1/forgot', email)
+    .then((data) => data)
+    .catch(error => console.log('Error', error));
+}
+

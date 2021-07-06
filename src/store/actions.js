@@ -5,10 +5,13 @@ import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGIN_FAILURE,
+  AUTH_FORGOT_PASSWORD_REQUEST,
+  AUTH_FORGOT_PASSWORD_SUCCESS,
+  AUTH_FORGOT_PASSWORD_FAILURE,
   AUTH_LOGOUT,
 } from './types';
 
-import { login, register } from '../api/auth';
+import { login, register, forgotPassword } from '../api/auth';
 
 
 // Register actions
@@ -50,7 +53,6 @@ export const registerAction = (credentials, history, location) => {
 
 // Log in actions
 export const authLoginRequest = username => {
-
   return {
     type: AUTH_LOGIN_REQUEST,
     payload: username,
@@ -84,6 +86,41 @@ export const loginAction = (credentials, history, location) => {
       history.replace(from);
     } catch (error) {
       dispatch(authLoginFailure(error));
+    }
+  };
+};
+
+// Forgot Password actions
+export const forgotPasswordRequest = email => {
+  return {
+    type: AUTH_FORGOT_PASSWORD_REQUEST,
+  };
+};
+
+export const forgotPasswordSuccess = () => {
+  return {
+    type: AUTH_FORGOT_PASSWORD_SUCCESS,
+  };
+};
+
+export const forgotPasswordFailure = error => {
+  return {
+    type: AUTH_FORGOT_PASSWORD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+// Forgot Password middleware
+export const forgotPasswordAction = email => {
+  return async function (dispatch, getState) {
+    dispatch(forgotPasswordRequest());
+    try {
+      const response = await forgotPassword(email);
+      console.log(response);
+      dispatch(forgotPasswordSuccess());
+    } catch (error) {
+      dispatch(forgotPasswordFailure(error));
     }
   };
 };
