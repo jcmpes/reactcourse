@@ -56,6 +56,9 @@ function LoginForm({ onSubmit }) {
         >
           Log In
         </Button>
+        <div className="password-forgotten">
+          <a href="/forgot">He olvidado mi contraseña</a>
+        </div>
       </form>
     </div>
   )
