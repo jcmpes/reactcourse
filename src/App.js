@@ -16,13 +16,13 @@ function App() {
         <Route path="/register">
           <RegisterPage />
         </Route>
-        <Route path="/reset/:resetToken">
+        <Route path="/reset-password/:resetToken">
           <ResetPasswordPage />
         </Route>
-        <Route path="/reset">
+        <Route path="/reset-password">
           <ResetPasswordPage />
         </Route>
-        <Route path="/forgot">
+        <Route path="/forgot-password">
           <ForgotPage />
         </Route>
         <Route exact path="/">
