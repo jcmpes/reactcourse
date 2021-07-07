@@ -41,7 +41,7 @@ export const authRegisterFailure = (error) => {
 // Register middleware
 export const registerAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
-    dispatch(authRegisterRequest);
+    dispatch(authRegisterRequest());
     try {
       const response = await register(credentials);
       // Control when server responds with an error
@@ -49,10 +49,10 @@ export const registerAction = (credentials, history, location) => {
         // Redirect
         const { from } = location.state || { from: { pathname: '/' } };
         history.replace(from);
-        dispatch(authRegisterSuccess);
+        dispatch(authRegisterSuccess());
       }
     } catch (error) {
-      dispatch(authRegisterFailure);
+      dispatch(authRegisterFailure());
     }
   };
 };
