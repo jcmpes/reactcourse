@@ -23,7 +23,7 @@ export const logout = () => {
 // Register
 export const register = (credentials) => {
   return client
-    .post('/api/v1/register', { credentials })
+    .post('/api/v1/register', credentials)
     .then((data) => data)
     .catch((error) => console.error('Error', error));
 };
