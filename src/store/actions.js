@@ -5,13 +5,17 @@ import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGIN_FAILURE,
+  AUTH_FORGOT_PASSWORD_REQUEST,
+  AUTH_FORGOT_PASSWORD_SUCCESS,
+  AUTH_FORGOT_PASSWORD_FAILURE,
   AUTH_LOGOUT,
   AUTH_RESET_PASSWORD_REQUEST,
   AUTH_RESET_PASSWORD_SUCCESS,
   AUTH_RESET_PASSWORD_FAILURE,
 } from './types';
 
-import { login, register, resetPassword } from '../api/auth';
+import { login, register, forgotPassword } from '../api/auth';
+import { toast } from 'react-toastify';
 
 // Register actions
 export const authRegisterRequest = () => {
@@ -21,12 +25,14 @@ export const authRegisterRequest = () => {
 };
 
 export const authRegisterSuccess = () => {
+  toast.success('Registration successful');
   return {
     type: AUTH_REGISTER_SUCCESS,
   };
 };
 
 export const authRegisterFailure = (error) => {
+  toast.error('Registration failure', error);
   return {
     type: AUTH_REGISTER_FAILURE,
     payload: error,
@@ -39,11 +45,14 @@ export const registerAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authRegisterRequest);
     try {
-      await register(credentials);
-      // Redirect
-      const { from } = location.state || { from: { pathname: '/' } };
-      history.replace(from);
-      dispatch(authRegisterSuccess);
+      const response = await register(credentials);
+      // Control when server responds with an error
+      if (!response.error) {
+        // Redirect
+        const { from } = location.state || { from: { pathname: '/' } };
+        history.replace(from);
+        dispatch(authRegisterSuccess);
+      }
     } catch (error) {
       dispatch(authRegisterFailure);
     }
@@ -51,7 +60,7 @@ export const registerAction = (credentials, history, location) => {
 };
 
 // Log in actions
-export const authLoginRequest = (username) => {
+export const authLoginRequest = username => {
   return {
     type: AUTH_LOGIN_REQUEST,
     payload: username,
@@ -85,6 +94,41 @@ export const loginAction = (credentials, history, location) => {
       history.replace(from);
     } catch (error) {
       dispatch(authLoginFailure(error));
+    }
+  };
+};
+
+// Forgot Password actions
+export const forgotPasswordRequest = email => {
+  return {
+    type: AUTH_FORGOT_PASSWORD_REQUEST,
+  };
+};
+
+export const forgotPasswordSuccess = () => {
+  return {
+    type: AUTH_FORGOT_PASSWORD_SUCCESS,
+  };
+};
+
+export const forgotPasswordFailure = error => {
+  return {
+    type: AUTH_FORGOT_PASSWORD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+// Forgot Password middleware
+export const forgotPasswordAction = email => {
+  return async function (dispatch, getState) {
+    dispatch(forgotPasswordRequest());
+    try {
+      const response = await forgotPassword(email);
+      console.log(response);
+      dispatch(forgotPasswordSuccess());
+    } catch (error) {
+      dispatch(forgotPasswordFailure(error));
     }
   };
 };

@@ -4,6 +4,8 @@ import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
 import RegisterPage from './components/auth/RegisterPage';
 import ResetPasswordPage from './components/auth/ResetPasswordPage';
+import ForgotPage from './components/auth/ForgotPage/ForgotPage';
+
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         </Route>
         <Route path="/reset">
           <ResetPasswordPage />
+        <Route path="/forgot">
+          <ForgotPage />
         </Route>
         <Route exact path="/">
           <TemporaryWelcomePage />
@@ -39,6 +43,7 @@ function App() {
         </Route>
       </Switch>
     </div>
+    
   );
 }
 
