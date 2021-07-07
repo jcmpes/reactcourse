@@ -40,11 +40,13 @@ export const registerAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authRegisterRequest);
     try {
-      await register(credentials);
-      // Redirect
-      const { from } = location.state || { from: { pathname: '/' } };
-      history.replace(from);
-      dispatch(authRegisterSuccess);
+      const response = await register(credentials);
+      if (!response.error) {
+        // Redirect
+        const { from } = location.state || { from: { pathname: '/' } };
+        history.replace(from);
+        dispatch(authRegisterSuccess);
+      }
     } catch (error) {
       dispatch(authRegisterFailure);
     }
