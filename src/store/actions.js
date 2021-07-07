@@ -41,6 +41,7 @@ export const registerAction = (credentials, history, location) => {
     dispatch(authRegisterRequest);
     try {
       const response = await register(credentials);
+      // Control when server responds with an error
       if (!response.error) {
         // Redirect
         const { from } = location.state || { from: { pathname: '/' } };
