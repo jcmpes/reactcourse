@@ -18,11 +18,12 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="register-page">
-      <RegisterForm onSubmit={handleSubmit} />
+    <>
+      <h1>Register</h1>
+      <RegisterForm onSubmit={handleSubmit} />;
       <ToastContainer position={toast.POSITION.TOP_RIGHT}/>
-    </div>
-  )
+    </>
+  );
 };
 
 export default RegisterPage;

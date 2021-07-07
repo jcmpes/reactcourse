@@ -47,7 +47,7 @@ const RegisterForm = ({ onSubmit }) => {
         />
         <Button type="submit" disabled={!email | !password | !username}>
           Register
-        </Button>{' '}
+        </Button>
       </form>
     </div>
   );
