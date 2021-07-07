@@ -12,6 +12,7 @@ import {
 } from './types';
 
 import { login, register, forgotPassword } from '../api/auth';
+import { toast } from 'react-toastify';
 
 
 // Register actions
@@ -22,12 +23,14 @@ export const authRegisterRequest = () => {
 };
 
 export const authRegisterSuccess = () => {
+  toast.success('Registration successful')
   return {
     type: AUTH_REGISTER_SUCCESS,
   };
 };
 
 export const authRegisterFailure = (error) => {
+  toast.error('Registration failure', error)
   return {
     type: AUTH_REGISTER_FAILURE,
     payload: error,
