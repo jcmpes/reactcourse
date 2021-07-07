@@ -13,7 +13,12 @@ const RegisterPage = () => {
     dispatch(registerAction(credentials, history, location));
   };
 
-  return <RegisterForm onSubmit={handleSubmit} />;
+  return (
+    <>
+      <h1>Register</h1>
+      <RegisterForm onSubmit={handleSubmit} />;
+    </>
+  );
 };
 
 export default RegisterPage;
