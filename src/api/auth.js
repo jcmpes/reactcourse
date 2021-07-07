@@ -5,14 +5,13 @@ import storage from '../utils/storage';
 export const login = ({ remember, ...credentials }) => {
   return client
     .post('/api/v1/loginJWT', credentials)
-    .then(({token, displayName}) => {
-      configureClient( {token} );
+    .then(({ token, displayName }) => {
+      configureClient({ token });
       if (remember) {
-        storage.set('auth',token);
-      }      
+        storage.set('auth', token);
+      }
       return displayName;
-    })
-    
+    });
 };
 
 // Log out
@@ -28,3 +27,10 @@ export const register = (credentials) => {
     .catch((error) => console.error('Error', error));
 };
 
+// Reset Password
+export const resetPassword = (resetToken, newPassword) => {
+  return client
+    .post('/api/v1/reset', { resetToken, newPassword })
+    .then((data) => data)
+    .catch((error) => console.error('Error', error));
+};

@@ -3,6 +3,7 @@ import './App.css';
 import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
 import RegisterPage from './components/auth/RegisterPage';
+import ResetPasswordPage from './components/auth/ResetPasswordPage';
 
 function App() {
   return (
@@ -13,6 +14,12 @@ function App() {
         </Route>
         <Route path="/register">
           <RegisterPage />
+        </Route>
+        <Route path="/reset/:resetToken">
+          <ResetPasswordPage />
+        </Route>
+        <Route path="/reset">
+          <ResetPasswordPage />
         </Route>
         <Route exact path="/">
           <TemporaryWelcomePage />
