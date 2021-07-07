@@ -14,7 +14,7 @@ import {
   AUTH_RESET_PASSWORD_FAILURE,
 } from './types';
 
-import { login, register, forgotPassword } from '../api/auth';
+import { login, register, forgotPassword, resetPassword } from '../api/auth';
 import { toast } from 'react-toastify';
 
 // Register actions
@@ -60,7 +60,7 @@ export const registerAction = (credentials, history, location) => {
 };
 
 // Log in actions
-export const authLoginRequest = username => {
+export const authLoginRequest = (username) => {
   return {
     type: AUTH_LOGIN_REQUEST,
     payload: username,
@@ -99,7 +99,7 @@ export const loginAction = (credentials, history, location) => {
 };
 
 // Forgot Password actions
-export const forgotPasswordRequest = email => {
+export const forgotPasswordRequest = (email) => {
   return {
     type: AUTH_FORGOT_PASSWORD_REQUEST,
   };
@@ -111,7 +111,7 @@ export const forgotPasswordSuccess = () => {
   };
 };
 
-export const forgotPasswordFailure = error => {
+export const forgotPasswordFailure = (error) => {
   return {
     type: AUTH_FORGOT_PASSWORD_FAILURE,
     payload: error,
@@ -120,7 +120,7 @@ export const forgotPasswordFailure = error => {
 };
 
 // Forgot Password middleware
-export const forgotPasswordAction = email => {
+export const forgotPasswordAction = (email) => {
   return async function (dispatch, getState) {
     dispatch(forgotPasswordRequest());
     try {
