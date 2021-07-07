@@ -20,8 +20,8 @@ const RegisterPage = () => {
   return (
     <>
       <h1>Register</h1>
-      <RegisterForm onSubmit={handleSubmit} />;
-      <ToastContainer position={toast.POSITION.TOP_RIGHT}/>
+      <RegisterForm onSubmit={handleSubmit} />
+      <ToastContainer position={toast.POSITION.TOP_RIGHT} />
     </>
   );
 };

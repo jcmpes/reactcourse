@@ -6,7 +6,6 @@ import RegisterPage from './components/auth/RegisterPage';
 import ResetPasswordPage from './components/auth/ResetPasswordPage';
 import ForgotPage from './components/auth/ForgotPage/ForgotPage';
 
-
 function App() {
   return (
     <div className="App">
@@ -22,6 +21,7 @@ function App() {
         </Route>
         <Route path="/reset">
           <ResetPasswordPage />
+        </Route>
         <Route path="/forgot">
           <ForgotPage />
         </Route>
@@ -43,7 +43,6 @@ function App() {
         </Route>
       </Switch>
     </div>
-    
   );
 }
 
