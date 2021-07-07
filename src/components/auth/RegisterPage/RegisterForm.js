@@ -25,6 +25,13 @@ const RegisterForm = ({ onSubmit }) => {
     <div className="registerForm">
       <form className="registerForm" onSubmit={handleSubmit}>
         <FormField
+          type="text"
+          label="username: "
+          name="username"
+          value={username}
+          onChange={handleChange}
+        />
+        <FormField
           type="email"
           label="email: "
           name="email"
@@ -36,13 +43,6 @@ const RegisterForm = ({ onSubmit }) => {
           label="password: "
           name="password"
           value={password}
-          onChange={handleChange}
-        />
-        <FormField
-          type="text"
-          label="username: "
-          name="username"
-          value={username}
           onChange={handleChange}
         />
         <Button type="submit" disabled={!email | !password | !username}>
