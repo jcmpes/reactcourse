@@ -3,6 +3,7 @@ import './App.css';
 import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
 import RegisterPage from './components/auth/RegisterPage';
+import ForgotPage from './components/auth/ForgotPage/ForgotPage';
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         </Route>
         <Route path="/register">
           <RegisterPage />
+        </Route>
+        <Route path="/forgot">
+          <ForgotPage />
         </Route>
         <Route exact path="/">
           <TemporaryWelcomePage />
