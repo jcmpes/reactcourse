@@ -8,10 +8,21 @@ import { Button } from '../components/shared';
 import { useTranslation } from 'react-i18next';
 
 function TemporaryWelcomePage({ auth, onLogout }) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const handleLogoutClick = () => {
     logout().then(onLogout);
+  };
+
+  const switchLanguage = (ev) => {
+    const currentLanguage = i18n.language;
+    console.log('ev', ev.target.innerHTML);
+
+    if (ev.target.innerHTML === 'Español') {
+      i18n.changeLanguage('es');
+    } else if (ev.target.innerHTML === 'English') {
+      i18n.changeLanguage('en');
+    }
   };
 
   const propsButton = { onClick: handleLogoutClick, children: 'Log Out' };
@@ -38,10 +49,16 @@ function TemporaryWelcomePage({ auth, onLogout }) {
         {t('welcome')}
         {t('title')}, {username}
       </div>
+
       <div>{t('headline')}</div>
+
       {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
       <br />
       {!isLogged && <Link {...propsRegisterLink} />}
+
+      <p>Current language: {i18n.language}</p>
+      <Button children="English" onClick={switchLanguage} />
+      <Button children="Español" onClick={switchLanguage} />
     </React.Fragment>
   );
 }
