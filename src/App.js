@@ -1,12 +1,15 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
 import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
 import RegisterPage from './components/auth/RegisterPage';
 import ResetPasswordPage from './components/auth/ResetPasswordPage';
 import ForgotPage from './components/auth/ForgotPage/ForgotPage';
+import { useTranslation } from 'react-i18next';
+import './App.css';
 
 function App() {
+  const { t } = useTranslation();
+
   return (
     <div className="App">
       <Switch>
