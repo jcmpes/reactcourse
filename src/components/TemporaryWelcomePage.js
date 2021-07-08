@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { logout } from '../api/auth';
 import { authLogout } from '../store/actions';
 import { getAuth } from '../store/selectors';
+import Layout from './layout/Layout';
 import { Button } from '../components/shared';
 
 function TemporaryWelcomePage({ auth, onLogout }) {
@@ -26,6 +27,7 @@ function TemporaryWelcomePage({ auth, onLogout }) {
 
   return (
     <React.Fragment>
+      <Layout>
       <div
         style={{
           textAlign: 'center',
@@ -38,7 +40,7 @@ function TemporaryWelcomePage({ auth, onLogout }) {
       {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
       <br />
       {!isLogged && <Link {...propsRegisterLink} />}
-
+      </Layout>
     </React.Fragment>
   );
 }
