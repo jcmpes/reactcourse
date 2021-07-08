@@ -7,7 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
 import configureStore from './store';
-import './config/i18next-config';
+
 import './index.css';
 
 const accessToken = localStorage.getItem('auth');

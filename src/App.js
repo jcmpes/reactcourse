@@ -1,4 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
+import { Suspense } from 'react';
 import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
 import RegisterPage from './components/auth/RegisterPage';
@@ -7,8 +8,10 @@ import ForgotPage from './components/auth/ForgotPage/ForgotPage';
 import { useTranslation } from 'react-i18next';
 import './App.css';
 
-function App() {
-  const { t } = useTranslation();
+import './config/i18next-config';
+
+function Translations() {
+  const { t } = useTranslation('[global]');
 
   return (
     <div className="App">
@@ -38,7 +41,7 @@ function App() {
               fontSize: 40,
             }}
           >
-            404 | {t('notFound')}
+            404 | {t('not-found')}
           </div>
         </Route>
         <Route>
@@ -46,6 +49,14 @@ function App() {
         </Route>
       </Switch>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Suspense fallback="Loading translations...">
+      <Translations />
+    </Suspense>
   );
 }
 
