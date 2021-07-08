@@ -5,8 +5,11 @@ import { logout } from '../api/auth';
 import { authLogout } from '../store/actions';
 import { getAuth } from '../store/selectors';
 import { Button } from '../components/shared';
+import { useTranslation } from 'react-i18next';
 
 function TemporaryWelcomePage({ auth, onLogout }) {
+  const { t } = useTranslation();
+
   const handleLogoutClick = () => {
     logout().then(onLogout);
   };
@@ -32,19 +35,18 @@ function TemporaryWelcomePage({ auth, onLogout }) {
           fontSize: 40,
         }}
       >
-        Welcome to Courseapp, {username}
+        {t('welcome')}
+        {t('title')}, {username}
       </div>
-      <div>We hope you survive the experience...</div>
+      <div>{t('headline')}</div>
       {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
       <br />
       {!isLogged && <Link {...propsRegisterLink} />}
-
     </React.Fragment>
   );
 }
 
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: getAuth(state),
 });
 
@@ -54,5 +56,5 @@ const mapDispatchToProps = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(TemporaryWelcomePage);

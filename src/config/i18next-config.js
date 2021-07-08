@@ -2,17 +2,23 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
 i18n.use(initReactI18next).init({
-  lgn: 'en',
-  fallbacking: 'en',
+  lng: 'en',
+  fallbackLng: 'en',
   resources: {
     en: {
       translation: {
-        title: 'Welcome to CourseApp',
+        title: 'CourseApp',
+        welcome: 'Welcome to ',
+        headline: 'We hope you survive the experience.',
+        notFound: 'Not found page',
       },
     },
     es: {
       translation: {
-        title: 'Bienvenido a CourseApp',
+        title: 'CourseApp',
+        welcome: 'Bienvenido a ',
+        headline: 'Esperamos que sobrevivas a la experiencia.',
+        notFound: 'Página no encontrada',
       },
     },
   },

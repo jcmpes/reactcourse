@@ -38,7 +38,7 @@ function App() {
               fontSize: 40,
             }}
           >
-            404 | Not found page
+            404 | {t('notFound')}
           </div>
         </Route>
         <Route>
