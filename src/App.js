@@ -2,9 +2,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
-import RegisterPage from './components/auth/RegisterPage';
-import ResetPasswordPage from './components/auth/ResetPasswordPage';
-import ForgotPage from './components/auth/ForgotPage/ForgotPage';
+import {
+        RegisterPage,
+        ResetPasswordPage,
+        ForgotPage,
+        VerifyPage
+        } from './components/auth'
 
 function App() {
   return (
@@ -25,6 +28,9 @@ function App() {
         <Route path="/forgot-password">
           <ForgotPage />
         </Route>
+        <Route path="/verify/:verifyToken">
+          <VerifyPage />
+        </Route> 
         <Route exact path="/">
           <TemporaryWelcomePage />
         </Route>
