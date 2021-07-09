@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
 
 function LoginForm({ onSubmit }) {
@@ -21,6 +22,8 @@ function LoginForm({ onSubmit }) {
     onSubmit(credentials);
   };
 
+  const { t } = useTranslation(['global'])
+
   const { email, password } = credentials;
 
   return (
@@ -28,14 +31,14 @@ function LoginForm({ onSubmit }) {
       <form className="loginForm" onSubmit={handleSubmit}>
         <FormField
           type="text"
-          label="email: "
+          label={t('email')}
           name="email"
           value={email}
           onChange={handleChange}
         />
         <FormField
           type="password"
-          label="password: "
+          label={t("password")}
           name="password"
           value={password}
           onChange={handleChange}
@@ -43,17 +46,17 @@ function LoginForm({ onSubmit }) {
         <Checkbox
           className={'checkbox'}
           name={'remember'}
-          text={'Remember session'}
+          text={t('remember session')}
           type={'checkbox'}
           disabled={!credentials.email || !credentials.password}
           checked={credentials.remember}
           onChange={handleChange}
         />
         <Button type="submit" disabled={!email | !password}>
-          Log In
+          {t('log in')}
         </Button>
         <div className="password-forgotten">
-          <a href="/forgot-password">I forgot my password</a>
+          <a href="/forgot-password">{t('forgot option')}</a>
         </div>
       </form>
     </div>

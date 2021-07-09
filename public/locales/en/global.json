@@ -1,6 +1,20 @@
 {
   "title": "CourseApp",
-  "welcome": "Welcome to ",
+  "welcome to": "Welcome to ",
   "headline": "We hope you survive the experience.",
-  "not-found": "Página no encontrada"
+  "not-found": "Página no encontrada",
+  "submit": "Enviar",
+  "new password": "Nueva contraseña",
+  "confirm password": "Confirmar contraseña",
+  "reset password": "Cambiar contraseña",
+  "register": "Register",
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "remember session": "Remember session",
+  "log in": "Log in",
+  "log in your account": "Log in to your account",
+  "forgot option": "I forgot my password",
+  "activation succeded": "Your account has been activated. You can now ",
+  "activation failed": "We are sorry, we could not activate your account. Please, try again."
 }

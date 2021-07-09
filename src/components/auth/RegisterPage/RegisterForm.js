@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../shared';
 
 const RegisterForm = ({ onSubmit }) => {
@@ -26,6 +27,8 @@ const RegisterForm = ({ onSubmit }) => {
     }
   };
 
+  const { t } = useTranslation(['global']);
+
   const { email, password, username } = credentials;
 
   const disabledButton =
@@ -36,34 +39,34 @@ const RegisterForm = ({ onSubmit }) => {
       <form className="registerForm" onSubmit={handleSubmit}>
         <FormField
           type="text"
-          label="username: "
+          label={t("username") + ": "}
           name="username"
           value={username}
           onChange={handleChange}
         />
         <FormField
           type="email"
-          label="email: "
+          label={t("email") + ": "}
           name="email"
           value={email}
           onChange={handleChange}
         />
         <FormField
           type="password"
-          label="password: "
+          label={t("password") + ": "}
           name="password"
           value={password}
           onChange={handleChange}
         />
         <FormField
           type="password"
-          label="confirm password: "
+          label={t("confirm password") + ": "}
           name="password-confirm"
           value={passwordConfirm}
           onChange={handleChange}
         />
         <Button type="submit" disabled={disabledButton}>
-          Register
+          {t("register")}
         </Button>
       </form>
     </div>

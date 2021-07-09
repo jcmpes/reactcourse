@@ -43,7 +43,7 @@ function TemporaryWelcomePage({ auth, onLogout }) {
           fontSize: 40,
         }}
       >
-        {t('welcome')}
+        {t('welcome to')}
         {t('title')}, {username}
       </div>
 

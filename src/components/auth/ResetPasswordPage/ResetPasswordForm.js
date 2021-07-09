@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '../../shared';
 import FormField from '../../shared/FormField';
 
 const ResetPasswordForm = ({ onSubmit }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const { t } = useTranslation(['global']);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -32,14 +35,14 @@ const ResetPasswordForm = ({ onSubmit }) => {
         {/* TODO: ?? Add new field here to input email or username */}
         <FormField
           type="password"
-          label="new password: "
+          label={t("new password") + ': '}
           name="password"
           value={password}
           onChange={handleChange}
         />
         <FormField
           type="password"
-          label="confirm password: "
+          label={t("confirm password") + ': '}
           name="password-confirm"
           value={passwordConfirm}
           onChange={handleChange}
@@ -50,7 +53,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
             !password | !passwordConfirm | (password !== passwordConfirm)
           }
         >
-          Submit
+          {t('submit')}
         </Button>
       </form>
     </div>
