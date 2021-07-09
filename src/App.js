@@ -1,38 +1,42 @@
+import React from 'react';
+import ProtoTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import './App.css';
-import LoginPage from './components/auth/LoginPage';
+
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
+import LoginPage from './components/auth/LoginPage';
+import NotFoundPage from './api/NotFoundPage';
 import RegisterPage from './components/auth/RegisterPage';
+import { getIsLogged } from './store/selectors';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const isLogged = useSelector(getIsLogged);
+
   return (
-    <div className="App">
-      <Switch>
-        <Route path="/login">
-          <LoginPage />
-        </Route>
-        <Route path="/register">
-          <RegisterPage />
-        </Route>
-        <Route exact path="/">
-          <TemporaryWelcomePage />
-        </Route>
-        <Route path="/404">
-          <div
-            style={{
-              textAlign: 'center',
-              fontSize: 40,
-            }}
-          >
-            404 | Not found page
-          </div>
-        </Route>
-        <Route>
-          <Redirect to="/404" />
-        </Route>
-      </Switch>
-    </div>
+    <Switch>
+      <Route path="/login">
+        {() => (isLogged ? <Redirect to="/" /> : <LoginPage />)}
+      </Route>
+      <Route exact path="/">
+        <TemporaryWelcomePage />
+      </Route>
+      <Route path="/register">
+        <RegisterPage />
+      </Route>
+      <Route exact path="/404">
+        <NotFoundPage />
+      </Route>
+      <Redirect to="/404" />
+    </Switch>
   );
 }
+
+App.propTypes = {
+  isInitiallyLogged: ProtoTypes.bool,
+};
+
+App.defaultProps = {
+  isInitiallyLogged: false,
+};
 
 export default App;

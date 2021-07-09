@@ -8,13 +8,20 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
 import configureStore from './store';
+import storage from './utils/storage';
 
-const accessToken = localStorage.getItem('auth');
+const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
 const store = configureStore({
-  preloadedState: { auth: !!accessToken },
-})
+  preloadedState: {
+    auth: {
+      isLogged: !!accessToken,
+      username: '',
+    },
+    // history,
+  },
+});
 
 ReactDOM.render(
   <Provider store={store}>
@@ -22,7 +29,7 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

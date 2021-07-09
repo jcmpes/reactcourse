@@ -7,7 +7,7 @@ import { getAuth } from '../store/selectors';
 import Layout from './layout/Layout';
 import { Button } from '../components/shared';
 
-function TemporaryWelcomePage({ auth, onLogout }) {
+function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const handleLogoutClick = () => {
     logout().then(onLogout);
   };
@@ -27,26 +27,25 @@ function TemporaryWelcomePage({ auth, onLogout }) {
 
   return (
     <React.Fragment>
-      <Layout>
-      <div
-        style={{
-          textAlign: 'center',
-          fontSize: 40,
-        }}
-      >
-        Welcome to Courseapp, {username}
-      </div>
-      <div>We hope you survive the experience...</div>
-      {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
-      <br />
-      {!isLogged && <Link {...propsRegisterLink} />}
+      <Layout {...props}>
+        <div
+          style={{
+            textAlign: 'center',
+            fontSize: 40,
+          }}
+        >
+          Welcome to Courseapp, {username}
+        </div>
+        <div>We hope you survive the experience...</div>
+        {isLogged ? <Button {...propsButton} /> : <Link {...propsLoginLink} />}
+        <br />
+        {!isLogged && <Link {...propsRegisterLink} />}
       </Layout>
     </React.Fragment>
   );
 }
 
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   auth: getAuth(state),
 });
 
@@ -56,5 +55,5 @@ const mapDispatchToProps = {
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(TemporaryWelcomePage);

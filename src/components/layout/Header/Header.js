@@ -1,10 +1,14 @@
-import React from 'react';
+import AuthButton from '../../auth/AuthButton';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ isLogged, onLogout, ...props }) => {
   return (
-    <header>
-      <p>Cabecera de la página</p>
+    <header className="header" {...props}>
+      <AuthButton
+        className="header-button"
+        isLogged={isLogged}
+        onLogout={onLogout}
+      />
     </header>
   );
 };
