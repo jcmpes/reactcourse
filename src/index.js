@@ -7,14 +7,19 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
 import configureStore from './store';
+import storage from './utils/storage';
 
-import './index.css';
-
-const accessToken = localStorage.getItem('auth');
+const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
 const store = configureStore({
-  preloadedState: { auth: !!accessToken },
+  preloadedState: {
+    auth: {
+      isLogged: !!accessToken,
+      username: '',
+    },
+    // history,
+  },
 });
 
 ReactDOM.render(
