@@ -3,18 +3,19 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
 import configureStore from './store';
+
+import './index.css';
 
 const accessToken = localStorage.getItem('auth');
 configureClient({ accessToken });
 
 const store = configureStore({
   preloadedState: { auth: !!accessToken },
-})
+});
 
 ReactDOM.render(
   <Provider store={store}>
@@ -22,7 +23,7 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

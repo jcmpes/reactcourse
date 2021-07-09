@@ -7,19 +7,29 @@ const RegisterForm = ({ onSubmit }) => {
     password: '',
     username: '',
   });
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    onSubmit(credentials);
+    if (password === passwordConfirm) {
+      onSubmit(credentials);
+    } else {
+      // TODO: Throw message: 'Password must be the same'
+    }
   };
+
   const handleChange = (ev) => {
-    setCredentials((oldValues) => ({
-      ...oldValues,
-      [ev.target.name]: ev.target.value,
-    }));
+    if (ev.target.name === 'password-confirm') {
+      setPasswordConfirm(ev.target.value);
+    } else {
+      setCredentials({ ...credentials, [ev.target.name]: ev.target.value });
+    }
   };
 
   const { email, password, username } = credentials;
+
+  const disabledButton =
+    !email | !password | !username | (password !== passwordConfirm);
 
   return (
     <div className="registerForm">
@@ -45,7 +55,14 @@ const RegisterForm = ({ onSubmit }) => {
           value={password}
           onChange={handleChange}
         />
-        <Button type="submit" disabled={!email | !password | !username}>
+        <FormField
+          type="password"
+          label="confirm password: "
+          name="password-confirm"
+          value={passwordConfirm}
+          onChange={handleChange}
+        />
+        <Button type="submit" disabled={disabledButton}>
           Register
         </Button>
       </form>
