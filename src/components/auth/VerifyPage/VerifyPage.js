@@ -16,8 +16,13 @@ function VerifyPage () {
   }, [])
   return (
     <div className="verify-page">
-      Hola,
-      {verified ? ' ESTAS VERIFICADO<a href="/login">Ir a Log In</a>' : ' no verificado'}
+      Bienvenido,
+      {verified
+        ? <>
+          <p>HAS ACTIAVDO TU USUARIO</p>
+          <a href="/login">Ir a Log In</a>
+        </> 
+        : ' lo sentimos, pero algo no ha ido bien. Tu usuario no esta activado, vuelve a intentarlo.'}
     </div>
   )
 }
