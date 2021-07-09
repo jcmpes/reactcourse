@@ -15,7 +15,6 @@ import './config/i18next-config';
 
 function Translations() {
   const { t } = useTranslation('[global]');
-}
 
   return (
     <div className="App">

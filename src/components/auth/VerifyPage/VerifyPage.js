@@ -17,7 +17,7 @@ function VerifyPage () {
   return (
     <div className="verify-page">
       Hola,
-      {verified ? ' ESTAS VERIFICADO' : ' no verificado'}
+      {verified ? ' ESTAS VERIFICADO<a href="/login">Ir a Log In</a>' : ' no verificado'}
     </div>
   )
 }
