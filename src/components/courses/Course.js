@@ -9,9 +9,9 @@ const Course = ({ course }) => {
       <br />
       Description: {course.description}
       <br />
-      Category: {course.categoryName}
+      Category: {course.category.name}
       <br />
-      Created by {course.authorName} at{' '}
+      Created by {course.user.username} at{' '}
       {new Date(course.createdAt).toLocaleDateString('es-es', {
         weekday: 'long',
         year: 'numeric',
