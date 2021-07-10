@@ -7,6 +7,8 @@ import { getAuth } from '../store/selectors';
 import Layout from './layout/Layout';
 import { Button } from '../components/shared';
 import { useTranslation } from 'react-i18next';
+import { getCourses } from '../api/courses';
+import Course from '../components/courses/Course';
 
 function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -35,6 +37,19 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
 
   const { isLogged, username } = auth;
 
+  const [courses, setCourses] = React.useState([]);
+  React.useEffect(() => {
+    getCourses().then(setCourses);
+  }, []);
+
+  const coursesElement = courses.map((course) => {
+    return (
+      <div>
+        <Course course={course} />
+      </div>
+    );
+  });
+
   return (
     <Layout {...props}>
       <div
@@ -58,6 +73,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
       </p>
       <Button children="English" onClick={switchLanguage} />
       <Button children="Español" onClick={switchLanguage} />
+      {coursesElement}
     </Layout>
   );
 }
