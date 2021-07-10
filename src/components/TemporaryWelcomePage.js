@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 import { logout } from '../api/auth';
 import { authLogout } from '../store/actions';
 import { getAuth } from '../store/selectors';
+import Layout from './layout/Layout';
 import { Button } from '../components/shared';
 import { useTranslation } from 'react-i18next';
 
-function TemporaryWelcomePage({ auth, onLogout }) {
+function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
-
   const handleLogoutClick = () => {
     logout().then(onLogout);
   };
@@ -36,7 +36,7 @@ function TemporaryWelcomePage({ auth, onLogout }) {
   const { isLogged, username } = auth;
 
   return (
-    <React.Fragment>
+    <Layout {...props}>
       <div
         style={{
           textAlign: 'center',
@@ -58,7 +58,7 @@ function TemporaryWelcomePage({ auth, onLogout }) {
       </p>
       <Button children="English" onClick={switchLanguage} />
       <Button children="Español" onClick={switchLanguage} />
-    </React.Fragment>
+    </Layout>
   );
 }
 

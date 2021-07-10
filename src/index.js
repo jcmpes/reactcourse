@@ -6,25 +6,32 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
+import { whoAmI } from './api/auth';
 import configureStore from './store';
+import storage from './utils/storage';
 
-import './index.css';
-
-const accessToken = localStorage.getItem('auth');
+const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
-const store = configureStore({
-  preloadedState: { auth: !!accessToken },
+whoAmI().then((data) => {
+  const store = configureStore({
+    preloadedState: {
+      auth: {
+        isLogged: !!accessToken,
+        username: !!accessToken ? data : null,
+      },
+      // history,
+    },
+  });
+  ReactDOM.render(
+    <Provider store={store}>
+      <Router>
+        <App />
+      </Router>
+    </Provider>,
+    document.getElementById('root'),
+  );
 });
-
-ReactDOM.render(
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById('root'),
-);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,21 +1,20 @@
+import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+import NotFoundPage from './api/NotFoundPage';
 import { Suspense } from 'react';
 import LoginPage from './components/auth/LoginPage';
 import TemporaryWelcomePage from './components/TemporaryWelcomePage';
 import {
-        RegisterPage,
-        ResetPasswordPage,
-        ForgotPage,
-        VerifyPage
-        } from './components/auth'
-import { useTranslation } from 'react-i18next';
+  RegisterPage,
+  ResetPasswordPage,
+  ForgotPage,
+  VerifyPage,
+} from './components/auth';
 import './App.css';
 
 import './config/i18next-config';
 
 function Translations() {
-  const { t } = useTranslation('[global]');
-
   return (
     <div className="App">
       <Switch>
@@ -36,19 +35,12 @@ function Translations() {
         </Route>
         <Route path="/verify/:verifyToken">
           <VerifyPage />
-        </Route> 
+        </Route>
         <Route exact path="/">
           <TemporaryWelcomePage />
         </Route>
-        <Route path="/404">
-          <div
-            style={{
-              textAlign: 'center',
-              fontSize: 40,
-            }}
-          >
-            404 | {t('not-found')}
-          </div>
+        <Route exact path="/404">
+          <NotFoundPage />
         </Route>
         <Route>
           <Redirect to="/404" />

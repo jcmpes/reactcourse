@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
 
-function VerifyPage () {
-  const { verifyToken } = useParams()
-  const [verified, setVerified] = useState(false)
+
+function VerifyPage() {
+  const { verifyToken } = useParams();
+  const [verified, setVerified] = useState(false);
 
   const { t } = useTranslation(['global']);
 
@@ -26,7 +27,7 @@ function VerifyPage () {
         : <p>{t('activation failed')}</p>
       }
     </div>
-  )
+  );
 }
 
 export default VerifyPage;
