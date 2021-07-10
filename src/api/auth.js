@@ -42,3 +42,10 @@ export const resetPassword = (resetToken, newPassword) => {
     .then((data) => console.log(data))
     .catch((error) => console.error('Error', error));
 };
+
+export const whoAmI = () => {
+  return client
+    .get('/api/v1/aboutme')
+    .then((name) => name.username)
+    .catch((error) => console.error('Errororr'));
+};
