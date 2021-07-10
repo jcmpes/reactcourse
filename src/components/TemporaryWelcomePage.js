@@ -59,7 +59,8 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
         }}
       >
         {t('welcome to')}
-        {t('title')}, {username}
+        {t('title')}
+        {username ? `, ${username}` : ''}
       </div>
 
       <div>{t('headline')}</div>
