@@ -15,3 +15,4 @@ export const getCourse = (courseId) => {
     .then((data) => data)
     .catch(err => console.log('Error getting course: ', err))
 }
+

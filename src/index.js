@@ -13,16 +13,35 @@ import storage from './utils/storage';
 const accessToken = storage.get('auth');
 configureClient({ accessToken });
 
-whoAmI().then((data) => {
-  const store = configureStore({
-    preloadedState: {
-      auth: {
-        isLogged: !!accessToken,
-        username: !!accessToken ? data : null,
-      },
-      // history,
+const preState = {
+  preloadedState: {
+    auth: {
+      isLogged: !!accessToken,
+      username: null,
     },
+    ui: {
+      loading: false,
+      error: null,
+    },
+    // history,
+  },
+};
+
+if (!!accessToken)
+  whoAmI().then((data) => {
+    preState.preloadedState.auth.username = data;
+    const store = configureStore(preState);
+    ReactDOM.render(
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>,
+      document.getElementById('root'),
+    );
   });
+else {
+  const store = configureStore(preState);
   ReactDOM.render(
     <Provider store={store}>
       <Router>
@@ -31,7 +50,7 @@ whoAmI().then((data) => {
     </Provider>,
     document.getElementById('root'),
   );
-});
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -15,9 +15,9 @@ import {
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   COURSE_DETAIL_FAILURE,
-  COURSES_LOAD_REQUEST,
-  COURSES_LOAD_SUCCESS,
-  COURSES_LOAD_FAILURE,
+  LOAD_COURSES_REQUEST,
+  LOAD_COURSES_SUCCESS,
+  LOAD_COURSES_FAILURE,
 } from './types';
 
 import { login, register, forgotPassword, resetPassword } from '../api/auth';
@@ -191,39 +191,26 @@ export const resetPasswordAction = (
   };
 };
 
-// Load Courses actions
-export const coursesLoadRequest = () => {
+// Load courses actions
+export const loadCoursesRequest = () => {
   return {
-    type: COURSES_LOAD_REQUEST,
+    type: LOAD_COURSES_REQUEST,
   };
 };
 
-export const coursesLoadSuccess = () => {
+export const loadCoursesSuccess = () => {
   return {
-    type: COURSES_LOAD_SUCCESS,
+    type: LOAD_COURSES_SUCCESS,
   };
 };
 
-export const coursesLoadFailure = (error) => {
+export const loadCoursesFailure = (error) => {
   return {
-    type: COURSES_LOAD_FAILURE,
+    type: LOAD_COURSES_FAILURE,
     payload: error,
     error: true,
   };
 };
-
-export const coursesLoadAction = () => {
-  return async function(dispatch, getState) {
-    dispatch(coursesLoadRequest());
-    try {
-      const courses = await getCourses();
-      dispatch(coursesLoadSuccess());
-      return courses;
-    } catch (err) {
-      dispatch(coursesLoadFailure(err));
-    }
-  }
-}
 
 // Course Detail actions
 export const courseDetailRequest = () => {
@@ -264,3 +251,18 @@ export const courseDetailAction = (courseId) => {
     }
   }
 }
+// Load courses middleware
+export const loadCoursesAction = (getCourses, setCourses) => {
+  return async function (dispatch, getState) {
+    dispatch(loadCoursesRequest());
+    try {
+      getCourses()
+        .then(setCourses)
+        .then(() => {
+          dispatch(loadCoursesSuccess());
+        });
+    } catch (error) {
+      dispatch(loadCoursesFailure(error));
+    }
+  };
+};

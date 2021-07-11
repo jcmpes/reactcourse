@@ -6,3 +6,5 @@ export const getUi = (state) => state.ui
 
 export const getCourseDetail = (state, courseId) => 
   state.courses.data.find(item => item._id === courseId)
+
+  export const getUI = (state) => state.ui;

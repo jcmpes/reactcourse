@@ -4,6 +4,9 @@ import {
   AUTH_LOGOUT,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
+  //LOAD_COURSES_FAILURE,
+  LOAD_COURSES_REQUEST,
+  LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
 } from './types';
 
@@ -51,12 +54,14 @@ export function ui(state = initialState.ui, action) {
   }
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
+    case LOAD_COURSES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
       return { ...state, loading: true, error: null }
     case COURSE_DETAIL_SUCCESS:
       return { ...state,  loading: false }
     case AUTH_LOGIN_SUCCESS:
+    case LOAD_COURSES_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {
