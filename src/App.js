@@ -13,6 +13,7 @@ import {
 import './App.css';
 
 import './config/i18next-config';
+import CoursePage from './components/courses/CourseDetailPage/CoursePage';
 
 function Translations() {
   return (
@@ -35,6 +36,9 @@ function Translations() {
         </Route>
         <Route path="/verify/:verifyToken">
           <VerifyPage />
+        </Route>
+        <Route path="/course/:courseId">
+          <CoursePage />
         </Route>
         <Route exact path="/">
           <TemporaryWelcomePage />

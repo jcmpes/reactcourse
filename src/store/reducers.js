@@ -2,6 +2,8 @@ import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
+  COURSE_DETAIL_REQUEST,
+  COURSE_DETAIL_SUCCESS,
   UI_RESET_ERROR,
 } from './types';
 
@@ -9,6 +11,10 @@ export const initialState = {
   auth: {
     isLogged: false,
     username: '',
+  },
+  courses: {
+    loaded: false,
+    data: [],
   },
   ui: {
     loading: false,
@@ -27,6 +33,17 @@ export function auth(state = initialState.auth, action) {
   }
 }
 
+export function courses(state = initialState.courses, action) {
+  switch (action.type) {
+    case COURSE_DETAIL_REQUEST:
+      return { ...state, loaded: false}
+    case COURSE_DETAIL_SUCCESS:
+      return { loaded: true, data: [...state.data, action.payload] };
+    default:
+      return state 
+  }
+}
+
 export function ui(state = initialState.ui, action) {
   // case AUTH_LOGIN_FAILURE managed with if statement
   if (action.error) {
@@ -35,6 +52,10 @@ export function ui(state = initialState.ui, action) {
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
       return { ...state, loading: true, error: null };
+    case COURSE_DETAIL_REQUEST:
+      return { ...state, loading: true, error: null }
+    case COURSE_DETAIL_SUCCESS:
+      return { ...state,  loading: false }
     case AUTH_LOGIN_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:

@@ -12,10 +12,18 @@ import {
   AUTH_RESET_PASSWORD_REQUEST,
   AUTH_RESET_PASSWORD_SUCCESS,
   AUTH_RESET_PASSWORD_FAILURE,
+  COURSE_DETAIL_REQUEST,
+  COURSE_DETAIL_SUCCESS,
+  COURSE_DETAIL_FAILURE,
+  COURSES_LOAD_REQUEST,
+  COURSES_LOAD_SUCCESS,
+  COURSES_LOAD_FAILURE,
 } from './types';
 
 import { login, register, forgotPassword, resetPassword } from '../api/auth';
 import { toast } from 'react-toastify';
+import { getCourseDetail } from './selectors';
+import { getCourse, getCourses } from '../api/courses';
 
 // Register actions
 export const authRegisterRequest = () => {
@@ -182,3 +190,77 @@ export const resetPasswordAction = (
     }
   };
 };
+
+// Load Courses actions
+export const coursesLoadRequest = () => {
+  return {
+    type: COURSES_LOAD_REQUEST,
+  };
+};
+
+export const coursesLoadSuccess = () => {
+  return {
+    type: COURSES_LOAD_SUCCESS,
+  };
+};
+
+export const coursesLoadFailure = (error) => {
+  return {
+    type: COURSES_LOAD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const coursesLoadAction = () => {
+  return async function(dispatch, getState) {
+    dispatch(coursesLoadRequest());
+    try {
+      const courses = await getCourses();
+      dispatch(coursesLoadSuccess());
+      return courses;
+    } catch (err) {
+      dispatch(coursesLoadFailure(err));
+    }
+  }
+}
+
+// Course Detail actions
+export const courseDetailRequest = () => {
+  return {
+    type: COURSE_DETAIL_REQUEST,
+  };
+};
+
+export const courseDetailSuccess = (course) => {
+  return {
+    type: COURSE_DETAIL_SUCCESS,
+    payload: course,
+  };
+};
+
+export const courseDetailFailure = (error) => {
+  return {
+    type: COURSE_DETAIL_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const courseDetailAction = (courseId) => {
+  return async function(dispatch, getState) {
+    // Use Redux as cache
+    const courseCached = getCourseDetail(getState(), courseId);
+    if (courseCached) {
+      return
+    };
+    dispatch(courseDetailRequest());
+    try {
+      const course = await getCourse(courseId);
+      dispatch(courseDetailSuccess(course));
+      return course;
+    } catch (err) {
+      dispatch(courseDetailFailure(err));
+    }
+  }
+}
