@@ -23,7 +23,7 @@ import {
 import { login, register, forgotPassword, resetPassword } from '../api/auth';
 import { toast } from 'react-toastify';
 import { getCourseDetail } from './selectors';
-import { getCourse, getCourses } from '../api/courses';
+import { getCourse } from '../api/courses';
 
 // Register actions
 export const authRegisterRequest = () => {

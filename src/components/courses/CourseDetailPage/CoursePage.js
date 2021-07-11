@@ -7,7 +7,7 @@ import CourseDetail from "./CourseDetail";
 
 function CoursePage() {
   const { courseId } = useParams();
-  const { loading, error } = useSelector(getUi);
+  const { loading } = useSelector(getUi);
   const course = useSelector(state => getCourseDetail(state, courseId))
   console.log('Course: ', course)
   const dispatch = useDispatch();
