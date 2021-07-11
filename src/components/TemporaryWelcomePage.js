@@ -54,7 +54,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
     ? courses.map((course) => {
         return (
           <div>
-            <Course course={course} key={course._id} />
+            <Course course={course} me={username} key={course._id} />
           </div>
         );
       })
