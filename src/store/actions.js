@@ -12,6 +12,9 @@ import {
   AUTH_RESET_PASSWORD_REQUEST,
   AUTH_RESET_PASSWORD_SUCCESS,
   AUTH_RESET_PASSWORD_FAILURE,
+  LOAD_COURSES_REQUEST,
+  LOAD_COURSES_SUCCESS,
+  LOAD_COURSES_FAILURE,
 } from './types';
 
 import { login, register, forgotPassword, resetPassword } from '../api/auth';
@@ -179,6 +182,43 @@ export const resetPasswordAction = (
       dispatch(resetPasswordSuccess(newPassword));
     } catch (error) {
       dispatch(resetPasswordFailure(error));
+    }
+  };
+};
+
+// Load courses actions
+export const loadCoursesRequest = () => {
+  return {
+    type: LOAD_COURSES_REQUEST,
+  };
+};
+
+export const loadCoursesSuccess = () => {
+  return {
+    type: LOAD_COURSES_SUCCESS,
+  };
+};
+
+export const loadCoursesFailure = (error) => {
+  return {
+    type: LOAD_COURSES_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+// Load courses middleware
+export const loadCoursesAction = (getCourses, setCourses) => {
+  return async function (dispatch, getState) {
+    dispatch(loadCoursesRequest());
+    try {
+      getCourses()
+        .then(setCourses)
+        .then(() => {
+          dispatch(loadCoursesSuccess());
+        });
+    } catch (error) {
+      dispatch(loadCoursesFailure(error));
     }
   };
 };

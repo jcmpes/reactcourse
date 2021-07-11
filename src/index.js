@@ -19,6 +19,10 @@ const preState = {
       isLogged: !!accessToken,
       username: null,
     },
+    ui: {
+      loading: false,
+      error: null,
+    },
     // history,
   },
 };

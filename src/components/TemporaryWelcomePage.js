@@ -3,15 +3,21 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../api/auth';
 import { authLogout } from '../store/actions';
-import { getAuth } from '../store/selectors';
+import { getAuth, getUI } from '../store/selectors';
 import Layout from './layout/Layout';
 import { Button } from '../components/shared';
 import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
 import Course from '../components/courses/Course';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadCoursesAction } from '../store/actions';
 
 function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
+
+  const { loading, error } = useSelector(getUI);
+  const dispatch = useDispatch();
+
   const handleLogoutClick = () => {
     logout().then(onLogout);
   };
@@ -39,18 +45,24 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
-    getCourses().then(setCourses);
+    // getCourses().then(setCourses);
+    dispatch(loadCoursesAction(getCourses, setCourses));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const coursesElement = courses.map((course) => {
-    return (
-      <div>
-        <Course course={course} />
-      </div>
-    );
-  });
+  const coursesElement = courses
+    ? courses.map((course) => {
+        return (
+          <div>
+            <Course course={course} key={course._id} />
+          </div>
+        );
+      })
+    : [];
 
-  return (
+  return error || loading ? (
+    'Loading...'
+  ) : (
     <Layout {...props}>
       <div
         style={{
@@ -74,7 +86,9 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
       </p>
       <Button children="English" onClick={switchLanguage} />
       <Button children="Español" onClick={switchLanguage} />
-      {coursesElement}
+      {coursesElement.length === 0 && !loading
+        ? "There's no courses yet"
+        : coursesElement}
     </Layout>
   );
 }
