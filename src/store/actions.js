@@ -244,6 +244,7 @@ export const courseDetailAction = (courseSlug) => {
     dispatch(courseDetailRequest());
     try {
       const course = await getCourse(courseSlug);
+      console.log('Curso: ', course)
       dispatch(courseDetailSuccess(course));
       return course;
     } catch (err) {
