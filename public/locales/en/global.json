@@ -2,5 +2,16 @@
   "title": "CourseApp",
   "welcome": "Welcome to ",
   "headline": "We hope you survive the experience.",
-  "not-found": "Página no encontrada"
+  "not-found": "Not found page",
+  "users": {
+    "student": "Student",
+    "learning": "Learning",
+    "wishlist": "Wishlist",
+    "chats": "Chats",
+    "edit profile": "Edit profile",
+    "username": "Username",
+    "email": "Email",
+    "hello": "Hello",
+    "about me": "About me"
+  }
 }
