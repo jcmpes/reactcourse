@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { courseDetailAction } from "../../../store/actions";
 import { getCourseDetail, getUi } from "../../../store/selectors";
+import Layout from "../../layout/Layout";
 import CourseDetail from "./CourseDetail";
 
 function CoursePage() {
@@ -17,8 +18,11 @@ function CoursePage() {
 
   return (
     <div className="course-detail-page">
-      {loading && "I'm loading..."}
-      {course && <CourseDetail {...course} />}
+      <Layout>
+        {loading && "I'm loading..."}
+        {course && <CourseDetail {...course} />}
+
+      </Layout>
     </div>
   )
 }
