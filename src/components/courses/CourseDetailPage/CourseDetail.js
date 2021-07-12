@@ -1,15 +1,21 @@
-function CourseDetail({ title, featuredImage, video, description, content }) {
+import  { Twitter, Facebook } from "react-social-sharing";
+import { YoutubeEmbed } from "../../shared";
+
+
+function CourseDetail({ title, video, description, content }) {
   return (
     <div className="detail-container">
       <div className="detail-title">{title}</div>
       <div className="detail-description">{description}</div>
-      <div className="detail-video">
-        <iframe width="560" height="315" src={video} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
+      <YoutubeEmbed video={video} />
       <div className="detail-content">
         {content}
       </div>
-    </div>  
+      <div className="deatail-sharer">
+        <Facebook link={window.location.href} />
+        <Twitter link={window.location.href} />
+      </div>
+    </div>
   )
 }
 

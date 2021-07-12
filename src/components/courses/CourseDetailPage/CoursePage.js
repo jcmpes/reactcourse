@@ -9,7 +9,6 @@ function CoursePage() {
   const { courseSlug } = useParams();
   const { loading } = useSelector(getUi);
   const course = useSelector(state => getCourseDetail(state, courseSlug))
-  console.log('Course: ', course)
   const dispatch = useDispatch();
 
   React.useEffect(() => {
