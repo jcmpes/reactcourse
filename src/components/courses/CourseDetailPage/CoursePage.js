@@ -6,15 +6,15 @@ import { getCourseDetail, getUi } from "../../../store/selectors";
 import CourseDetail from "./CourseDetail";
 
 function CoursePage() {
-  const { courseId } = useParams();
+  const { courseSlug } = useParams();
   const { loading } = useSelector(getUi);
-  const course = useSelector(state => getCourseDetail(state, courseId))
+  const course = useSelector(state => getCourseDetail(state, courseSlug))
   console.log('Course: ', course)
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    dispatch(courseDetailAction(courseId));
-  }, [courseId, course, dispatch])
+    dispatch(courseDetailAction(courseSlug));
+  }, [courseSlug, course, dispatch])
 
   return (
     <div className="course-detail-page">

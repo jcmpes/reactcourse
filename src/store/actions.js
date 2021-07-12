@@ -234,16 +234,16 @@ export const courseDetailFailure = (error) => {
   };
 };
 
-export const courseDetailAction = (courseId) => {
+export const courseDetailAction = (courseSlug) => {
   return async function(dispatch, getState) {
     // Use Redux as cache
-    const courseCached = getCourseDetail(getState(), courseId);
+    const courseCached = getCourseDetail(getState(), courseSlug);
     if (courseCached) {
       return
     };
     dispatch(courseDetailRequest());
     try {
-      const course = await getCourse(courseId);
+      const course = await getCourse(courseSlug);
       dispatch(courseDetailSuccess(course));
       return course;
     } catch (err) {

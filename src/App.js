@@ -37,7 +37,7 @@ function Translations() {
         <Route path="/verify/:verifyToken">
           <VerifyPage />
         </Route>
-        <Route path="/course/:courseId">
+        <Route path="/course/:courseSlug">
           <CoursePage />
         </Route>
         <Route exact path="/">
