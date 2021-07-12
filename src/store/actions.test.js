@@ -1,10 +1,5 @@
 import { authLoginRequest, loadCoursesSuccess, loginAction } from './actions';
-import {
-  AUTH_LOGIN_REQUEST,
-  AUTH_LOGIN_SUCCESS,
-  AUTH_LOGIN_FAILURE,
-  LOAD_COURSES_SUCCESS,
-} from './types';
+import { AUTH_LOGIN_REQUEST, LOAD_COURSES_SUCCESS } from './types';
 
 describe('authLoginRequest', () => {
   test('should return an AUTH_LOGIN_REQUEST action', () => {
