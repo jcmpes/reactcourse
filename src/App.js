@@ -10,6 +10,8 @@ import {
   ForgotPage,
   VerifyPage,
 } from './components/auth';
+import User from './components/users';
+
 import './App.css';
 
 import './config/i18next-config';
@@ -18,11 +20,14 @@ function Translations() {
   return (
     <div className="App">
       <Switch>
+        <Route path="/register">
+          <RegisterPage />
+        </Route>
         <Route path="/login">
           <LoginPage />
         </Route>
-        <Route path="/register">
-          <RegisterPage />
+        <Route path="/user">
+          <User />
         </Route>
         <Route path="/reset-password/:resetToken">
           <ResetPasswordPage />
