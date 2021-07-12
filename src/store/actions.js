@@ -221,8 +221,7 @@ export const getUserAction = (username, history) => {
     try {
       const user = await whoAmI();
       dispatch(getUserSuccess(user));
-      // Redirect to user profile page
-      history.push(`/user/${username}`);
+      history.push(username ? `/user/${username}` : `/login`);
     } catch (error) {
       dispatch(getUserFailure());
     }
