@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Course = ({ course, me }) => {
   const isAuthor = course.user.username === me;
   return (
-    <div>
+    <div className="course-wrapper">
       <br />
-      Title: {course.title}
+      Title: <Link className="course-title" to={`/courses/${course.slug}`}>{course.title}</Link>
       <br />
       Description: {course.description}
       <br />
