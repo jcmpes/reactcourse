@@ -15,7 +15,7 @@ const User = () => {
   const username = useSelector(getUsername);
   useEffect(() => {
     dispatch(getUserAction(username, history));
-  }, []);
+  }, [username, dispatch, history]);
 
   return (
     <Layout>
