@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
 import { loginAction } from '../../../store/actions';
 import LoginForm from './LoginForm';
+import Layout from '../../layout/Layout';
 
 function LoginPage() {
   const history = useHistory();
@@ -14,10 +15,10 @@ function LoginPage() {
   };
 
   return (
-    <>
+    <Layout>
       <h1>Login</h1>
       <LoginForm onSubmit={handleSubmit} />
-    </>
+    </Layout>
   );
 }
 
