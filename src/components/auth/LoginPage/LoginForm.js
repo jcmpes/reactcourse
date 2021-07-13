@@ -64,7 +64,6 @@ function LoginForm({ onSubmit }) {
           name={'remember'}
           text={t('remember session')}
           type={'checkbox'}
-          disabled={!credentials.email || !credentials.password}
           checked={credentials.remember}
           onChange={handleChange}
         />
