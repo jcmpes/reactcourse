@@ -1,5 +1,4 @@
 import React from 'react';
-import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
