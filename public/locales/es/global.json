@@ -31,7 +31,8 @@
   },
   "header": {
     "home": "Inicio",
-    "user": "Mi perfil"
+    "user": "Mi perfil",
+    "register": "Registro"
   },
   "footer": {
     "footer": "Pie de página"

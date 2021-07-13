@@ -22,6 +22,15 @@ const Header = ({ isLogged, onLogout, ...props }) => {
       <a href="/user">
         <Button>{t('header.user')}</Button>
       </a>
+      <a href="/register">
+        <Button>{t('header.register')}</Button>
+      </a>
+
+      <AuthButton
+        className="header-button"
+        isLogged={isLogged}
+        onLogout={onLogout}
+      />
 
       <Button type="text" onClick={switchLanguage}>
         en
@@ -29,12 +38,6 @@ const Header = ({ isLogged, onLogout, ...props }) => {
       <Button type="text" onClick={switchLanguage}>
         es
       </Button>
-
-      <AuthButton
-        className="header-button"
-        isLogged={isLogged}
-        onLogout={onLogout}
-      />
     </header>
   );
 };

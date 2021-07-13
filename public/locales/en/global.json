@@ -30,7 +30,8 @@
   },
   "header": {
     "home": "Home",
-    "user": "My profile"
+    "user": "My profile",
+    "register": "Register"
   },
   "footer": {
     "footer": "Footer"
