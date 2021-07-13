@@ -18,9 +18,18 @@ import {
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
   LOAD_COURSES_FAILURE,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
 } from './types';
 
-import { login, register, forgotPassword, resetPassword } from '../api/auth';
+import {
+  login,
+  register,
+  forgotPassword,
+  resetPassword,
+  whoAmI,
+} from '../api/auth';
 import { toast } from 'react-toastify';
 import { getCourseDetail } from './selectors';
 import { getCourse } from '../api/courses';
@@ -212,6 +221,22 @@ export const loadCoursesFailure = (error) => {
   };
 };
 
+// Load courses middleware
+export const loadCoursesAction = (getCourses, setCourses) => {
+  return async function (dispatch, getState) {
+    dispatch(loadCoursesRequest());
+    try {
+      getCourses()
+        .then(setCourses)
+        .then(() => {
+          dispatch(loadCoursesSuccess());
+        });
+    } catch (error) {
+      dispatch(loadCoursesFailure(error));
+    }
+  };
+};
+
 // Course Detail actions
 export const courseDetailRequest = () => {
   return {
@@ -234,13 +259,14 @@ export const courseDetailFailure = (error) => {
   };
 };
 
+// Course Detail middleware
 export const courseDetailAction = (courseSlug) => {
-  return async function(dispatch, getState) {
+  return async function (dispatch, getState) {
     // Use Redux as cache
     const courseCached = getCourseDetail(getState(), courseSlug);
     if (courseCached) {
-      return
-    };
+      return;
+    }
     dispatch(courseDetailRequest());
     try {
       const course = await getCourse(courseSlug);
@@ -249,20 +275,41 @@ export const courseDetailAction = (courseSlug) => {
     } catch (err) {
       dispatch(courseDetailFailure(err));
     }
-  }
-}
-// Load courses middleware
-export const loadCoursesAction = (getCourses, setCourses) => {
+  };
+};
+
+// Get User actions
+export const getUserRequest = () => {
+  return {
+    type: GET_USER_REQUEST,
+  };
+};
+
+export const getUserSuccess = (user) => {
+  return {
+    type: GET_USER_SUCCESS,
+    payload: user,
+  };
+};
+
+export const getUserFailure = (error) => {
+  return {
+    type: GET_USER_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+// Get User middleware
+export const getUserAction = (username, history) => {
   return async function (dispatch, getState) {
-    dispatch(loadCoursesRequest());
+    dispatch(getUserRequest());
     try {
-      getCourses()
-        .then(setCourses)
-        .then(() => {
-          dispatch(loadCoursesSuccess());
-        });
+      const user = await whoAmI();
+      dispatch(getUserSuccess(user));
+      history.push(username ? `/user/${username}` : `/login`);
     } catch (error) {
-      dispatch(loadCoursesFailure(error));
+      dispatch(getUserFailure());
     }
   };
 };

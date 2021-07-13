@@ -47,7 +47,7 @@ export const whoAmI = () => {
   return client
     .get('/api/v1/aboutme')
     .then((name) => name.username)
-    .catch((error) => console.error('Error'));
+    .catch((error) => console.error('Error', error));
 };
 
 export const isFav = (course) => {
