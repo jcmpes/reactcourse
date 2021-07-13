@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import AuthButton from '../../auth/AuthButton';
 import { Button } from '../../shared';
-import MyButton from '../../shared/MyButton';
+
 import './Header.css';
 
 const Header = ({ isLogged, onLogout, ...props }) => {
