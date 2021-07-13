@@ -1,12 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { isFav } from '../../api/auth';
 
 const Course = ({ course, me }) => {
   const isAuthor = course.user.username === me;
+  const [favorited, setFavorited] = React.useState(null);
+
+  React.useEffect(() => {
+    isFav(course._id).then(setFavorited);
+  }, [course._id]);
   return (
     <div className="course-wrapper">
       <br />
-      Title: <Link className="course-title" to={`/courses/${course.slug}`}>{course.title}</Link>
+      Title:{' '}
+      <Link className="course-title" to={`/courses/${course.slug}`}>
+        {course.title}
+      </Link>
       <br />
       Description: {course.description}
       <br />
@@ -20,6 +29,7 @@ const Course = ({ course, me }) => {
         day: 'numeric',
       })}
       <br />
+      {favorited !== true || 'es favorito'}
     </div>
   );
 };

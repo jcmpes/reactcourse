@@ -1,6 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+const eye = <FontAwesomeIcon icon={faEye} />;
+const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 function LoginForm({ onSubmit }) {
   const [credentials, setCredentials] = React.useState({
@@ -8,6 +13,8 @@ function LoginForm({ onSubmit }) {
     password: '',
     remember: false,
   });
+
+  const [passwordShown, setPasswordShown] = React.useState(false);
 
   const handleChange = (ev) => {
     setCredentials((oldCredentials) => ({
@@ -22,9 +29,11 @@ function LoginForm({ onSubmit }) {
     onSubmit(credentials);
   };
 
-  const { t } = useTranslation(['global'])
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
 
-  const { email, password } = credentials;
+  const { t } = useTranslation(['global']);
 
   return (
     <div className="loginForm">
@@ -33,16 +42,23 @@ function LoginForm({ onSubmit }) {
           type="text"
           label={t('email')}
           name="email"
-          value={email}
+          value={credentials.email}
           onChange={handleChange}
         />
-        <FormField
-          type="password"
-          label={t("password")}
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
+        <div className="pwd-container">
+          <FormField
+            type={passwordShown ? 'text' : 'password'}
+            label={t('password')}
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+          {passwordShown ? (
+            <i onClick={togglePasswordVisiblity}>{eyeSlash}</i>
+          ) : (
+            <i onClick={togglePasswordVisiblity}>{eye}</i>
+          )}
+        </div>
         <Checkbox
           className={'checkbox'}
           name={'remember'}
@@ -52,7 +68,10 @@ function LoginForm({ onSubmit }) {
           checked={credentials.remember}
           onChange={handleChange}
         />
-        <Button type="submit" disabled={!email | !password}>
+        <Button
+          type="submit"
+          disabled={!credentials.email | !credentials.password}
+        >
           {t('log in')}
         </Button>
         <div className="password-forgotten">
