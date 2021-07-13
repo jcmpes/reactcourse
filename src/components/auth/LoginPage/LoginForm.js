@@ -17,8 +17,6 @@ function LoginForm({ onSubmit }) {
 
   const [passwordShown, setPasswordShown] = React.useState(false);
 
-  const { register } = useForm();
-
   const handleChange = (ev) => {
     setCredentials((oldCredentials) => ({
       ...oldCredentials,
