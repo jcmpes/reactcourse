@@ -27,5 +27,12 @@
     "email": "Email",
     "hello": "Hello",
     "about me": "About me"
+  },
+  "header": {
+    "home": "Home",
+    "user": "My profile"
+  },
+  "footer": {
+    "footer": "Footer"
   }
 }

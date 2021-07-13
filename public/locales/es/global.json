@@ -28,5 +28,12 @@
     "email": "Correo electrónico",
     "hello": "Hola",
     "about me": "Sobre mí"
+  },
+  "header": {
+    "home": "Inicio",
+    "user": "Mi perfil"
+  },
+  "footer": {
+    "footer": "Pie de página"
   }
 }
