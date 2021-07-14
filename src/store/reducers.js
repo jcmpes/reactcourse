@@ -2,6 +2,8 @@ import {
   AUTH_LOGIN_REQUEST,
   AUTH_LOGIN_SUCCESS,
   AUTH_LOGOUT,
+  CATEGORIES_LOAD_REQUEST,
+  CATEGORIES_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   //LOAD_COURSES_FAILURE,
@@ -16,6 +18,10 @@ export const initialState = {
     username: '',
   },
   courses: {
+    loaded: false,
+    data: [],
+  },
+  categories: {
     loaded: false,
     data: [],
   },
@@ -36,12 +42,23 @@ export function auth(state = initialState.auth, action) {
   }
 }
 
+export function categories(state = initialState.categories, action) {
+  switch (action.type) {
+    case CATEGORIES_LOAD_REQUEST:
+      return { ...state, loaded: false };
+    case CATEGORIES_LOAD_SUCCESS:
+      return { ...state, loaded: true, data: action.payload };
+    default:
+      return state;
+  }
+}
+
 export function courses(state = initialState.courses, action) {
   switch (action.type) {
     case COURSE_DETAIL_REQUEST:
       return { ...state, loaded: false}
     case COURSE_DETAIL_SUCCESS:
-      return { loaded: true, data: [...state.data, action.payload] };
+      return { ...state, loaded: true, data: [...state.data, action.payload] };
     default:
       return state 
   }

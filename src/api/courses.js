@@ -16,3 +16,19 @@ export const getCourse = (courseSlug) => {
     .catch(err => console.log('Error getting course: ', err))
 }
 
+// Post a new course
+export const postCourse = (courseDetails) => {
+  return client
+    .post('/api/v1/courses/', courseDetails)
+    .then((data) => data)
+    .catch(err => console.log('Error creating course: ', err))
+}
+
+// Get categories
+export const getCategoriesApiCall = () => {
+  return client
+    .get('/api/v1/categories')
+    .then((data) => data)
+    .catch(err => console.log('Error getting categories: ', err))
+}
+

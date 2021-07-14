@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../api/auth';
-import { authLogout } from '../store/actions';
+import { authLogout, categoriesLoadRequest } from '../store/actions';
 import { getAuth, getUI } from '../store/selectors';
 import Layout from './layout/Layout';
 import { Button } from '../components/shared';
@@ -47,6 +47,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   React.useEffect(() => {
     // getCourses().then(setCourses);
     dispatch(loadCoursesAction(getCourses, setCourses));
+    dispatch(categoriesLoadRequest());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

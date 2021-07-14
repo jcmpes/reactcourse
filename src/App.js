@@ -10,6 +10,7 @@ import {
   ForgotPage,
   VerifyPage,
 } from './components/auth';
+import { NewCoursePage } from './components/courses/NewCoursePage';
 import './App.css';
 
 import './config/i18next-config';
@@ -39,6 +40,9 @@ function Translations() {
         </Route>
         <Route path="/courses/:courseSlug">
           <CoursePage />
+        </Route>
+        <Route path="/create">
+          <NewCoursePage />
         </Route>
         <Route exact path="/">
           <TemporaryWelcomePage />

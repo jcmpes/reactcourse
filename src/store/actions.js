@@ -18,12 +18,15 @@ import {
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
   LOAD_COURSES_FAILURE,
+  CATEGORIES_LOAD_REQUEST,
+  CATEGORIES_LOAD_SUCCESS,
+  CATEGORIES_LOAD_FAILURE
 } from './types';
 
 import { login, register, forgotPassword, resetPassword } from '../api/auth';
 import { toast } from 'react-toastify';
-import { getCourseDetail } from './selectors';
-import { getCourse } from '../api/courses';
+import { getCategories, getCourseDetail } from './selectors';
+import { getCategoriesApiCall, getCourse } from '../api/courses';
 
 // Register actions
 export const authRegisterRequest = () => {
@@ -62,7 +65,7 @@ export const registerAction = (credentials, history, location) => {
         dispatch(authRegisterSuccess());
       }
     } catch (error) {
-      dispatch(authRegisterFailure());
+      dispatch(authRegisterFailure(error));
     }
   };
 };
@@ -251,6 +254,7 @@ export const courseDetailAction = (courseSlug) => {
     }
   }
 }
+
 // Load courses middleware
 export const loadCoursesAction = (getCourses, setCourses) => {
   return async function (dispatch, getState) {
@@ -266,3 +270,38 @@ export const loadCoursesAction = (getCourses, setCourses) => {
     }
   };
 };
+
+// Tags load actions
+export const categoriesLoadRequest = () => {
+  return {
+    type: CATEGORIES_LOAD_REQUEST,
+  };
+};
+
+export const categoriesLoadSuccess = (categories) => {
+  return {
+    type: CATEGORIES_LOAD_SUCCESS,
+    payload: categories,
+  };
+};
+
+export const categoriesLoadFailure = (error) => {
+  return {
+    type: CATEGORIES_LOAD_FAILURE,
+    payload: error,
+    error: true,
+  };
+};
+
+export const categoriesLoadAction = () => {
+  return async function(dispatch, getState) {
+    dispatch(categoriesLoadRequest());
+    try {
+      const categories = await getCategoriesApiCall();
+      dispatch(categoriesLoadSuccess(categories));
+      return categories;
+    } catch (err) {
+      dispatch(categoriesLoadFailure(err));
+    }
+  }
+}
