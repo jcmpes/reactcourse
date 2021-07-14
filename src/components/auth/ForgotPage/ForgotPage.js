@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { forgotPasswordAction } from '../../../store/actions';
+import { forgotPasswordAction } from '../../../store/actions/forgot-password';
 import Layout from '../../layout/Layout';
 import ForgotForm from './ForgotForm';
 

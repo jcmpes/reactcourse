@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getUserAction } from '../../store/actions';
+import { getUserAction } from '../../store/actions/get-user';
 import { getUsername } from '../../store/selectors';
 import Layout from '../layout/Layout';
 import StudentPage from './StudentPage';
