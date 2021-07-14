@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
@@ -22,7 +23,7 @@ const RegisterForm = ({ onSubmit }) => {
     if (password === passwordConfirm) {
       onSubmit(credentials);
     } else {
-      // TODO: Throw message: 'Password must be the same'
+      toast.error('Passwords should match.');
     }
   };
 

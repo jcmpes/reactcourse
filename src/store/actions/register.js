@@ -15,7 +15,7 @@ export const authRegisterRequest = () => {
 };
 
 export const authRegisterSuccess = () => {
-  toast.success('Registration successful');
+  toast.success('Registration successful.');
   return {
     type: AUTH_REGISTER_SUCCESS,
   };
@@ -23,7 +23,7 @@ export const authRegisterSuccess = () => {
 
 export const authRegisterFailure = (error) => {
   toast.error(`Registration failure: 
-  ${error}`);
+  ${error}.`);
   return {
     type: AUTH_REGISTER_FAILURE,
     payload: error,
