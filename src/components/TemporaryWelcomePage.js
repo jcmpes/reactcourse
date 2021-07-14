@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
 import Course from '../components/courses/Course';
 import { useDispatch, useSelector } from 'react-redux';
-import { categoriesLoadRequest } from '../store/actions';
+import { categoriesLoadRequest } from '../store/actions/categories-load';
 
 function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
