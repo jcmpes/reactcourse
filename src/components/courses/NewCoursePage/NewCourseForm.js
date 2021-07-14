@@ -6,14 +6,14 @@ import { FormField, Button, Input } from "../../../components/shared"
 
 function NewCourseForm({ onSubmit, categories }) {
   const { t } = useTranslation(['global']);
-  const { userId } = useSelector(getAuth);
+  const { username } = useSelector(getAuth);
   const [courseDetails, setCourseDetails] = React.useState({
     'title': '',
     'description': '',
     'category': '',
     'video': '',
     'content': '',
-    'user': userId,
+    'user': username,
   });
 
   const handleChange = (ev) => {

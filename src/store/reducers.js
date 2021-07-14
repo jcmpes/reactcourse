@@ -16,7 +16,6 @@ export const initialState = {
   auth: {
     isLogged: false,
     username: '',
-    userId: '',
   },
   courses: {
     loaded: false,
@@ -35,7 +34,7 @@ export const initialState = {
 export function auth(state = initialState.auth, action) {
   switch (action.type) {
     case AUTH_LOGIN_SUCCESS:
-      return { isLogged: true, username: action.payload.displayName, userId: action.payload.userId };
+      return { isLogged: true, username: action.payload.displayName };
     case AUTH_LOGOUT:
       return { isLogged: false, username: '' };
     default:
