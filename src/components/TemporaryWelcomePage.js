@@ -2,7 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout } from '../api/auth';
-import { authLogout } from '../store/actions';
+import { authLogout } from '../store/actions/logout';
+import { loadCoursesAction } from '../store/actions/load-courses';
 import { getAuth, getUI } from '../store/selectors';
 import Layout from './layout/Layout';
 import { Button } from '../components/shared';
@@ -10,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
 import Course from '../components/courses/Course';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadCoursesAction } from '../store/actions';
 
 function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
