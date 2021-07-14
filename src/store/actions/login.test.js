@@ -1,19 +1,10 @@
-import { authLoginRequest, loadCoursesSuccess, loginAction } from './actions';
-import { AUTH_LOGIN_REQUEST, LOAD_COURSES_SUCCESS } from './types';
+import { authLoginRequest, loginAction } from './login';
+import { AUTH_LOGIN_REQUEST } from '../types';
 
 describe('authLoginRequest', () => {
   test('should return an AUTH_LOGIN_REQUEST action', () => {
     const result = authLoginRequest();
     expect(result).toEqual({ type: AUTH_LOGIN_REQUEST });
-  });
-});
-
-describe('coursesLoadedSuccess', () => {
-  test('should return a LOAD_COURSES_SUCCESS action', () => {
-    const courses = 'courses';
-    const expectedAction = { type: LOAD_COURSES_SUCCESS };
-    const result = loadCoursesSuccess(courses);
-    expect(result).toEqual(expectedAction);
   });
 });
 
