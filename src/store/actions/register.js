@@ -22,7 +22,8 @@ export const authRegisterSuccess = () => {
 };
 
 export const authRegisterFailure = (error) => {
-  toast.error('Registration failure', error);
+  toast.error(`Registration failure: 
+  ${error}`);
   return {
     type: AUTH_REGISTER_FAILURE,
     payload: error,
@@ -42,9 +43,11 @@ export const registerAction = (credentials, history, location) => {
         const { from } = location.state || { from: { pathname: '/' } };
         history.replace(from);
         dispatch(authRegisterSuccess());
+      } else {
+        dispatch(authRegisterFailure(response.error));
       }
     } catch (error) {
-      dispatch(authRegisterFailure());
+      dispatch(authRegisterFailure(error));
     }
   };
 };
