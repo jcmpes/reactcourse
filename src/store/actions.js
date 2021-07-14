@@ -71,17 +71,16 @@ export const registerAction = (credentials, history, location) => {
 };
 
 // Log in actions
-export const authLoginRequest = (username) => {
+export const authLoginRequest = () => {
   return {
     type: AUTH_LOGIN_REQUEST,
-    payload: username,
   };
 };
 
-export const authLoginSuccess = (username) => {
+export const authLoginSuccess = (userDetails) => {
   return {
     type: AUTH_LOGIN_SUCCESS,
-    payload: username,
+    payload: userDetails,
   };
 };
 
@@ -98,8 +97,8 @@ export const loginAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authLoginRequest());
     try {
-      const username = await login(credentials);
-      dispatch(authLoginSuccess(username));
+      const userDetails = await login(credentials);
+      dispatch(authLoginSuccess(userDetails));
       // Redirect
       const { from } = location.state || { from: { pathname: '/' } };
       history.replace(from);

@@ -1,19 +1,19 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { getAuth } from "../../../store/selectors";
 import { FormField, Button, Input } from "../../../components/shared"
 
-function NewCourseForm({ auth, onSubmit, categories }) {
-  const { t } = useTranslation(['global']); 
-  // const { user } = auth;
+function NewCourseForm({ onSubmit, categories }) {
+  const { t } = useTranslation(['global']);
+  const { userId } = useSelector(getAuth);
   const [courseDetails, setCourseDetails] = React.useState({
     'title': '',
     'description': '',
     'category': '',
     'video': '',
     'content': '',
-    'user': '',
+    'user': userId,
   });
 
   const handleChange = (ev) => {
@@ -25,7 +25,7 @@ function NewCourseForm({ auth, onSubmit, categories }) {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    onSubmit(courseDetails);
+    onSubmit(courseDetails)
   };
 
   return (
@@ -45,13 +45,20 @@ function NewCourseForm({ auth, onSubmit, categories }) {
             name="category"
             value={courseDetails.category}
             onChange={handleChange}
-            options={categories}
+            options={[{name: 'Select category'}, ...categories]}
           />
           <FormField
             type={"text"}
             label={'description'}
             name="description"
             value={courseDetails.description}
+            onChange={handleChange}
+          />
+          <FormField
+            type={"text"}
+            label={'video'}
+            name="video"
+            value={courseDetails.video}
             onChange={handleChange}
           />
           <FormField
@@ -66,9 +73,6 @@ function NewCourseForm({ auth, onSubmit, categories }) {
           >
             {t('submit')}
           </Button>
-          <div className="password-forgotten">
-            <a href="/forgot-password">{t('forgot option')}</a>
-          </div>
         </form>
       </div>
     </div>

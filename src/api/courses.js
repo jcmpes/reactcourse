@@ -17,11 +17,11 @@ export const getCourse = (courseSlug) => {
 }
 
 // Post a new course
-export const postCourse = (courseDetails) => {
+export const postCourse = async (courseDetails) => {
   return client
     .post('/api/v1/courses/', courseDetails)
     .then((data) => data)
-    .catch(err => console.log('Error creating course: ', err))
+    .catch(err => err)
 }
 
 // Get categories
