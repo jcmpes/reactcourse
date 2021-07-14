@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory, useLocation } from 'react-router-dom';
-import { registerAction } from '../../../store/actions';
+import { registerAction } from '../../../store/actions/register';
 import RegisterForm from './RegisterForm';
 
 // React-Toastify

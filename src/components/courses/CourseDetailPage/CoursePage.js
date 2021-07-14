@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { courseDetailAction } from '../../../store/actions';
+import { courseDetailAction } from '../../../store/actions/course-detail';
 import { getCourseDetail, getUi } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
 import CourseDetail from './CourseDetail';
