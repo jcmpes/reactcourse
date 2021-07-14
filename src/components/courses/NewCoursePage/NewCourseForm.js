@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { getAuth } from "../../../store/selectors";
 import { FormField, Button, Input } from "../../../components/shared"

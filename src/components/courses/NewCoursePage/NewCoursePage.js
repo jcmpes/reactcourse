@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { postCourse } from "../../../api/courses";
 import { categoriesLoadAction } from "../../../store/actions/categories-load";
-import { getAuth, getCategories } from "../../../store/selectors";
+import { getCategories } from "../../../store/selectors";
 import Layout from "../../layout/Layout";
 import NewCourseForm from "./NewCourseForm";
 
@@ -14,7 +14,7 @@ function NewCoursePage() {
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-  }, [])
+  }, [dispatch])
 
   function handleSubmit(courseDetails) {
     postCourse(courseDetails)
