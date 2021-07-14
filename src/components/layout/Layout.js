@@ -8,7 +8,7 @@ import './Layout.css';
 
 function Layout({ children, ...props }) {
   const storedDarkMode = storage.get('DARK_MODE');
-  const [darkMode, setDarkMode] = React.useState(storedDarkMode);
+  const [darkMode, setDarkMode] = React.useState(storedDarkMode || false);
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   React.useEffect(() => {
