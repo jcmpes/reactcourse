@@ -4,7 +4,7 @@ import { LOAD_COURSES_SUCCESS, COURSE_DETAIL_SUCCESS } from './types';
 describe('courses', () => {
   test('should manage ANY action', () => {
     const state = initialState.courses;
-    console.log(initialState);
+    //console.log(initialState);
 
     const action = { type: 'ANY' };
     const nextState = courses(state, action);

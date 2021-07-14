@@ -2,7 +2,7 @@
   "title": "CourseApp",
   "welcome to": "Welcome to ",
   "headline": "We hope you survive the experience.",
-  "not-found": "Página no encontrada",
+  "not-found": "Not found page",
   "submit": "Enviar",
   "new password": "Nueva contraseña",
   "confirm password": "Confirmar contraseña",
@@ -16,5 +16,24 @@
   "log in your account": "Log in to your account",
   "forgot option": "I forgot my password",
   "activation succeded": "Your account has been activated. You can now ",
-  "activation failed": "We are sorry, we could not activate your account. Please, try again."
+  "activation failed": "We are sorry, we could not activate your account. Please, try again.",
+  "users": {
+    "student": "Student",
+    "learning": "Learning",
+    "wishlist": "Wishlist",
+    "chats": "Chats",
+    "edit profile": "Edit profile",
+    "username": "Username",
+    "email": "Email",
+    "hello": "Hello",
+    "about me": "About me"
+  },
+  "header": {
+    "home": "Home",
+    "user": "My profile",
+    "register": "Register"
+  },
+  "footer": {
+    "footer": "Footer"
+  }
 }

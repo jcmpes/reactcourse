@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import MyButton from '../../shared/MyButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { authLogout } from '../../../store/actions';
+import { authLogout } from '../../../store/actions/logout';
 import { getAuth } from '../../../store/selectors';
 
 const AuthButton = () => {

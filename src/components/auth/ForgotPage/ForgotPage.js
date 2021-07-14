@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
-import { forgotPasswordAction } from '../../../store/actions';
+import { forgotPasswordAction } from '../../../store/actions/forgot-password';
+import Layout from '../../layout/Layout';
 import ForgotForm from './ForgotForm';
 
 const ForgotPage = () => {
@@ -9,7 +10,11 @@ const ForgotPage = () => {
     dispatch(forgotPasswordAction(email));
   };
 
-  return <ForgotForm onSubmit={handleSubmit} />;
+  return (
+    <Layout>
+      <ForgotForm onSubmit={handleSubmit} />
+    </Layout>
+  );
 };
 
 export default ForgotPage;

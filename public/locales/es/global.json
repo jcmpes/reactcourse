@@ -2,19 +2,39 @@
   "title": "CourseApp",
   "welcome to": "Bienvenido a ",
   "headline": "Esperamos que sobrevivas a la experiencia.",
-  "not-found": "Not found page",
+  "not-found": "Página no encontrada",
   "submit": "Submit",
-  "new password": "New Password",
-  "confirm password": "Re-type password",
-  "reset password": "Reset password",
+  "new password": "Nueva contraseña",
+  "confirm password": "Confirmar contraseña",
+  "reset password": "Reestablecer contreseña",
   "register": "Registro",
   "username": "Nombre de usuario",
-  "email": "Email",
+  "email": "Correo electrónico",
   "password": "Contraseña",
   "remember session": "Recordar sesión",
   "log in": "Acceder",
   "log in your account": "Acceder a tu cuenta",
   "forgot option": "He olvidado mi contraseña",
   "activation succeded": "Tu cuenta ha sido activada. Ahora puedes ",
-  "activation failed": "Lo sentimos, no hemos podido activar tu cuenta. Por favor, inténtalo de nuevo."
+  "activation failed": "Lo sentimos, no hemos podido activar tu cuenta. Por favor, inténtalo de nuevo.",
+
+  "users": {
+    "student": "Estudiante",
+    "learning": "Cursando",
+    "wishlist": "Favoritos",
+    "chats": "Conversaciones",
+    "edit profile": "Editar mi perfil",
+    "username": "Nombre de usuario",
+    "email": "Correo electrónico",
+    "hello": "Hola",
+    "about me": "Sobre mí"
+  },
+  "header": {
+    "home": "Inicio",
+    "user": "Mi perfil",
+    "register": "Registro"
+  },
+  "footer": {
+    "footer": "Pie de página"
+  }
 }

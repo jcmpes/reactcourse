@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../shared';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+const eye = <FontAwesomeIcon icon={faEye} />;
+const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 const RegisterForm = ({ onSubmit }) => {
   const [credentials, setCredentials] = useState({
@@ -9,6 +14,8 @@ const RegisterForm = ({ onSubmit }) => {
     username: '',
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
+
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -27,6 +34,10 @@ const RegisterForm = ({ onSubmit }) => {
     }
   };
 
+  const togglePasswordVisiblity = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   const { t } = useTranslation(['global']);
 
   const { email, password, username } = credentials;
@@ -39,34 +50,43 @@ const RegisterForm = ({ onSubmit }) => {
       <form className="registerForm" onSubmit={handleSubmit}>
         <FormField
           type="text"
-          label={t("username") + ": "}
+          label={t('username') + ': '}
           name="username"
           value={username}
           onChange={handleChange}
         />
         <FormField
           type="email"
-          label={t("email") + ": "}
+          label={t('email') + ': '}
           name="email"
           value={email}
           onChange={handleChange}
         />
-        <FormField
-          type="password"
-          label={t("password") + ": "}
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-        <FormField
-          type="password"
-          label={t("confirm password") + ": "}
-          name="password-confirm"
-          value={passwordConfirm}
-          onChange={handleChange}
-        />
+        <div className="pwd-container">
+          <FormField
+            type={passwordShown ? 'text' : 'password'}
+            label={t('password')}
+            name="password"
+            value={credentials.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="pwd-confirm-container">
+          <FormField
+            type={passwordShown ? 'text' : 'password'}
+            label={t('confirm password') + ': '}
+            name="password-confirm"
+            value={passwordConfirm}
+            onChange={handleChange}
+          />
+          {passwordShown ? (
+            <i onClick={togglePasswordVisiblity}>{eyeSlash}</i>
+          ) : (
+            <i onClick={togglePasswordVisiblity}>{eye}</i>
+          )}
+        </div>
         <Button type="submit" disabled={disabledButton}>
-          {t("register")}
+          {t('register')}
         </Button>
       </form>
     </div>
