@@ -18,6 +18,7 @@ const preState = {
     auth: {
       isLogged: !!accessToken,
       username: null,
+      favs: [],
     },
     ui: {
       loading: false,

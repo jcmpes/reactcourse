@@ -7,17 +7,17 @@ import {
 import { login } from '../../api/auth';
 
 // Log in actions
-export const authLoginRequest = (username) => {
+export const authLoginRequest = () => {
   return {
     type: AUTH_LOGIN_REQUEST,
-    payload: username,
   };
 };
 
-export const authLoginSuccess = (username) => {
+export const authLoginSuccess = (userData) => {
+  console.log(userData);
   return {
     type: AUTH_LOGIN_SUCCESS,
-    payload: username,
+    payload: userData,
   };
 };
 
@@ -34,8 +34,8 @@ export const loginAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authLoginRequest());
     try {
-      const username = await login(credentials);
-      dispatch(authLoginSuccess(username));
+      const userData = await login(credentials);
+      dispatch(authLoginSuccess(userData));
       // Redirect
       const { from } = location.state || { from: { pathname: '/' } };
       history.replace(from);
