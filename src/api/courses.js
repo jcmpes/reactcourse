@@ -4,7 +4,17 @@ import client from "./client"
 export const getCourses = () => {
   return client
     .get('/api/v1/courses')
-    .then((data) => data)
+    // Temporary fix to populate all courses with username
+    // if the course author is not in the DB anymore.
+    .then((data) => {
+      data.map(course => {
+        if (!course.user) {
+          course.user = { username: 'Anonymous user' }
+          return course;
+        }
+        return course
+      })
+    })
     .catch((error) => console.log('Error', error));
 };
 
