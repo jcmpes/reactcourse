@@ -12,8 +12,9 @@ export const getCourses = () => {
           course.user = { username: 'Anonymous user' }
           return course;
         }
-        return course
+        return course;
       })
+      return data;
     })
     .catch((error) => console.log('Error', error));
 };

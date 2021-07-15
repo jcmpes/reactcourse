@@ -46,8 +46,9 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
-    // getCourses().then(setCourses);
-    dispatch(loadCoursesAction(getCourses, setCourses));
+    getCourses().then(setCourses);
+    // dispatch(loadCoursesAction(getCourses, setCourses));
+    console.log('Courses: ', courses)
     dispatch(categoriesLoadRequest());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -88,6 +89,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
       </p>
       <Button children="English" onClick={switchLanguage} />
       <Button children="Español" onClick={switchLanguage} />
+      
       {coursesElement.length === 0 && !loading
         ? "There's no courses yet"
         : coursesElement}
