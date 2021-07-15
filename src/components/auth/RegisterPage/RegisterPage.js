@@ -4,9 +4,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { registerAction } from '../../../store/actions/register';
 import RegisterForm from './RegisterForm';
 
-// React-Toastify
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
 import Layout from '../../layout/Layout';
 
@@ -25,7 +22,6 @@ const RegisterPage = () => {
     <Layout>
       <h1>{t('register')}</h1>
       <RegisterForm onSubmit={handleSubmit} />
-      <ToastContainer position={toast.POSITION.TOP_RIGHT} />
     </Layout>
   );
 };

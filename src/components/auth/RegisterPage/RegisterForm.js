@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
@@ -14,15 +15,14 @@ const RegisterForm = ({ onSubmit }) => {
     username: '',
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
-
   const [passwordShown, setPasswordShown] = useState(false);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     if (password === passwordConfirm) {
-      onSubmit(credentials);
+      onSubmit(credentials, password, passwordConfirm);
     } else {
-      // TODO: Throw message: 'Password must be the same'
+      toast.error('Passwords should match');
     }
   };
 
@@ -43,7 +43,7 @@ const RegisterForm = ({ onSubmit }) => {
   const { email, password, username } = credentials;
 
   const disabledButton =
-    !email | !password | !username | (password !== passwordConfirm);
+    !email | !password | !username | !password | !passwordConfirm;
 
   return (
     <div className="registerForm">
@@ -85,6 +85,7 @@ const RegisterForm = ({ onSubmit }) => {
             <i onClick={togglePasswordVisiblity}>{eye}</i>
           )}
         </div>
+
         <Button type="submit" disabled={disabledButton}>
           {t('register')}
         </Button>

@@ -4,6 +4,7 @@ import { Button } from '../../shared';
 import FormField from '../../shared/FormField';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
@@ -11,7 +12,6 @@ const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 const ResetPasswordForm = ({ onSubmit }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-
   const [passwordShown, setPasswordShown] = useState(false);
 
   const { t } = useTranslation(['global']);
@@ -19,10 +19,13 @@ const ResetPasswordForm = ({ onSubmit }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     if (password === passwordConfirm) {
+      toast.success('Yay, passwords match!!.');
       onSubmit(password);
+      console.log('match!');
     } else {
       // TODO:
-      // React-toastify -> "Passwords don't match"
+      toast.error('Passwords should match. *** ');
+      console.log('* dont match *');
     }
   };
 
@@ -69,9 +72,9 @@ const ResetPasswordForm = ({ onSubmit }) => {
         </div>
         <Button
           type="submit"
-          disabled={
-            !password | !passwordConfirm | (password !== passwordConfirm)
-          }
+          // disabled={
+          //   !password | !passwordConfirm | (password !== passwordConfirm)
+          // }
         >
           {t('submit')}
         </Button>

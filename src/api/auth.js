@@ -24,7 +24,7 @@ export const register = (credentials) => {
   return client
     .post('/api/v1/register', credentials)
     .then((data) => data)
-    .catch((error) => console.error('Error', error));
+    .catch((error) => error);
 };
 
 // Forgot Password

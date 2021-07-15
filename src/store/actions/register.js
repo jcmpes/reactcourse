@@ -15,14 +15,13 @@ export const authRegisterRequest = () => {
 };
 
 export const authRegisterSuccess = () => {
-  toast.success('Registration successful');
   return {
     type: AUTH_REGISTER_SUCCESS,
   };
 };
 
 export const authRegisterFailure = (error) => {
-  toast.error('Registration failure', error);
+  toast.error(`Error: ${error}.`);
   return {
     type: AUTH_REGISTER_FAILURE,
     payload: error,
@@ -36,15 +35,17 @@ export const registerAction = (credentials, history, location) => {
     dispatch(authRegisterRequest());
     try {
       const response = await register(credentials);
-      // Control when server responds with an error
-      if (!response.error) {
-        // Redirect
-        const { from } = location.state || { from: { pathname: '/' } };
-        history.replace(from);
+      if (response.error) {
+        dispatch(authRegisterFailure(response.error));
+      } else if (response.success) {
+        toast.success('Registration successful');
         dispatch(authRegisterSuccess());
+        // Redirect
+        const { from } = location.state || { from: { pathname: '/login' } };
+        history.replace(from);
       }
     } catch (error) {
-      dispatch(authRegisterFailure());
+      dispatch(authRegisterFailure(error));
     }
   };
 };
