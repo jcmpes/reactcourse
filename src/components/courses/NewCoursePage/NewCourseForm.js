@@ -45,7 +45,7 @@ function NewCourseForm({ onSubmit, categories }) {
             name="category"
             value={courseDetails.category}
             onChange={handleChange}
-            options={[{name: 'Select category'}, ...categories]}
+            options={[{ name: 'Select category', _id: '000' }, ...categories]}
           />
           <FormField
             type={"text"}
