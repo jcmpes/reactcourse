@@ -46,9 +46,8 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
-    getCourses().then(setCourses);
-    // dispatch(loadCoursesAction(getCourses, setCourses));
-    console.log('Courses: ', courses)
+    // getCourses().then(setCourses);
+    dispatch(loadCoursesAction(getCourses, setCourses));
     dispatch(categoriesLoadRequest());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
