@@ -27,7 +27,6 @@ function NewCourseForm({ onSubmit, categories }) {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData();
-    const formElements = ev.target.elements
     formData.append('user', courseDetails.user)
     formData.append('title', courseDetails.title)
     formData.append('description', courseDetails.description)
