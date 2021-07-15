@@ -15,15 +15,14 @@ const RegisterForm = ({ onSubmit }) => {
     username: '',
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
-
   const [passwordShown, setPasswordShown] = useState(false);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
     if (password === passwordConfirm) {
-      onSubmit(credentials);
+      onSubmit(credentials, password, passwordConfirm);
     } else {
-      toast.error('Passwords should match.');
+      toast.error('Passwords should match');
     }
   };
 
@@ -44,7 +43,7 @@ const RegisterForm = ({ onSubmit }) => {
   const { email, password, username } = credentials;
 
   const disabledButton =
-    !email | !password | !username | (password !== passwordConfirm);
+    !email | !password | !username; /* | (password !== passwordConfirm) */
 
   return (
     <div className="registerForm">
@@ -86,6 +85,7 @@ const RegisterForm = ({ onSubmit }) => {
             <i onClick={togglePasswordVisiblity}>{eye}</i>
           )}
         </div>
+
         <Button type="submit" disabled={disabledButton}>
           {t('register')}
         </Button>

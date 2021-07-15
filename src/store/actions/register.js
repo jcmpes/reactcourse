@@ -15,7 +15,6 @@ export const authRegisterRequest = () => {
 };
 
 export const authRegisterSuccess = () => {
-  toast.success('Registration successful.');
   return {
     type: AUTH_REGISTER_SUCCESS,
   };
@@ -32,19 +31,32 @@ export const authRegisterFailure = (error) => {
 };
 
 // Register middleware
-export const registerAction = (credentials, history, location) => {
+export const registerAction = (
+  credentials,
+  passwordsMatch,
+  history,
+  location,
+) => {
   return async function (dispatch, getState) {
     dispatch(authRegisterRequest());
     try {
       const response = await register(credentials);
-      // Control when server responds with an error
-      if (!response.error) {
+      console.log('* try');
+      console.log('response ->', response);
+      console.log('response.error ->', response.error);
+      console.log('response.message ->', response.message);
+
+      if (response.error) {
+        console.log('* if');
+        dispatch(authRegisterFailure(response.error));
+      } else if (response.success) {
+        console.log('* else 2');
+        console.log('response', response);
+        dispatch(authRegisterSuccess());
+        toast.success('Registration successful');
         // Redirect
         const { from } = location.state || { from: { pathname: '/' } };
         history.replace(from);
-        dispatch(authRegisterSuccess());
-      } else {
-        dispatch(authRegisterFailure(response.error));
       }
     } catch (error) {
       dispatch(authRegisterFailure(error));

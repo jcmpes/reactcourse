@@ -17,15 +17,16 @@ const RegisterPage = () => {
 
   const { t } = useTranslation(['global']);
 
-  const handleSubmit = (credentials) => {
-    dispatch(registerAction(credentials, history, location));
+  const handleSubmit = (credentials, password, passwordConfirm) => {
+    const passwordsMatch = password === passwordConfirm;
+    dispatch(registerAction(credentials, passwordsMatch, history, location));
   };
 
   return (
     <Layout>
       <h1>{t('register')}</h1>
       <RegisterForm onSubmit={handleSubmit} />
-      <ToastContainer position={toast.POSITION.TOP_RIGHT} />
+      <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
     </Layout>
   );
 };
