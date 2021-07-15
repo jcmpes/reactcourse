@@ -1,7 +1,9 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import AuthButton from '../../auth/AuthButton';
 import { Button } from '../../shared';
 import { useTranslation } from 'react-i18next';
+import { filterCourses } from '../../../api/courses';
 
 import './Header.css';
 
@@ -15,20 +17,37 @@ const Header = ({ isLogged, onLogout, ...props }) => {
     }
   };
 
+  const [inputText, setinputText] = React.useState('');
+
+  async function handleSubmit(ev) {
+    ev.preventDefault();
+    const data = await filterCourses(inputText);
+    console.log(data);
+  }
+
+  function handleChange(ev) {
+    setinputText(ev.target.value);
+  }
+
   return (
     <header className="header" {...props}>
       <Link to="/create">
-        Create
+        <Button>{t('header.create')}</Button>
       </Link>
-      <a href="/">
+      <Link to="/">
         <Button>{t('header.home')}</Button>
-      </a>
-      <a href="/user">
+      </Link>
+      <Link to="/user">
         <Button>{t('header.user')}</Button>
-      </a>
-      <a href="/register">
+      </Link>
+      <Link to="/register">
         <Button>{t('header.register')}</Button>
-      </a>
+      </Link>
+
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={inputText} onChange={handleChange}></input>
+        <button type="submit">{t('header.search')}</button>
+      </form>
 
       <AuthButton
         className="header-button"
