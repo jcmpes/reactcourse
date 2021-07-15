@@ -13,9 +13,11 @@ import {
 import User from './components/users';
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './config/i18next-config';
 import CoursePage from './components/courses/CourseDetailPage/CoursePage';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Translations() {
   return (
@@ -63,6 +65,7 @@ function App() {
   return (
     <Suspense fallback="Loading translations...">
       <Translations />
+      <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
     </Suspense>
   );
 }

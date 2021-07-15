@@ -43,7 +43,7 @@ const RegisterForm = ({ onSubmit }) => {
   const { email, password, username } = credentials;
 
   const disabledButton =
-    !email | !password | !username; /* | (password !== passwordConfirm) */
+    !email | !password | !username | !password | !passwordConfirm;
 
   return (
     <div className="registerForm">
