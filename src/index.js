@@ -11,7 +11,6 @@ import configureStore from './store';
 import storage from './utils/storage';
 
 const accessToken = storage.get('auth');
-configureClient({ accessToken });
 
 const preState = {
   preloadedState: {
@@ -31,6 +30,7 @@ const preState = {
 
 if (!!accessToken) {
   loginWithToken(accessToken).then((data) => {
+    configureClient({ accessToken });
     preState.preloadedState.auth.username = data.displayName;
     preState.preloadedState.auth.favs = data.favs;
     const store = configureStore(preState);
