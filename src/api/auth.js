@@ -5,12 +5,12 @@ import storage from '../utils/storage';
 export const login = ({ remember, ...credentials }) => {
   return client
     .post('/api/v1/loginJWT', credentials)
-    .then(({ token, displayName, userId }) => {
+    .then(({ token, displayName, userId, favs }) => {
       configureClient({ token });
       if (remember) {
         storage.set('auth', token);
       }
-      return { displayName, userId };
+      return { displayName, userId, favs };
     });
 };
 
