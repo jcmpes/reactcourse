@@ -16,6 +16,7 @@ export const initialState = {
   auth: {
     isLogged: false,
     username: '',
+    favs: [],
   },
   courses: {
     loaded: false,
@@ -34,9 +35,13 @@ export const initialState = {
 export function auth(state = initialState.auth, action) {
   switch (action.type) {
     case AUTH_LOGIN_SUCCESS:
-      return { isLogged: true, username: action.payload.displayName };
+      return {
+        isLogged: true,
+        username: action.payload.displayName,
+        favs: action.payload.favs,
+      };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: '' };
+      return { isLogged: false, username: '', favs: [] };
     default:
       return state;
   }
@@ -56,11 +61,11 @@ export function categories(state = initialState.categories, action) {
 export function courses(state = initialState.courses, action) {
   switch (action.type) {
     case COURSE_DETAIL_REQUEST:
-      return { ...state, loaded: false}
+      return { ...state, loaded: false };
     case COURSE_DETAIL_SUCCESS:
       return { ...state, loaded: true, data: [...state.data, action.payload] };
     default:
-      return state 
+      return state;
   }
 }
 
@@ -74,9 +79,9 @@ export function ui(state = initialState.ui, action) {
     case LOAD_COURSES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
-      return { ...state, loading: true, error: null }
+      return { ...state, loading: true, error: null };
     case COURSE_DETAIL_SUCCESS:
-      return { ...state,  loading: false }
+      return { ...state, loading: false };
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
       return { ...state, loading: false };

@@ -42,7 +42,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
     children: 'Register',
   };
 
-  const { isLogged, username } = auth;
+  const { isLogged, username, favs } = auth;
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
@@ -52,15 +52,22 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const coursesElement = courses
-    ? courses.map((course) => {
-        return (
-          <div>
-            <Course course={course} me={username} key={course._id} />
-          </div>
-        );
-      })
-    : [];
+  const coursesElement =
+    courses && favs
+      ? courses.map((course) => {
+          const faved = favs.includes(course._id);
+          return (
+            <div>
+              <Course
+                course={course}
+                me={username}
+                key={course._id}
+                faved={faved}
+              />
+            </div>
+          );
+        })
+      : [];
 
   return error || loading ? (
     'Loading...'
@@ -88,7 +95,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
       </p>
       <Button children="English" onClick={switchLanguage} />
       <Button children="Español" onClick={switchLanguage} />
-      
+
       {coursesElement.length === 0 && !loading
         ? "There's no courses yet"
         : coursesElement}
