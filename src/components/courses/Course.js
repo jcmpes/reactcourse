@@ -10,7 +10,7 @@ const Course = ({ course, me }) => {
     isFav(course._id).then(setFavorited);
   }, [course._id]);
   return (
-    <div className="course-wrapper">
+    <div className="course-wrapper" key={course._id}>
       <br />
       Title:{' '}
       <Link className="course-title" to={`/courses/${course.slug}`}>
