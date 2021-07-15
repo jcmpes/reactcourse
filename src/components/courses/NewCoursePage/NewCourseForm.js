@@ -7,6 +7,7 @@ import { FormField, Button, Input } from "../../../components/shared"
 function NewCourseForm({ onSubmit, categories }) {
   const { t } = useTranslation(['global']);
   const { username } = useSelector(getAuth);
+  const [image, setImage] = React.useState(null)
   const [courseDetails, setCourseDetails] = React.useState({
     'title': '',
     'description': '',
@@ -25,7 +26,17 @@ function NewCourseForm({ onSubmit, categories }) {
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
-    onSubmit(courseDetails)
+    const formData = new FormData();
+    const formElements = ev.target.elements
+    formData.append('user', courseDetails.user)
+    formData.append('title', courseDetails.title)
+    formData.append('description', courseDetails.description)
+    formData.append('category', courseDetails.category)
+    formData.append('video', courseDetails.video)
+    formData.append('content', courseDetails.content)
+    if (image) formData.append('image', image)
+    console.log(formData)
+    onSubmit(formData)
   };
 
   return (
@@ -67,6 +78,13 @@ function NewCourseForm({ onSubmit, categories }) {
             name="content"
             value={courseDetails.content}
             onChange={handleChange}
+          />
+          <FormField
+            type="file"
+            label={'image'}
+            name="image"
+            value={courseDetails.email}
+            onChange={e => setImage(e.target.files[0])}
           />
           <Button
             type="submit"
