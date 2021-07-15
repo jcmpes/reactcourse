@@ -14,6 +14,16 @@ export const login = ({ remember, ...credentials }) => {
     });
 };
 
+// Log in with token
+export const loginWithToken = (token) => {
+  return client
+    .post('/api/v1/login-with-token', { token })
+    .then(({ displayName, favs }) => {
+      configureClient({ token });
+      return { displayName, token, favs };
+    });
+};
+
 // Log out
 export const logout = () => {
   return Promise.resolve().then(resetClient).then(storage.clear);
@@ -54,4 +64,10 @@ export const isFav = (course) => {
   return client
     .get(`/api/v1/aboutme/isfav/${course}`)
     .then((isFav) => isFav.result);
+};
+
+export const myFavs = () => {
+  return client
+    .get(`/api/v1/aboutme/myfavs`)
+    .then((favorites) => favorites.favs);
 };
