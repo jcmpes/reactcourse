@@ -32,7 +32,9 @@
   "header": {
     "home": "Inicio",
     "user": "Mi perfil",
-    "register": "Registro"
+    "register": "Registro",
+    "create": "Crear",
+    "search": "Buscar"
   },
   "footer": {
     "footer": "Pie de página"

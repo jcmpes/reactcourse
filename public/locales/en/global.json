@@ -31,7 +31,9 @@
   "header": {
     "home": "Home",
     "user": "My profile",
-    "register": "Register"
+    "register": "Register",
+    "create": "Create",
+    "search": "Search"
   },
   "footer": {
     "footer": "Footer"
