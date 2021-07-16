@@ -6,7 +6,7 @@ import {
   CATEGORIES_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
-  FAVORITES_REQUEST,
+  //FAVORITES_REQUEST,
   FAVORITES_SUCCESS,
   //LOAD_COURSES_FAILURE,
   LOAD_COURSES_REQUEST,
@@ -51,7 +51,7 @@ export function auth(state = initialState.auth, action) {
         console.log('quita');
         console.log(state.favs);
         const favs = state.favs.filter((fav) => {
-          return fav != action.payload.course;
+          return fav !== action.payload.course;
         });
         console.log();
         return {
