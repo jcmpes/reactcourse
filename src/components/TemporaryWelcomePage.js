@@ -26,7 +26,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
     }
   };
 
-  const { isLogged, username, favs } = auth;
+  const { username, favs } = auth;
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
