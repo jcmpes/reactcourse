@@ -31,6 +31,7 @@ const Header = ({ isLogged }) => {
 
   const [inputText, setinputText] = React.useState('');
 
+  /*
   async function handleSubmit(ev) {
     ev.preventDefault();
     const data = await filterCourses(inputText);
@@ -40,7 +41,8 @@ const Header = ({ isLogged }) => {
   function handleChange(ev) {
     setinputText(ev.target.value);
   }
-
+*/
+  
   return (
     <header className="header">
       <Link to="/">
