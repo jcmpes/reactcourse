@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { addFav, removeFav } from '../../api/courses';
+import { useDispatch } from 'react-redux';
+import { favoritesAction } from '../../store/actions/favorites';
 
 const Course = ({ course, me, faved }) => {
+  const dispatch = useDispatch();
+
   const isAuthor = course.user.username === me;
 
   return (
@@ -24,7 +29,19 @@ const Course = ({ course, me, faved }) => {
         day: 'numeric',
       })}
       <br />
-      {faved !== true || 'es favorito'}
+      <div
+        onClick={() => {
+          dispatch(
+            favoritesAction(course._id, !faved ? addFav : removeFav, !faved),
+          );
+          // if (!faved) addFav(course._id);
+          // else removeFav(course._id);
+        }}
+      >
+        <div style={{ cursor: 'pointer' }}>
+          {faved === true ? 'FAVORITO' : 'no favorito'}
+        </div>
+      </div>
     </div>
   );
 };

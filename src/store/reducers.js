@@ -6,6 +6,8 @@ import {
   CATEGORIES_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
+  //FAVORITES_REQUEST,
+  FAVORITES_SUCCESS,
   //LOAD_COURSES_FAILURE,
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
@@ -41,7 +43,22 @@ export function auth(state = initialState.auth, action) {
         favs: action.payload.favs,
       };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: '', favs: [] };
+      return { isLogged: false, username: null, favs: [] };
+    case FAVORITES_SUCCESS:
+      if (action.payload.add) {
+        return { ...state, favs: [...state.favs, action.payload.course] };
+      } else {
+        console.log('quita');
+        console.log(state.favs);
+        const favs = state.favs.filter((fav) => {
+          return fav !== action.payload.course;
+        });
+        console.log();
+        return {
+          ...state,
+          favs,
+        };
+      }
     default:
       return state;
   }
@@ -77,6 +94,7 @@ export function ui(state = initialState.ui, action) {
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
     case LOAD_COURSES_REQUEST:
+      //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
       return { ...state, loading: true, error: null };
@@ -84,6 +102,7 @@ export function ui(state = initialState.ui, action) {
       return { ...state, loading: false };
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
+      //case FAVORITES_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {

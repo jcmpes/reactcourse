@@ -51,3 +51,17 @@ export const filterCourses = (text) => {
     .get(`/api/v1/courses?title=${text}`)
     .then((data) => console.log(data));
 };
+
+//Mark as fav
+export const addFav = (course) => {
+  return client.post(`/api/v1/aboutme/newfav/${course}`).then((data) => {
+    console.log(data);
+  });
+};
+
+//Mark as unfav
+export const removeFav = (course) => {
+  return client.post(`/api/v1/aboutme/removefav/${course}`).then((data) => {
+    console.log(data);
+  });
+};
