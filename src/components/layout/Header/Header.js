@@ -19,6 +19,18 @@ const Header = ({ isLogged }) => {
     history.push('/');
   };
 
+  const [inputText, setinputText] = React.useState('');
+
+  async function handleSubmit(ev) {
+    ev.preventDefault();
+    const data = await filterCourses(inputText);
+    console.log(data);
+  }
+
+  function handleChange(ev) {
+    setinputText(ev.target.value);
+  }
+
   const { t, i18n } = useTranslation(['global']);
   const switchLanguage = (ev) => {
     // TODO: improve this function getting available languages dinamically
@@ -29,20 +41,6 @@ const Header = ({ isLogged }) => {
     }
   };
 
-  const [inputText, setinputText] = React.useState('');
-
-  /*
-  async function handleSubmit(ev) {
-    ev.preventDefault();
-    const data = await filterCourses(inputText);
-    console.log(data);
-  }
-
-  function handleChange(ev) {
-    setinputText(ev.target.value);
-  }
-*/
-  
   return (
     <header className="header">
       <Link to="/">
@@ -75,6 +73,11 @@ const Header = ({ isLogged }) => {
       <Link to="/user">
         <Button>{t('header.user')}</Button>
       </Link>
+
+      <form onSubmit={handleSubmit}>
+        <input type="text" value={inputText} onChange={handleChange}></input>
+        <button type="submit">{t('header.search')}</button>
+      </form>
     </header>
   );
 };
