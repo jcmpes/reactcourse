@@ -1,13 +1,25 @@
-import { Link } from 'react-router-dom';
-import AuthButton from '../../auth/AuthButton';
+import { Link, useHistory } from 'react-router-dom';
 import { Button } from '../../shared';
+import { logout } from '../../../api/auth';
+import { getIsLogged } from '../../../store/selectors';
+import { authLogout } from '../../../store/actions/logout';
+import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-
 import './Header.css';
 
-const Header = ({ isLogged, onLogout, ...props }) => {
+const Header = ({ isLogged }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const handleLogoutClick = () => {
+    logout(); // clear local storage
+    dispatch(authLogout()); // change isLogged state
+    history.push('/');
+  };
+
   const { t, i18n } = useTranslation(['global']);
   const switchLanguage = (ev) => {
+    // TODO: improve this function getting available languages dinamically
     if (ev.target.innerHTML === 'es') {
       i18n.changeLanguage('es');
     } else if (ev.target.innerHTML === 'en') {
@@ -16,25 +28,21 @@ const Header = ({ isLogged, onLogout, ...props }) => {
   };
 
   return (
-    <header className="header" {...props}>
-      <Link to="/create">
-        Create
-      </Link>
-      <a href="/">
+    <header className="header">
+      <Link to="/">
         <Button>{t('header.home')}</Button>
-      </a>
-      <a href="/user">
-        <Button>{t('header.user')}</Button>
-      </a>
-      <a href="/register">
+      </Link>
+      <Link to="/register">
         <Button>{t('header.register')}</Button>
-      </a>
+      </Link>
 
-      <AuthButton
-        className="header-button"
-        isLogged={isLogged}
-        onLogout={onLogout}
-      />
+      {isLogged ? (
+        <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
+      ) : (
+        <Link to="/login">
+          <Button>{t('header.log in')}</Button>
+        </Link>
+      )}
 
       <Button type="text" onClick={switchLanguage}>
         en
@@ -42,8 +50,23 @@ const Header = ({ isLogged, onLogout, ...props }) => {
       <Button type="text" onClick={switchLanguage}>
         es
       </Button>
+
+      <br />
+      <Link to="/create">
+        <Button>{t('header.create')}</Button>
+      </Link>
+
+      <Link to="/user">
+        <Button>{t('header.user')}</Button>
+      </Link>
     </header>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    isLogged: getIsLogged(state),
+  };
+};
+
+export default connect(mapStateToProps)(Header);
