@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, FormField } from '../../shared';
 
 const ForgotForm = ({ onSubmit }) => {
@@ -11,18 +12,22 @@ const ForgotForm = ({ onSubmit }) => {
     setEmail(ev.target.value);
   };
 
+  const { t } = useTranslation(['global']);
+
   return (
     <div className="forgotForm">
+      <h1>{t('forgot password.forgot password')}</h1>
+      <p>{t('forgot password.please enter your email')}</p>
       <form className="forgotPasswordForm" onSubmit={handleSubmit}>
         <FormField
-          type="text"
-          label="email:"
+          type="email"
+          label={t('email')}
           name="email"
           value={email}
           onChange={handleChange}
         />
         <Button type="submit" disabled={!email}>
-          Next
+          {t('next')}
         </Button>
       </form>
     </div>

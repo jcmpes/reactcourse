@@ -5,6 +5,7 @@ import {
 } from '../types';
 
 import { forgotPassword } from '../../api/auth';
+import { toast } from 'react-toastify';
 
 // Forgot Password actions
 export const forgotPasswordRequest = (email) => {
@@ -28,12 +29,15 @@ export const forgotPasswordFailure = (error) => {
 };
 
 // Forgot Password middleware
-export const forgotPasswordAction = (email) => {
+export const forgotPasswordAction = (email, history) => {
   return async function (dispatch, getState) {
     dispatch(forgotPasswordRequest());
     try {
-      const response = await forgotPassword(email);
-      console.log(response);
+      await forgotPassword(email);
+      toast.success(
+        'You will receive an email if this email address is in our database',
+      );
+      history.push('/login');
       dispatch(forgotPasswordSuccess());
     } catch (error) {
       dispatch(forgotPasswordFailure(error));

@@ -4,9 +4,6 @@
   "headline": "We hope you survive the experience.",
   "not-found": "Not found page",
   "submit": "Enviar",
-  "new password": "Nueva contraseña",
-  "confirm password": "Confirmar contraseña",
-  "reset password": "Cambiar contraseña",
   "register": "Register",
   "username": "Username",
   "email": "Email",
@@ -17,6 +14,7 @@
   "forgot option": "I forgot my password",
   "activation succeded": "Your account has been activated. You can now ",
   "activation failed": "We are sorry, we could not activate your account. Please, try again.",
+  "next": "next",
   "users": {
     "student": "Student",
     "learning": "Learning",
@@ -39,5 +37,15 @@
   },
   "footer": {
     "footer": "Footer"
+  },
+  "forgot password": {
+    "forgot password": "Forgot password",
+    "please enter your email": "Please enter your email"
+  },
+  "reset password": {
+    "reset password": "Reset password",
+    "please enter your new password": "Please enter your new password",
+    "new password": "New password",
+    "confirm password": "Confirm password"
   }
 }

@@ -3,10 +3,7 @@
   "welcome to": "Bienvenido a ",
   "headline": "Esperamos que sobrevivas a la experiencia.",
   "not-found": "Página no encontrada",
-  "submit": "Submit",
-  "new password": "Nueva contraseña",
-  "confirm password": "Confirmar contraseña",
-  "reset password": "Reestablecer contreseña",
+  "submit": "Enviar",
   "register": "Registro",
   "username": "Nombre de usuario",
   "email": "Correo electrónico",
@@ -17,7 +14,7 @@
   "forgot option": "He olvidado mi contraseña",
   "activation succeded": "Tu cuenta ha sido activada. Ahora puedes ",
   "activation failed": "Lo sentimos, no hemos podido activar tu cuenta. Por favor, inténtalo de nuevo.",
-
+  "next": "Siguiente",
   "users": {
     "student": "Estudiante",
     "learning": "Cursando",
@@ -40,5 +37,15 @@
   },
   "footer": {
     "footer": "Pie de página"
+  },
+  "forgot password": {
+    "forgot password": "Contraseña olvidada",
+    "please enter your email": "Por favor, introduce tu correo electrónico"
+  },
+  "reset password": {
+    "reset password": "Nueva contraseña",
+    "please enter your new password": "Por favor, introduce tu nuevo password:",
+    "new password": "Nueva contraseña",
+    "confirm password": "Confirmar contraseña"
   }
 }

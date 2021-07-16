@@ -19,17 +19,12 @@ const ResetPasswordForm = ({ onSubmit }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     if (password === passwordConfirm) {
-      toast.success('Yay, passwords match!!.');
+      toast.success('Password updated');
       onSubmit(password);
-      console.log('match!');
     } else {
-      // TODO:
-      toast.error('Passwords should match. *** ');
-      console.log('* dont match *');
+      toast.error('Passwords should match');
     }
   };
-
-  // TODO checkbox: "Show password"
 
   const handleChange = (ev) => {
     if (ev.target.name === 'password') {
@@ -59,7 +54,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
         <div className="pwd-confirm-container">
           <FormField
             type={passwordShown ? 'text' : 'password'}
-            label={t('confirm password') + ': '}
+            label={t('reset password.confirm password')}
             name="password-confirm"
             value={passwordConfirm}
             onChange={handleChange}
@@ -70,12 +65,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
             <i onClick={togglePasswordVisiblity}>{eye}</i>
           )}
         </div>
-        <Button
-          type="submit"
-          // disabled={
-          //   !password | !passwordConfirm | (password !== passwordConfirm)
-          // }
-        >
+        <Button type="submit" disabled={!password | !passwordConfirm}>
           {t('submit')}
         </Button>
       </form>
