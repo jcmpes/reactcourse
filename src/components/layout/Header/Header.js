@@ -5,6 +5,7 @@ import { getIsLogged } from '../../../store/selectors';
 import { authLogout } from '../../../store/actions/logout';
 import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { filterCourses } from '../../../api/courses';
 import './Header.css';
 
 const Header = ({ isLogged }) => {
@@ -26,6 +27,18 @@ const Header = ({ isLogged }) => {
       i18n.changeLanguage('en');
     }
   };
+
+  const [inputText, setinputText] = React.useState('');
+
+  async function handleSubmit(ev) {
+    ev.preventDefault();
+    const data = await filterCourses(inputText);
+    console.log(data);
+  }
+
+  function handleChange(ev) {
+    setinputText(ev.target.value);
+  }
 
   return (
     <header className="header">

@@ -1,14 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { isFav } from '../../api/auth';
 
-const Course = ({ course, me }) => {
+const Course = ({ course, me, faved }) => {
   const isAuthor = course.user.username === me;
-  const [favorited, setFavorited] = React.useState(null);
 
-  React.useEffect(() => {
-    isFav(course._id).then(setFavorited);
-  }, [course._id]);
   return (
     <div className="course-wrapper" key={course._id}>
       <br />
@@ -29,7 +24,7 @@ const Course = ({ course, me }) => {
         day: 'numeric',
       })}
       <br />
-      {favorited !== true || 'es favorito'}
+      {faved !== true || 'es favorito'}
     </div>
   );
 };

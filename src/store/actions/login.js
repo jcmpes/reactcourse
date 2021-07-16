@@ -8,18 +8,17 @@ import { login } from '../../api/auth';
 import { toast } from 'react-toastify';
 
 // Log in actions
-export const authLoginRequest = (username) => {
+export const authLoginRequest = () => {
   return {
     type: AUTH_LOGIN_REQUEST,
-    payload: username,
   };
 };
 
-export const authLoginSuccess = (username) => {
-  toast.success(`Hello, ${username.displayName}.`);
+export const authLoginSuccess = (userData) => {
+  toast.success(`Hello, ${userData.displayName}.`);
   return {
     type: AUTH_LOGIN_SUCCESS,
-    payload: username,
+    payload: userData,
   };
 };
 
@@ -37,11 +36,11 @@ export const loginAction = (credentials, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authLoginRequest());
     try {
-      const username = await login(credentials);
-      if (username.error) {
-        dispatch(authLoginFailure(username.error));
+      const userData = await login(credentials);
+      if (userData.error) {
+        dispatch(authLoginFailure(userData.error));
       } else {
-        dispatch(authLoginSuccess(username));
+        dispatch(authLoginSuccess(userData));
       }
       // Redirect
       const { from } = location.state || { from: { pathname: '/' } };

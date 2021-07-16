@@ -6,18 +6,19 @@ import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureClient } from './api/client';
-import { whoAmI } from './api/auth';
+import { loginWithToken } from './api/auth';
 import configureStore from './store';
 import storage from './utils/storage';
 
 const accessToken = storage.get('auth');
-configureClient({ accessToken });
 
 const preState = {
   preloadedState: {
     auth: {
       isLogged: !!accessToken,
       username: null,
+      favs: [],
+      loaded: false,
     },
     ui: {
       loading: false,
@@ -27,9 +28,11 @@ const preState = {
   },
 };
 
-if (!!accessToken)
-  whoAmI().then((data) => {
-    preState.preloadedState.auth.username = data;
+if (!!accessToken) {
+  loginWithToken(accessToken).then((data) => {
+    configureClient({ accessToken });
+    preState.preloadedState.auth.username = data.displayName;
+    preState.preloadedState.auth.favs = data.favs;
     const store = configureStore(preState);
     ReactDOM.render(
       <Provider store={store}>
@@ -40,7 +43,7 @@ if (!!accessToken)
       document.getElementById('root'),
     );
   });
-else {
+} else {
   const store = configureStore(preState);
   ReactDOM.render(
     <Provider store={store}>

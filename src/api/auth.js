@@ -5,12 +5,22 @@ import storage from '../utils/storage';
 export const login = ({ remember, ...credentials }) => {
   return client
     .post('/api/v1/loginJWT', credentials)
-    .then(({ token, displayName, userId }) => {
+    .then(({ token, displayName, favs }) => {
       configureClient({ token });
       if (remember) {
         storage.set('auth', token);
       }
-      return { displayName, userId };
+      return { displayName, token, favs };
+    });
+};
+
+// Log in with token
+export const loginWithToken = (token) => {
+  return client
+    .post('/api/v1/login-with-token', { token })
+    .then(({ displayName, favs }) => {
+      configureClient({ token });
+      return { displayName, token, favs };
     });
 };
 
@@ -54,4 +64,10 @@ export const isFav = (course) => {
   return client
     .get(`/api/v1/aboutme/isfav/${course}`)
     .then((isFav) => isFav.result);
+};
+
+export const myFavs = () => {
+  return client
+    .get(`/api/v1/aboutme/myfavs`)
+    .then((favorites) => favorites.favs);
 };
