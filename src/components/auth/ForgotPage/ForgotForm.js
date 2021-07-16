@@ -15,7 +15,7 @@ const ForgotForm = ({ onSubmit }) => {
     <div className="forgotForm">
       <form className="forgotPasswordForm" onSubmit={handleSubmit}>
         <FormField
-          type="text"
+          type="email"
           label="email:"
           name="email"
           value={email}
