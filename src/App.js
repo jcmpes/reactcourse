@@ -36,9 +36,6 @@ function Translations() {
         <Route path="/reset-password/:resetToken">
           <ResetPasswordPage />
         </Route>
-        <Route path="/reset-password">
-          <ResetPasswordPage />
-        </Route>
         <Route path="/forgot-password">
           <ForgotPage />
         </Route>
