@@ -14,7 +14,6 @@ export const authLoginRequest = () => {
 };
 
 export const authLoginSuccess = (userData) => {
-  console.log(userData);
   return {
     type: AUTH_LOGIN_SUCCESS,
     payload: userData,
