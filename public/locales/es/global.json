@@ -32,8 +32,11 @@
   "header": {
     "home": "Inicio",
     "user": "Mi perfil",
+    "register": "Registrarse",
+    "log in": "Entrar",
+    "log out": "Cerrar sesión",
+    "create": "Crear curso"
     "register": "Registro",
-    "create": "Crear",
     "search": "Buscar"
   },
   "footer": {

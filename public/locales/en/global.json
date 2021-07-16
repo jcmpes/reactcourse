@@ -32,7 +32,9 @@
     "home": "Home",
     "user": "My profile",
     "register": "Register",
-    "create": "Create",
+    "log in": "Log in",
+    "log out": "Log out",
+    "create": "Create course"
     "search": "Search"
   },
   "footer": {
