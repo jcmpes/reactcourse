@@ -32,7 +32,10 @@
   "header": {
     "home": "Inicio",
     "user": "Mi perfil",
-    "register": "Registro"
+    "register": "Registrarse",
+    "log in": "Entrar",
+    "log out": "Cerrar sesión",
+    "create": "Crear curso"
   },
   "footer": {
     "footer": "Pie de página"
