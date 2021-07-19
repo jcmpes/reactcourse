@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 import { postCourse } from "../../../api/courses";
 import { categoriesLoadAction } from "../../../store/actions/categories-load";
 import { getCategories } from "../../../store/selectors";
@@ -19,8 +20,12 @@ function NewCoursePage() {
   function handleSubmit(courseDetails) {
     postCourse(courseDetails)
       .then(result => {
-        if (result.slug) setCreatedCourse(result)  
-      })
+        if (result.slug) setCreatedCourse(result)
+        if (result.error === 'no token provided'
+          || result.error === 'The token provided is invalid or has expired') {
+            toast.error('Invalid token: Log back in and try again')
+          }
+      }).catch(err => err)
   }
 
   if (createdCourse) {
