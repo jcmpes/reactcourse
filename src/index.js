@@ -30,30 +30,25 @@ const preState = {
 
 if (!!accessToken) {
   loginWithToken(accessToken).then((data) => {
-    configureClient({ accessToken });
-    preState.preloadedState.auth.username = data.displayName;
-    preState.preloadedState.auth.favs = data.favs;
-    const store = configureStore(preState);
-    ReactDOM.render(
-      <Provider store={store}>
-        <Router>
-          <App />
-        </Router>
-      </Provider>,
-      document.getElementById('root'),
-    );
+    if (!data.displayName) {
+      storage.remove('auth');
+    } else {
+      configureClient({ accessToken });
+      preState.preloadedState.auth.isLogged = true;
+      preState.preloadedState.auth.username = data.displayName;
+      preState.preloadedState.auth.favs = data.favs;
+    }
   });
-} else {
-  const store = configureStore(preState);
-  ReactDOM.render(
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>,
-    document.getElementById('root'),
-  );
 }
+const store = configureStore(preState);
+ReactDOM.render(
+  <Provider store={store}>
+    <Router>
+      <App />
+    </Router>
+  </Provider>,
+  document.getElementById('root'),
+);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
