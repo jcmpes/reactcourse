@@ -6,8 +6,8 @@ import { getIsLogged } from '../../../store/selectors';
 import { authLogout } from '../../../store/actions/logout';
 import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { filterCourses } from '../../../api/courses';
 import './Header.css';
+import FiltersForm from '../../FiltersForm/FiltersForm';
 
 const Header = ({ isLogged }) => {
   const dispatch = useDispatch();
@@ -18,18 +18,6 @@ const Header = ({ isLogged }) => {
     dispatch(authLogout()); // change isLogged state
     history.push('/');
   };
-
-  const [inputText, setinputText] = React.useState('');
-
-  async function handleSubmit(ev) {
-    ev.preventDefault();
-    const data = await filterCourses(inputText);
-    console.log(data);
-  }
-
-  function handleChange(ev) {
-    setinputText(ev.target.value);
-  }
 
   const { t, i18n } = useTranslation(['global']);
   const switchLanguage = (ev) => {
@@ -73,11 +61,7 @@ const Header = ({ isLogged }) => {
       <Link to="/user">
         <Button>{t('header.user')}</Button>
       </Link>
-
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={inputText} onChange={handleChange}></input>
-        <button type="submit">{t('header.search')}</button>
-      </form>
+      <FiltersForm />
     </header>
   );
 };
