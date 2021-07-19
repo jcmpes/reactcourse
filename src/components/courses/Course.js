@@ -6,7 +6,7 @@ import { favoritesAction } from '../../store/actions/favorites';
 
 const Course = ({ course, me, faved }) => {
   const dispatch = useDispatch();
-  console.log(course)
+  console.log(course);
   const isAuthor = course.user.username === me;
 
   return (
@@ -38,9 +38,11 @@ const Course = ({ course, me, faved }) => {
           // else removeFav(course._id);
         }}
       >
-        <div style={{ cursor: 'pointer' }}>
-          {faved === true ? 'FAVORITO' : 'no favorito'}
-        </div>
+        {me && (
+          <div style={{ cursor: 'pointer' }}>
+            {faved === true ? 'FAVORITO' : 'no favorito'}
+          </div>
+        )}
       </div>
     </div>
   );
