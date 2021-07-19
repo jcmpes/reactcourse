@@ -15,7 +15,7 @@ const accessToken = storage.get('auth');
 const preState = {
   preloadedState: {
     auth: {
-      isLogged: !!accessToken,
+      isLogged: false,
       username: null,
       favs: [],
       loaded: false,
