@@ -6,7 +6,7 @@ import { favoritesAction } from '../../store/actions/favorites';
 
 const Course = ({ course, me, faved }) => {
   const dispatch = useDispatch();
-
+  console.log(course)
   const isAuthor = course.user.username === me;
 
   return (
