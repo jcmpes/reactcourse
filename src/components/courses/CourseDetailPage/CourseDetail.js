@@ -22,4 +22,12 @@ function CourseDetail({ title, video, description, content, image }) {
   )
 }
 
+export function getStaticProps() {
+  /// Te traes el curso
+  
+  return {
+    course: data
+  }
+}
+
 export default CourseDetail;
