@@ -27,14 +27,12 @@ function NewCourseForm({ onSubmit, categories }) {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData();
-    formData.append('user', courseDetails.user)
     formData.append('title', courseDetails.title)
     formData.append('description', courseDetails.description)
     formData.append('category', courseDetails.category)
     formData.append('video', courseDetails.video)
     formData.append('content', courseDetails.content)
     if (image) formData.append('image', image)
-    console.log(formData)
     onSubmit(formData)
   };
 
