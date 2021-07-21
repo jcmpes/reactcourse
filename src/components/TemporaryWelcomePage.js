@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authLogout } from '../store/actions/logout';
 import { loadCoursesAction } from '../store/actions/load-courses';
-import { getAuth, getUI } from '../store/selectors';
+import { getAuth, getUI, getFilters } from '../store/selectors';
 import Layout from './layout/Layout';
 import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
@@ -15,6 +15,8 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
 
   const { loading, error } = useSelector(getUI);
+  const filters = useSelector(getFilters);
+  console.log(filters);
   const dispatch = useDispatch();
 
   const switchLanguage = (ev) => {
@@ -30,10 +32,10 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
     // getCourses().then(setCourses);
-    dispatch(loadCoursesAction(getCourses, setCourses));
+    dispatch(loadCoursesAction(getCourses, setCourses, filters));
     dispatch(categoriesLoadRequest());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [filters]);
 
   const coursesElement =
     courses && favs

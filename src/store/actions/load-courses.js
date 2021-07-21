@@ -2,6 +2,8 @@ import {
   LOAD_COURSES_FAILURE,
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
+  SET_FILTERS_ATTEMPT,
+  SET_FILTERS_SUCCESS,
 } from '../types';
 
 // Load courses actions
@@ -25,12 +27,20 @@ export const loadCoursesFailure = (error) => {
   };
 };
 
+export const setFilters = (filters) => {
+  console.log(filters);
+  return {
+    type: SET_FILTERS_SUCCESS,
+    payload: filters,
+  };
+};
+
 // Load courses middleware
-export const loadCoursesAction = (getCourses, setCourses) => {
+export const loadCoursesAction = (getCourses, setCourses, filters) => {
   return async function (dispatch, getState) {
     dispatch(loadCoursesRequest());
     try {
-      getCourses()
+      getCourses(filters)
         .then(setCourses)
         .then(() => {
           dispatch(loadCoursesSuccess());
