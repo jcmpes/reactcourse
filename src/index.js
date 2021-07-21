@@ -9,8 +9,13 @@ import { configureClient } from './api/client';
 import { loginWithToken } from './api/auth';
 import configureStore from './store';
 import storage from './utils/storage';
+import * as serviceWorker from './serviceWorker';
 
 const accessToken = storage.get('auth');
+serviceWorker.register();
+const swFileName =
+  process.env.NODE_ENV === 'production' ? 'custom-sw.js' : 'custom-sw.js';
+const swUrl = `${process.env.PUBLIC_URL}/${swFileName}`;
 
 const preState = {
   preloadedState: {

@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
 import { Button } from '../components/shared';
 
-
 function TemporaryWelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
 
