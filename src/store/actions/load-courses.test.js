@@ -10,8 +10,8 @@ describe('coursesLoadedSuccess', () => {
   });
 });
 
-describe('courseDetailSuccess', () => {
-  test('should return an COURSE_DETAIL_SUCCESS action', () => {
+describe('setFiltersSuccess', () => {
+  test('should return an SET_FILTERS_SUCCESS action', () => {
     const result = setFilters();
     expect(result).toEqual({ type: SET_FILTERS_SUCCESS });
   });
