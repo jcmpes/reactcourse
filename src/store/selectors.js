@@ -9,6 +9,8 @@ export const getCourseDetail = (state, courseSlug) =>
 
 export const getUI = (state) => state.ui;
 
-export const getCategories = (state) => state.categories.data
+export const getCategories = (state) => state.categories.data;
 
 export const getUsername = (state) => state.auth.username;
+
+export const getFilters = (state) => state.courses.filters;

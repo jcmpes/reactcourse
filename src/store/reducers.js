@@ -12,6 +12,7 @@ import {
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
+  SET_FILTERS_SUCCESS,
 } from './types';
 
 export const initialState = {
@@ -23,6 +24,7 @@ export const initialState = {
   courses: {
     loaded: false,
     data: [],
+    filters: {},
   },
   categories: {
     loaded: false,
@@ -79,6 +81,8 @@ export function courses(state = initialState.courses, action) {
       return { ...state, loaded: false };
     case COURSE_DETAIL_SUCCESS:
       return { ...state, loaded: true, data: [...state.data, action.payload] };
+    case SET_FILTERS_SUCCESS:
+      return { ...state, filters: action.payload };
     default:
       return state;
   }
