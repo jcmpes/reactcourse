@@ -48,8 +48,6 @@ export function auth(state = initialState.auth, action) {
       if (action.payload.add) {
         return { ...state, favs: [...state.favs, action.payload.course] };
       } else {
-        console.log('quita');
-        console.log(state.favs);
         const favs = state.favs.filter((fav) => {
           return fav !== action.payload.course;
         });

@@ -1,20 +1,20 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
+import Link from 'next/link';
 
-const eye = <FontAwesomeIcon icon={faEye} />;
-const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
+const eye = <FontAwesomeIcon style={{ width: '20px'}} icon={faEye} />;
+const eyeSlash = <FontAwesomeIcon style={{ width: '20px'}} icon={faEyeSlash} />;
 
 function LoginForm({ onSubmit }) {
-  const [credentials, setCredentials] = React.useState({
+  const [credentials, setCredentials] = useState({
     email: '',
     password: '',
     remember: false,
   });
 
-  const [passwordShown, setPasswordShown] = React.useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
 
   const handleChange = (ev) => {
     setCredentials((oldCredentials) => ({
@@ -33,14 +33,13 @@ function LoginForm({ onSubmit }) {
     setPasswordShown(passwordShown ? false : true);
   };
 
-  const { t } = useTranslation(['global']);
-
+  
   return (
     <div className="loginForm">
       <form className="loginForm" onSubmit={handleSubmit}>
         <FormField
           type="text"
-          label={t('email')}
+          label={('email')}
           name="email"
           value={credentials.email}
           onChange={handleChange}
@@ -48,7 +47,7 @@ function LoginForm({ onSubmit }) {
         <div className="pwd-container">
           <FormField
             type={passwordShown ? 'text' : 'password'}
-            label={t('password')}
+            label={('password')}
             name="password"
             value={credentials.password}
             onChange={handleChange}
@@ -62,7 +61,7 @@ function LoginForm({ onSubmit }) {
         <Checkbox
           className={'checkbox'}
           name={'remember'}
-          text={t('remember session')}
+          text={('remember session')}
           type={'checkbox'}
           checked={credentials.remember}
           onChange={handleChange}
@@ -71,10 +70,12 @@ function LoginForm({ onSubmit }) {
           type="submit"
           disabled={!credentials.email | !credentials.password}
         >
-          {t('log in')}
+          {('log in')}
         </Button>
         <div className="password-forgotten">
-          <a href="/forgot-password">{t('forgot option')}</a>
+          <Link href="/forgot-password">
+            <a>{('forgot option')}</a>
+          </Link>
         </div>
       </form>
     </div>

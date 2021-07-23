@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { Button } from '../../shared';
 import FormField from '../../shared/FormField';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,22 +13,16 @@ const ResetPasswordForm = ({ onSubmit }) => {
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [passwordShown, setPasswordShown] = useState(false);
 
-  const { t } = useTranslation(['global']);
-
+  
   const handleSubmit = (ev) => {
     ev.preventDefault();
     if (password === passwordConfirm) {
-      toast.success('Yay, passwords match!!.');
+      toast.success('Password updated');
       onSubmit(password);
-      console.log('match!');
     } else {
-      // TODO:
-      toast.error('Passwords should match. *** ');
-      console.log('* dont match *');
+      toast.error('Passwords should match');
     }
   };
-
-  // TODO checkbox: "Show password"
 
   const handleChange = (ev) => {
     if (ev.target.name === 'password') {
@@ -50,7 +43,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
         <div className="pwd-container">
           <FormField
             type={passwordShown ? 'text' : 'password'}
-            label={t('password')}
+            label={('password')}
             name="password"
             value={password}
             onChange={handleChange}
@@ -59,7 +52,7 @@ const ResetPasswordForm = ({ onSubmit }) => {
         <div className="pwd-confirm-container">
           <FormField
             type={passwordShown ? 'text' : 'password'}
-            label={t('confirm password') + ': '}
+            label={('reset password.confirm password')}
             name="password-confirm"
             value={passwordConfirm}
             onChange={handleChange}
@@ -70,13 +63,8 @@ const ResetPasswordForm = ({ onSubmit }) => {
             <i onClick={togglePasswordVisiblity}>{eye}</i>
           )}
         </div>
-        <Button
-          type="submit"
-          // disabled={
-          //   !password | !passwordConfirm | (password !== passwordConfirm)
-          // }
-        >
-          {t('submit')}
+        <Button type="submit" disabled={!password | !passwordConfirm}>
+          {('submit')}
         </Button>
       </form>
     </div>

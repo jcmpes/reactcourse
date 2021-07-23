@@ -13,16 +13,18 @@ const ForgotForm = ({ onSubmit }) => {
 
   return (
     <div className="forgotForm">
+      <h1>{('forgot password.forgot password')}</h1>
+      <p>{('forgot password.please enter your email')}</p>
       <form className="forgotPasswordForm" onSubmit={handleSubmit}>
         <FormField
-          type="text"
-          label="email:"
+          type="email"
+          label={('email')}
           name="email"
           value={email}
           onChange={handleChange}
         />
         <Button type="submit" disabled={!email}>
-          Next
+          {('next')}
         </Button>
       </form>
     </div>

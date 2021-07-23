@@ -1,12 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useTranslation } from "react-i18next";
+import useTranslation from 'next-translate/useTranslation'
 import { getAuth } from "../../../store/selectors";
 import { FormField, Button, Input } from "../../../components/shared"
 
 function NewCourseForm({ onSubmit, categories }) {
-  const { t } = useTranslation(['global']);
-  const { username } = useSelector(getAuth);
+  const { t } = useTranslation('common')
   const [image, setImage] = React.useState(null)
   const [courseDetails, setCourseDetails] = React.useState({
     'title': '',
@@ -14,7 +13,6 @@ function NewCourseForm({ onSubmit, categories }) {
     'category': '',
     'video': '',
     'content': '',
-    'user': username,
   });
 
   const handleChange = (ev) => {
@@ -27,14 +25,12 @@ function NewCourseForm({ onSubmit, categories }) {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData();
-    formData.append('user', courseDetails.user)
     formData.append('title', courseDetails.title)
     formData.append('description', courseDetails.description)
     formData.append('category', courseDetails.category)
     formData.append('video', courseDetails.video)
     formData.append('content', courseDetails.content)
     if (image) formData.append('image', image)
-    console.log(formData)
     onSubmit(formData)
   };
 

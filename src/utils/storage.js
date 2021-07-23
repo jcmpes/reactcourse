@@ -1,5 +1,6 @@
 const storage = {
   get(key) {
+    if(typeof window === "undefined") return
     const value = localStorage.getItem(key);
     if (!value) {
       return null;

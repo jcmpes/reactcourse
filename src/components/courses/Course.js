@@ -1,20 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { addFav, removeFav } from '../../api/courses';
 import { useDispatch } from 'react-redux';
 import { favoritesAction } from '../../store/actions/favorites';
 
 const Course = ({ course, me, faved }) => {
   const dispatch = useDispatch();
-
+  console.log(course);
   const isAuthor = course.user.username === me;
 
   return (
     <div className="course-wrapper" key={course._id}>
       <br />
       Title:{' '}
-      <Link className="course-title" to={`/courses/${course.slug}`}>
-        {course.title}
+      <Link href={`/courses/${course.slug}`}>
+        <a className="course-title">
+          {course.title}
+        </a>
       </Link>
       <br />
       Description: {course.description}
@@ -38,9 +40,11 @@ const Course = ({ course, me, faved }) => {
           // else removeFav(course._id);
         }}
       >
-        <div style={{ cursor: 'pointer' }}>
-          {faved === true ? 'FAVORITO' : 'no favorito'}
-        </div>
+        {me && (
+          <div style={{ cursor: 'pointer' }}>
+            {faved === true ? 'FAVORITO' : 'no favorito'}
+          </div>
+        )}
       </div>
     </div>
   );

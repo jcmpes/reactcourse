@@ -1,17 +1,21 @@
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { Button } from '../../shared';
 import { logout } from '../../../api/auth';
-import { getIsLogged } from '../../../store/selectors';
+import { getAuth } from '../../../store/selectors';
 import { authLogout } from '../../../store/actions/logout';
-import { connect, useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { filterCourses } from '../../../api/courses';
-import './Header.css';
+import { useDispatch, useSelector } from 'react-redux';
+import FiltersForm from '../../FiltersForm/FiltersForm';
+import useTranslation from 'next-translate/useTranslation'
 
-const Header = ({ isLogged }) => {
+
+const Header = () => {
+  const { t } = useTranslation('common')
+
+  const { isLogged } = useSelector(getAuth)
   const dispatch = useDispatch();
-  const history = useHistory();
+  const history = useRouter();
 
   const handleLogoutClick = () => {
     logout(); // clear local storage
@@ -19,73 +23,41 @@ const Header = ({ isLogged }) => {
     history.push('/');
   };
 
-  const [inputText, setinputText] = React.useState('');
-
-  async function handleSubmit(ev) {
-    ev.preventDefault();
-    const data = await filterCourses(inputText);
-    console.log(data);
-  }
-
-  function handleChange(ev) {
-    setinputText(ev.target.value);
-  }
-
-  const { t, i18n } = useTranslation(['global']);
-  const switchLanguage = (ev) => {
-    // TODO: improve this function getting available languages dinamically
-    if (ev.target.innerHTML === 'es') {
-      i18n.changeLanguage('es');
-    } else if (ev.target.innerHTML === 'en') {
-      i18n.changeLanguage('en');
-    }
-  };
-
   return (
     <header className="header">
-      <Link to="/">
+      <Link href="/" passHref>
         <Button>{t('header.home')}</Button>
       </Link>
-      <Link to="/register">
-        <Button>{t('header.register')}</Button>
+      <Link href="/register" passHref>
+          <Button>{t('header.register')}</Button>
       </Link>
 
       {isLogged ? (
         <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
       ) : (
-        <Link to="/login">
-          <Button>{t('header.log in')}</Button>
+        <Link href="/login" passHref>
+            <Button>{t('header.log in')}</Button>
         </Link>
       )}
 
-      <Button type="text" onClick={switchLanguage}>
-        en
-      </Button>
-      <Button type="text" onClick={switchLanguage}>
-        es
-      </Button>
+      <Link href="" locale="en" passHref>
+          <Button>en</Button>
+      </Link>
+      <Link href="" locale="es" passHref>
+          <Button>es</Button>
+      </Link>
 
       <br />
-      <Link to="/create">
-        <Button>{t('header.create')}</Button>
+      <Link href="/create" passHref>
+          <Button>{t('header.create')}</Button>
       </Link>
 
-      <Link to="/user">
-        <Button>{t('header.user')}</Button>
+      <Link href="/user" passHref>
+          <Button>{t('header.user')}</Button>
       </Link>
-
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={inputText} onChange={handleChange}></input>
-        <button type="submit">{t('header.search')}</button>
-      </form>
+      <FiltersForm />
     </header>
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isLogged: getIsLogged(state),
-  };
-};
-
-export default connect(mapStateToProps)(Header);
+export default Header;
