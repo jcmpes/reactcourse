@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import  { Twitter, Facebook } from "react-social-sharing";
 import { YoutubeEmbed } from "../../shared";
 
@@ -27,33 +28,16 @@ function CourseDetail({ title, video, description, content, image }) {
       <div className="detail-content">
         {content}
       </div>
-      <div className="deatail-sharer">
-        <Facebook link={window.location.href} />
-        <Twitter link={window.location.href} />
-      </div>
+        { (typeof window !== "undefined") 
+            ? <div className="deatail-sharer">
+                <Facebook link={window.location.href} />
+                <Twitter link={window.location.href} />
+              </div>
+            : null  
+        }
     </div>
     </>
   )
-}
-
-// This function gets called at build time
-export async function getStaticProps(context) {
-  // console.log('context', context)
-  const { courseSlug } = context.params;
-  const course = await getCourse(courseSlug)
-
-  if (!course) {
-    return {
-      notFound: true,
-    }
-  }
-
-  return {
-    // will be passed to the page component as props
-    props: {
-      course: course
-    }
-  }
 }
 
 export default CourseDetail;

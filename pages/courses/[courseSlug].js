@@ -7,20 +7,20 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { getCourse, getCourses } from '../../src/api/courses';
 
-function CoursePage() {
-  const [course, setCourse] = useState(null)
-  const { courseSlug } = useRouter().query;
+function CoursePage({ course }) {
+  // const [course, setCourse] = useState(null)
+  // const { courseSlug } = useRouter().query;
   const { loading } = useSelector(getUi);
-  const dispatch = useDispatch();
-  // const course = useSelector((state) => getCourseDetail(state, courseSlug));
-  useEffect(() => {
-    // dispatch(courseDetailAction(courseSlug));
-    async function fetchData() {
-      const course = await getCourse(courseSlug);
-      setCourse(course)
-    }
-    fetchData()
-  }, [courseSlug]);
+  // const dispatch = useDispatch();
+  // // const course = useSelector((state) => getCourseDetail(state, courseSlug));
+  // useEffect(() => {
+  //   // dispatch(courseDetailAction(courseSlug));
+  //   async function fetchData() {
+  //     const course = await getCourse(courseSlug);
+  //     setCourse(course)
+  //   }
+  //   fetchData()
+  // }, [courseSlug]);
 
 
   return (
@@ -31,6 +31,24 @@ function CoursePage() {
   );
 }
 
+// This function gets called at build time
+export const getStaticProps = async({ params }) => {
+  const { courseSlug } = params;
+  const course = await getCourse(courseSlug)
+
+  if (!course) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    // will be passed to the page component as props
+    props: {
+      course
+    }
+  }
+}
 
 // This function gets called at build time
 export async function getStaticPaths() {
