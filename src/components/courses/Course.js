@@ -8,6 +8,7 @@ import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
 
 const Course = ({ course, faved }) => {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
   const { username } = useSelector(getAuth);
@@ -27,7 +28,11 @@ const Course = ({ course, faved }) => {
       <br />
       {t('Category')}: {course.category.name}
       <br />
-      {t('Created by')} {isAuthor ? t('me') : course.user.username} {t('at')}{' '}
+      {t('Created by')}{' '}
+      <Link to={`/courses-by/${course.user.username}`}>
+        {isAuthor ? t('me') : course.user.username}
+      </Link>{' '}
+      {t('at')}{' '}
       {new Date(course.createdAt).toLocaleDateString(t('en-en'), {
         weekday: 'long',
         year: 'numeric',
