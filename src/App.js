@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import NotFoundPage from './api/NotFoundPage';
 import { Suspense } from 'react';
 import LoginPage from './components/auth/LoginPage';
-import TemporaryWelcomePage from './components/TemporaryWelcomePage';
+import WelcomePage from './components/WelcomePage';
 import {
   RegisterPage,
   ResetPasswordPage,
@@ -12,6 +12,7 @@ import {
 } from './components/auth';
 import { NewCoursePage } from './components/courses/NewCoursePage';
 import User from './components/users';
+import UserCourse from './components/courses/UserCourse/UserCourse';
 
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,6 +34,9 @@ function Translations() {
         <Route path="/user">
           <User />
         </Route>
+        <Route path="/courses-by/:username">
+          <UserCourse />
+        </Route>
         <Route path="/reset-password/:resetToken">
           <ResetPasswordPage />
         </Route>
@@ -49,7 +53,7 @@ function Translations() {
           <NewCoursePage />
         </Route>
         <Route exact path="/">
-          <TemporaryWelcomePage />
+          <WelcomePage />
         </Route>
         <Route exact path="/404">
           <NotFoundPage />

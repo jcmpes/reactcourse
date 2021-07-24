@@ -9,16 +9,18 @@ export const CoursesList = (courses) => {
 
   console.log(courses);
   const coursesElement =
-    courses && favs
-      ? courses.courses.map((course) => {
-          const faved = favs.includes(course._id);
-          return (
-            <div key={course._id}>
-              <Course course={course} me={me} key={course._id} faved={faved} />
-            </div>
-          );
-        })
-      : [];
+    courses.courses && favs ? (
+      courses.courses.map((course) => {
+        const faved = favs.includes(course._id);
+        return (
+          <div key={course._id}>
+            <Course course={course} me={me} key={course._id} faved={faved} />
+          </div>
+        );
+      })
+    ) : (
+      <div>Ups</div>
+    );
   return coursesElement;
 };
 

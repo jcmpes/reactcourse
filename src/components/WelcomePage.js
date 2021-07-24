@@ -8,10 +8,10 @@ import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
-import { Button } from '../components/shared';
+import { Button } from './shared';
 import CoursesList from './courses/CoursesList';
 
-function TemporaryWelcomePage({ auth, onLogout, ...props }) {
+function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
 
   const { loading, error } = useSelector(getUI);
@@ -71,7 +71,4 @@ const mapDispatchToProps = {
   onLogout: authLogout,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TemporaryWelcomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);

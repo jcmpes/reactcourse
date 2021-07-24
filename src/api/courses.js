@@ -66,3 +66,9 @@ export const removeFav = (course) => {
     console.log(data);
   });
 };
+
+export const userCourses = (userId, setData) => {
+  return client
+    .get(`/api/v1/user/${userId}`)
+    .then((data) => setData(data.courses));
+};
