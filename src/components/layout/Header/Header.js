@@ -16,7 +16,7 @@ const Header = () => {
   const { isLogged } = useSelector(getAuth)
   const dispatch = useDispatch();
   const history = useRouter();
-
+  const location = useRouter();
   const handleLogoutClick = () => {
     logout(); // clear local storage
     dispatch(authLogout()); // change isLogged state
@@ -40,11 +40,15 @@ const Header = () => {
         </Link>
       )}
 
-      <Link href="" locale="en" passHref>
+      <Link href={location.asPath} locale="en">
+        <a>
           <Button>en</Button>
+        </a>
       </Link>
-      <Link href="" locale="es" passHref>
+      <Link href={location.asPath} locale="es">
+        <a>
           <Button>es</Button>
+        </a>
       </Link>
 
       <br />

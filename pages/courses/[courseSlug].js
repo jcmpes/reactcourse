@@ -50,17 +50,19 @@ export const getStaticProps = async({ params }) => {
 }
 
 // This function gets called at build time
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
+  const paths = []
+
   // Call an external API endpoint to get posts
   const courses = await getCourses()
-
+  
   // Get the paths we want to pre-render based on posts
-  const paths = courses.map((course) => ({
-    params: { courseSlug: course.slug, course: course },
-  }))
+  locales.forEach((locale, i) => {
+    courses.forEach((course, i) => {
+      paths.push({ params: { courseSlug: course.slug, course: course }, locale })
+    });
+  });
 
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
   return { paths, fallback: false }
 }
 

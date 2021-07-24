@@ -41,8 +41,8 @@ function VerifyPage() {
 }
 
 // This function gets called at build time
-export async function getStaticPaths() {
-  return { paths: [], fallback: false }
-}
+// export async function getStaticPaths() {
+//   return { paths: [], fallback: false }
+// }
 
 export default VerifyPage;
