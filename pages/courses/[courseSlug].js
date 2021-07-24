@@ -31,6 +31,7 @@ function CoursePage() {
   );
 }
 
+
 // This function gets called at build time
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts

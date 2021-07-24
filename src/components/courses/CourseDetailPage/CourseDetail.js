@@ -36,4 +36,24 @@ function CourseDetail({ title, video, description, content, image }) {
   )
 }
 
+// This function gets called at build time
+export async function getStaticProps(context) {
+  // console.log('context', context)
+  const { courseSlug } = context.params;
+  const course = await getCourse(courseSlug)
+
+  if (!course) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    // will be passed to the page component as props
+    props: {
+      course: course
+    }
+  }
+}
+
 export default CourseDetail;
