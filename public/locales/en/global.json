@@ -22,6 +22,7 @@
   "me": "me",
   "at": "at",
   "Courses by": "Courses by",
+  "My Favorite courses": "My Favorite courses",
   "en-en": "en-en",
   "users": {
     "student": "Student",
@@ -41,7 +42,8 @@
     "log in": "Log in",
     "log out": "Log out",
     "create": "Create course",
-    "search": "Search"
+    "search": "Search",
+    "myfavs": "My favs"
   },
   "footer": {
     "footer": "Footer"

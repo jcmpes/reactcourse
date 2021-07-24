@@ -71,3 +71,9 @@ export const myFavs = () => {
     .get(`/api/v1/aboutme/myfavs`)
     .then((favorites) => favorites.favs);
 };
+
+export const myFavsDetail = (setFavs) => {
+  return client.get(`/api/v1/aboutme//myfavsdetails`).then((data) => {
+    setFavs(data);
+  });
+};

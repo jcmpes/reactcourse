@@ -61,6 +61,9 @@ const Header = ({ isLogged }) => {
       <Link to="/user">
         <Button>{t('header.user')}</Button>
       </Link>
+      <Link to="/myfavs">
+        <Button>{t('header.myfavs')}</Button>
+      </Link>
       <FiltersForm />
     </header>
   );

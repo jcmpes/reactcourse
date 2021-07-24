@@ -13,7 +13,7 @@ import {
 import { NewCoursePage } from './components/courses/NewCoursePage';
 import User from './components/users';
 import UserCourse from './components/courses/UserCourse/UserCourse';
-
+import Favs from './components/courses/Favs';
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -36,6 +36,9 @@ function Translations() {
         </Route>
         <Route path="/courses-by/:username">
           <UserCourse />
+        </Route>
+        <Route path="/myfavs">
+          <Favs />
         </Route>
         <Route path="/reset-password/:resetToken">
           <ResetPasswordPage />
