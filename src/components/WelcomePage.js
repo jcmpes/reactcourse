@@ -6,17 +6,16 @@ import { getAuth, getUI, getFilters } from '../store/selectors';
 import Layout from './layout/Layout';
 import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
-import Course from '../components/courses/Course';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
-import { Button } from '../components/shared';
+import { Button } from './shared';
+import CoursesList from './courses/CoursesList';
 
-function TemporaryWelcomePage({ auth, onLogout, ...props }) {
+function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
 
   const { loading, error } = useSelector(getUI);
   const filters = useSelector(getFilters);
-  console.log('filters', filters);
   const dispatch = useDispatch();
 
   const switchLanguage = (ev) => {
@@ -27,32 +26,14 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
     }
   };
 
-  const { username, favs } = auth;
+  const { username } = auth;
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
     // getCourses().then(setCourses);
     dispatch(loadCoursesAction(getCourses, setCourses, filters));
     dispatch(categoriesLoadRequest());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
-
-  const coursesElement =
-    courses && favs
-      ? courses.map((course) => {
-          const faved = favs.includes(course._id);
-          return (
-            <div>
-              <Course
-                course={course}
-                me={username}
-                key={course._id}
-                faved={faved}
-              />
-            </div>
-          );
-        })
-      : [];
+  }, [dispatch, filters]);
 
   return error || loading ? (
     'Loading...'
@@ -77,9 +58,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
       <Button children="English" onClick={switchLanguage} />
       <Button children="Español" onClick={switchLanguage} />
 
-      {coursesElement.length === 0 && !loading
-        ? "There's no courses yet"
-        : coursesElement}
+      <CoursesList courses={courses} />
     </Layout>
   );
 }
@@ -92,7 +71,4 @@ const mapDispatchToProps = {
   onLogout: authLogout,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(TemporaryWelcomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);

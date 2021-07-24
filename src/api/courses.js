@@ -2,14 +2,13 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const title = filters.title || '';
+  const filter = { title: filters.title };
   return (
     client
-      .get(`/api/v1/courses?title=${title}`)
+      .get(`/api/v1/courses`, filter)
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.
       .then((data) => {
-        console.log('Curos desde la api', data);
         data.map((course) => {
           if (!course.user) {
             course.user = { username: 'Anonymous user' };
@@ -66,4 +65,10 @@ export const removeFav = (course) => {
   return client.post(`/api/v1/aboutme/removefav/${course}`).then((data) => {
     console.log(data);
   });
+};
+
+export const userCourses = (userId, setData) => {
+  return client
+    .get(`/api/v1/user/${userId}`)
+    .then((data) => setData(data.courses));
 };
