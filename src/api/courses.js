@@ -2,10 +2,10 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const filter = { title: filters.title };
+  const title = filters.title || '';
   return (
     client
-      .get(`/api/v1/courses`, filter)
+      .get(`/api/v1/courses?title=${title}`)
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.
       .then((data) => {
