@@ -11,7 +11,7 @@ function CourseDetail({ title, video, description, content, image }) {
       <title>{`Teach It Up: ${title}`}</title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="description" content={`Curso en Teach It Up: ${description}`}/>
-      <meta property="og:image" content={image ? image : null} />
+      <meta property="og:image" content={'https://www.net-learning.com.ar/wp-content/uploads/2014/05/E-learning-laptop-estudiantes-1024x682.jpg'} />
       <meta property="og:title" content={`Teach It Up: ${title}`} />
       <meta property="og:video" content={`https://www.youtube.com/embed/${video}`} />
     </Head>
