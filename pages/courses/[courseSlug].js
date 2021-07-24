@@ -8,9 +8,9 @@ import Head from 'next/head';
 import { getCourse, getCourses } from '../../src/api/courses';
 
 function CoursePage({ course }) {
+  const { loading } = useSelector(getUi);
   // const [course, setCourse] = useState(null)
   // const { courseSlug } = useRouter().query;
-  const { loading } = useSelector(getUi);
   // const dispatch = useDispatch();
   // // const course = useSelector((state) => getCourseDetail(state, courseSlug));
   // useEffect(() => {
@@ -35,7 +35,7 @@ function CoursePage({ course }) {
 export const getStaticProps = async({ params }) => {
   const { courseSlug } = params;
   const course = await getCourse(courseSlug)
-
+  { console.log('props: ', props)}
   if (!course) {
     return {
       notFound: true,

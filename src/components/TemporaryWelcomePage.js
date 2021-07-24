@@ -20,7 +20,7 @@ function TemporaryWelcomePage() {
   const { loading, error } = useSelector(getUI);
   const [courses, setCourses] = useState([]);
   const dispatch = useDispatch();
-  const { t } = useTranslation("SEO")
+  const { t } = useTranslation("common")
 
   useEffect(() => {
     dispatch(loadCoursesAction(getCourses, setCourses));
@@ -64,12 +64,12 @@ function TemporaryWelcomePage() {
                 fontSize: 40,
               }}
             >
-              {('welcome to')}
-              {('title')}
+              {t('welcome to')}
+              {t('title')}
               {username ? `, ${username}` : ''}
             </div>
 
-            <div>{('headline')}</div>
+            <div>{t('headline')}</div>
 
             <p>
               Current language: <strong>{locale}</strong>
