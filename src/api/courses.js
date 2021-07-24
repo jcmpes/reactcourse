@@ -9,7 +9,6 @@ export const getCourses = (filters) => {
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.
       .then((data) => {
-        console.log('Curos desde la api', data);
         data.map((course) => {
           if (!course.user) {
             course.user = { username: 'Anonymous user' };

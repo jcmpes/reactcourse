@@ -16,7 +16,6 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
 
   const { loading, error } = useSelector(getUI);
   const filters = useSelector(getFilters);
-  console.log('filters', filters);
   const dispatch = useDispatch();
 
   const switchLanguage = (ev) => {
@@ -42,7 +41,7 @@ function TemporaryWelcomePage({ auth, onLogout, ...props }) {
       ? courses.map((course) => {
           const faved = favs.includes(course._id);
           return (
-            <div>
+            <div key={course._id}>
               <Course
                 course={course}
                 me={username}
