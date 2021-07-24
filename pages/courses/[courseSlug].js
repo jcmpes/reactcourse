@@ -35,7 +35,6 @@ function CoursePage({ course }) {
 export const getStaticProps = async({ params }) => {
   const { courseSlug } = params;
   const course = await getCourse(courseSlug)
-  { console.log('props: ', props)}
   if (!course) {
     return {
       notFound: true,
