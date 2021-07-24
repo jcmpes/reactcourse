@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create({ baseURL: process.env.NEXT_PUBLIC_API_BASE_URL });
-
+console.log("Client", process.env.NEXT_PUBLIC_API_BASE_URL)
 const setAuthorizationHeader = (token) => {
   client.defaults.headers.common['Authorization'] = `${token}`;
 };

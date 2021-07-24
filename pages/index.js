@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import TemporaryWelcomePage from '../src/components/TemporaryWelcomePage'
 
 export default function Home() {
@@ -17,3 +16,16 @@ export default function Home() {
     </div>
   )
 }
+// var readJson = (path, cb) => {
+//   fs.readFile(require.resolve(path), (err, data) => {
+//     if (err)
+//       cb(err)
+//     else
+//       cb(null, JSON.parse(data))
+//   })
+// }
+
+// export function getStaticProps() {
+//   const locales = readJson("../locales/en/common.json")
+//   console.log(locales)
+// }

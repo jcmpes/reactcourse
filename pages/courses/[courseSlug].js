@@ -38,7 +38,7 @@ export async function getStaticPaths() {
 
   // Get the paths we want to pre-render based on posts
   const paths = courses.map((course) => ({
-    params: { courseSlug: course.slug },
+    params: { courseSlug: course.slug, course: course },
   }))
 
   // We'll pre-render only these paths at build time.
