@@ -3,26 +3,32 @@ import { Link } from 'react-router-dom';
 import { addFav, removeFav } from '../../api/courses';
 import { useDispatch } from 'react-redux';
 import { favoritesAction } from '../../store/actions/favorites';
+import { useSelector } from 'react-redux';
+import { getAuth } from '../../store/selectors';
+import { useTranslation } from 'react-i18next';
 
-const Course = ({ course, me, faved }) => {
+const Course = ({ course, faved }) => {
+  const { t, i18n } = useTranslation(['global']);
+
+  const { username } = useSelector(getAuth);
   const dispatch = useDispatch();
   // console.log(course);
-  const isAuthor = course.user.username === me;
+  const isAuthor = course.user.username === username;
 
   return (
     <div className="course-wrapper" key={course._id}>
       <br />
-      Title:{' '}
+      {t('Title')}:{' '}
       <Link className="course-title" to={`/courses/${course.slug}`}>
         {course.title}
       </Link>
       <br />
-      Description: {course.description}
+      {t('Description')}: {course.description}
       <br />
-      Category: {course.category.name}
+      {t('Category')}: {course.category.name}
       <br />
-      Created by {isAuthor ? 'me' : course.user.username} at{' '}
-      {new Date(course.createdAt).toLocaleDateString('es-es', {
+      {t('Created by')} {isAuthor ? t('me') : course.user.username} {t('at')}{' '}
+      {new Date(course.createdAt).toLocaleDateString(t('en-en'), {
         weekday: 'long',
         year: 'numeric',
         month: 'short',
@@ -38,7 +44,7 @@ const Course = ({ course, me, faved }) => {
           // else removeFav(course._id);
         }}
       >
-        {me && (
+        {username && (
           <div style={{ cursor: 'pointer' }}>
             {faved === true ? 'FAVORITO' : 'no favorito'}
           </div>

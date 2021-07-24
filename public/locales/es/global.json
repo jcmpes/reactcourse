@@ -15,6 +15,13 @@
   "activation succeded": "Tu cuenta ha sido activada. Ahora puedes ",
   "activation failed": "Lo sentimos, no hemos podido activar tu cuenta. Por favor, inténtalo de nuevo.",
   "next": "Siguiente",
+  "Title": "Título",
+  "Description": "Descripción",
+  "Category": "Categoría",
+  "Created by": "Creado por",
+  "at": "el",
+  "me": "mí",
+  "en-en": "es-es",
   "users": {
     "student": "Estudiante",
     "learning": "Cursando",
