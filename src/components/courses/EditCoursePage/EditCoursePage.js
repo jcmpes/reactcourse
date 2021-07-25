@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { editCourse, postCourse } from "../../../api/courses";
+import { editCourse, getCourse, postCourse } from "../../../api/courses";
 import { categoriesLoadAction } from "../../../store/actions/categories-load";
 import { courseDetailAction } from "../../../store/actions/course-detail";
 import { getCategories, getCourseDetail, getUi } from "../../../store/selectors";
@@ -12,15 +12,21 @@ import EditCourseForm from "./EditCourseForm";
 function EditCoursePage() {
   const { courseSlug } = useParams();
   const { loading } = useSelector(getUi);
-  const course = useSelector((state) => getCourseDetail(state, courseSlug));
   const [createdCourse, setCreatedCourse] = React.useState(null);
   const categories = useSelector(getCategories)
-
   const dispatch = useDispatch();
+
+  const [course, setCourse] = useState()
+
+  React.useEffect(() => {
+    const fetchData = async () =>  {
+      setCourse(await getCourse(courseSlug))
+    }
+    fetchData()
+  }, [courseSlug]);
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-    dispatch(courseDetailAction(courseSlug));
   }, [courseSlug, course, dispatch]);
 
   function handleSubmit(courseDetails) {
