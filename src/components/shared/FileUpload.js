@@ -17,7 +17,7 @@ function FileUpload({ label, image, setImage }) {
         <input type="file" onChange={handleChange}/>
       </label>
       <br />
-      <img src={preview.file} style={{ height: "100px" }}/>
+      <img alt={''} src={preview.file} style={{ height: "100px" }}/>
     </div>
   );
 }
