@@ -5,15 +5,16 @@ import { getAuth } from "../../../store/selectors";
 import { FormField, Button, Input } from "../../../components/shared"
 import FileUpload from '../../shared/FileUpload';
 
-function NewCourseForm({ onSubmit, categories }) {
+function EditCourseForm({ course, onSubmit, categories }) {
   const { t } = useTranslation(['global']);
-  const [image, setImage] = React.useState(null)
+  const { title, description, category, video, image, content } = course
+  const [featuredImage, setFeaturedImage] = React.useState(null)
   const [courseDetails, setCourseDetails] = React.useState({
-    'title': '',
-    'description': '',
-    'category': '',
-    'video': '',
-    'content': '',
+    'title': title || '',
+    'description': description || '',
+    'category': category || '',
+    'video': video || '',
+    'content': content || '',
   });
 
   const handleChange = (ev) => {
@@ -31,7 +32,7 @@ function NewCourseForm({ onSubmit, categories }) {
     formData.append('category', courseDetails.category)
     formData.append('video', courseDetails.video)
     formData.append('content', courseDetails.content)
-    if (image) formData.append('image', image)
+    if (image) formData.append('image', featuredImage)
     console.log('datos en react: ', formData)
     onSubmit(formData)
   };
@@ -44,7 +45,7 @@ function NewCourseForm({ onSubmit, categories }) {
             type="text"
             label={'title'}
             name="title"
-            value={courseDetails.email}
+            value={courseDetails.title}
             onChange={handleChange}
           />
           <Input
@@ -79,7 +80,7 @@ function NewCourseForm({ onSubmit, categories }) {
           <FileUpload
             label={'image'}
             image={image}
-            setImage={setImage}
+            setImage={setFeaturedImage}
           />
           <Button
             type="submit"
@@ -94,4 +95,4 @@ function NewCourseForm({ onSubmit, categories }) {
 
 
 
-export default NewCourseForm;
+export default EditCourseForm;

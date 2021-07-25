@@ -49,6 +49,13 @@ const Course = ({ course, faved }) => {
           // else removeFav(course._id);
         }}
       >
+      { isAuthor && 
+        <div>
+          <Link to={`/edit/${course.slug}`}>
+            ✏️ Edit
+          </Link>
+        </div>
+      }
         {username && (
           <div style={{ cursor: 'pointer' }}>
             {faved === true ? 'FAVORITO' : 'no favorito'}

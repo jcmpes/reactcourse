@@ -20,6 +20,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './config/i18next-config';
 import CoursePage from './components/courses/CourseDetailPage/CoursePage';
 import { toast, ToastContainer } from 'react-toastify';
+import EditCoursePage from './components/courses/EditCoursePage/EditCoursePage';
 
 function Translations() {
   return (
@@ -54,6 +55,9 @@ function Translations() {
         </Route>
         <Route path="/create">
           <NewCoursePage />
+        </Route>
+        <Route path="/edit/:courseSlug">
+          <EditCoursePage />
         </Route>
         <Route exact path="/">
           <WelcomePage />

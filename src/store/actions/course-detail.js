@@ -32,11 +32,6 @@ export const courseDetailFailure = (error) => {
 // Course Detail middleware
 export const courseDetailAction = (courseSlug) => {
   return async function (dispatch, getState) {
-    // Use Redux as cache
-    const courseCached = getCourseDetail(getState(), courseSlug);
-    if (courseCached) {
-      return;
-    }
     dispatch(courseDetailRequest());
     try {
       const course = await getCourse(courseSlug);
