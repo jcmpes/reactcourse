@@ -38,6 +38,14 @@ export const postCourse = async (courseDetails) => {
     .catch((err) => err);
 };
 
+// Edit an existing course
+export const editCourse = async (courseDetails) => {
+  return client
+    .put('/api/v1/courses/', courseDetails)
+    .then((data) => data)
+    .catch((err) => err);
+};
+
 // Get categories
 export const getCategoriesApiCall = () => {
   return client

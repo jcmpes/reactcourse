@@ -1,7 +1,7 @@
 const { useState } = require('react')
 
 function FileUpload({ label, image, setImage }) {
-  const [preview, setPreview] = useState({ file: null });
+  const [preview, setPreview] = useState({ file: image || null });
 
   const handleChange = (ev) => {
     setPreview({

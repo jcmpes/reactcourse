@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { getCourse } from '../../../api/courses';
 import { courseDetailAction } from '../../../store/actions/course-detail';
 import { getCourseDetail, getUi } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
@@ -9,12 +10,14 @@ import CourseDetail from './CourseDetail';
 function CoursePage() {
   const { courseSlug } = useParams();
   const { loading } = useSelector(getUi);
-  const course = useSelector((state) => getCourseDetail(state, courseSlug));
-  const dispatch = useDispatch();
+  const [course, setCourse] = useState()
 
   React.useEffect(() => {
-    dispatch(courseDetailAction(courseSlug));
-  }, [courseSlug, course, dispatch]);
+    const fetchData = async () =>  {
+      setCourse(await getCourse(courseSlug))
+    }
+    fetchData()
+  }, [courseSlug]);
 
   return (
     <Layout>

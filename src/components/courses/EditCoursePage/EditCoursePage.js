@@ -1,26 +1,30 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { postCourse } from "../../../api/courses";
+import { editCourse, postCourse } from "../../../api/courses";
 import { categoriesLoadAction } from "../../../store/actions/categories-load";
 import { courseDetailAction } from "../../../store/actions/course-detail";
-import { getCategories } from "../../../store/selectors";
+import { getCategories, getCourseDetail, getUi } from "../../../store/selectors";
 import Layout from "../../layout/Layout";
-import NewCourseForm from "./NewCourseForm";
+import EditCourseForm from "./EditCourseForm";
 
-function NewCoursePage() {
+function EditCoursePage() {
+  const { courseSlug } = useParams();
+  const { loading } = useSelector(getUi);
+  const course = useSelector((state) => getCourseDetail(state, courseSlug));
   const [createdCourse, setCreatedCourse] = React.useState(null);
   const categories = useSelector(getCategories)
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-    dispatch(courseDetailAction())
-  }, [dispatch])
+    dispatch(courseDetailAction(courseSlug));
+  }, [courseSlug, course, dispatch]);
 
   function handleSubmit(courseDetails) {
-    postCourse(courseDetails)
+    editCourse(courseDetails)
       .then(result => {
         if (result.slug) setCreatedCourse(result)
         if (result.error === 'no token provided'
@@ -37,11 +41,11 @@ function NewCoursePage() {
   return (
     <div className="new-course-page">
       <Layout>
-        <h1>Create a course</h1>
-        {categories && <NewCourseForm onSubmit={handleSubmit} categories={categories}/>}
+        <h1>Edit course</h1>
+        {course && categories && <EditCourseForm course={course} onSubmit={handleSubmit} categories={categories}/>}
       </Layout>
     </div>
   )
 };
 
-export default NewCoursePage;
+export default EditCoursePage;
