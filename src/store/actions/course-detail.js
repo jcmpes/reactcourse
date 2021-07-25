@@ -5,7 +5,6 @@ import {
 } from '../types';
 
 import { getCourse } from '../../api/courses';
-import { getCourseDetail } from '../selectors';
 
 // Course Detail actions
 export const courseDetailRequest = () => {

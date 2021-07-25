@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { editCourse, getCourse, postCourse } from "../../../api/courses";
+import { editCourse, getCourse } from "../../../api/courses";
 import { categoriesLoadAction } from "../../../store/actions/categories-load";
-import { courseDetailAction } from "../../../store/actions/course-detail";
-import { getCategories, getCourseDetail, getUi } from "../../../store/selectors";
+import { getCategories } from "../../../store/selectors";
 import Layout from "../../layout/Layout";
 import EditCourseForm from "./EditCourseForm";
 
 function EditCoursePage() {
   const { courseSlug } = useParams();
-  const { loading } = useSelector(getUi);
   const [createdCourse, setCreatedCourse] = React.useState(null);
   const categories = useSelector(getCategories)
   const dispatch = useDispatch();
