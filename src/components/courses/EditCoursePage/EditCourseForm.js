@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { getAuth } from "../../../store/selectors";
-import { FormField, Button, Input, FileUpload } from "../../../components/shared";
+import { FormField, Button, Input } from "../../../components/shared";
+import FileUpload from '../../shared/FileUpload';
 
 function EditCourseForm({ course, onSubmit, categories }) {
   const { t } = useTranslation(['global']);
