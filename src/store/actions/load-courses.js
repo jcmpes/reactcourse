@@ -27,7 +27,6 @@ export const loadCoursesFailure = (error) => {
 };
 
 export const setFilters = (filters) => {
-  console.log(filters);
   return {
     type: SET_FILTERS_SUCCESS,
     payload: filters,
