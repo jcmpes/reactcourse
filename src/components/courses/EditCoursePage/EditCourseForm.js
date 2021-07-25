@@ -2,8 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { getAuth } from "../../../store/selectors";
-import { FormField, Button, Input } from "../../../components/shared"
-import FileUpload from '../../shared/FileUpload';
+import { FormField, Button, Input, FileUpload } from "../../../components/shared"
 
 function EditCourseForm({ course, onSubmit, categories }) {
   const { t } = useTranslation(['global']);
@@ -27,13 +26,16 @@ function EditCourseForm({ course, onSubmit, categories }) {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     const formData = new FormData();
+    // Send course id to update in backend
+    formData.append('_id', course._id)
+
+    // Send the other details
     formData.append('title', courseDetails.title)
     formData.append('description', courseDetails.description)
     formData.append('category', courseDetails.category)
     formData.append('video', courseDetails.video)
     formData.append('content', courseDetails.content)
     if (image) formData.append('image', featuredImage)
-    console.log('datos en react: ', formData)
     onSubmit(formData)
   };
 
