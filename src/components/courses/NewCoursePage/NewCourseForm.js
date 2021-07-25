@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { getAuth } from "../../../store/selectors";
 import { FormField, Button, Input } from "../../../components/shared"
-import FileUpload from '../../shared/FileUploads'
+import FileUpload from '../../shared/FileUpload'
 
 function NewCourseForm({ onSubmit, categories }) {
   const { t } = useTranslation(['global']);
