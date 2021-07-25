@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { getAuth } from "../../../store/selectors";
 import { FormField, Button, Input } from "../../../components/shared"
+import FileUpload from '../../shared/fileUpload';
 
 function NewCourseForm({ onSubmit, categories }) {
   const { t } = useTranslation(['global']);
@@ -33,6 +34,7 @@ function NewCourseForm({ onSubmit, categories }) {
     formData.append('video', courseDetails.video)
     formData.append('content', courseDetails.content)
     if (image) formData.append('image', image)
+    console.log('datos en react: ', formData)
     onSubmit(formData)
   };
 
@@ -76,12 +78,10 @@ function NewCourseForm({ onSubmit, categories }) {
             value={courseDetails.content}
             onChange={handleChange}
           />
-          <FormField
-            type="file"
+          <FileUpload
             label={'image'}
-            name="image"
-            value={courseDetails.email}
-            onChange={e => setImage(e.target.files[0])}
+            image={image}
+            setImage={setImage}
           />
           <Button
             type="submit"
