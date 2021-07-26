@@ -1,20 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
-const eye = <FontAwesomeIcon icon={faEye} />;
-const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
-
-function LoginForm({ onSubmit }) {
+function LoginForm({ passwordShown, onSubmit }) {
   const [credentials, setCredentials] = React.useState({
     email: '',
     password: '',
     remember: false,
   });
-
-  const [passwordShown, setPasswordShown] = React.useState(false);
 
   const handleChange = (ev) => {
     setCredentials((oldCredentials) => ({
@@ -27,10 +20,6 @@ function LoginForm({ onSubmit }) {
   const handleSubmit = (ev) => {
     ev.preventDefault();
     onSubmit(credentials);
-  };
-
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
   };
 
   const { t } = useTranslation(['global']);
@@ -53,11 +42,6 @@ function LoginForm({ onSubmit }) {
             value={credentials.password}
             onChange={handleChange}
           />
-          {passwordShown ? (
-            <i onClick={togglePasswordVisiblity}>{eyeSlash}</i>
-          ) : (
-            <i onClick={togglePasswordVisiblity}>{eye}</i>
-          )}
         </div>
         <Checkbox
           className={'checkbox'}

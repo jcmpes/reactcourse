@@ -8,6 +8,7 @@
   "username": "Nombre de usuario",
   "email": "Correo electrónico",
   "password": "Contraseña",
+  "confirm password": "Confirmar contraseña",
   "remember session": "Recordar sesión",
   "log in": "Acceder",
   "log in your account": "Acceder a tu cuenta",

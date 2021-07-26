@@ -8,6 +8,7 @@
   "username": "Username",
   "email": "Email",
   "password": "Password",
+  "confirm password": "Confirm password",
   "remember session": "Remember session",
   "log in": "Log in",
   "log in your account": "Log in to your account",

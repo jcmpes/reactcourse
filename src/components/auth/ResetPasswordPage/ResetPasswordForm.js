@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from '../../shared';
 import FormField from '../../shared/FormField';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 
-const eye = <FontAwesomeIcon icon={faEye} />;
-const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
-
-const ResetPasswordForm = ({ onSubmit }) => {
+const ResetPasswordForm = ({ passwordShown, onSubmit }) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [passwordShown, setPasswordShown] = useState(false);
 
   const { t } = useTranslation(['global']);
 
@@ -32,10 +26,6 @@ const ResetPasswordForm = ({ onSubmit }) => {
     } else if (ev.target.name === 'password-confirm') {
       setPasswordConfirm(ev.target.value);
     }
-  };
-
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown ? false : true);
   };
 
   return (
@@ -59,11 +49,6 @@ const ResetPasswordForm = ({ onSubmit }) => {
             value={passwordConfirm}
             onChange={handleChange}
           />
-          {passwordShown ? (
-            <i onClick={togglePasswordVisiblity}>{eyeSlash}</i>
-          ) : (
-            <i onClick={togglePasswordVisiblity}>{eye}</i>
-          )}
         </div>
         <Button type="submit" disabled={!password | !passwordConfirm}>
           {t('submit')}
