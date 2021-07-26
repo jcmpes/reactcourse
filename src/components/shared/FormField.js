@@ -32,7 +32,7 @@ function FormField({ label, type, ...props }) {
             )}
           </>
         ) : (
-          <input className="formField-input" {...props} />
+          <input className="formField-input" type={type} {...props} />
         )}
       </label>
     </div>
