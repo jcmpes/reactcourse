@@ -24,7 +24,10 @@ const StudentPage = ({ username }) => {
             <Link to="/" className="my-profile-nav-item">
               {t('users.learning')}
             </Link>
-            <Link to="/" className="my-profile-nav-item">
+            <Link to={`/courses-by/${username}`} className="my-profile-nav-item">
+              {t('users.teaching')}
+            </Link>
+            <Link to="/myfavs" className="my-profile-nav-item">
               {t('users.wishlist')}
             </Link>
             <Link to="/" className="my-profile-nav-item">

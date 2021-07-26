@@ -28,6 +28,7 @@
   "users": {
     "student": "Estudiante",
     "learning": "Cursando",
+    "teaching": "Cursos que imparto",
     "wishlist": "Favoritos",
     "chats": "Conversaciones",
     "edit profile": "Editar mi perfil",

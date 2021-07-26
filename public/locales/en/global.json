@@ -28,6 +28,7 @@
   "users": {
     "student": "Student",
     "learning": "Learning",
+    "teaching": "Teaching",
     "wishlist": "Wishlist",
     "chats": "Chats",
     "edit profile": "Edit profile",
