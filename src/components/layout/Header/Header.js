@@ -8,8 +8,9 @@ import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './Header.css';
 import FiltersForm from '../../FiltersForm/FiltersForm';
+import MyButton from '../../shared/MyButton';
 
-const Header = ({ isLogged }) => {
+const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -30,13 +31,16 @@ const Header = ({ isLogged }) => {
   };
 
   return (
-    <header className="header">
+    <header className="App" data-theme={darkMode ? 'dark' : 'light'}>
       <Link to="/">
         <Button>{t('header.home')}</Button>
       </Link>
+      
+      { !isLogged && 
       <Link to="/register">
         <Button>{t('header.register')}</Button>
       </Link>
+      }
 
       {isLogged ? (
         <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
@@ -54,17 +58,24 @@ const Header = ({ isLogged }) => {
       </Button>
 
       <br />
-      <Link to="/create">
-        <Button>{t('header.create')}</Button>
-      </Link>
+      {isLogged &&
+        <div>
+          <Link to="/create">
+            <Button>{t('header.create')}</Button>
+          </Link>
 
-      <Link to="/user">
-        <Button>{t('header.user')}</Button>
-      </Link>
-      <Link to="/myfavs">
-        <Button>{t('header.myfavs')}</Button>
-      </Link>
+          <Link to="/user">
+            <Button>{t('header.user')}</Button>
+          </Link>
+          <Link to="/myfavs">
+            <Button>{t('header.myfavs')}</Button>
+          </Link>
+        </div>
+      }
       <FiltersForm />
+      <MyButton onClick={toggleDarkMode}>
+        {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      </MyButton>
     </header>
   );
 };
