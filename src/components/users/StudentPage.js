@@ -24,6 +24,7 @@ const StudentPage = ({ username }) => {
             <Link to="/" className="my-profile-nav-item">
               {t('users.learning')}
             </Link>
+            {/* Filed changed */}
             <Link to={`/courses-by/${username}`} className="my-profile-nav-item">
               {t('users.teaching')}
             </Link>
