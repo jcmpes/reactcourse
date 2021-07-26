@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
 import { Button } from './shared';
 import CoursesList from './courses/CoursesList';
+import Scroll from './shared/Scroll';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -39,6 +40,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
     'Loading...'
   ) : (
     <Layout {...props}>
+      <Scroll showBellow={250} />
       <div
         style={{
           textAlign: 'center',
