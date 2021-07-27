@@ -28,6 +28,8 @@ const Course = ({ course, faved }) => {
       <br />
       {t('Category')}: {course.category.name}
       <br />
+      {t('Price')}: {course.price}
+      <br />
       {t('Created by')}{' '}
       <Link to={`/courses-by/${course.user.username}`}>
         {isAuthor ? t('me') : course.user.username}
@@ -49,13 +51,11 @@ const Course = ({ course, faved }) => {
           // else removeFav(course._id);
         }}
       >
-      { isAuthor && 
-        <div>
-          <Link to={`/edit/${course.slug}`}>
-            ✏️ Edit
-          </Link>
-        </div>
-      }
+        {isAuthor && (
+          <div>
+            <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
+          </div>
+        )}
         {username && (
           <div style={{ cursor: 'pointer' }}>
             {faved === true ? 'FAVORITO' : 'no favorito'}

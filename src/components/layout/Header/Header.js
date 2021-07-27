@@ -6,9 +6,9 @@ import { getIsLogged } from '../../../store/selectors';
 import { authLogout } from '../../../store/actions/logout';
 import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import './Header.css';
 import FiltersForm from '../../FiltersForm/FiltersForm';
-import MyButton from '../../shared/MyButton';
+import ToggleButton from '../../shared/ToggleButton';
+import './Header.css';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -35,12 +35,12 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
       <Link to="/">
         <Button>{t('header.home')}</Button>
       </Link>
-      
-      { !isLogged && 
-      <Link to="/register">
-        <Button>{t('header.register')}</Button>
-      </Link>
-      }
+
+      {!isLogged && (
+        <Link to="/register">
+          <Button>{t('header.register')}</Button>
+        </Link>
+      )}
 
       {isLogged ? (
         <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
@@ -58,7 +58,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
       </Button>
 
       <br />
-      {isLogged &&
+      {isLogged && (
         <div>
           <Link to="/create">
             <Button>{t('header.create')}</Button>
@@ -71,11 +71,9 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             <Button>{t('header.myfavs')}</Button>
           </Link>
         </div>
-      }
+      )}
       <FiltersForm />
-      <MyButton onClick={toggleDarkMode}>
-        {darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-      </MyButton>
+      <ToggleButton onChange={toggleDarkMode} />
     </header>
   );
 };
