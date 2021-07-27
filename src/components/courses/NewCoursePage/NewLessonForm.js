@@ -3,10 +3,21 @@ import { useTranslation } from "react-i18next";
 import { FormField, Button, Input } from "../../../components/shared"
 import FileUpload from '../../shared/FileUpload'
 
-function NewLessonForm({ onSubmit, lessonCounter, setLessonCounter, courseDetails, setCourseDetails }) {
+function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetails }) {
   const { t } = useTranslation(['global']);
-  const [image, setImage] = React.useState(null)
 
+  if (courseDetails.lessons.length === lessonCounter) {
+    courseDetails.lessons.push({
+      "number": lessonCounter,
+      "title": '',
+      "description": '',
+      "video": '',
+      "content": '',
+      "image": ''
+    })
+  }
+
+  // Control fields for lesson via page state
   const handleChange = (ev) => {
     setCourseDetails((oldDetails) => {
       const lessons = [ ...oldDetails.lessons ]
@@ -15,48 +26,7 @@ function NewLessonForm({ onSubmit, lessonCounter, setLessonCounter, courseDetail
         ...oldDetails,
         lessons
       }
-      // ...oldDetails,
-      // lessons: [...oldDetails.lessons,
-      //   oldDetails.lessons.forEach(
-      //   (item, index) => {
-      //     if(index === lessonCounter) {
-      //       // item[ev.target.name] = ev.target.value;
-      //     }
-      //     return
-      //   })
-      //   // [ev.target.name]: ev.target.value,
-      // ]
     });
-
-  };
-
-  const handleAddLesson = () => {
-    setLessonCounter(lessonCounter + 1);
-    setCourseDetails(oldDetails => ({
-      ...oldDetails,                // Copy al the other key value pairs of onject
-      lessons: [...oldDetails.lessons,
-              {
-                "number": lessonCounter,
-                "title": 'New lesson',
-                "description": '',
-                "video": '',
-                "content": '',
-                "image": ''
-              }]
-    
-    }))
-  }
-
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-    const formData = new FormData();
-    formData.append('title', courseDetails.lessons[lessonCounter].title)
-    formData.append('description', courseDetails.lessons[lessonCounter].description)
-    formData.append('category', courseDetails.lessons[lessonCounter].category)
-    formData.append('video', courseDetails.lessons[lessonCounter].video)
-    formData.append('content', courseDetails.lessons[lessonCounter].content)
-    if (image) formData.append('image', image)
-    onSubmit(formData)
   };
 
   return (
@@ -71,14 +41,6 @@ function NewLessonForm({ onSubmit, lessonCounter, setLessonCounter, courseDetail
             value={courseDetails.lessons[lessonCounter].title}
             onChange={handleChange}
           />
-          {/* <Input
-            as="select"
-            label={'category'}
-            name="category"
-            value={lessonDetails.category}
-            onChange={handleChange}
-            options={[{ name: 'Select category', _id: '000' }, ...categories]}
-          /> */}
           <FormField
             type={"text"}
             label={'description'}
@@ -102,18 +64,16 @@ function NewLessonForm({ onSubmit, lessonCounter, setLessonCounter, courseDetail
           />
           <FileUpload
             label={'image'}
-            image={image}
-            setImage={setImage}
+            image={courseDetails.lessons[lessonCounter].image}
+            courseDetails={courseDetails}
+            setCourseDetails={setCourseDetails}
+            lessonCounter={lessonCounter}
           />
-          {/* <div className="lessons-navigate">
-            <button onClick={() => setLessonCounter(lessonCounter - 1)}>Previous Step</button>
-            <button onClick={handleAddLesson}>Add a lesson</button>
-          </div> */}
-          {/* <Button
-            type="submit"
+          <Button
+            onClick={onSubmit}
           >
             {t('course.save course')}
-          </Button> */}
+          </Button>
         </form>
       </div>
     </div>

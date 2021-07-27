@@ -18,14 +18,9 @@ function NewCoursePage() {
     'category': '',
     'video': '',
     'content': '',
-    'lessons': [{
-                "number": lessonCounter,
-                "title": '',
-                "description": '',
-                "video": '',
-                "content": '',
-                "image": ''
-              }]
+    "image": '',
+    "preview": '',
+    'lessons': []
   })
 
   const [createdCourse, setCreatedCourse] = React.useState(null);
@@ -38,20 +33,21 @@ function NewCoursePage() {
   }, [dispatch])
 
   const handleAddLesson = () => {
+    setLessonCounter(lessonCounter + 1);
     setCourseDetails(oldDetails => ({
       ...oldDetails,                // Copy al the other key value pairs of onject
       lessons: [...oldDetails.lessons,
               {
-                "number": lessonCounter + 1,
+                "number": lessonCounter,
                 "title": '',
                 "description": '',
                 "video": '',
                 "content": '',
-                "image": ''
+                "image": '',
+                "preview": ''
               }]
     
     }))
-    setLessonCounter(lessonCounter + 1);
   }
 
   function handleSubmit() {
@@ -104,7 +100,7 @@ function NewCoursePage() {
             {lessonCounter !== 0
               && <button onClick={() => setLessonCounter(lessonCounter - 1)}>Previous Step</button>
             }
-            {courseDetails.lessons.length - 1 > lessonCounter
+            {courseDetails.lessons.length !== lessonCounter
               ? <button onClick={() => setLessonCounter(lessonCounter + 1)}>Next step</button>
               : <button onClick={handleAddLesson}>Add a lesson</button>
             }

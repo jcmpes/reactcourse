@@ -5,7 +5,7 @@ import FileUpload from '../../shared/FileUpload'
 
 function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, courseDetails, setCourseDetails }) {
   const { t } = useTranslation(['global']);
-  const [image, setImage] = React.useState(null)  
+  // const [image, setImage] = React.useState(null)  
 
   const handleChange = (ev) => {
     setCourseDetails((oldCredentials) => ({
@@ -22,13 +22,13 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
     formData.append('category', courseDetails.category)
     formData.append('video', courseDetails.video)
     formData.append('content', courseDetails.content)
-    if (image) formData.append('image', image)
+    if (courseDetails.image) formData.append('image', courseDetails.image)
     console.log('datos en react: ', formData)
     onSubmit(formData)
   };
 
   return (
-    <div className="new--form">
+    <div className="new-course-form">
       <h2>{t('course.course intro')}</h2>
       <div className="courseForm">
         <form onSubmit={handleSubmit}>
@@ -70,8 +70,10 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
           />
           <FileUpload
             label={'image'}
-            image={image}
-            setImage={setImage}
+            image={courseDetails.image}
+            lessonCounter={lessonCounter}
+            courseDetails={courseDetails}
+            setCourseDetails={setCourseDetails}
           />
           
           <Button
