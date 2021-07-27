@@ -20,6 +20,7 @@ function NewCoursePage() {
     'content': '',
     "image": '',
     "preview": '',
+    "price": 0,
     'lessons': []
   })
 
