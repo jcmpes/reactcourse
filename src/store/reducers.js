@@ -13,6 +13,8 @@ import {
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
+  COURSE_CREATE_REQUEST,
+  COURSE_CREATE_SUCCESS,
 } from './types';
 
 export const initialState = {
@@ -34,6 +36,9 @@ export const initialState = {
     loading: false,
     error: null,
   },
+  creator: {
+    data: null
+  }
 };
 
 export function auth(state = initialState.auth, action) {
@@ -83,6 +88,15 @@ export function courses(state = initialState.courses, action) {
       return { ...state, loaded: true, data: [...state.data, action.payload] };
     case SET_FILTERS_SUCCESS:
       return { ...state, filters: action.payload };
+    default:
+      return state;
+  }
+}
+
+export function creator(state = initialState.creator, action) {
+  switch (action.type) {
+    case COURSE_CREATE_SUCCESS:
+      return { ...state, data: [...state.data, action.payload] };
     default:
       return state;
   }

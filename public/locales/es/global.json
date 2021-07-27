@@ -59,5 +59,10 @@
     "please enter your new password": "Por favor, introduce tu nuevo password:",
     "new password": "Nueva contraseña",
     "confirm password": "Confirmar contraseña"
+  },
+  "course": {
+    "course intro": "Presenta tu curso",
+    "save course": "Guardar mi curso",
+    "create lesson": "Crear lección"
   }
 }

@@ -3,16 +3,9 @@ import { useTranslation } from "react-i18next";
 import { FormField, Button, Input } from "../../../components/shared"
 import FileUpload from '../../shared/FileUpload'
 
-function NewCourseForm({ onSubmit, categories }) {
+function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, courseDetails, setCourseDetails }) {
   const { t } = useTranslation(['global']);
-  const [image, setImage] = React.useState(null)
-  const [courseDetails, setCourseDetails] = React.useState({
-    'title': '',
-    'description': '',
-    'category': '',
-    'video': '',
-    'content': '',
-  });
+  const [image, setImage] = React.useState(null)  
 
   const handleChange = (ev) => {
     setCourseDetails((oldCredentials) => ({
@@ -35,14 +28,15 @@ function NewCourseForm({ onSubmit, categories }) {
   };
 
   return (
-    <div className="new-course-form">
-      <div className="loginForm">
-        <form className="loginForm" onSubmit={handleSubmit}>
+    <div className="new--form">
+      <h2>{t('course.course intro')}</h2>
+      <div className="courseForm">
+        <form onSubmit={handleSubmit}>
           <FormField
             type="text"
             label={'title'}
             name="title"
-            value={courseDetails.email}
+            value={courseDetails.title}
             onChange={handleChange}
           />
           <Input
@@ -79,6 +73,7 @@ function NewCourseForm({ onSubmit, categories }) {
             image={image}
             setImage={setImage}
           />
+          
           <Button
             type="submit"
           >
