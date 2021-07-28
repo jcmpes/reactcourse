@@ -1,0 +1,70 @@
+.header {
+  /* background-color: blue; */
+}
+
+.navBar {
+  margin: 10px 15px 25px 15px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  /* background-color: yellow; */
+  width: 185px;
+}
+
+.logo {
+  width: 80%;
+  /* background-color: paleturquoise; */
+  display: flex;
+  align-self: flex-start;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  justify-content: space-between;
+  max-width: 90px;
+  /* background-color: yellowgreen; */
+}
+
+.iconsContainer div {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+.iconsContainer img {
+  width: 22px;
+  /* background-color: paleturquoise; */
+}
+
+.searchBarContainer {
+  background-color: lightcoral;
+  height: 20px;
+  width: 100%;
+}
+
+.searchBarForm {
+  width: 100%;
+  background-color: #e8e8e8;
+  padding: 10px 15px;
+  border: none;
+  color: black;
+  /* font-weight: bold; */
+}
+
+::placeholder {
+  color: #f24b88;
+  font-weight: initial;
+}
+
+/* TABLET */
+@media (min-width: 684px) {
+}
+
+/* DESKTOP */
+@media (min-width: 1014px) {
+}

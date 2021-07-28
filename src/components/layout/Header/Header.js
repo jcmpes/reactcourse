@@ -8,7 +8,11 @@ import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import FiltersForm from '../../FiltersForm/FiltersForm';
 import ToggleButton from '../../shared/ToggleButton';
-import './Header.css';
+import styles from './Header.module.css';
+import logo from '../../../assets/img/logo.png';
+import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
+import translationIcon from '../../../assets/svg/translation.svg';
+import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -31,17 +35,38 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   };
 
   return (
-    <header className="App" data-theme={darkMode ? 'dark' : 'light'}>
-      <Link to="/">
-        <Button>{t('header.home')}</Button>
-      </Link>
+    <header className={styles.header} data-theme={darkMode ? 'dark' : 'light'}>
+      <div className={styles.navBar}>
+        <div className={styles.logoContainer}>
+          <Link to="/">
+            <img className={styles.logo} src={logo} alt="logo" />
+          </Link>
+        </div>
 
-      {!isLogged && (
+        <div className={styles.iconsContainer}>
+          <div className={styles.hamburgerMenuIcon}>
+            <img src={shoppingCartIcon} alt="shopping cart icon" />
+          </div>
+          <div className={styles.translationIcon}>
+            <img src={translationIcon} alt="language selector icon" />
+          </div>
+          <div className={styles.hamburgerMenuIcon}>
+            <img src={hamburgerMenuIcon} alt="hamburger menu icon" />
+          </div>
+        </div>
+      </div>
+
+      <div className={styles.searchBarContainer}>
+        {/* <span className={styles.searchBarForm}> */}
+        <FiltersForm className={styles.searchBarForm} />
+        {/* </span> */}
+      </div>
+
+      {/* {!isLogged && (
         <Link to="/register">
           <Button>{t('header.register')}</Button>
         </Link>
       )}
-
       {isLogged ? (
         <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
       ) : (
@@ -49,14 +74,12 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <Button>{t('header.log in')}</Button>
         </Link>
       )}
-
       <Button type="text" onClick={switchLanguage}>
         en
       </Button>
       <Button type="text" onClick={switchLanguage}>
         es
       </Button>
-
       <br />
       {isLogged && (
         <div>
@@ -73,7 +96,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         </div>
       )}
       <FiltersForm />
-      <ToggleButton onChange={toggleDarkMode} />
+      <ToggleButton onChange={toggleDarkMode} /> */}
     </header>
   );
 };
