@@ -3,11 +3,11 @@ import { useTranslation } from "react-i18next";
 import { FormField, Button, Input } from "../../../components/shared";
 import FileUpload from '../../shared/FileUpload';
 
-function EditCourseForm({ course, onSubmit, categories }) {
+function EditCourseForm({ courseDetails, onSubmit, categories }) {
   const { t } = useTranslation(['global']);
-  const { title, description, category, video, image, content } = course
+  const { title, description, category, video, image, content } = courseDetails
   const [featuredImage, setFeaturedImage] = React.useState(null)
-  const [courseDetails, setCourseDetails] = React.useState({
+  const [newCourseDetails, setNewCourseDetails] = React.useState({
     'title': title || '',
     'description': description || '',
     'category': category || '',
@@ -16,7 +16,7 @@ function EditCourseForm({ course, onSubmit, categories }) {
   });
 
   const handleChange = (ev) => {
-    setCourseDetails((oldCredentials) => ({
+    setNewCourseDetails((oldCredentials) => ({
       ...oldCredentials,
       [ev.target.name]: ev.target.value,
     }));
@@ -26,14 +26,14 @@ function EditCourseForm({ course, onSubmit, categories }) {
     ev.preventDefault();
     const formData = new FormData();
     // Send course id to update in backend
-    formData.append('_id', course._id)
+    formData.append('_id', courseDetails.course._id)
 
     // Send the other details
-    formData.append('title', courseDetails.title)
-    formData.append('description', courseDetails.description)
-    formData.append('category', courseDetails.category)
-    formData.append('video', courseDetails.video)
-    formData.append('content', courseDetails.content)
+    formData.append('title', newCourseDetails.title)
+    formData.append('description', newCourseDetails.description)
+    formData.append('category', newCourseDetails.category)
+    formData.append('video', newCourseDetails.video)
+    formData.append('content', newCourseDetails.content)
     if (image) formData.append('image', featuredImage)
     onSubmit(formData)
   };
@@ -46,14 +46,14 @@ function EditCourseForm({ course, onSubmit, categories }) {
             type="text"
             label={'title'}
             name="title"
-            value={courseDetails.title}
+            value={newCourseDetails.title}
             onChange={handleChange}
           />
           <Input
             as="select"
             label={'category'}
             name="category"
-            value={courseDetails.category}
+            value={newCourseDetails.category}
             onChange={handleChange}
             options={[{ name: 'Select category', _id: '000' }, ...categories]}
           />
@@ -61,27 +61,27 @@ function EditCourseForm({ course, onSubmit, categories }) {
             type={"text"}
             label={'description'}
             name="description"
-            value={courseDetails.description}
+            value={newCourseDetails.description}
             onChange={handleChange}
           />
           <FormField
             type={"text"}
             label={'video'}
             name="video"
-            value={courseDetails.video}
+            value={newCourseDetails.video}
             onChange={handleChange}
           />
           <FormField
             type={"textarea"}
             label={'content'}
             name="content"
-            value={courseDetails.content}
+            value={newCourseDetails.content}
             onChange={handleChange}
           />
           <FileUpload
             label={'image'}
-            image={image}
-            setImage={setFeaturedImage}
+            featuredImage={featuredImage}
+            setFeaturedImage={setFeaturedImage}
           />
           <Button
             type="submit"
