@@ -53,6 +53,9 @@ function Translations() {
         <Route path="/courses/:courseSlug">
           <CoursePage />
         </Route>
+        <Route path="/lessons/:lessonSlug">
+          <CoursePage />
+        </Route>
         <Route path="/create">
           <NewCoursePage />
         </Route>
