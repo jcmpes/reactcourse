@@ -51,7 +51,7 @@ function NewCoursePage() {
     }))
   }
 
-  function handleSubmit() {
+  function handleSubmit(courseDetails) {
     postCourse(courseDetails)
       .then(result => {
         if (result.slug) setCreatedCourse(result)
