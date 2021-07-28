@@ -21,6 +21,7 @@ import './config/i18next-config';
 import CoursePage from './components/courses/CourseDetailPage/CoursePage';
 import { toast, ToastContainer } from 'react-toastify';
 import EditCoursePage from './components/courses/EditCoursePage/EditCoursePage';
+import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
 
 function Translations() {
   return (
@@ -54,7 +55,7 @@ function Translations() {
           <CoursePage />
         </Route>
         <Route path="/lessons/:lessonSlug">
-          <CoursePage />
+          <LessonPage />
         </Route>
         <Route path="/create">
           <NewCoursePage />
