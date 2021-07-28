@@ -6,8 +6,9 @@ import { favoritesAction } from '../../store/actions/favorites';
 import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
+import { purchase } from '../../api/purchases';
 
-const Course = ({ course, faved }) => {
+const Course = ({ course, faved, purchased }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
@@ -44,6 +45,11 @@ const Course = ({ course, faved }) => {
         day: 'numeric',
       })}
       <br />
+      {isAuthor && (
+        <div>
+          <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
+        </div>
+      )}
       <div
         onClick={() => {
           dispatch(
@@ -53,17 +59,25 @@ const Course = ({ course, faved }) => {
           // else removeFav(course._id);
         }}
       >
-        {isAuthor && (
-          <div>
-            <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
-          </div>
-        )}
         {username && (
           <div style={{ cursor: 'pointer' }}>
             {faved === true ? 'FAVORITO' : 'no favorito'}
           </div>
         )}
       </div>
+      <br />
+      {!purchased ? (
+        <div
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            purchase(course._id, '123456');
+          }}
+        >
+          GIMME YOUR MONEY!
+        </div>
+      ) : (
+        'Comprado'
+      )}
     </div>
   );
 };
