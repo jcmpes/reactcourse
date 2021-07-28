@@ -1,7 +1,21 @@
-.App {
-  text-align: center;
+/* RESET STYLES */
+html {
+  box-sizing: border-box;
 }
 
-.my-profile-nav-item {
-  display: block;
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+}
+/* END RESET */
