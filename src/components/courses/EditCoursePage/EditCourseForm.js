@@ -26,7 +26,7 @@ function EditCourseForm({ courseDetails, onSubmit, categories }) {
     ev.preventDefault();
     const formData = new FormData();
     // Send course id to update in backend
-    formData.append('_id', courseDetails.course._id)
+    formData.append('_id', courseDetails._id)
 
     // Send the other details
     formData.append('title', newCourseDetails.title)
