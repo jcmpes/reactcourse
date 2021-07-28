@@ -21,7 +21,7 @@ function NewCoursePage() {
     "image": '',
     "preview": '',
     "price": 0,
-    'lessons': []
+    'lessons': {}
   })
 
   const [createdCourse, setCreatedCourse] = React.useState(null);
@@ -37,21 +37,41 @@ function NewCoursePage() {
     setLessonCounter(lessonCounter + 1);
     setCourseDetails(oldDetails => ({
       ...oldDetails,                // Copy al the other key value pairs of onject
-      lessons: [...oldDetails.lessons,
-              {
-                "number": lessonCounter,
-                "title": '',
-                "description": '',
-                "video": '',
-                "content": '',
-                "image": '',
-                "preview": ''
-              }]
+      lessons: { ...oldDetails.lessons,
+                [lessonCounter]:
+                {
+                  "number": lessonCounter,
+                  "title": '',
+                  "description": '',
+                  "video": '',
+                  "content": '',
+                  "image": '',
+                  "preview": ''
+                }
+              }
     
     }))
   }
 
-  function handleSubmit(courseDetails) {
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    const formData = new FormData();
+    formData.append('title', courseDetails.title)
+    formData.append('description', courseDetails.description)
+    formData.append('category', courseDetails.category)
+    formData.append('video', courseDetails.video)
+    formData.append('content', courseDetails.content)
+    formData.append('price', courseDetails.price)
+    if (courseDetails.image) formData.append('image', courseDetails.image)
+    if (courseDetails.lessons) {
+      console.log('courseDetails a enviar: ', courseDetails)
+      console.log('lessons is array: ', Array.isArray(courseDetails.lessons))
+      formData.append('lessons', JSON.stringify(courseDetails.lessons));
+    } 
+    makeApiCall(formData)
+  };
+
+  function makeApiCall(courseDetails) {
     postCourse(courseDetails)
       .then(result => {
         if (result.slug) setCreatedCourse(result)
@@ -101,7 +121,7 @@ function NewCoursePage() {
             {lessonCounter !== 0
               && <button onClick={() => setLessonCounter(lessonCounter - 1)}>Previous Step</button>
             }
-            {courseDetails.lessons.length !== lessonCounter
+            {Object.keys(courseDetails.lessons).length !== lessonCounter
               ? <button onClick={() => setLessonCounter(lessonCounter + 1)}>Next step</button>
               : <button onClick={handleAddLesson}>Add a lesson</button>
             }

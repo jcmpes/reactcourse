@@ -13,24 +13,11 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
     }));
   };
 
-  const handleSubmit = (ev) => {
-    ev.preventDefault();
-    const formData = new FormData();
-    formData.append('title', courseDetails.title)
-    formData.append('description', courseDetails.description)
-    formData.append('category', courseDetails.category)
-    formData.append('video', courseDetails.video)
-    formData.append('content', courseDetails.content)
-    formData.append('price', courseDetails.price)
-    if (courseDetails.image) formData.append('image', courseDetails.image)
-    onSubmit(formData)
-  };
-
   return (
     <div className="new-course-form">
       <h2>{t('course.course intro')}</h2>
       <div className="courseForm">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
           <FormField
             type="text"
             label={'title'}

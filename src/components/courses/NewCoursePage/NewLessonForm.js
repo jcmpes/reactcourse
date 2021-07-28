@@ -7,7 +7,7 @@ function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetail
   const { t } = useTranslation(['global']);
 
   if (courseDetails.lessons.length === lessonCounter) {
-    courseDetails.lessons.push({
+    courseDetails.lessons[lessonCounter]({
       "number": lessonCounter,
       "title": '',
       "description": '',
@@ -16,61 +16,62 @@ function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetail
       "image": ''
     })
   }
+  const number = lessonCounter - 1
 
   // Control fields for lesson via page state
   const handleChange = (ev) => {
     setCourseDetails((oldDetails) => {
-      const lessons = [ ...oldDetails.lessons ]
-      lessons[lessonCounter][ev.target.name] = ev.target.value;
+      const lessons = { ...oldDetails.lessons }
+      lessons[number][ev.target.name] = ev.target.value;
       return {
         ...oldDetails,
         lessons
       }
     });
   };
-
+  console.log(courseDetails.lessons)
   return (
     <div className="new-lesson-form">
       <h2>{t('course.create lesson') + ' ' + lessonCounter }</h2>
       <div className="lessonForm">
-        <form>
+        <form onSubmit={onSubmit}>
           <FormField
             type="text"
             label={'title'}
             name="title"
-            value={courseDetails.lessons[lessonCounter].title}
+            value={courseDetails.lessons[number].title}
             onChange={handleChange}
           />
           <FormField
             type={"text"}
             label={'description'}
             name="description"
-            value={courseDetails.lessons[lessonCounter].description}
+            value={courseDetails.lessons[number].description}
             onChange={handleChange}
           />
           <FormField
             type={"text"}
             label={'video'}
             name="video"
-            value={courseDetails.lessons[lessonCounter].video}
+            value={courseDetails.lessons[number].video}
             onChange={handleChange}
           />
           <FormField
             type={"textarea"}
             label={'content'}
             name="content"
-            value={courseDetails.lessons[lessonCounter].content}
+            value={courseDetails.lessons[number].content}
             onChange={handleChange}
           />
           <FileUpload
             label={'image'}
-            image={courseDetails.lessons[lessonCounter].image}
+            image={courseDetails.lessons[number].image}
             courseDetails={courseDetails}
             setCourseDetails={setCourseDetails}
             lessonCounter={lessonCounter}
           />
           <Button
-            onClick={onSubmit}
+            type="submit"
           >
             {t('course.save course')}
           </Button>

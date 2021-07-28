@@ -1,7 +1,7 @@
 const { useState, useEffect } = require('react');
 
 function FileUpload({ label, courseDetails, setCourseDetails, lessonCounter }) {
-
+  const number = lessonCounter - 1
   const handleChange = (ev) => {
     // set course image
     if (lessonCounter === 0) {
@@ -13,9 +13,9 @@ function FileUpload({ label, courseDetails, setCourseDetails, lessonCounter }) {
     } else {
       // set lesson n image
       setCourseDetails((oldDetails) => {
-        const lessons = [...oldDetails.lessons];
-        lessons[lessonCounter].image = ev.target.files[0];
-        lessons[lessonCounter].preview = { file: URL.createObjectURL(ev.target.files[0]) }
+        const lessons = { ...oldDetails.lessons };
+        lessons[number].image = ev.target.files[0];
+        lessons[number].preview = { file: URL.createObjectURL(ev.target.files[0]) }
         return {
           ...oldDetails,
           lessons,
@@ -23,7 +23,7 @@ function FileUpload({ label, courseDetails, setCourseDetails, lessonCounter }) {
       });
     }
   };
-
+  
   return (
     <div>
       <label className="formField-label">
@@ -35,8 +35,8 @@ function FileUpload({ label, courseDetails, setCourseDetails, lessonCounter }) {
         alt={''}
         style={{ height: '100px' }}
         src={ lessonCounter === 0 ? courseDetails.preview.file
-              : courseDetails.lessons[lessonCounter].preview ? 
-                courseDetails.lessons[lessonCounter].preview.file
+              : courseDetails.lessons[number].preview ? 
+                courseDetails.lessons[number].preview.file
                 : ''
         }
       />
