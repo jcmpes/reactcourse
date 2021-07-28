@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import { toast } from "react-toastify";
 import { postCourse } from "../../../api/courses";
 import { categoriesLoadAction } from "../../../store/actions/categories-load";
-import { courseDetailAction } from "../../../store/actions/course-detail";
 import { getCategories } from "../../../store/selectors";
 import Layout from "../../layout/Layout";
 import NewCourseForm from "./NewCourseForm";

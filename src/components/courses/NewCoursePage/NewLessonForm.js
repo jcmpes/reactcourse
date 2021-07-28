@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from "react-i18next";
-import { FormField, Button, Input } from "../../../components/shared"
+import { FormField, Button } from "../../../components/shared"
 import FileUpload from '../../shared/FileUpload'
 
 function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetails }) {

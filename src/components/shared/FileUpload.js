@@ -1,7 +1,5 @@
-const { useState, useEffect } = require('react');
 
 function FileUpload({ label, courseDetails, featuredImage, setFeaturedImage, setCourseDetails, lessonCounter }) {
-  const number = lessonCounter - 1
   const handleChange = (ev) => {
     // set course image
     // if (lessonCounter === 0) {
