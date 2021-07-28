@@ -27,7 +27,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
     }
   };
 
-  const { username } = auth
+  const { username } = auth;
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
