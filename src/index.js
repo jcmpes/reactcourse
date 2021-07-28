@@ -37,6 +37,7 @@ if (!!accessToken) {
       configureClient({ accessToken });
       preState.preloadedState.auth.isLogged = true;
       preState.preloadedState.auth.username = data.displayName;
+      preState.preloadedState.auth.purchased = data.purchased;
       preState.preloadedState.auth.favs = data.favs;
     }
   });

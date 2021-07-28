@@ -6,7 +6,7 @@ import { favoritesAction } from '../../store/actions/favorites';
 import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
-import { purchase } from '../../api/purchases';
+import { purchaseAction } from '../../store/actions/purchase';
 
 const Course = ({ course, faved, purchased }) => {
   // eslint-disable-next-line no-unused-vars
@@ -70,7 +70,7 @@ const Course = ({ course, faved, purchased }) => {
         <div
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            purchase(course._id, '123456');
+            purchaseAction(course._id, '123456');
           }}
         >
           GIMME YOUR MONEY!

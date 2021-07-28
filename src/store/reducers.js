@@ -8,7 +8,8 @@ import {
   COURSE_DETAIL_SUCCESS,
   //FAVORITES_REQUEST,
   FAVORITES_SUCCESS,
-  //LOAD_COURSES_FAILURE,
+  PURCHASE_REQUEST,
+  PURCHASE_SUCCESS,
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
@@ -52,7 +53,7 @@ export function auth(state = initialState.auth, action) {
         favs: action.payload.favs,
       };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: null, favs: [] };
+      return { isLogged: false, username: null, favs: [], courses: [] };
     case FAVORITES_SUCCESS:
       if (action.payload.add) {
         return { ...state, favs: [...state.favs, action.payload.course] };
@@ -66,6 +67,8 @@ export function auth(state = initialState.auth, action) {
           favs,
         };
       }
+    case PURCHASE_SUCCESS:
+      return { ...state, purchased: [...state.purchased, action.payload[0]] };
     default:
       return state;
   }
