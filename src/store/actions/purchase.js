@@ -25,14 +25,14 @@ export const purchaseFailure = (error) => {
 
 // Load courses middleware
 export const purchaseAction = (courses, paymentCode) => {
-  console.log('hola');
   return async function (dispatch, getState) {
     dispatch(purchaseRequest());
     try {
-      purchase(courses, paymentCode).then(() => {
-        dispatch(purchaseSuccess(courses));
-      });
+      await purchase(courses, paymentCode);
+      console.log('hola');
+      dispatch(purchaseSuccess(courses));
     } catch (error) {
+      console.log(error);
       dispatch(purchaseFailure(error));
     }
   };

@@ -115,6 +115,7 @@ export function ui(state = initialState.ui, action) {
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
     case LOAD_COURSES_REQUEST:
+    case PURCHASE_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -123,7 +124,7 @@ export function ui(state = initialState.ui, action) {
       return { ...state, loading: false };
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
-      //case FAVORITES_SUCCESS:
+    case PURCHASE_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {
