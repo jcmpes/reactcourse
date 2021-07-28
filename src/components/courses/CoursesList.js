@@ -6,7 +6,6 @@ import { getAuth } from '../../store/selectors';
 
 export const CoursesList = (courses) => {
   const { favs, purchased } = useSelector(getAuth);
-  console.log(courses);
   const coursesElement =
     courses.courses && favs ? (
       courses.courses.map((course) => {

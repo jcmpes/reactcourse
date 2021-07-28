@@ -14,9 +14,7 @@ const Course = ({ course, faved, purchased }) => {
 
   const { username } = useSelector(getAuth);
   const dispatch = useDispatch();
-  // console.log(course);
   const isAuthor = course.user.username === username;
-  console.log(purchased);
   return (
     <div className="course-wrapper" key={course._id}>
       <br />
@@ -45,10 +43,21 @@ const Course = ({ course, faved, purchased }) => {
         day: 'numeric',
       })}
       <br />
-      {isAuthor && (
+      {isAuthor ? (
         <div>
           <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
         </div>
+      ) : !purchased ? (
+        <div
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            dispatch(purchaseAction(course._id, '123456'));
+          }}
+        >
+          <button>Comprar</button>
+        </div>
+      ) : (
+        <div>Comprado</div>
       )}
       <div
         onClick={() => {
@@ -59,25 +68,12 @@ const Course = ({ course, faved, purchased }) => {
           // else removeFav(course._id);
         }}
       >
-        {username && (
+        {username && !isAuthor && (
           <div style={{ cursor: 'pointer' }}>
             {faved === true ? '❤️' : '💛'}
           </div>
         )}
       </div>
-      <br />
-      {!purchased ? (
-        <div
-          style={{ cursor: 'pointer' }}
-          onClick={() => {
-            dispatch(purchaseAction(course._id, '123456'));
-          }}
-        >
-          <button>Comprar</button>
-        </div>
-      ) : (
-        'Comprado'
-      )}
     </div>
   );
 };
