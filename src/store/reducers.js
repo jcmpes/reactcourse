@@ -68,7 +68,10 @@ export function auth(state = initialState.auth, action) {
         };
       }
     case PURCHASE_SUCCESS:
-      return { ...state, purchased: [...state.purchased, action.payload[0]] };
+      return {
+        ...state,
+        purchased: [...state.purchased, action.payload.course],
+      };
     default:
       return state;
   }

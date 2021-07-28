@@ -5,16 +5,22 @@ import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 
 export const CoursesList = (courses) => {
-  const { username: me, favs, purchases } = useSelector(getAuth);
-
+  const { favs, purchased } = useSelector(getAuth);
+  console.log(courses);
   const coursesElement =
     courses.courses && favs ? (
       courses.courses.map((course) => {
         const faved = favs.includes(course._id);
+        const purchasedCourses = purchased.includes(course._id);
         //const purchased =
         return (
           <div key={course._id}>
-            <Course course={course} me={me} key={course._id} faved={faved} />
+            <Course
+              course={course}
+              key={course._id}
+              faved={faved}
+              purchased={purchasedCourses}
+            />
           </div>
         );
       })
