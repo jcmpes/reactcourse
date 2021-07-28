@@ -24,6 +24,8 @@ const Course = ({ course, faved }) => {
         {course.title}
       </Link>
       <br />
+      <img src={`${course.image}`} height="50" alt={`${course.title}`} />
+      <br />
       {t('Description')}: {course.description}
       <br />
       {t('Category')}: {course.category.name}
