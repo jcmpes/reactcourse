@@ -14,7 +14,7 @@ import { NewCoursePage } from './components/courses/NewCoursePage';
 import User from './components/users';
 import UserCourse from './components/courses/UserCourse/UserCourse';
 import Favs from './components/courses/Favs';
-import './App.css';
+import './App.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 import './config/i18next-config';
