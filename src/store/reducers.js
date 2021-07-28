@@ -21,6 +21,7 @@ export const initialState = {
   auth: {
     isLogged: false,
     username: '',
+    purchased: [],
     favs: [],
   },
   courses: {
@@ -37,8 +38,8 @@ export const initialState = {
     error: null,
   },
   creator: {
-    data: null
-  }
+    data: null,
+  },
 };
 
 export function auth(state = initialState.auth, action) {
@@ -47,6 +48,7 @@ export function auth(state = initialState.auth, action) {
       return {
         isLogged: true,
         username: action.payload.displayName,
+        purchased: action.payload.purchased,
         favs: action.payload.favs,
       };
     case AUTH_LOGOUT:

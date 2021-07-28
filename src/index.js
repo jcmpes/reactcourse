@@ -18,6 +18,7 @@ const preState = {
       isLogged: false,
       username: null,
       favs: [],
+      purchased: [],
       loaded: false,
     },
     ui: {
