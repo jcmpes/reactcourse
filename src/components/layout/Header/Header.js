@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button } from '../../shared';
 import { logout } from '../../../api/auth';
@@ -34,6 +34,12 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     }
   };
 
+  const [temporaryMenu, setTemporaryMenu] = useState(false);
+
+  function handleClick() {
+    setTemporaryMenu(!temporaryMenu);
+  }
+
   return (
     <header className={styles.header} data-theme={darkMode ? 'dark' : 'light'}>
       <div className={styles.navBar}>
@@ -51,7 +57,11 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             <img src={translationIcon} alt="language selector icon" />
           </div>
           <div className={styles.hamburgerMenuIcon}>
-            <img src={hamburgerMenuIcon} alt="hamburger menu icon" />
+            <img
+              onClick={handleClick}
+              src={hamburgerMenuIcon}
+              alt="hamburger menu icon"
+            />
           </div>
         </div>
       </div>
@@ -62,7 +72,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         {/* </span> */}
       </div>
 
-      {/* {!isLogged && (
+      {temporaryMenu && !isLogged && (
         <Link to="/register">
           <Button>{t('header.register')}</Button>
         </Link>
@@ -70,18 +80,24 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
       {isLogged ? (
         <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
       ) : (
-        <Link to="/login">
-          <Button>{t('header.log in')}</Button>
-        </Link>
+        temporaryMenu && (
+          <Link to="/login">
+            <Button>{t('header.log in')}</Button>
+          </Link>
+        )
       )}
-      <Button type="text" onClick={switchLanguage}>
-        en
-      </Button>
-      <Button type="text" onClick={switchLanguage}>
-        es
-      </Button>
+      {temporaryMenu && (
+        <>
+          <Button type="text" onClick={switchLanguage}>
+            en
+          </Button>
+          <Button type="text" onClick={switchLanguage}>
+            es
+          </Button>
+        </>
+      )}
       <br />
-      {isLogged && (
+      {temporaryMenu && isLogged && (
         <div>
           <Link to="/create">
             <Button>{t('header.create')}</Button>
@@ -95,8 +111,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </Link>
         </div>
       )}
-      <FiltersForm />
-      <ToggleButton onChange={toggleDarkMode} /> */}
+      {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
     </header>
   );
 };
