@@ -8,7 +8,8 @@ import {
   COURSE_DETAIL_SUCCESS,
   //FAVORITES_REQUEST,
   FAVORITES_SUCCESS,
-  //LOAD_COURSES_FAILURE,
+  PURCHASE_REQUEST,
+  PURCHASE_SUCCESS,
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
@@ -20,6 +21,7 @@ export const initialState = {
   auth: {
     isLogged: false,
     username: '',
+    purchased: [],
     favs: [],
   },
   courses: {
@@ -46,10 +48,11 @@ export function auth(state = initialState.auth, action) {
       return {
         isLogged: true,
         username: action.payload.displayName,
+        purchased: action.payload.purchased,
         favs: action.payload.favs,
       };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: null, favs: [] };
+      return { isLogged: false, username: null, favs: [], courses: [] };
     case FAVORITES_SUCCESS:
       if (action.payload.add) {
         return { ...state, favs: [...state.favs, action.payload.course] };
@@ -63,6 +66,11 @@ export function auth(state = initialState.auth, action) {
           favs,
         };
       }
+    case PURCHASE_SUCCESS:
+      return {
+        ...state,
+        purchased: [...state.purchased, action.payload.course],
+      };
     default:
       return state;
   }
@@ -109,6 +117,7 @@ export function ui(state = initialState.ui, action) {
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
     case LOAD_COURSES_REQUEST:
+    case PURCHASE_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -117,7 +126,7 @@ export function ui(state = initialState.ui, action) {
       return { ...state, loading: false };
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
-      //case FAVORITES_SUCCESS:
+    case PURCHASE_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {

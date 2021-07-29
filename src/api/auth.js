@@ -5,12 +5,13 @@ import storage from '../utils/storage';
 export const login = ({ remember, ...credentials }) => {
   return client
     .post('/api/v1/loginJWT', credentials)
-    .then(({ token, displayName, favs }) => {
+    .then(({ token, displayName, purchased, favs }) => {
       configureClient({ token });
       if (remember) {
         storage.set('auth', token);
       }
-      return { displayName, token, favs };
+      console.log('comprado ' + purchased);
+      return { displayName, token, purchased, favs };
     });
 };
 
@@ -18,9 +19,9 @@ export const login = ({ remember, ...credentials }) => {
 export const loginWithToken = (token) => {
   return client
     .post('/api/v1/login-with-token', { token })
-    .then(({ displayName, favs }) => {
+    .then(({ displayName, purchased, favs }) => {
       configureClient({ token });
-      return { displayName, token, favs };
+      return { displayName, token, purchased, favs };
     });
 };
 

@@ -6,16 +6,15 @@ import { favoritesAction } from '../../store/actions/favorites';
 import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
+import { purchaseAction } from '../../store/actions/purchase';
 
-const Course = ({ course, faved }) => {
+const Course = ({ course, faved, purchased }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
   const { username } = useSelector(getAuth);
   const dispatch = useDispatch();
-  // console.log(course);
   const isAuthor = course.user.username === username;
-
   return (
     <div className="course-wrapper" key={course._id}>
       <br />
@@ -44,10 +43,21 @@ const Course = ({ course, faved }) => {
         day: 'numeric',
       })}
       <br />
-      {isAuthor && (
-          <div>
-            <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
-          </div>
+      {isAuthor ? (
+        <div>
+          <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
+        </div>
+      ) : !purchased ? (
+        <div
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            dispatch(purchaseAction(course._id, '123456'));
+          }}
+        >
+          <button>Comprar</button>
+        </div>
+      ) : (
+        <div>Comprado</div>
       )}
       <div
         onClick={() => {
@@ -58,9 +68,9 @@ const Course = ({ course, faved }) => {
           // else removeFav(course._id);
         }}
       >
-        {username && (
+        {username && !isAuthor && (
           <div style={{ cursor: 'pointer' }}>
-            {faved === true ? 'FAVORITO' : 'no favorito'}
+            {faved === true ? '❤️' : '💛'}
           </div>
         )}
       </div>
