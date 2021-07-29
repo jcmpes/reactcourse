@@ -58,6 +58,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </div>
           <div className={styles.hamburgerMenuIcon}>
             <img
+              //
               onClick={handleClick}
               src={hamburgerMenuIcon}
               alt="hamburger menu icon"
@@ -67,9 +68,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
       </div>
 
       <div className={styles.searchBarContainer}>
-        {/* <span className={styles.searchBarForm}> */}
         <FiltersForm className={styles.searchBarForm} />
-        {/* </span> */}
       </div>
 
       {temporaryMenu && !isLogged && (

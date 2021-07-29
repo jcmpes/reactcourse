@@ -6,7 +6,11 @@ const Footer = ({ darkMode }) => {
   const { t } = useTranslation(['global']);
 
   return (
-    <footer className="App" data-theme={darkMode ? 'dark' : 'light'}>
+    <footer
+      style={{ backgroundColor: 'grey' }}
+      className="App"
+      data-theme={darkMode ? 'dark' : 'light'}
+    >
       <div style={{ padding: '20px' }}>
         <p>{t('footer.footer')}</p>
       </div>
