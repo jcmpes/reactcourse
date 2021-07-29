@@ -7,12 +7,13 @@ import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
 import { purchaseAction } from '../../store/actions/purchase';
+import { toast } from 'react-toastify';
 
 const Course = ({ course, faved, purchased }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
-  const { username } = useSelector(getAuth);
+  const { username, isLogged } = useSelector(getAuth);
   const dispatch = useDispatch();
   const isAuthor = course.user.username === username;
   return (
@@ -51,7 +52,19 @@ const Course = ({ course, faved, purchased }) => {
         <div
           style={{ cursor: 'pointer' }}
           onClick={() => {
-            dispatch(purchaseAction(course._id, '123456'));
+            if (!isLogged) {
+              const Msg = ({ closeToast, toastProps }) => (
+                <div>
+                  You must be logged in order to purchase a course. Please,{' '}
+                  <Link to="/login">log in</Link> or{' '}
+                  <Link to="/register">register</Link> if you don't have an
+                  account.
+                </div>
+              );
+              toast.warning(<Msg />);
+            } else {
+              dispatch(purchaseAction(course._id, '123456'));
+            }
           }}
         >
           <button>Comprar</button>
@@ -64,6 +77,7 @@ const Course = ({ course, faved, purchased }) => {
           dispatch(
             favoritesAction(course._id, !faved ? addFav : removeFav, !faved),
           );
+
           // if (!faved) addFav(course._id);
           // else removeFav(course._id);
         }}

@@ -10,7 +10,9 @@ export const CoursesList = (courses) => {
     courses.courses && favs ? (
       courses.courses.map((course) => {
         const faved = favs.includes(course._id);
-        const purchasedCourses = purchased.includes(course._id);
+        const purchasedCourses = purchased
+          ? purchased.includes(course._id)
+          : false;
         //const purchased =
         return (
           <div key={course._id}>
