@@ -13,7 +13,6 @@ import {
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
-  COURSE_CREATE_REQUEST,
   COURSE_CREATE_SUCCESS,
 } from './types';
 
@@ -37,8 +36,8 @@ export const initialState = {
     error: null,
   },
   creator: {
-    data: null
-  }
+    data: null,
+  },
 };
 
 export function auth(state = initialState.auth, action) {
