@@ -2,10 +2,27 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const title = filters.title || '';
+  const title = filters.title || null;
+  const category = filters.category || null;
+  // const user = filters.user || '';
+  console.log('title :', title);
+  console.log('category :', category);
+  // console.log('username :', user);
+  let empty = '';
+  if (title !== '') {
+    empty += `?title=${title}`;
+  }
+  if (title !== '' && category) {
+    empty += `?category=${category}`;
+  }
+  if (title !== '' && category !== '') {
+    empty += `?title=${title}&category=${category}`;
+  }
+
   return (
     client
-      .get(`/api/v1/courses?title=${title}`)
+      .get(`/api/v1/courses${empty}`)
+      //  /api/v1/courses?title=&category=teili
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.
       .then((data) => {

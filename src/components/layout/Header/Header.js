@@ -30,6 +30,13 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     }
   };
 
+  const [showFilters, setShowFilters] = React.useState(false);
+  const onClick = () => setShowFilters(!showFilters);
+
+  React.useEffect(() => {
+    window.localStorage.setItem('showFilters', showFilters);
+  }, [showFilters]);
+
   return (
     <header className="App" data-theme={darkMode ? 'dark' : 'light'}>
       <Link to="/">
@@ -72,7 +79,12 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </Link>
         </div>
       )}
-      <FiltersForm />
+      <div>
+        <Button type="submit" value="Search" onClick={onClick}>
+          Search
+        </Button>
+        {showFilters ? <FiltersForm /> : null}
+      </div>
       <ToggleButton onChange={toggleDarkMode} />
     </header>
   );

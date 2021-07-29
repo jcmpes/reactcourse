@@ -4,19 +4,29 @@ import { useDispatch } from 'react-redux';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
-  const [inputText, setinputText] = React.useState('');
+  const [inputTextTitle, setinputText] = React.useState('');
+  const [inputTextCategory, setinputCategory] = React.useState('');
+  const [inputTextUsername, setinputCategoryUsername] = React.useState('');
 
-  const defaultFilters = { title: '' };
+  const defaultFilters = { title: ' ', category: ' ' };
 
   async function handleSubmit(ev) {
     ev.preventDefault();
     handleReset();
-    dispatch(setFilters({ title: inputText }));
+    dispatch(
+      setFilters({ title: inputTextTitle, category: inputTextCategory }),
+    );
   }
 
-  function handleChange(ev) {
+  function handleChangeTitle(ev) {
     setinputText(ev.target.value);
   }
+  function handleChangeCategory(ev) {
+    setinputCategory(ev.target.value);
+  }
+  // function handleChangeUsername(ev) {
+  //   setinputCategoryUsername(ev.target.value);
+  // }
 
   async function handleReset() {
     dispatch(setFilters(defaultFilters));
@@ -24,7 +34,27 @@ const FilterForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" value={inputText} onChange={handleChange}></input>
+      <label>Title</label>
+      <input
+        type="text"
+        value={inputTextTitle}
+        onChange={handleChangeTitle}
+      ></input>
+      <br />
+      <label>Category</label>
+      <input
+        type="text"
+        value={inputTextCategory}
+        onChange={handleChangeCategory}
+      ></input>
+      <br />
+      {/* <label>Username</label>
+      <input
+        type="text"
+        value={inputTextUsername}
+        onChange={handleChangeUsername}
+      ></input>
+      <br /> */}
       <button type="submit">Search</button>
       <button type="reset" onClick={handleReset}>
         Reset
