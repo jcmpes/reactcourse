@@ -6,13 +6,9 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    types: [ closed ]
-    branches: [ main ]
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
     runs-on: self-hosted
 
     strategy:
