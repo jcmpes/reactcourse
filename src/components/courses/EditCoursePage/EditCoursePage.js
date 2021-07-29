@@ -14,18 +14,18 @@ function EditCoursePage() {
   const categories = useSelector(getCategories)
   const dispatch = useDispatch();
 
-  const [course, setCourse] = useState()
+  const [courseDetails, setCourseDetails] = useState()
 
   React.useEffect(() => {
     const fetchData = async () =>  {
-      setCourse(await getCourse(courseSlug))
+      setCourseDetails(await getCourse(courseSlug))
     }
     fetchData()
   }, [courseSlug]);
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-  }, [courseSlug, course, dispatch]);
+  }, [courseSlug, courseDetails, dispatch]);
 
   function handleSubmit(courseDetails) {
     editCourse(courseDetails)
@@ -46,7 +46,12 @@ function EditCoursePage() {
     <div className="new-course-page">
       <Layout>
         <h1>Edit course</h1>
-        {course && categories && <EditCourseForm course={course} onSubmit={handleSubmit} categories={categories}/>}
+        {courseDetails && categories &&
+          <EditCourseForm
+            courseDetails={courseDetails}
+            onSubmit={handleSubmit}
+            categories={categories}
+          />}
       </Layout>
     </div>
   )

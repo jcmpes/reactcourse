@@ -6,13 +6,9 @@ name: Node.js CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    types: [ closed ]
-    branches: [ main ]
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
     runs-on: self-hosted
 
     strategy:
@@ -31,4 +27,4 @@ jobs:
     - run: npm run build --if-present
       env: 
         REACT_APP_API_BASE_URL: http://44.193.44.217:3000
-    #- run: npm test
+    - run: npm test

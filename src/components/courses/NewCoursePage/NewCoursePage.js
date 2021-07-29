@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -8,6 +9,7 @@ import { getCategories } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
 import NewCourseForm from './NewCourseForm';
 import NewLessonForm from './NewLessonForm';
+
 
 function NewCoursePage() {
   const [lessonCounter, setLessonCounter] = React.useState(0);
