@@ -1,4 +1,3 @@
-
 function FileUpload({ label, courseDetails, featuredImage, setFeaturedImage, setCourseDetails, lessonCounter }) {
   const handleChange = (ev) => {
     // set course image

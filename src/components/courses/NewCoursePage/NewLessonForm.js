@@ -1,38 +1,43 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
-import { FormField, Button } from "../../../components/shared"
-import FileUpload from '../../shared/FileUpload'
+import { useTranslation } from 'react-i18next';
+import { FormField, Button } from '../../../components/shared';
+import FileUpload from '../../shared/FileUpload';
 
-function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetails }) {
+function NewLessonForm({
+  onSubmit,
+  lessonCounter,
+  courseDetails,
+  setCourseDetails,
+}) {
   const { t } = useTranslation(['global']);
 
   if (courseDetails.lessons.length === lessonCounter) {
     courseDetails.lessons[lessonCounter]({
-      "number": lessonCounter,
-      "title": '',
-      "description": '',
-      "video": '',
-      "content": '',
-      "image": ''
-    })
+      number: lessonCounter,
+      title: '',
+      description: '',
+      video: '',
+      content: '',
+      image: '',
+    });
   }
-  const number = lessonCounter - 1
+  const number = lessonCounter - 1;
 
   // Control fields for lesson via page state
   const handleChange = (ev) => {
     setCourseDetails((oldDetails) => {
-      const lessons = { ...oldDetails.lessons }
+      const lessons = { ...oldDetails.lessons };
       lessons[number][ev.target.name] = ev.target.value;
       return {
         ...oldDetails,
-        lessons
-      }
+        lessons,
+      };
     });
   };
-  console.log(courseDetails.lessons)
+  console.log(courseDetails.lessons);
   return (
     <div className="new-lesson-form">
-      <h2>{t('course.create lesson') + ' ' + lessonCounter }</h2>
+      <h2>{t('course.create lesson') + ' ' + lessonCounter}</h2>
       <div className="lessonForm">
         <form onSubmit={onSubmit}>
           <FormField
@@ -43,21 +48,21 @@ function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetail
             onChange={handleChange}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'description'}
             name="description"
             value={courseDetails.lessons[number].description}
             onChange={handleChange}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'video'}
             name="video"
             value={courseDetails.lessons[number].video}
             onChange={handleChange}
           />
           <FormField
-            type={"textarea"}
+            type={'textarea'}
             label={'content'}
             name="content"
             value={courseDetails.lessons[number].content}
@@ -70,17 +75,11 @@ function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetail
             setCourseDetails={setCourseDetails}
             lessonCounter={lessonCounter}
           />
-          <Button
-            type="submit"
-          >
-            {t('course.save course')}
-          </Button>
+          <Button type="submit">{t('course.save course')}</Button>
         </form>
       </div>
     </div>
-  )
+  );
 }
-
-
 
 export default NewLessonForm;

@@ -7,7 +7,7 @@ const FilterForm = () => {
   const dispatch = useDispatch();
   const [inputText, setinputText] = React.useState('');
 
-  const defaultFilters = { title: '' };
+  // const defaultFilters = { title: '' };
 
   async function handleSubmit(ev) {
     ev.preventDefault();

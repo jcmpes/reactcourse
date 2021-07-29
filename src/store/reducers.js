@@ -36,8 +36,8 @@ export const initialState = {
     error: null,
   },
   creator: {
-    data: null
-  }
+    data: null,
+  },
 };
 
 export function auth(state = initialState.auth, action) {
