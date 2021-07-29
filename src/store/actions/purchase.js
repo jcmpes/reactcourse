@@ -1,5 +1,6 @@
 import { PURCHASE_REQUEST, PURCHASE_SUCCESS, PURCHASE_FAILURE } from '../types';
 import { purchase } from '../../api/purchases';
+import { toast } from 'react-toastify';
 
 // Load courses actions
 export const purchaseRequest = () => {
@@ -26,7 +27,14 @@ export const purchaseFailure = (error) => {
 // Load courses middleware
 export const purchaseAction = (courses, paymentCode) => {
   return async function (dispatch, getState) {
-    dispatch(purchaseRequest());
+    const isLogged = getState.isLogged;
+    if (isLogged) dispatch(purchaseRequest());
+    else {
+      toast.warning(
+        "You must be logged in order to purchase a course. Please, login or register if you don't have an account.",
+      );
+      return;
+    }
     try {
       await purchase(courses, paymentCode);
       console.log('hola');
