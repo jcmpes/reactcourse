@@ -76,15 +76,15 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <Button>{t('header.register')}</Button>
         </Link>
       )}
-      {isLogged ? (
-        <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
-      ) : (
-        temporaryMenu && (
-          <Link to="/login">
-            <Button>{t('header.log in')}</Button>
-          </Link>
-        )
-      )}
+      {isLogged
+        ? temporaryMenu && (
+            <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
+          )
+        : temporaryMenu && (
+            <Link to="/login">
+              <Button>{t('header.log in')}</Button>
+            </Link>
+          )}
       {temporaryMenu && (
         <>
           <Button type="text" onClick={switchLanguage}>
