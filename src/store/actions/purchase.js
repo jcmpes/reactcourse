@@ -1,6 +1,7 @@
 import { PURCHASE_REQUEST, PURCHASE_SUCCESS, PURCHASE_FAILURE } from '../types';
 import { purchase } from '../../api/purchases';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 // Load courses actions
 export const purchaseRequest = () => {
@@ -30,9 +31,14 @@ export const purchaseAction = (courses, paymentCode) => {
     const isLogged = getState.isLogged;
     if (isLogged) dispatch(purchaseRequest());
     else {
-      toast.warning(
-        "You must be logged in order to purchase a course. Please, login or register if you don't have an account.",
+      const Msg = ({ closeToast, toastProps }) => (
+        <div>
+          You must be logged in order to purchase a course. Please,{' '}
+          <Link to="/login">log in</Link> or{' '}
+          <Link to="/register">register</Link> if you don't have an account.
+        </div>
       );
+      toast.warning(<Msg />);
       return;
     }
     try {
