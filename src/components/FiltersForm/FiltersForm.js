@@ -1,21 +1,37 @@
 import React from 'react';
 import { setFilters } from '../../store/actions/load-courses';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../../store/selectors';
+import { categoriesLoadAction } from '../../store/actions/categories-load';
+import { Input } from '../shared';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
   const [inputTextTitle, setinputText] = React.useState('');
-  const [inputTextCategory, setinputCategory] = React.useState('');
   const [inputTextUsername, setinputCategoryUsername] = React.useState('');
+  const categories = useSelector(getCategories);
 
-  const defaultFilters = { title: null, category: null };
+  React.useEffect(() => {
+    dispatch(categoriesLoadAction());
+    // dispatch(courseDetailAction())
+  }, [dispatch]);
+
+  const [inputTextCategory, setinputCategory] = React.useState('');
+
+  const defaultFilters = {
+    title: null,
+    category: null,
+    price: [],
+    categories: [],
+  };
+
+  console.log('categorias', categories[0]);
+  console.log(inputTextCategory);
 
   async function handleSubmit(ev) {
     ev.preventDefault();
     handleReset();
-    dispatch(
-      setFilters({ title: inputTextTitle, category: inputTextCategory }),
-    );
+    dispatch(setFilters({ title: inputTextTitle, user: inputTextUsername }));
   }
 
   function handleChangeTitle(ev) {
@@ -24,9 +40,9 @@ const FilterForm = () => {
   function handleChangeCategory(ev) {
     setinputCategory(ev.target.value);
   }
-  // function handleChangeUsername(ev) {
-  //   setinputCategoryUsername(ev.target.value);
-  // }
+  function handleChangeUsername(ev) {
+    setinputCategoryUsername(ev.target.value);
+  }
 
   async function handleReset() {
     dispatch(setFilters(defaultFilters));
@@ -41,20 +57,25 @@ const FilterForm = () => {
         onChange={handleChangeTitle}
       ></input>
       <br />
-      <label>Category</label>
-      <input
-        type="text"
-        value={inputTextCategory}
-        onChange={handleChangeCategory}
-      ></input>
-      <br />
-      {/* <label>Username</label>
+
+      <label>Username</label>
       <input
         type="text"
         value={inputTextUsername}
         onChange={handleChangeUsername}
       ></input>
-      <br /> */}
+      <br />
+
+      <Input
+        as="select"
+        label={'category'}
+        name="category"
+        value={inputTextCategory}
+        onChange={handleChangeCategory}
+        options={[{ name: 'Select category', _id: '000' }, ...categories]}
+      />
+      <br />
+
       <button type="submit">Search</button>
       <button type="reset" onClick={handleReset}>
         Reset
