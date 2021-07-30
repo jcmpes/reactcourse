@@ -56,7 +56,7 @@
   /* font-weight: bold; */
 }
 
-::placeholder {
+.searchBarForm::placeholder {
   color: #f24b88;
   font-weight: initial;
 }
