@@ -4,19 +4,19 @@ import client from './client';
 export const getCourses = (filters) => {
   const title = filters.title || null;
   const category = filters.category || null;
-  // const user = filters.user || '';
+  const user = filters.user || null;
   console.log('title :', title);
   console.log('category :', category);
   // console.log('username :', user);
   let empty = '';
-  if (title !== '') {
-    empty += `?title=${title}`;
-  }
-  if (title !== '' && category) {
+  if (title && !category) {
+    empty = `?title=${title}`;
+  } else if (!title && category) {
     empty += `?category=${category}`;
-  }
-  if (title !== '' && category !== '') {
+  } else if (title && category) {
     empty += `?title=${title}&category=${category}`;
+  } else if (!title && !category) {
+    empty = '';
   }
 
   return (

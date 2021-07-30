@@ -8,7 +8,7 @@ const FilterForm = () => {
   const [inputTextCategory, setinputCategory] = React.useState('');
   const [inputTextUsername, setinputCategoryUsername] = React.useState('');
 
-  const defaultFilters = { title: ' ', category: ' ' };
+  const defaultFilters = { title: null, category: null };
 
   async function handleSubmit(ev) {
     ev.preventDefault();
