@@ -7,16 +7,17 @@ import Layout from '../../layout/Layout';
 import LessonDetail from './LessonDetail';
 
 function LessonPage() {
-  const { lessonSlug } = useParams();
+  const { courseSlug, lessonSlug } = useParams();
   const { loading } = useSelector(getUi);
   const [lesson, setLesson] = useState()
 
   React.useEffect(() => {
     const fetchData = async () =>  {
-      setLesson(await getLesson(lessonSlug))
+      setLesson(await getLesson(courseSlug, lessonSlug))
     }
     fetchData()
-  }, [lessonSlug]);
+    console.log(lesson)
+  }, [courseSlug]);
 
   return (
     <Layout>

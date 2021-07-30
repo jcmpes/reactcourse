@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import { Twitter, Facebook } from 'react-social-sharing';
 import { Button, YoutubeEmbed } from '../../shared';
 
-function CourseDetail({ title, video, description, content, image, lessons, numFavs }) {
+function CourseDetail({ title, video, description, content, image, lessons, slug, numFavs }) {
+  console.log(lessons)
   return (
     <div className="detail-container">
       <div className="detail-image">
@@ -16,7 +17,7 @@ function CourseDetail({ title, video, description, content, image, lessons, numF
         <Facebook link={window.location.href} />
         <Twitter link={window.location.href} />
       </div>
-      <Link to={`/lessons/${lessons[0]}`}>
+      <Link to={`/courses/${slug}/${lessons[0].slug}`}>
         <Button>Go to course</Button>
       </Link>
       <div>
