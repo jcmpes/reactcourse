@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { getCourse } from '../../../api/courses';
 import { getUi } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
+import { Button } from '../../shared';
 import CourseDetail from './CourseDetail';
 
 function CoursePage() {
@@ -20,10 +21,19 @@ function CoursePage() {
 
   return (
     <Layout>
-      <div className="course-detail-page">
-        {loading && "I'm loading..."}
-        {course && <CourseDetail {...course} />}
-      </div>
+        <div className="course-detail-page">
+          {loading && "I'm loading..."}
+          {course &&
+            <>
+              <CourseDetail {...course} />
+              <div className="lesson-nav">
+                <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
+                  <Button>Go to course</Button>
+                </Link>
+              </div>
+            </>
+          }
+        </div>
     </Layout>
   );
 }

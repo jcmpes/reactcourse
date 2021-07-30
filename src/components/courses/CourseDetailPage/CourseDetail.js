@@ -17,9 +17,6 @@ function CourseDetail({ title, video, description, content, image, lessons, slug
         <Facebook link={window.location.href} />
         <Twitter link={window.location.href} />
       </div>
-      <Link to={`/courses/${slug}/${lessons[0].slug}`}>
-        <Button>Go to course</Button>
-      </Link>
       <div>
         Tiene {numFavs} favorito{numFavs === 1 ? '' : 's'}
       </div>
