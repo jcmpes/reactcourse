@@ -57,8 +57,6 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      <Button children="English" onClick={switchLanguage} />
-      <Button children="Español" onClick={switchLanguage} />
 
       <CoursesList courses={courses} />
     </Layout>

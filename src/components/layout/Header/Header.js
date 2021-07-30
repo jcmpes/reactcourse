@@ -13,6 +13,7 @@ import logo from '../../../assets/img/logo.png';
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
+import loupeIcon from '../../../assets/svg/loupe.svg';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -68,6 +69,10 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
       </div>
 
       <div className={styles.searchBarContainer}>
+        <span className={styles.searchIconSpan}>
+          <img src={loupeIcon} alt="" />
+        </span>
+
         <FiltersForm className={styles.searchBarForm} />
       </div>
 

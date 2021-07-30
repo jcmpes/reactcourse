@@ -44,6 +44,7 @@
 }
 
 .searchBarContainer {
+  position: relative;
   background-color: lightcoral;
   height: 20px;
   width: 100%;
@@ -52,7 +53,7 @@
 .searchBarForm {
   width: 100%;
   background-color: #e8e8e8;
-  padding: 10px 15px;
+  padding: 10px 75px 10px 50px;
   border: none;
   color: black;
   /* font-weight: bold; */
@@ -61,6 +62,13 @@
 .searchBarForm::placeholder {
   color: #f24b88;
   font-weight: initial;
+}
+
+.searchIconSpan {
+  position: absolute;
+  width: 15px;
+  right: 50px;
+  top: 10px;
 }
 
 /* TABLET */
