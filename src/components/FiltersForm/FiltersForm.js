@@ -2,6 +2,7 @@ import React from 'react';
 import { setFilters } from '../../store/actions/load-courses';
 import { useDispatch } from 'react-redux';
 import styles from '../../components/layout/Header/Header.module.css';
+import { useTranslation } from 'react-i18next';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,8 @@ const FilterForm = () => {
   //   dispatch(setFilters(defaultFilters));
   // }
 
+  const { t } = useTranslation(['global']);
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -30,8 +33,7 @@ const FilterForm = () => {
         type="text"
         value={inputText}
         onChange={handleChange}
-        // TODO tranlate placeholder
-        placeholder="Seach..."
+        placeholder={t('header.search') + '...'}
       ></input>
       {/* <button type="submit">Search</button>
       <button type="reset" onClick={handleReset}>

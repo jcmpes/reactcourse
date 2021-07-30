@@ -53,7 +53,7 @@ function LoginForm({ passwordShown, onSubmit }) {
           type="submit"
           disabled={!credentials.email | !credentials.password}
         >
-          {t('log in')}
+          {t('log in button')}
         </Button>
         <Checkbox
           className={'checkbox'}
