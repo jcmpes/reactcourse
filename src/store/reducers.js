@@ -15,6 +15,7 @@ import {
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
   COURSE_CREATE_SUCCESS,
+  ADD_TO_CART_SUCCESS,
 } from './types';
 
 export const initialState = {
@@ -22,6 +23,7 @@ export const initialState = {
     isLogged: false,
     username: '',
     purchased: [],
+    cart: [],
     favs: [],
   },
   courses: {
@@ -70,6 +72,11 @@ export function auth(state = initialState.auth, action) {
       return {
         ...state,
         purchased: [...state.purchased, action.payload.course],
+      };
+    case ADD_TO_CART_SUCCESS:
+      return {
+        ...state,
+        cart: [...state.cart, action.payload.course],
       };
     default:
       return state;

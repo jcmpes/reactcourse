@@ -6,7 +6,7 @@ import { favoritesAction } from '../../store/actions/favorites';
 import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
-import { purchaseAction } from '../../store/actions/purchase';
+import { addToCartAction } from '../../store/actions/purchase';
 import { toast } from 'react-toastify';
 
 const Course = ({ course, faved, purchased }) => {
@@ -63,7 +63,8 @@ const Course = ({ course, faved, purchased }) => {
               );
               toast.warning(<Msg />);
             } else {
-              dispatch(purchaseAction(course._id, '123456'));
+              //dispatch(purchaseAction(course._id, '123456'));
+              dispatch(addToCartAction(course._id));
             }
           }}
         >

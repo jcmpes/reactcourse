@@ -13,6 +13,7 @@ import logo from '../../../assets/img/logo.png';
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
+import ShoppingCart from '../../courses/ShoppingCart';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -51,6 +52,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
         <div className={styles.iconsContainer}>
           <div className={styles.hamburgerMenuIcon}>
+            <ShoppingCart />
             <img src={shoppingCartIcon} alt="shopping cart icon" />
           </div>
           <div className={styles.translationIcon}>
