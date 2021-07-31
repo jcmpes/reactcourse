@@ -15,6 +15,8 @@ import {
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
   COURSE_CREATE_SUCCESS,
+  ADD_TO_CART_SUCCESS,
+  REMOVE_FROM_CART_SUCCESS,
 } from './types';
 
 export const initialState = {
@@ -22,6 +24,7 @@ export const initialState = {
     isLogged: false,
     username: '',
     purchased: [],
+    cart: [],
     favs: [],
   },
   courses: {
@@ -50,9 +53,16 @@ export function auth(state = initialState.auth, action) {
         username: action.payload.displayName,
         purchased: action.payload.purchased,
         favs: action.payload.favs,
+        cart: [],
       };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: null, favs: [], courses: [] };
+      return {
+        isLogged: false,
+        username: null,
+        favs: [],
+        courses: [],
+        cart: [],
+      };
     case FAVORITES_SUCCESS:
       if (action.payload.add) {
         return { ...state, favs: [...state.favs, action.payload.course] };
@@ -71,6 +81,23 @@ export function auth(state = initialState.auth, action) {
         ...state,
         purchased: [...state.purchased, action.payload.course],
       };
+    case ADD_TO_CART_SUCCESS:
+      return {
+        ...state,
+        cart: [
+          ...state.cart,
+          {
+            courseId: action.payload.course,
+            courseTitle: action.payload.title,
+            coursePrice: action.payload.price,
+          },
+        ],
+      };
+    case REMOVE_FROM_CART_SUCCESS:
+      const newCart = state.cart.filter(
+        (item) => item.courseId !== action.payload.course,
+      );
+      return { ...state, cart: newCart };
     default:
       return state;
   }

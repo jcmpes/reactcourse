@@ -2,10 +2,11 @@ import React from 'react';
 import Course from './Course';
 
 import { useSelector } from 'react-redux';
-import { getAuth } from '../../store/selectors';
+import { getAuth, isInCart } from '../../store/selectors';
 
 export const CoursesList = (courses) => {
   const { favs, purchased } = useSelector(getAuth);
+  const getItemIsInCart = useSelector(isInCart);
   const coursesElement =
     courses.courses && favs ? (
       courses.courses.map((course) => {
@@ -13,7 +14,8 @@ export const CoursesList = (courses) => {
         const purchasedCourses = purchased
           ? purchased.includes(course._id)
           : false;
-        //const purchased =
+        const itemIsInCart = getItemIsInCart(course._id);
+
         return (
           <div key={course._id}>
             <Course
@@ -21,6 +23,7 @@ export const CoursesList = (courses) => {
               key={course._id}
               faved={faved}
               purchased={purchasedCourses}
+              inCart={itemIsInCart}
             />
           </div>
         );

@@ -6,10 +6,10 @@ import { favoritesAction } from '../../store/actions/favorites';
 import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
-import { purchaseAction } from '../../store/actions/purchase';
+import { addToCartAction } from '../../store/actions/purchase';
 import { toast } from 'react-toastify';
 
-const Course = ({ course, faved, purchased }) => {
+const Course = ({ course, faved, purchased, inCart }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
@@ -48,7 +48,7 @@ const Course = ({ course, faved, purchased }) => {
         <div>
           <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
         </div>
-      ) : !purchased ? (
+      ) : !purchased && !inCart ? (
         <div
           style={{ cursor: 'pointer' }}
           onClick={() => {
@@ -63,12 +63,15 @@ const Course = ({ course, faved, purchased }) => {
               );
               toast.warning(<Msg />);
             } else {
-              dispatch(purchaseAction(course._id, '123456'));
+              //dispatch(purchaseAction(course._id, '123456'));
+              dispatch(addToCartAction(course._id, course.title, course.price));
             }
           }}
         >
           <button>Comprar</button>
         </div>
+      ) : inCart ? (
+        <div>en carrito</div>
       ) : (
         <div>Comprado</div>
       )}
