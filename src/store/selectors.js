@@ -33,3 +33,10 @@ export const isInCart = (state) => (item) => {
 
   return inCart.length > 0;
 };
+
+export const getIdsInCart = (state) => {
+  const ids = state.auth.cart.map((item) => {
+    return item.courseId;
+  });
+  return ids;
+};

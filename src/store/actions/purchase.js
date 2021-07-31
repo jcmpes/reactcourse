@@ -6,6 +6,7 @@ import {
   REMOVE_FROM_CART_SUCCESS,
 } from '../types';
 import { purchase } from '../../api/purchases';
+import { toast } from 'react-toastify';
 
 // Load courses actions
 export const purchaseRequest = () => {
@@ -14,10 +15,10 @@ export const purchaseRequest = () => {
   };
 };
 
-export const purchaseSuccess = (course) => {
+export const purchaseSuccess = (courses) => {
   return {
     type: PURCHASE_SUCCESS,
-    payload: { course },
+    payload: courses,
   };
 };
 
@@ -36,6 +37,7 @@ export const purchaseAction = (courses, paymentCode) => {
     try {
       await purchase(courses, paymentCode);
       dispatch(purchaseSuccess(courses));
+      toast.success('Compra realizada');
     } catch (error) {
       dispatch(purchaseFailure(error));
     }

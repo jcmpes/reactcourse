@@ -6,7 +6,6 @@ import {
   CATEGORIES_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
-  //FAVORITES_REQUEST,
   FAVORITES_SUCCESS,
   PURCHASE_REQUEST,
   PURCHASE_SUCCESS,
@@ -79,7 +78,8 @@ export function auth(state = initialState.auth, action) {
     case PURCHASE_SUCCESS:
       return {
         ...state,
-        purchased: [...state.purchased, action.payload.course],
+        cart: [],
+        purchased: state.purchased.concat(action.payload),
       };
     case ADD_TO_CART_SUCCESS:
       return {
