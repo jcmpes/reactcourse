@@ -10,7 +10,8 @@ import CourseDetail from './CourseDetail';
 function CoursePage() {
   const { courseSlug } = useParams();
   const { loading } = useSelector(getUi);
-  const [course, setCourse] = useState()
+  const [course, setCourse] = useState();
+  
 
   React.useEffect(() => {
     const fetchData = async () =>  {
@@ -27,9 +28,9 @@ function CoursePage() {
             <>
               <CourseDetail {...course} />
               <div className="lesson-nav">
-                {/* <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
+                <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
                   <Button>Go to course</Button>
-                </Link> */}
+                </Link>
               </div>
             </>
           }
