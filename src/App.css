@@ -20,6 +20,28 @@ video {
 }
 /* END RESET STYLES */
 
+/* COLORS */
+:root {
+  --color-french-rose: #f24b88;
+  --color-whisper: #e8e8e8;
+  --color-mid-grey: #5f6b73;
+  /* Dark mode OFF */
+  --bg-color: #fff;
+  --text-color: #000;
+}
+
+/* Dark mode ON */
+[data-theme='dark'] {
+  --bg-color: #3f3f3f;
+  --text-color: #fff;
+}
+
+.App {
+  text-align: center;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
 body {
   min-height: 100vh;
   position: relative;

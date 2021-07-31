@@ -53,14 +53,14 @@
 
 .searchBarForm {
   width: 100%;
-  background-color: #e8e8e8;
+  background-color: var(--color-whisper);
   padding: 15px 75px 15px 50px;
   border: none;
   color: black;
 }
 
 .searchBarForm::placeholder {
-  color: #f24b88;
+  color: var(--color-french-rose);
   font-weight: initial;
 }
 
