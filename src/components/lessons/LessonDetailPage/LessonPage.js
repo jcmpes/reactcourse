@@ -13,7 +13,6 @@ function LessonPage() {
   const { loading } = useSelector(getUi);
   const [lesson, setLesson] = useState()
   const [course, setCourse] = useState()
-  const [lessonCount, setLessonCount] = useState();
 
 
   React.useEffect(() => {

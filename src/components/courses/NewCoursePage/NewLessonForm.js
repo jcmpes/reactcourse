@@ -63,13 +63,6 @@ function NewLessonForm({ onSubmit, lessonCounter, courseDetails, setCourseDetail
             value={courseDetails.lessons[number].content}
             onChange={handleChange}
           />
-          <FileUpload
-            label={'image'}
-            image={courseDetails.lessons[number].image}
-            courseDetails={courseDetails}
-            setCourseDetails={setCourseDetails}
-            lessonCounter={lessonCounter}
-          />
           <Button
             type="submit"
           >

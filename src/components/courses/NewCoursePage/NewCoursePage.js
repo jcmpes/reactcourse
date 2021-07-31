@@ -44,9 +44,7 @@ function NewCoursePage() {
                   "title": '',
                   "description": '',
                   "video": '',
-                  "content": '',
-                  "image": '',
-                  "preview": ''
+                  "content": ''
                 }
               }
     

@@ -27,9 +27,9 @@ function CoursePage() {
             <>
               <CourseDetail {...course} />
               <div className="lesson-nav">
-                <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
+                {/* <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
                   <Button>Go to course</Button>
-                </Link>
+                </Link> */}
               </div>
             </>
           }
