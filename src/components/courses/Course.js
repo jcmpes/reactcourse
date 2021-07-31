@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { addToCartAction } from '../../store/actions/purchase';
 import { toast } from 'react-toastify';
 
-const Course = ({ course, faved, purchased }) => {
+const Course = ({ course, faved, purchased, inCart }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
@@ -48,7 +48,7 @@ const Course = ({ course, faved, purchased }) => {
         <div>
           <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
         </div>
-      ) : !purchased ? (
+      ) : !purchased && !inCart ? (
         <div
           style={{ cursor: 'pointer' }}
           onClick={() => {
@@ -70,6 +70,8 @@ const Course = ({ course, faved, purchased }) => {
         >
           <button>Comprar</button>
         </div>
+      ) : inCart ? (
+        <div>en carrito</div>
       ) : (
         <div>Comprado</div>
       )}

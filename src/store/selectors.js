@@ -20,8 +20,16 @@ export const getCart = (state) => state.auth.cart;
 export const totalInChart = (state) => {
   let total = 0;
   state.auth.cart.forEach((element) => {
-    console.log(element.coursePrice);
     total += element.coursePrice;
   });
   return total;
+};
+
+export const isInCart = (state) => (item) => {
+  const inCart = state.auth.cart.filter((id) => {
+    //console.log(`${id.courseId} compared with ${item}`);
+    return id.courseId === item;
+  });
+
+  return inCart.length > 0;
 };

@@ -16,6 +16,7 @@ import {
   SET_FILTERS_SUCCESS,
   COURSE_CREATE_SUCCESS,
   ADD_TO_CART_SUCCESS,
+  REMOVE_FROM_CART_SUCCESS,
 } from './types';
 
 export const initialState = {
@@ -92,6 +93,11 @@ export function auth(state = initialState.auth, action) {
           },
         ],
       };
+    case REMOVE_FROM_CART_SUCCESS:
+      const newCart = state.cart.filter(
+        (item) => item.courseId !== action.payload.course,
+      );
+      return { ...state, cart: newCart };
     default:
       return state;
   }

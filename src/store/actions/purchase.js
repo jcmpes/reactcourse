@@ -3,6 +3,7 @@ import {
   PURCHASE_SUCCESS,
   PURCHASE_FAILURE,
   ADD_TO_CART_SUCCESS,
+  REMOVE_FROM_CART_SUCCESS,
 } from '../types';
 import { purchase } from '../../api/purchases';
 
@@ -52,6 +53,23 @@ export const addToCartAction = (course, title, price) => {
   return async function (dispatch, getState) {
     try {
       dispatch(addToCartSuccess(course, title, price));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const removeFromCartSuccess = (course) => {
+  return {
+    type: REMOVE_FROM_CART_SUCCESS,
+    payload: { course },
+  };
+};
+
+export const removeFromCartAction = (course) => {
+  return async function (dispatch, getState) {
+    try {
+      dispatch(removeFromCartSuccess(course));
     } catch (error) {
       console.log(error);
     }
