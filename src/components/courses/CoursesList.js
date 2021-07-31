@@ -1,5 +1,6 @@
 import React from 'react';
 import Course from './Course';
+import { CheckoutPage } from './CheckoutPage';
 
 import { useSelector } from 'react-redux';
 import { getAuth, isInCart } from '../../store/selectors';
@@ -17,15 +18,17 @@ export const CoursesList = (courses) => {
         const itemIsInCart = getItemIsInCart(course._id);
 
         return (
-          <div key={course._id}>
-            <Course
-              course={course}
-              key={course._id}
-              faved={faved}
-              purchased={purchasedCourses}
-              inCart={itemIsInCart}
-            />
-          </div>
+          <>
+            <div key={course._id}>
+              <Course
+                course={course}
+                key={course._id}
+                faved={faved}
+                purchased={purchasedCourses}
+                inCart={itemIsInCart}
+              />
+            </div>
+          </>
         );
       })
     ) : (

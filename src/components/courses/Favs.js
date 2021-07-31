@@ -5,6 +5,7 @@ import { getUI } from '../../store/selectors';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { myFavsDetail } from '../../api/auth';
+import { CheckoutPage } from './CheckoutPage';
 
 export const Favs = (...props) => {
   const { loading, error } = useSelector(getUI);
@@ -21,6 +22,8 @@ export const Favs = (...props) => {
     <div style={{ fontSize: 20 }}>🤷‍♂️</div>
   ) : (
     <Layout {...props}>
+      <CheckoutPage />
+
       <div style={{ fontSize: 25 }}>{t('My Favorite courses')}</div>
       <CoursesList courses={favs.courses} />
     </Layout>
