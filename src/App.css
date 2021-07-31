@@ -18,9 +18,11 @@ img,
 video {
   max-width: 100%;
 }
-/* END RESET */
+/* END RESET STYLES */
 
 body {
+  min-height: 100vh;
+  position: relative;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
