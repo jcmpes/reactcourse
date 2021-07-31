@@ -1,15 +1,23 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getCart, totalInChart } from '../../store/selectors';
+import { getCart, totalInChart, getIdsInCart } from '../../store/selectors';
 import { useDispatch } from 'react-redux';
-import { removeFromCartAction } from '../../store/actions/purchase';
+import {
+  removeFromCartAction,
+  purchaseAction,
+} from '../../store/actions/purchase';
 
 const ShoppingCart = () => {
   const cart = useSelector(getCart);
   const total = useSelector(totalInChart);
+  const allCourses = useSelector(getIdsInCart);
   const dispatch = useDispatch();
   const removeItem = (event) => {
     dispatch(removeFromCartAction(event.target.id));
+  };
+
+  const checkout = () => {
+    dispatch(purchaseAction(allCourses, '123456'));
   };
 
   const coursesElement = cart.map((course) => {
@@ -26,7 +34,7 @@ const ShoppingCart = () => {
     <>
       <div>{coursesElement}</div>
       <div>Total: {total} €</div>
-      <button>Checkout</button>
+      <button onClick={checkout}>Checkout</button>
     </>
   );
 };

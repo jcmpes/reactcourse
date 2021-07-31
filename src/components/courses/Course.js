@@ -40,7 +40,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
       {new Date(course.createdAt).toLocaleDateString(t('en-en'), {
         weekday: 'long',
         year: 'numeric',
-        month: 'short',
+        month: 'long',
         day: 'numeric',
       })}
       <br />
@@ -55,10 +55,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
             if (!isLogged) {
               const Msg = ({ closeToast, toastProps }) => (
                 <div>
-                  You must be logged in order to purchase a course. Please,{' '}
-                  <Link to="/login">log in</Link> or{' '}
-                  <Link to="/register">register</Link> if you don't have an
-                  account.
+                  Please, <Link to="/login">log in</Link> to purchase.
                 </div>
               );
               toast.warning(<Msg />);
@@ -68,7 +65,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
             }
           }}
         >
-          <button>Comprar</button>
+          <button>Comprar por {course.price} €</button>
         </div>
       ) : inCart ? (
         <div>en carrito</div>
