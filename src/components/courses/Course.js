@@ -64,7 +64,7 @@ const Course = ({ course, faved, purchased }) => {
               toast.warning(<Msg />);
             } else {
               //dispatch(purchaseAction(course._id, '123456'));
-              dispatch(addToCartAction(course._id));
+              dispatch(addToCartAction(course._id, course.title, course.price));
             }
           }}
         >

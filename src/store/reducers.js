@@ -52,9 +52,16 @@ export function auth(state = initialState.auth, action) {
         username: action.payload.displayName,
         purchased: action.payload.purchased,
         favs: action.payload.favs,
+        cart: [],
       };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: null, favs: [], courses: [] };
+      return {
+        isLogged: false,
+        username: null,
+        favs: [],
+        courses: [],
+        cart: [],
+      };
     case FAVORITES_SUCCESS:
       if (action.payload.add) {
         return { ...state, favs: [...state.favs, action.payload.course] };
@@ -76,7 +83,14 @@ export function auth(state = initialState.auth, action) {
     case ADD_TO_CART_SUCCESS:
       return {
         ...state,
-        cart: [...state.cart, action.payload.course],
+        cart: [
+          ...state.cart,
+          {
+            courseId: action.payload.course,
+            courseTitle: action.payload.title,
+            coursePrice: action.payload.price,
+          },
+        ],
       };
     default:
       return state;

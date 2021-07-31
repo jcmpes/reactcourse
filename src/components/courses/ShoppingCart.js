@@ -1,27 +1,24 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { getCart } from '../../store/selectors';
+import { getCart, totalInChart } from '../../store/selectors';
 
 const ShoppingCart = () => {
   const cart = useSelector(getCart);
+  const total = useSelector(totalInChart);
 
-  return cart.length > 0 ? (
-    <div
-      style={{
-        fontFamily: 'verdana',
-        color: 'white',
-        fontSize: '.7rem',
-        borderRadius: '50%',
-        backgroundColor: 'red',
-        padding: '.3rem',
-        textAlign: 'center',
-        cursor: 'pointer',
-      }}
-    >
-      {cart.length}
-    </div>
-  ) : (
-    ''
+  const coursesElement = cart.map((course) => {
+    return (
+      <div>
+        {course.courseTitle}: {course.coursePrice}€
+      </div>
+    );
+  });
+  return (
+    <>
+      <div>{coursesElement}</div>
+      <div>Total: {total} €</div>
+      <button>Checkout</button>
+    </>
   );
 };
 

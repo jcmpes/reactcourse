@@ -13,7 +13,6 @@ export const CoursesList = (courses) => {
         const purchasedCourses = purchased
           ? purchased.includes(course._id)
           : false;
-        //const purchased =
         return (
           <div key={course._id}>
             <Course

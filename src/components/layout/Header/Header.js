@@ -13,6 +13,7 @@ import logo from '../../../assets/img/logo.png';
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
+import ItemsInCart from '../../courses/ItemsInCart';
 import ShoppingCart from '../../courses/ShoppingCart';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
@@ -42,78 +43,84 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   }
 
   return (
-    <header className={styles.header} data-theme={darkMode ? 'dark' : 'light'}>
-      <div className={styles.navBar}>
-        <div className={styles.logoContainer}>
-          <Link to="/">
-            <img className={styles.logo} src={logo} alt="logo" />
-          </Link>
-        </div>
-
-        <div className={styles.iconsContainer}>
-          <div className={styles.hamburgerMenuIcon}>
-            <ShoppingCart />
-            <img src={shoppingCartIcon} alt="shopping cart icon" />
-          </div>
-          <div className={styles.translationIcon}>
-            <img src={translationIcon} alt="language selector icon" />
-          </div>
-          <div className={styles.hamburgerMenuIcon}>
-            <img
-              //
-              onClick={handleClick}
-              src={hamburgerMenuIcon}
-              alt="hamburger menu icon"
-            />
-          </div>
-        </div>
-      </div>
-
-      <div className={styles.searchBarContainer}>
-        <FiltersForm className={styles.searchBarForm} />
-      </div>
-
-      {temporaryMenu && !isLogged && (
-        <Link to="/register">
-          <Button>{t('header.register')}</Button>
-        </Link>
-      )}
-      {isLogged
-        ? temporaryMenu && (
-            <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
-          )
-        : temporaryMenu && (
-            <Link to="/login">
-              <Button>{t('header.log in')}</Button>
+    <>
+      <ShoppingCart />
+      <header
+        className={styles.header}
+        data-theme={darkMode ? 'dark' : 'light'}
+      >
+        <div className={styles.navBar}>
+          <div className={styles.logoContainer}>
+            <Link to="/">
+              <img className={styles.logo} src={logo} alt="logo" />
             </Link>
-          )}
-      {temporaryMenu && (
-        <>
-          <Button type="text" onClick={switchLanguage}>
-            en
-          </Button>
-          <Button type="text" onClick={switchLanguage}>
-            es
-          </Button>
-        </>
-      )}
-      <br />
-      {temporaryMenu && isLogged && (
-        <div>
-          <Link to="/create">
-            <Button>{t('header.create')}</Button>
-          </Link>
+          </div>
 
-          <Link to="/user">
-            <Button>{t('header.user')}</Button>
-          </Link>
-          <Link to="/myfavs">
-            <Button>{t('header.myfavs')}</Button>
-          </Link>
+          <div className={styles.iconsContainer}>
+            <div className={styles.hamburgerMenuIcon}>
+              <ItemsInCart />
+              <img src={shoppingCartIcon} alt="shopping cart icon" />
+            </div>
+            <div className={styles.translationIcon}>
+              <img src={translationIcon} alt="language selector icon" />
+            </div>
+            <div className={styles.hamburgerMenuIcon}>
+              <img
+                //
+                onClick={handleClick}
+                src={hamburgerMenuIcon}
+                alt="hamburger menu icon"
+              />
+            </div>
+          </div>
         </div>
-      )}
-      {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
-    </header>
+
+        <div className={styles.searchBarContainer}>
+          <FiltersForm className={styles.searchBarForm} />
+        </div>
+
+        {temporaryMenu && !isLogged && (
+          <Link to="/register">
+            <Button>{t('header.register')}</Button>
+          </Link>
+        )}
+        {isLogged
+          ? temporaryMenu && (
+              <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
+            )
+          : temporaryMenu && (
+              <Link to="/login">
+                <Button>{t('header.log in')}</Button>
+              </Link>
+            )}
+        {temporaryMenu && (
+          <>
+            <Button type="text" onClick={switchLanguage}>
+              en
+            </Button>
+            <Button type="text" onClick={switchLanguage}>
+              es
+            </Button>
+          </>
+        )}
+        <br />
+        {temporaryMenu && isLogged && (
+          <div>
+            <Link to="/create">
+              <Button>{t('header.create')}</Button>
+            </Link>
+
+            <Link to="/user">
+              <Button>{t('header.user')}</Button>
+            </Link>
+            <Link to="/myfavs">
+              <Button>{t('header.myfavs')}</Button>
+            </Link>
+          </div>
+        )}
+        {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
+      </header>
+    </>
   );
 };
 

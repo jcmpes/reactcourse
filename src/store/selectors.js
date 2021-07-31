@@ -16,3 +16,12 @@ export const getUsername = (state) => state.auth.username;
 export const getFilters = (state) => state.courses.filters;
 
 export const getCart = (state) => state.auth.cart;
+
+export const totalInChart = (state) => {
+  let total = 0;
+  state.auth.cart.forEach((element) => {
+    console.log(element.coursePrice);
+    total += element.coursePrice;
+  });
+  return total;
+};

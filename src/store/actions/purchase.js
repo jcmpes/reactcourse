@@ -41,17 +41,17 @@ export const purchaseAction = (courses, paymentCode) => {
   };
 };
 
-export const addToCartSuccess = (course) => {
+export const addToCartSuccess = (course, title, price) => {
   return {
     type: ADD_TO_CART_SUCCESS,
-    payload: { course },
+    payload: { course, title, price },
   };
 };
 
-export const addToCartAction = (course) => {
+export const addToCartAction = (course, title, price) => {
   return async function (dispatch, getState) {
     try {
-      dispatch(addToCartSuccess(course));
+      dispatch(addToCartSuccess(course, title, price));
     } catch (error) {
       console.log(error);
     }
