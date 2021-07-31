@@ -38,17 +38,12 @@ i:hover {
   position: absolute;
   left: 18px;
   top: 14px;
-  fill: green;
 }
 
-/* .iconSpan img {
-  background-color: yellow;
-  fill: green;
-} */
-
-/* probando esto para colocar el ojo */
 .passwordEye {
   position: absolute;
   right: 18px;
   top: 14px;
 }
+
+/* provisional */
