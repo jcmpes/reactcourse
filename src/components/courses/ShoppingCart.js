@@ -14,7 +14,7 @@ const ShoppingCart = () => {
 
   const coursesElement = cart.map((course) => {
     return (
-      <div>
+      <div key={course.courseId}>
         {course.courseTitle}: {course.coursePrice}€{' '}
         <button id={course.courseId} onClick={removeItem}>
           Remove
