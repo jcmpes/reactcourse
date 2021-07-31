@@ -64,6 +64,8 @@ function LoginForm({ passwordShown, onSubmit }) {
           onChange={handleChange}
         />
 
+        <hr />
+
         <div className="password-forgotten">
           <a href="/forgot-password">{t('forgot option')}</a>
         </div>

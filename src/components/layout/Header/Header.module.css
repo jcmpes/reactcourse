@@ -5,7 +5,7 @@
 }
 
 .navBar {
-  margin: 10px 15px 25px 15px;
+  margin: 10px 15px 10px 15px;
   /* background-color: antiquewhite; */
   display: flex;
   justify-content: space-between;
@@ -48,19 +48,19 @@
   background-color: lightcoral;
   height: 20px;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .searchBarForm {
   width: 100%;
-  background-color: #e8e8e8;
-  padding: 10px 75px 10px 50px;
+  background-color: var(--color-whisper);
+  padding: 15px 75px 15px 50px;
   border: none;
   color: black;
-  /* font-weight: bold; */
 }
 
 .searchBarForm::placeholder {
-  color: #f24b88;
+  color: var(--color-french-rose);
   font-weight: initial;
 }
 

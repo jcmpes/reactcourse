@@ -6,8 +6,8 @@
   font-size: 1rem;
   font-weight: normal;
   text-transform: uppercase;
-  background-color: #f24b88;
-  color: #e8e8e8;
+  background-color: var(--color-french-rose);
+  color: var(--color-whisper);
   margin-bottom: 30px;
   display: block;
   margin-left: auto;

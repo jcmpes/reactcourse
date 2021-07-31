@@ -12,20 +12,19 @@
   font-family: inherit;
   font-size: 1rem;
   font-weight: normal;
-  /* color: #f24b88; */
-  background-color: #e8e8e8;
+  background-color: var(--color-whisper);
   margin-bottom: 30px;
   display: block;
 }
 
 input::placeholder {
   font-weight: lighter;
-  color: #5f6b73;
+  color: var(--color-mid-grey);
 }
 
 i:hover {
   cursor: pointer;
-  color: #f24b88;
+  color: var(--color-french-rose);
 }
 
 .iconDiv {
@@ -38,17 +37,12 @@ i:hover {
   position: absolute;
   left: 18px;
   top: 14px;
-  fill: green;
 }
 
-/* .iconSpan img {
-  background-color: yellow;
-  fill: green;
-} */
-
-/* probando esto para colocar el ojo */
 .passwordEye {
   position: absolute;
   right: 18px;
   top: 14px;
 }
+
+/* provisional */
