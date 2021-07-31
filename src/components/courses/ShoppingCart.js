@@ -31,11 +31,15 @@ const ShoppingCart = () => {
     );
   });
   return (
-    <>
-      <div>{coursesElement}</div>
-      <div>Total: {total} €</div>
-      <button onClick={checkout}>Checkout</button>
-    </>
+    allCourses.length > 0 && (
+      <>
+        <div>{coursesElement}</div>
+        <div>Total: {total} €</div>
+        <button onClick={checkout} disabled={allCourses.length < 1}>
+          Checkout
+        </button>
+      </>
+    )
   );
 };
 
