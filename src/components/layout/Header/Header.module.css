@@ -1,0 +1,80 @@
+.header {
+  background-color: rgba(255, 255, 255, 0.954);
+  position: sticky;
+  top: 0;
+}
+
+.navBar {
+  margin: 10px 15px 10px 15px;
+  /* background-color: antiquewhite; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoContainer {
+  /* background-color: yellow; */
+  width: 185px;
+}
+
+.logo {
+  width: 80%;
+  /* background-color: paleturquoise; */
+  display: flex;
+  align-self: flex-start;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+  justify-content: space-between;
+  max-width: 90px;
+  /* background-color: yellowgreen; */
+}
+
+.iconsContainer div {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+.iconsContainer img {
+  width: 22px;
+  /* background-color: paleturquoise; */
+}
+
+.searchBarContainer {
+  position: relative;
+  background-color: lightcoral;
+  height: 20px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.searchBarForm {
+  width: 100%;
+  background-color: var(--color-whisper);
+  padding: 15px 75px 15px 50px;
+  border: none;
+  color: black;
+}
+
+.searchBarForm::placeholder {
+  color: var(--color-french-rose);
+  font-weight: initial;
+}
+
+.searchIconSpan {
+  position: absolute;
+  width: 15px;
+  right: 50px;
+  top: 10px;
+}
+
+/* TABLET */
+@media (min-width: 684px) {
+}
+
+/* DESKTOP */
+@media (min-width: 1014px) {
+}

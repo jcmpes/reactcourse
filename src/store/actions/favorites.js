@@ -31,8 +31,6 @@ export const favoritesAction = (course, favAction, add) => {
   return async function (dispatch, getState) {
     dispatch(favoritesRequest());
     try {
-      console.log(course);
-
       favAction(course, add).then(() => {
         dispatch(favoritesSuccess(course, add));
       });

@@ -63,16 +63,12 @@ export const filterCourses = (text) => {
 
 //Mark as fav
 export const addFav = (course) => {
-  return client.post(`/api/v1/aboutme/newfav/${course}`).then((data) => {
-    console.log(data);
-  });
+  return client.post(`/api/v1/aboutme/newfav/${course}`);
 };
 
 //Mark as unfav
 export const removeFav = (course) => {
-  return client.post(`/api/v1/aboutme/removefav/${course}`).then((data) => {
-    console.log(data);
-  });
+  return client.post(`/api/v1/aboutme/removefav/${course}`);
 };
 
 export const userCourses = (userId, setData) => {

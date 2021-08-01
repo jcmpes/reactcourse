@@ -6,20 +6,24 @@ import {
   CATEGORIES_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
-  //FAVORITES_REQUEST,
   FAVORITES_SUCCESS,
-  //LOAD_COURSES_FAILURE,
+  PURCHASE_REQUEST,
+  PURCHASE_SUCCESS,
   LOAD_COURSES_REQUEST,
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
   COURSE_CREATE_SUCCESS,
+  ADD_TO_CART_SUCCESS,
+  REMOVE_FROM_CART_SUCCESS,
 } from './types';
 
 export const initialState = {
   auth: {
     isLogged: false,
     username: '',
+    purchased: [],
+    cart: [],
     favs: [],
   },
   courses: {
@@ -36,8 +40,8 @@ export const initialState = {
     error: null,
   },
   creator: {
-    data: null
-  }
+    data: null,
+  },
 };
 
 export function auth(state = initialState.auth, action) {
@@ -46,10 +50,18 @@ export function auth(state = initialState.auth, action) {
       return {
         isLogged: true,
         username: action.payload.displayName,
+        purchased: action.payload.purchased,
         favs: action.payload.favs,
+        cart: [],
       };
     case AUTH_LOGOUT:
-      return { isLogged: false, username: null, favs: [] };
+      return {
+        isLogged: false,
+        username: null,
+        favs: [],
+        courses: [],
+        cart: [],
+      };
     case FAVORITES_SUCCESS:
       if (action.payload.add) {
         return { ...state, favs: [...state.favs, action.payload.course] };
@@ -63,6 +75,29 @@ export function auth(state = initialState.auth, action) {
           favs,
         };
       }
+    case PURCHASE_SUCCESS:
+      return {
+        ...state,
+        cart: [],
+        purchased: state.purchased.concat(action.payload),
+      };
+    case ADD_TO_CART_SUCCESS:
+      return {
+        ...state,
+        cart: [
+          ...state.cart,
+          {
+            courseId: action.payload.course,
+            courseTitle: action.payload.title,
+            coursePrice: action.payload.price,
+          },
+        ],
+      };
+    case REMOVE_FROM_CART_SUCCESS:
+      const newCart = state.cart.filter(
+        (item) => item.courseId !== action.payload.course,
+      );
+      return { ...state, cart: newCart };
     default:
       return state;
   }
@@ -109,6 +144,7 @@ export function ui(state = initialState.ui, action) {
   switch (action.type) {
     case AUTH_LOGIN_REQUEST:
     case LOAD_COURSES_REQUEST:
+    case PURCHASE_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -117,7 +153,7 @@ export function ui(state = initialState.ui, action) {
       return { ...state, loading: false };
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
-      //case FAVORITES_SUCCESS:
+    case PURCHASE_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {
