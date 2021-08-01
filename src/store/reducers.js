@@ -29,7 +29,7 @@ export const initialState = {
   courses: {
     loaded: false,
     data: [],
-    filters: {},
+    filters: { limit: 10, skip: 0 },
   },
   categories: {
     loaded: false,
