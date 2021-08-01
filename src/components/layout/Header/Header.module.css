@@ -7,6 +7,7 @@
 .navBar {
   margin: 10px 15px 10px 15px;
   /* background-color: antiquewhite; */
+  /* background-color: black; */
   display: flex;
   justify-content: space-between;
 }
@@ -23,38 +24,54 @@
   align-self: flex-start;
 }
 
-.iconsContainer {
-  display: flex;
-  flex-grow: 1;
-  justify-content: flex-end;
-  justify-content: space-between;
-  max-width: 90px;
-  /* background-color: yellowgreen; */
+.categoriesBtn {
+  display: none;
 }
 
-.iconsContainer div {
+.navButtonsContainer {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  max-width: 90px;
+
+  /* background-color: yellowgreen; */
+  /* border: solid 1px grey; */
+}
+
+.navButtonsContainer div {
   display: flex;
   align-items: flex-end;
   padding-bottom: 5px;
 }
 
-.iconsContainer img {
+.navButtonsContainer img {
   width: 22px;
+  cursor: pointer;
   /* background-color: paleturquoise; */
+}
+
+.navButtonsContainer button {
+  cursor: pointer;
+  display: none;
+}
+
+.darkModeIcon img {
+  display: none;
 }
 
 .searchBarContainer {
   position: relative;
-  background-color: lightcoral;
   height: 20px;
   width: 100%;
   margin-bottom: 10px;
+  /* background-color: lightcoral;
+  padding: 25px; */
 }
 
 .searchBarForm {
   width: 100%;
   background-color: var(--color-whisper);
-  padding: 15px 75px 15px 50px;
+  padding: 10px 75px 10px 50px;
   border: none;
   color: black;
 }
@@ -64,17 +81,152 @@
   font-weight: initial;
 }
 
-.searchIconSpan {
+.loupeIconSpan {
   position: absolute;
   width: 15px;
   right: 50px;
   top: 10px;
 }
 
+hr {
+  display: none;
+}
 /* TABLET */
 @media (min-width: 684px) {
 }
 
 /* DESKTOP */
 @media (min-width: 1014px) {
+  /* .header {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  } */
+
+  .navBar {
+    margin-bottom: 0;
+  }
+
+  .navBar button {
+    display: flex;
+    align-content: flex-end;
+  }
+
+  .logo {
+    width: 100%;
+  }
+
+  .categoriesBtn {
+    display: inherit;
+    margin-right: auto;
+    padding: 30px 0 0 35px;
+  }
+  .searchBarContainer {
+    position: absolute;
+    top: 22px;
+    left: 350px;
+    width: 25%;
+    /* display: none; */
+  }
+
+  .searchBarForm {
+    border-radius: 50px;
+    padding-left: 17px;
+  }
+  /* .searchBarForm {
+    width: 100%;
+    background-color: var(--color-whisper);
+    padding: 10px 75px 10px 50px;
+    border: none;
+    color: black;
+  } */
+
+  .loupeIconSpan {
+    right: 5%;
+  }
+
+  .navButtonsContainer {
+    /* display: flex; viene de arriba */
+    min-width: 350px;
+    height: 39px;
+    align-self: flex-end;
+  }
+
+  .navButtonsContainer div {
+    /* display: flex; viene de arriba */
+    align-content: flex-end;
+  }
+
+  .navButtonsContainer Link {
+    /* display: flex; */
+    /* align-self: flex-end; */
+    /* padding-top: 12px; */
+    /* margin: 20px; */
+  }
+
+  .navButtonsContainer button {
+    display: inherit;
+    border: solid 1px var(--color-mid-grey);
+    padding: 10px 25px 10px 25px;
+    border-radius: 50px;
+    background-color: inherit;
+  }
+
+  /* .loginBtn {
+    background-color: var(--color-whisper);
+    color: white;
+  } */
+
+  .navButtonsContainer button:hover {
+    background-color: var(--color-french-rose);
+    color: white;
+    border: none;
+  }
+
+  .darkModeIcon img {
+    display: inherit;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  .navButtonsContainer div {
+    /* padding-left: 10px; */
+  }
+
+  .hamburgerMenuIcon img {
+    display: none;
+  }
+
+  .hr {
+    display: inherit;
+    margin-bottom: 40px;
+    /* margin: 0; */
+    /* padding: 0; */
+  }
+
+  /* 
+  .header {
+    display: grid;
+    grid-template: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 'logo search icons';
+  }
+
+  .logoContainer {
+    grid-area: logo;
+    background-color: lightcyan;
+  }
+
+  .searchBarContainer {
+    grid-area: search;
+    background-color: lightskyblue;
+  }
+
+  .navButtonsContainer {
+    grid-area: icons;
+    background-color: lightgreen;
+  } */
+
+  /* pruebas */
 }
