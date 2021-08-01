@@ -46,7 +46,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
   return (
     <>
-      {/* <ShoppingCart /> */}
+      <ShoppingCart />
       <header
         className={styles.header}
         data-theme={darkMode ? 'dark' : 'light'}
