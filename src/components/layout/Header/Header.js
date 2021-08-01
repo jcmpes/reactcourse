@@ -16,6 +16,7 @@ import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
 import ItemsInCart from '../../courses/ItemsInCart';
 import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
+import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
   return (
     <>
-      <ShoppingCart />
+      {/* <ShoppingCart /> */}
       <header
         className={styles.header}
         data-theme={darkMode ? 'dark' : 'light'}
@@ -57,10 +58,27 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             </Link>
           </div>
 
-          <div className={styles.iconsContainer}>
-            <div className={styles.hamburgerMenuIcon}>
+          <div className={styles.categoriesBtn}>Categories</div>
+
+          <div className={styles.navButtonsContainer}>
+            <Link to="/register" className={styles.registerBtn}>
+              <button>Register</button>
+            </Link>
+            <Link to="/login" className={styles.loginBtn}>
+              <button>Log in</button>
+            </Link>
+
+            {/* TODO: If logged in => hide Login and Register links and display My account (user icon) */}
+            {/* <Link to="/my-account" className={styles.myAccountBtn}>
+                <button>User</button>
+              </Link> */}
+
+            <div className={styles.shoppingCartIcon}>
               <ItemsInCart />
               <img src={shoppingCartIcon} alt="shopping cart icon" />
+            </div>
+            <div className={styles.darkModeIcon}>
+              <img src={darkModeIcon} alt="" />
             </div>
             <div className={styles.translationIcon}>
               <img src={translationIcon} alt="language selector icon" />
@@ -76,11 +94,11 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </div>
         </div>
 
+        {/* Search input bar */}
         <div className={styles.searchBarContainer}>
-          <span className={styles.searchIconSpan}>
+          <span className={styles.loupeIconSpan}>
             <img src={loupeIcon} alt="" />
           </span>
-
           <FiltersForm className={styles.searchBarForm} />
         </div>
 
@@ -125,6 +143,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         )}
         {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
       </header>
+      <hr className={styles.hr} />
     </>
   );
 };
