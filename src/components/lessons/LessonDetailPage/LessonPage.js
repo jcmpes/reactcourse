@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { getCourse } from '../../../api/courses';
 import { getLesson } from '../../../api/lessons';
 import { getUi } from '../../../store/selectors';
@@ -14,7 +14,6 @@ function LessonPage() {
   const [lesson, setLesson] = useState({})
   const [course, setCourse] = useState({})
   const [lessonCounter, setLessonCounter] = useState(0);
-  const next = useRef(null)
   const history = useHistory()
 
   useEffect(() => {
@@ -30,6 +29,7 @@ function LessonPage() {
       console.log('LESSON: ', lesson)
       lesson && setLessonCounter(lesson.number)
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonCounter, lessonSlug]);
 
   function backToCourse() {

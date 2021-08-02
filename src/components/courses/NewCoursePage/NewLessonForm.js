@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../../components/shared';
-import FileUpload from '../../shared/FileUpload';
 
 function NewLessonForm({
   onSubmit,
@@ -57,13 +56,6 @@ function NewLessonForm({
             name="content"
             value={courseDetails.lessons[number].content}
             onChange={handleChange}
-          />
-          <FileUpload
-            label={'image'}
-            image={courseDetails.lessons[number].image}
-            courseDetails={courseDetails}
-            setCourseDetails={setCourseDetails}
-            lessonCounter={lessonCounter}
           />
           <Button type="submit">{t('course.save course')}</Button>
         </form>
