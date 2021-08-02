@@ -18,7 +18,6 @@ function LessonPage() {
   const history = useHistory()
 
   useEffect(() => {
-    debugger;
     const fetchData = async () =>  {
       const singleCourse = await getCourse(courseSlug)
       setCourse(singleCourse)
