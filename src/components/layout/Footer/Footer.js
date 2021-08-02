@@ -7,9 +7,7 @@ const Footer = ({ darkMode }) => {
 
   return (
     <footer className={styles.footer} data-theme={darkMode ? 'dark' : 'light'}>
-      <div style={{ padding: '20px' }}>
         <p>{t('footer.footer')}</p>
-      </div>
     </footer>
   );
 };
