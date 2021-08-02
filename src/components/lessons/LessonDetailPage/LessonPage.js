@@ -22,7 +22,7 @@ function LessonPage() {
       setLesson(await getLesson(courseSlug, lessonSlug))
     }
     fetchData()
-  }, [lessonCounter, lesson]);
+  }, [lessonCounter]);
 
   function navigate(up) {
     up ? setLessonCounter(lessonCounter + 1) 
