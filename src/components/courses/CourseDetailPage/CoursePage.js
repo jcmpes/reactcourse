@@ -28,9 +28,12 @@ function CoursePage() {
             <>
               <CourseDetail {...course} />
               <div className="lesson-nav">
-                <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
-                  <Button>Go to course</Button>
-                </Link>
+                { course.lessons.length > 0 ?
+                  <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
+                    <Button>Go to course</Button>
+                  </Link>
+                  : null
+                }
               </div>
             </>
           }
