@@ -11,8 +11,8 @@ import LessonDetail from './LessonDetail';
 function LessonPage() {
   const { courseSlug, lessonSlug } = useParams();
   const { loading } = useSelector(getUi);
-  const [lesson, setLesson] = useState()
-  const [course, setCourse] = useState()
+  const [lesson, setLesson] = useState({})
+  const [course, setCourse] = useState({})
   const [lessonCounter, setLessonCounter] = useState(0);
   const next = useRef(null)
   const history = useHistory()
@@ -24,9 +24,11 @@ function LessonPage() {
       setCourse(singleCourse)
       console.log('Peticion API: ', lessonSlug)
       const singleLesson = await getLesson(courseSlug, lessonSlug)
-      setLesson(singleLesson)
+      return singleLesson
     }
-    fetchData().then(() => {
+    fetchData().then((singleLesson) => {
+      setLesson(singleLesson)
+      console.log('LESSON: ', lesson)
       lesson && setLessonCounter(lesson.number)
     })
   }, [lessonCounter, lessonSlug]);
@@ -37,10 +39,12 @@ function LessonPage() {
 
   function backOneLesson() {   
     history.push(`/courses/${courseSlug}/${course.lessons[lessonCounter-1].slug}`)
+    setLessonCounter(lessonCounter + 1)
   }
   
   function upOneLesson() {
     history.push(`/courses/${courseSlug}/${course.lessons[lessonCounter+1].slug}`)
+    setLessonCounter(lessonCounter + 1)
   }
 
   return (
@@ -56,7 +60,7 @@ function LessonPage() {
                   ? <Button onClick={() => backToCourse()}>Back to Course presentation</Button>
                   : <Button onClick={() => backOneLesson()}>Previous lesson</Button>
                 }
-                { course.lessons.length !== (lessonCounter + 1) &&
+                { course.lessons && course.lessons.length !== (lessonCounter + 1) &&
                     <Button onClick={() => upOneLesson()}>
                       Next lesson
                     </Button>
