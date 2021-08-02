@@ -11,22 +11,12 @@ function NewLessonForm({
 }) {
   const { t } = useTranslation(['global']);
 
-  if (courseDetails.lessons.length === lessonCounter) {
-    courseDetails.lessons[lessonCounter]({
-      number: lessonCounter,
-      title: '',
-      description: '',
-      video: '',
-      content: '',
-      image: '',
-    });
-  }
   const number = lessonCounter - 1;
 
   // Control fields for lesson via page state
   const handleChange = (ev) => {
     setCourseDetails((oldDetails) => {
-      const lessons = { ...oldDetails.lessons };
+      const lessons = [ ...oldDetails.lessons ];
       lessons[number][ev.target.name] = ev.target.value;
       return {
         ...oldDetails,

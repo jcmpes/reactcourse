@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { getCourse } from '../../../api/courses';
@@ -14,26 +14,33 @@ function LessonPage() {
   const [lesson, setLesson] = useState()
   const [course, setCourse] = useState()
   const [lessonCounter, setLessonCounter] = useState(0);
+  const next = useRef(null)
   const history = useHistory()
 
   useEffect(() => {
+    debugger;
     const fetchData = async () =>  {
-      setCourse(await getCourse(courseSlug))
-      setLesson(await getLesson(courseSlug, lessonSlug))
+      const singleCourse = await getCourse(courseSlug)
+      setCourse(singleCourse)
+      console.log('Peticion API: ', lessonSlug)
+      const singleLesson = await getLesson(courseSlug, lessonSlug)
+      setLesson(singleLesson)
     }
-    fetchData()
-  }, [lessonCounter]);
+    fetchData().then(() => {
+      lesson && setLessonCounter(lesson.number)
+    })
+  }, [lessonCounter, lessonSlug]);
 
-  function navigate(up) {
-    up ? setLessonCounter(lessonCounter + 1) 
-      : setLessonCounter(lessonCounter - 1) ;
-  }
   function backToCourse() {
     history.push(`/courses/${courseSlug}`)
   }
+
+  function backOneLesson() {   
+    history.push(`/courses/${courseSlug}/${course.lessons[lessonCounter-1].slug}`)
+  }
   
-  if(lessonCounter > 0) {
-    return <Redirect to={`/courses/${courseSlug}/${course.lessons[lessonCounter].slug}`} />
+  function upOneLesson() {
+    history.push(`/courses/${courseSlug}/${course.lessons[lessonCounter+1].slug}`)
   }
 
   return (
@@ -45,12 +52,14 @@ function LessonPage() {
           <>
             <LessonDetail {...lesson} />
             <div className="lesson-nav">
-                { lessonCounter === 0 
+                { lesson.number === 0 
                   ? <Button onClick={() => backToCourse()}>Back to Course presentation</Button>
-                  : <Button onClick={() => navigate(false)}>Previous lesson</Button>
+                  : <Button onClick={() => backOneLesson()}>Previous lesson</Button>
                 }
                 { course.lessons.length !== (lessonCounter + 1) &&
-                    <Button onClick={() => navigate(true)}>Next lesson</Button>
+                    <Button onClick={() => upOneLesson()}>
+                      Next lesson
+                    </Button>
                 }
             </div>
           </>

@@ -11,7 +11,6 @@ function CoursePage() {
   const { courseSlug } = useParams();
   const { loading } = useSelector(getUi);
   const [course, setCourse] = useState();
-  
 
   React.useEffect(() => {
     const fetchData = async () =>  {
