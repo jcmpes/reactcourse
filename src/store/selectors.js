@@ -14,3 +14,5 @@ export const getCategories = (state) => state.categories.data;
 export const getUsername = (state) => state.auth.username;
 
 export const getFilters = (state) => state.courses.filters;
+
+export const getCourses = (state) => state.courses;
