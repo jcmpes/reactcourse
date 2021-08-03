@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { FormField, Button, Input } from "../../../components/shared"
 import FileUpload from '../../shared/FileUpload'
 
-function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, courseDetails, setCourseDetails }) {
+function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, setCourseDetails }) {
   const { t } = useTranslation(['global']);
 
   const handleChange = (ev) => {
@@ -48,6 +48,13 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
             onChange={handleChange}
           />
           <FormField
+            type={"number"}
+            label={'price'}
+            name="price"
+            value={courseDetails.price}
+            onChange={handleChange}
+          />
+          <FormField
             type={"textarea"}
             label={'content'}
             name="content"
@@ -56,8 +63,6 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
           />
           <FileUpload
             label={'image'}
-            image={courseDetails.image}
-            lessonCounter={lessonCounter}
             courseDetails={courseDetails}
             setCourseDetails={setCourseDetails}
           />
