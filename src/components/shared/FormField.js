@@ -1,12 +1,12 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import './FormField.css';
+import styles from './FormField.module.css';
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
-function FormField({ label, type, ...props }) {
+function FormField({ label, type, icon, ...props }) {
   const [passwordShown, setPasswordShown] = React.useState(false);
 
   const togglePasswordVisiblity = () => {
@@ -14,27 +14,42 @@ function FormField({ label, type, ...props }) {
   };
 
   return (
-    <div className="formField">
-      <label className="formField-label">
-        <span>{label}</span>
+    <div className={styles.loginContainer}>
+      {/* <label className="formField-label"> */}
+      {/* <span>{label}</span> */}
+      <div className={styles.iconDiv}>
+        <span className={styles.iconSpan}>
+          <img src={icon} alt="" />
+        </span>
 
         {type === 'password' ? (
           <>
             <input
-              className="formField-input-password"
+              className={styles.input}
               {...props}
               type={passwordShown ? 'text' : 'password'}
             />
             {passwordShown ? (
-              <i onClick={togglePasswordVisiblity}>{eyeSlash}</i>
+              <i
+                className={styles.passwordEye}
+                onClick={togglePasswordVisiblity}
+              >
+                {eyeSlash}
+              </i>
             ) : (
-              <i onClick={togglePasswordVisiblity}>{eye}</i>
+              <i
+                className={styles.passwordEye}
+                onClick={togglePasswordVisiblity}
+              >
+                {eye}
+              </i>
             )}
           </>
         ) : (
-          <input className="formField-input" type={type} {...props} />
+          <input className={styles.input} type={type} {...props} />
         )}
-      </label>
+      </div>
+      {/* </label> */}
     </div>
   );
 }

@@ -49,6 +49,7 @@ function EditCoursePage() {
         {courseDetails && categories &&
           <EditCourseForm
             courseDetails={courseDetails}
+            setCourseDetails={setCourseDetails}
             onSubmit={handleSubmit}
             categories={categories}
           />}

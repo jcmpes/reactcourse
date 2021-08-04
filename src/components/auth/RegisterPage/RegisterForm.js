@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../shared';
 import { toast } from 'react-toastify';
+import userIcon from '../../../assets/svg/user.svg';
+import emailIcon from '../../../assets/svg/envelope.svg';
+import lockIcon from '../../../assets/svg/lock.svg';
 
 const RegisterForm = ({ passwordShown, onSubmit }) => {
   const [credentials, setCredentials] = useState({
@@ -40,33 +43,37 @@ const RegisterForm = ({ passwordShown, onSubmit }) => {
       <form className="registerForm" onSubmit={handleSubmit}>
         <FormField
           type="text"
-          label={t('username') + ': '}
+          placeholder={t('username')}
           name="username"
           value={username}
+          icon={userIcon}
           onChange={handleChange}
         />
         <FormField
           type="email"
-          label={t('email') + ': '}
+          placeholder={t('email')}
           name="email"
           value={email}
+          icon={emailIcon}
           onChange={handleChange}
         />
         <div className="pwd-container">
           <FormField
             type={passwordShown ? 'text' : 'password'}
-            label={t('password')}
+            placeholder={t('password')}
             name="password"
             value={credentials.password}
+            icon={lockIcon}
             onChange={handleChange}
           />
         </div>
         <div className="pwd-confirm-container">
           <FormField
             type={passwordShown ? 'text' : 'password'}
-            label={t('confirm password') + ': '}
+            placeholder={t('confirm password')}
             name="password-confirm"
             value={passwordConfirm}
+            icon={lockIcon}
             onChange={handleChange}
           />
         </div>

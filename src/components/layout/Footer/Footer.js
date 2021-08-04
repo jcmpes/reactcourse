@@ -1,15 +1,13 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import './Footer.css';
+import styles from './Footer.module.css';
 
 const Footer = ({ darkMode }) => {
   const { t } = useTranslation(['global']);
 
   return (
-    <footer className="App" data-theme={darkMode ? 'dark' : 'light'}>
-      <div style={{ padding: '20px' }}>
+    <footer className={styles.footer} data-theme={darkMode ? 'dark' : 'light'}>
         <p>{t('footer.footer')}</p>
-      </div>
     </footer>
   );
 };

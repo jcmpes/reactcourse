@@ -8,7 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { getCourses } from '../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
-import { Button } from './shared';
 import CoursesList from './courses/CoursesList';
 import Scroll from './shared/Scroll';
 
@@ -18,14 +17,6 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const { loading, error } = useSelector(getUI);
   const filters = useSelector(getFilters);
   const dispatch = useDispatch();
-
-  const switchLanguage = (ev) => {
-    if (ev.target.innerHTML === 'Español') {
-      i18n.changeLanguage('es');
-    } else if (ev.target.innerHTML === 'English') {
-      i18n.changeLanguage('en');
-    }
-  };
 
   const { username } = auth;
 
@@ -57,8 +48,6 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      <Button children="English" onClick={switchLanguage} />
-      <Button children="Español" onClick={switchLanguage} />
 
       <CoursesList courses={courses} />
     </Layout>

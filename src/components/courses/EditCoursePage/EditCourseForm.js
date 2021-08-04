@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { FormField, Button, Input } from "../../../components/shared";
 import FileUpload from '../../shared/FileUpload';
 
-function EditCourseForm({ courseDetails, onSubmit, categories }) {
+function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories }) {
   const { t } = useTranslation(['global']);
   const { title, description, category, video, image, content } = courseDetails
   const [featuredImage, setFeaturedImage] = React.useState(null)
@@ -13,6 +13,8 @@ function EditCourseForm({ courseDetails, onSubmit, categories }) {
     'category': category || '',
     'video': video || '',
     'content': content || '',
+    'image': image ,
+    'preview': { file: image }
   });
 
   const handleChange = (ev) => {
@@ -34,7 +36,7 @@ function EditCourseForm({ courseDetails, onSubmit, categories }) {
     formData.append('category', newCourseDetails.category)
     formData.append('video', newCourseDetails.video)
     formData.append('content', newCourseDetails.content)
-    if (image) formData.append('image', featuredImage)
+    if (newCourseDetails.image) formData.append('image', newCourseDetails.image)
     onSubmit(formData)
   };
 
@@ -82,6 +84,8 @@ function EditCourseForm({ courseDetails, onSubmit, categories }) {
             label={'image'}
             featuredImage={featuredImage}
             setFeaturedImage={setFeaturedImage}
+            setCourseDetails={setNewCourseDetails}
+            courseDetails={newCourseDetails}
           />
           <Button
             type="submit"

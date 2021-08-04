@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
+
 import NotFoundPage from './api/NotFoundPage';
 import { Suspense } from 'react';
 import LoginPage from './components/auth/LoginPage';
@@ -21,6 +22,7 @@ import './config/i18next-config';
 import CoursePage from './components/courses/CourseDetailPage/CoursePage';
 import { toast, ToastContainer } from 'react-toastify';
 import EditCoursePage from './components/courses/EditCoursePage/EditCoursePage';
+import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
 
 function Translations() {
   return (
@@ -50,8 +52,18 @@ function Translations() {
         <Route path="/verify/:verifyToken">
           <VerifyPage />
         </Route>
-        <Route path="/courses/:courseSlug">
-          <CoursePage />
+        <Route path="/courses">  
+          <Route path={`/courses/:courseSlug`}>  
+            <Route exact path={`/courses/:courseSlug/:lessonSlug`}>
+              <LessonPage />
+            </Route>
+            <Route exact path='/courses/:courseSlug'>
+              <CoursePage />
+            </Route>
+          </Route>
+          <Route exact path='/'>
+            <WelcomePage />
+          </Route>
         </Route>
         <Route path="/create">
           <NewCoursePage />

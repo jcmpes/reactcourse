@@ -6,16 +6,16 @@ import { favoritesAction } from '../../store/actions/favorites';
 import { useSelector } from 'react-redux';
 import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
+import { addToCartAction } from '../../store/actions/purchase';
+import { toast } from 'react-toastify';
 
-const Course = ({ course, faved }) => {
+const Course = ({ course, faved, purchased, inCart }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
-  const { username } = useSelector(getAuth);
+  const { username, isLogged } = useSelector(getAuth);
   const dispatch = useDispatch();
-  // console.log(course);
   const isAuthor = course.user.username === username;
-
   return (
     <div className="course-wrapper" key={course._id}>
       <br />
@@ -40,27 +40,51 @@ const Course = ({ course, faved }) => {
       {new Date(course.createdAt).toLocaleDateString(t('en-en'), {
         weekday: 'long',
         year: 'numeric',
-        month: 'short',
+        month: 'long',
         day: 'numeric',
       })}
       <br />
-      {isAuthor && (
-          <div>
-            <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
-          </div>
+      {isAuthor ? (
+        <div>
+          <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
+        </div>
+      ) : !purchased && !inCart ? (
+        <div
+          style={{ cursor: 'pointer' }}
+          onClick={() => {
+            if (!isLogged) {
+              const Msg = ({ closeToast, toastProps }) => (
+                <div>
+                  Please, <Link to="/login">log in</Link> to purchase.
+                </div>
+              );
+              toast.warning(<Msg />);
+            } else {
+              //dispatch(purchaseAction(course._id, '123456'));
+              dispatch(addToCartAction(course._id, course.title, course.price));
+            }
+          }}
+        >
+          <button>Comprar por {course.price} €</button>
+        </div>
+      ) : inCart ? (
+        <div>en carrito</div>
+      ) : (
+        <div>Comprado</div>
       )}
       <div
         onClick={() => {
           dispatch(
             favoritesAction(course._id, !faved ? addFav : removeFav, !faved),
           );
+
           // if (!faved) addFav(course._id);
           // else removeFav(course._id);
         }}
       >
-        {username && (
+        {username && !isAuthor && (
           <div style={{ cursor: 'pointer' }}>
-            {faved === true ? 'FAVORITO' : 'no favorito'}
+            {faved === true ? '❤️' : '💛'}
           </div>
         )}
       </div>

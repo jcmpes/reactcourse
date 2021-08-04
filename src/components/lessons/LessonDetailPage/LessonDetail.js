@@ -1,13 +1,9 @@
 import { Twitter, Facebook } from 'react-social-sharing';
 import { YoutubeEmbed } from '../../shared';
 
-function CourseDetail({ title, video, description, content, image, lessons, slug, numFavs }) {
-  console.log(lessons)
+function LessonDetail({ title, video, description, content, numFavs }) {
   return (
     <div className="detail-container">
-      <div className="detail-image">
-        <img style={{ width: '150px', height: '150px' }} src={image} alt="" />
-      </div>
       <div className="detail-title">{title}</div>
       <div className="detail-description">{description}</div>
       <YoutubeEmbed video={video} />
@@ -23,4 +19,4 @@ function CourseDetail({ title, video, description, content, image, lessons, slug
   );
 }
 
-export default CourseDetail;
+export default LessonDetail;

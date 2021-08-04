@@ -18,6 +18,8 @@ const preState = {
       isLogged: false,
       username: null,
       favs: [],
+      purchased: [],
+      cart: [],
       loaded: false,
     },
     ui: {
@@ -36,6 +38,7 @@ if (!!accessToken) {
       configureClient({ accessToken });
       preState.preloadedState.auth.isLogged = true;
       preState.preloadedState.auth.username = data.displayName;
+      preState.preloadedState.auth.purchased = data.purchased;
       preState.preloadedState.auth.favs = data.favs;
     }
   });
@@ -53,4 +56,4 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals()
+reportWebVitals();

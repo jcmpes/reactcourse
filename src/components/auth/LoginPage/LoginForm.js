@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
+import userIcon from '../../../assets/svg/user.svg';
+import lockIcon from '../../../assets/svg/lock.svg';
 
 function LoginForm({ passwordShown, onSubmit }) {
   const [credentials, setCredentials] = React.useState({
@@ -25,24 +27,34 @@ function LoginForm({ passwordShown, onSubmit }) {
   const { t } = useTranslation(['global']);
 
   return (
-    <div className="loginForm">
+    <div>
       <form className="loginForm" onSubmit={handleSubmit}>
-        <FormField
-          type="text"
-          label={t('email')}
-          name="email"
-          value={credentials.email}
-          onChange={handleChange}
-        />
-        <div className="pwd-container">
+        <div>
           <FormField
-            type={passwordShown ? 'text' : 'password'}
-            label={t('password')}
-            name="password"
-            value={credentials.password}
+            type="text"
+            name="email"
+            placeholder={t('username')}
+            value={credentials.email}
+            icon={userIcon}
             onChange={handleChange}
           />
         </div>
+        <div>
+          <FormField
+            type={passwordShown ? 'text' : 'password'}
+            name="password"
+            placeholder={t('password')}
+            value={credentials.password}
+            icon={lockIcon}
+            onChange={handleChange}
+          />
+        </div>
+        <Button
+          type="submit"
+          disabled={!credentials.email | !credentials.password}
+        >
+          {t('log in button')}
+        </Button>
         <Checkbox
           className={'checkbox'}
           name={'remember'}
@@ -51,12 +63,9 @@ function LoginForm({ passwordShown, onSubmit }) {
           checked={credentials.remember}
           onChange={handleChange}
         />
-        <Button
-          type="submit"
-          disabled={!credentials.email | !credentials.password}
-        >
-          {t('log in')}
-        </Button>
+
+        <hr />
+
         <div className="password-forgotten">
           <a href="/forgot-password">{t('forgot option')}</a>
         </div>
