@@ -2,26 +2,26 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const title = filters.title || null;
+  const { title, user, category } = filters;
   // const category = filters.category || null;
-  const user = filters.user || null;
   console.log('title :', title);
   console.log('user :', user);
-  // console.log('category :', category);
-  let empty = '';
-  if (title && !user) {
-    empty = `?title=${title}`;
-  } else if (!title && user) {
-    empty += `?user=${user}`;
-  } else if (title && user) {
-    empty += `?title=${title}&user=${user}`;
-  } else if (!title && !user) {
-    empty = '';
+  //console.log('cate', categor)
+  console.log('category :', category);
+  let query = '?';
+  if (title) {
+    query += `&title=${title}`;
   }
-
+  if (user) {
+    query += `&user=${user}`;
+  }
+  if (category) {
+    query += `&category=${category}`;
+  }
+  console.log(query);
   return (
     client
-      .get(`/api/v1/courses${empty}`)
+      .get(`/api/v1/courses${query}`)
       //  /api/v1/courses?title=&category=teili
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.

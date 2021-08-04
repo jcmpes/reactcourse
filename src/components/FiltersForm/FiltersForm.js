@@ -53,6 +53,8 @@ const FilterForm = () => {
     setinputText(ev.target.value);
   }
   function handleChangeCategory(ev) {
+    console.log('evento');
+    console.log(ev.target.value);
     setinputCategory(ev.target.value);
   }
   function handleChangeUsername(ev) {
@@ -87,6 +89,7 @@ const FilterForm = () => {
         name="category"
         value={inputTextCategory}
         onChange={handleChangeCategory}
+        searcher={true}
         options={[{ name: 'Select category', _id: '000' }, ...categories]}
       />
       <br />

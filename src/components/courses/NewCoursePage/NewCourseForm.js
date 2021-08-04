@@ -1,9 +1,16 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
-import { FormField, Button, Input } from "../../../components/shared"
-import FileUpload from '../../shared/FileUpload'
+import { useTranslation } from 'react-i18next';
+import { FormField, Button, Input } from '../../../components/shared';
+import FileUpload from '../../shared/FileUpload';
 
-function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, courseDetails, setCourseDetails }) {
+function NewCourseForm({
+  onSubmit,
+  categories,
+  lessonCounter,
+  setLessonCounter,
+  courseDetails,
+  setCourseDetails,
+}) {
   const { t } = useTranslation(['global']);
 
   const handleChange = (ev) => {
@@ -30,25 +37,26 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
             label={'category'}
             name="category"
             value={courseDetails.category}
+            searcher={false}
             onChange={handleChange}
             options={[{ name: 'Select category', _id: '000' }, ...categories]}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'description'}
             name="description"
             value={courseDetails.description}
             onChange={handleChange}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'video'}
             name="video"
             value={courseDetails.video}
             onChange={handleChange}
           />
           <FormField
-            type={"textarea"}
+            type={'textarea'}
             label={'content'}
             name="content"
             value={courseDetails.content}
@@ -61,18 +69,12 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, setLessonCounter, 
             courseDetails={courseDetails}
             setCourseDetails={setCourseDetails}
           />
-          
-          <Button
-            type="submit"
-          >
-            {t('submit')}
-          </Button>
+
+          <Button type="submit">{t('submit')}</Button>
         </form>
       </div>
     </div>
-  )
+  );
 }
-
-
 
 export default NewCourseForm;
