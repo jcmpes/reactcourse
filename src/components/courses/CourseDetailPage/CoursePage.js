@@ -57,7 +57,7 @@ function CoursePage() {
               ) : null}
             </div>
             <StripeCheckout
-              stripeKey={process.env.REACT_APP_KEY}
+              stripeKey={process.env.REACT_APP_STRIPE_PUBLIC_KEY}
               token={makePayment}
               name={course.title}
               amount={course.price * 100}
