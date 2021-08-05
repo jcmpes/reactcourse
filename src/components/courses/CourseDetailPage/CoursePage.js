@@ -30,7 +30,8 @@ function CoursePage() {
     const headers = {
       "Content-Type": "application/json"
     }
-    return fetch(`http://localhost:8282/payment`, {
+    console.log('COURSE: ', course)
+    return fetch(`${process.env.REACT_APP_API_BASE_URL}/api/v1/payment`, {
       method: "POST",
       headers,
       body: JSON.stringify(body)
