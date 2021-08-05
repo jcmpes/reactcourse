@@ -39,5 +39,5 @@ export const courseCreateAction = (courseSlug) => {
     } catch (err) {
       dispatch(courseCreateFailure(err));
     }
-  }
-}
+  };
+};
