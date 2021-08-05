@@ -2,12 +2,7 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const { title, user, category } = filters;
-  // const category = filters.category || null;
-  console.log('title :', title);
-  console.log('user :', user);
-  //console.log('cate', categor)
-  console.log('category :', category);
+  const { title, user, category, price } = filters;
   let query = '?';
   if (title) {
     query += `&title=${title}`;
@@ -18,7 +13,14 @@ export const getCourses = (filters) => {
   if (category) {
     query += `&category=${category}`;
   }
-  console.log(query);
+  console.log('price antes de if', price);
+  if (price) {
+    query +=
+      price[0] === 0 && price[1] === 600
+        ? ''
+        : `&price=${price[0]}-${price[1]}`;
+  }
+  console.log('QUERY', query);
   return (
     client
       .get(`/api/v1/courses${query}`)

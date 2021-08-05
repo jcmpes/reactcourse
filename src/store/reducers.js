@@ -25,7 +25,12 @@ export const initialState = {
   courses: {
     loaded: false,
     data: [],
-    filters: {},
+    filters: {
+      title: null,
+      category: null,
+      categories: [],
+      price: [0, 600],
+    },
   },
   categories: {
     loaded: false,
@@ -36,8 +41,8 @@ export const initialState = {
     error: null,
   },
   creator: {
-    data: null
-  }
+    data: null,
+  },
 };
 
 export function auth(state = initialState.auth, action) {

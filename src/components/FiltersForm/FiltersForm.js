@@ -1,24 +1,26 @@
 import React from 'react';
 import { setFilters } from '../../store/actions/load-courses';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getCourses } from '../../store/selectors';
+import { getCategories } from '../../store/selectors';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { Input } from '../shared';
-import SelectRange from '../shared/SelectRange';
+import Slider from '@material-ui/core/Slider';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
   const [inputTextTitle, setinputText] = React.useState('');
   const [inputTextUsername, setinputCategoryUsername] = React.useState('');
+  const [price, setPrice] = React.useState([0, 600]);
   const categories = useSelector(getCategories);
-  // const prices = useSelector(getCourses);
 
-  // console.log('PRECIOS', prices);
-  // loadCoursesAction
+  const rangeSelector = (ev, newValue) => {
+    setPrice(newValue);
+  };
+
+  const style = { color: '#f24b88' };
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-    // dispatch(courseDetailAction())
   }, [dispatch]);
 
   const [inputTextCategory, setinputCategory] = React.useState('');
@@ -26,39 +28,31 @@ const FilterForm = () => {
   const defaultFilters = {
     title: null,
     category: null,
-    price: [],
     categories: [],
+    price: [0, 600],
   };
-
-  console.log(
-    'categorias',
-    categories[0] ? categories[1].name : 'aún no están',
-  );
-
-  console.log('Select value: ', inputTextCategory);
-
-  console.log('Select id: ', inputTextCategory);
-
-  const maxPrice = 500;
 
   async function handleSubmit(ev) {
     ev.preventDefault();
     handleReset();
     dispatch(
-      setFilters({ title: inputTextTitle, category: inputTextUsername }),
+      setFilters({
+        title: inputTextTitle,
+        user: inputTextUsername,
+        category: inputTextCategory,
+        price: price,
+      }),
     );
   }
 
   function handleChangeTitle(ev) {
     setinputText(ev.target.value);
   }
-  function handleChangeCategory(ev) {
-    console.log('evento');
-    console.log(ev.target.value);
-    setinputCategory(ev.target.value);
-  }
   function handleChangeUsername(ev) {
     setinputCategoryUsername(ev.target.value);
+  }
+  function handleChangeCategory(ev) {
+    setinputCategory(ev.target.value);
   }
 
   async function handleReset() {
@@ -94,8 +88,22 @@ const FilterForm = () => {
       />
       <br />
 
-      <SelectRange maxPrice={maxPrice} />
-      <br />
+      <div
+        style={{
+          margin: 'auto',
+          display: 'block',
+          width: 'fit-content',
+        }}
+      >
+        <Slider
+          value={price}
+          onChange={rangeSelector}
+          max={600}
+          valueLabelDisplay="auto"
+          style={style}
+        />
+        Filtering Price between {price[0]}€ and {price[1]}€
+      </div>
 
       <button type="submit">Search</button>
       <button type="reset" onClick={handleReset}>
