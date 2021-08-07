@@ -43,6 +43,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
     if (firstLoad) {
       setFirstLoad(false);
       filters.skip = 0;
+      dispatch(categoriesLoadRequest());
     }
     if (sort === 1) {
       filters.sort = 1;
@@ -51,7 +52,6 @@ function WelcomePage({ auth, onLogout, ...props }) {
     }
     //dispatch(loadCoursesAction());
     getCourses(filters).then(setCourses);
-    dispatch(categoriesLoadRequest());
   }, [dispatch, filters, sort]);
 
   return error || loading ? (
