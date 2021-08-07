@@ -30,6 +30,7 @@ const preState = {
       filters: {
         limit: 10,
         skip: 0,
+        sort: -1,
       },
     },
     // history,

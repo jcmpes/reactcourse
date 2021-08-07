@@ -15,7 +15,7 @@ import { NewCoursePage } from './components/courses/NewCoursePage';
 import User from './components/users';
 import UserCourse from './components/courses/UserCourse/UserCourse';
 import Favs from './components/courses/Favs';
-import './App.css'
+import './App.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './config/i18next-config';
@@ -53,16 +53,16 @@ function Translations() {
         <Route path="/verify/:verifyToken">
           <VerifyPage />
         </Route>
-        <Route path="/courses">  
-          <Route path={`/courses/:courseSlug`}>  
+        <Route path="/courses">
+          <Route path={`/courses/:courseSlug`}>
             <Route exact path={`/courses/:courseSlug/:lessonSlug`}>
               <LessonPage />
             </Route>
-            <Route exact path='/courses/:courseSlug'>
+            <Route exact path="/courses/:courseSlug">
               <CoursePage />
             </Route>
           </Route>
-          <Route exact path='/'>
+          <Route exact path="/">
             <WelcomePage />
           </Route>
         </Route>

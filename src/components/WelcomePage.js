@@ -20,6 +20,11 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const dispatch = useDispatch();
   const [firstLoad, setFirstLoad] = React.useState(true);
   const [allResultsListed, setAllResultsListed] = React.useState(false);
+  const [sort, setSort] = React.useState(-1);
+  const handleChange = (ev) => {
+    setSort(sort === 1 ? -1 : 1);
+    filters.skip = 0;
+  };
 
   const gimmeMore = async () => {
     filters.skip = filters.skip + 10;
@@ -39,10 +44,15 @@ function WelcomePage({ auth, onLogout, ...props }) {
       setFirstLoad(false);
       filters.skip = 0;
     }
+    if (sort === 1) {
+      filters.sort = 1;
+    } else {
+      filters.sort = -1;
+    }
     //dispatch(loadCoursesAction());
     getCourses(filters).then(setCourses);
     dispatch(categoriesLoadRequest());
-  }, [dispatch, filters]);
+  }, [dispatch, filters, sort]);
 
   return error || loading ? (
     'Loading...'
@@ -61,6 +71,13 @@ function WelcomePage({ auth, onLogout, ...props }) {
       </div>
 
       <div>{t('headline')}</div>
+      <label for="order-checkbox">Descendent</label>
+      <input
+        type="checkbox"
+        id="order-checkbox"
+        checked={sort === 1}
+        onChange={handleChange}
+      />
 
       <p>
         Current language: <strong>{i18n.language}</strong>
