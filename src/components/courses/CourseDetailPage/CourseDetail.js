@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
 import { Twitter, Facebook } from 'react-social-sharing';
-import { Button, YoutubeEmbed } from '../../shared';
+import { YoutubeEmbed } from '../../shared';
 
 function CourseDetail({ title, video, description, content, image, lessons, slug, numFavs }) {
   console.log(lessons)

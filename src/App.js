@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Redirect, useRouteMatch, Link } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import NotFoundPage from './api/NotFoundPage';
 import { Suspense } from 'react';
@@ -25,7 +25,6 @@ import EditCoursePage from './components/courses/EditCoursePage/EditCoursePage';
 import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
 
 function Translations() {
-  const { path } = useRouteMatch();
   return (
     <div className="App">
       <Switch>

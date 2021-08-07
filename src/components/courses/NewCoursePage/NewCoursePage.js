@@ -22,7 +22,7 @@ function NewCoursePage() {
     image: '',
     preview: '',
     price: 0,
-    lessons: {},
+    lessons: [],
   });
 
   const [createdCourse, setCreatedCourse] = React.useState(null);
@@ -35,21 +35,24 @@ function NewCoursePage() {
   }, [dispatch]);
 
   const handleAddLesson = () => {
+    console.log(courseDetails)
     setLessonCounter(lessonCounter + 1);
-    setCourseDetails(oldDetails => ({
-      ...oldDetails,                // Copy al the other key value pairs of onject
-      lessons: { ...oldDetails.lessons,
-                [lessonCounter]:
-                {
-                  "number": lessonCounter,
-                  "title": '',
-                  "description": '',
-                  "video": '',
-                  "content": ''
-                }
-              }
+
+    setCourseDetails(oldDetails => {
+      const newLesson = {
+        "number": lessonCounter,
+        "title": '',
+        "description": '',
+        "video": '',
+        "content": ''
+    }
+      return {
+        ...oldDetails,                // Copy al the other key value pairs of onject
+        lessons:  courseDetails.lessons.concat(newLesson)
+      }
+      
     
-    }))
+    })
   }
 
   const handleSubmit = (ev) => {

@@ -27,4 +27,5 @@ jobs:
     - run: npm run build --if-present
       env: 
         REACT_APP_API_BASE_URL: http://44.193.44.217:3000
+        REACT_APP_STRIPE_PUBLIC_KEY: pk_test_51JL1ynJb5swrNeTRAlHNS91oDBLZmuFiDB59KCjQPox6Oxdt6AoGPJJEawZlixiWfTOcnvbbN3tXddSXi56qmraC00rnoUvM34
     - run: npm test

@@ -20,7 +20,7 @@ function Layout({ children, ...props }) {
       <div className="App" data-theme={darkMode ? 'dark' : 'light'}>
         <main>{children}</main>
       </div>
-      <Footer darkMode={darkMode} />
+      <Footer className="footer" darkMode={darkMode} />
     </div>
   );
 }

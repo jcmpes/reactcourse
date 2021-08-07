@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../../components/shared';
-import FileUpload from '../../shared/FileUpload';
 
 function NewLessonForm({
   onSubmit,
@@ -11,22 +10,12 @@ function NewLessonForm({
 }) {
   const { t } = useTranslation(['global']);
 
-  if (courseDetails.lessons.length === lessonCounter) {
-    courseDetails.lessons[lessonCounter]({
-      number: lessonCounter,
-      title: '',
-      description: '',
-      video: '',
-      content: '',
-      image: '',
-    });
-  }
   const number = lessonCounter - 1;
 
   // Control fields for lesson via page state
   const handleChange = (ev) => {
     setCourseDetails((oldDetails) => {
-      const lessons = { ...oldDetails.lessons };
+      const lessons = [ ...oldDetails.lessons ];
       lessons[number][ev.target.name] = ev.target.value;
       return {
         ...oldDetails,
@@ -67,13 +56,6 @@ function NewLessonForm({
             name="content"
             value={courseDetails.lessons[number].content}
             onChange={handleChange}
-          />
-          <FileUpload
-            label={'image'}
-            image={courseDetails.lessons[number].image}
-            courseDetails={courseDetails}
-            setCourseDetails={setCourseDetails}
-            lessonCounter={lessonCounter}
           />
           <Button type="submit">{t('course.save course')}</Button>
         </form>

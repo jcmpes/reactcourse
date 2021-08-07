@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, Redirect, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { getCourse } from '../../../api/courses';
 import { getLesson } from '../../../api/lessons';
 import { getUi } from '../../../store/selectors';
-import CoursesList from '../../courses/CoursesList';
 import Layout from '../../layout/Layout';
 import { Button } from '../../shared';
 import LessonDetail from './LessonDetail';
@@ -12,28 +11,41 @@ import LessonDetail from './LessonDetail';
 function LessonPage() {
   const { courseSlug, lessonSlug } = useParams();
   const { loading } = useSelector(getUi);
-  const [lesson, setLesson] = useState()
-  const [course, setCourse] = useState()
+  const [lesson, setLesson] = useState({})
+  const [course, setCourse] = useState({})
   const [lessonCounter, setLessonCounter] = useState(0);
+  const history = useHistory()
 
   useEffect(() => {
     const fetchData = async () =>  {
-      setCourse(await getCourse(courseSlug))
-      setLesson(await getLesson(courseSlug, lessonSlug))
+      const singleCourse = await getCourse(courseSlug)
+      setCourse(singleCourse)
+      console.log('Peticion API: ', lessonSlug)
+      const singleLesson = await getLesson(courseSlug, lessonSlug)
+      return singleLesson
     }
-    fetchData()
-  }, [lessonCounter, lesson]);
+    fetchData().then((singleLesson) => {
+      setLesson(singleLesson)
+      console.log('LESSON: ', lesson)
+      lesson && setLessonCounter(lesson.number)
+    })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lessonCounter, lessonSlug]);
 
-  function navigate(up) {
-    up ? setLessonCounter(lessonCounter + 1) 
-      : setLessonCounter(lessonCounter - 1) ;
+  function backToCourse() {
+    history.push(`/courses/${courseSlug}`)
   }
 
-  if(lessonCounter > 0) {
-    return <Redirect to={`/courses/${courseSlug}/${course.lessons[lessonCounter].slug}`} />
+  function backOneLesson() {   
+    history.push(`/courses/${courseSlug}/${course.lessons[lessonCounter-1].slug}`)
+    setLessonCounter(lessonCounter + 1)
+  }
+  
+  function upOneLesson() {
+    history.push(`/courses/${courseSlug}/${course.lessons[lessonCounter+1].slug}`)
+    setLessonCounter(lessonCounter + 1)
   }
 
-  debugger;
   return (
     
     <Layout>
@@ -43,10 +55,14 @@ function LessonPage() {
           <>
             <LessonDetail {...lesson} />
             <div className="lesson-nav">
-                <Button onClick={() => navigate(false)}>Previous lesson</Button>
-                { course.lessons.length === lessonCounter
-                    ? null
-                    : <Button onClick={() => navigate(true)}>Next lesson</Button>
+                { lesson.number === 0 
+                  ? <Button onClick={() => backToCourse()}>Back to Course presentation</Button>
+                  : <Button onClick={() => backOneLesson()}>Previous lesson</Button>
+                }
+                { course.lessons && course.lessons.length !== (lessonCounter + 1) &&
+                    <Button onClick={() => upOneLesson()}>
+                      Next lesson
+                    </Button>
                 }
             </div>
           </>
