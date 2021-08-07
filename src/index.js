@@ -26,6 +26,13 @@ const preState = {
       loading: false,
       error: null,
     },
+    courses: {
+      filters: {
+        limit: 10,
+        skip: 0,
+        sort: -1,
+      },
+    },
     // history,
   },
 };

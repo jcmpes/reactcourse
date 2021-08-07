@@ -7,6 +7,7 @@ import { getAuth, isInCart } from '../../store/selectors';
 export const CoursesList = (courses) => {
   const { favs, purchased } = useSelector(getAuth);
   const getItemIsInCart = useSelector(isInCart);
+
   const coursesElement =
     courses.courses && favs ? (
       courses.courses.map((course) => {

@@ -3,9 +3,14 @@ import client from './client';
 // Get Courses
 export const getCourses = (filters) => {
   const title = filters.title || '';
+  const limit = filters.limit || 10;
+  const skip = filters.skip || 0;
+  const sort = filters.sort || -1;
   return (
     client
-      .get(`/api/v1/courses?title=${title}`)
+      .get(
+        `/api/v1/courses?title=${title}&limit=${limit}&skip=${skip}&sort=${sort}`,
+      )
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.
       .then((data) => {

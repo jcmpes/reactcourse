@@ -13,7 +13,13 @@ const FilterForm = () => {
   async function handleSubmit(ev) {
     ev.preventDefault();
     // handleReset();
-    dispatch(setFilters({ title: inputText }));
+    dispatch(
+      setFilters({
+        title: inputText,
+        skip: 0,
+        limit: 10,
+      }),
+    );
   }
 
   function handleChange(ev) {
