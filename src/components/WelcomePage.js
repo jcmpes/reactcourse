@@ -71,7 +71,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
       </div>
 
       <div>{t('headline')}</div>
-      <label for="order-checkbox">Descendent</label>
+      <label for="order-checkbox">{t('Ascending')}</label>
       <input
         type="checkbox"
         id="order-checkbox"
@@ -87,7 +87,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <br />
       {!allResultsListed ? (
         <>
-          <div>{courses.length} results</div>
+          <div>{courses ? courses.length : '0'} results</div>
 
           <button onClick={gimmeMore}>{t('Show more')}</button>
         </>
