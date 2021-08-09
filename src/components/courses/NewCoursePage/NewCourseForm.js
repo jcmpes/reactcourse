@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from "react-i18next";
 import { FormField, Button, Input } from "../../../components/shared"
 import FileUpload from '../../shared/FileUpload'
+import VideoUpload from '../../shared/VideoUpload';
 
 function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, setCourseDetails }) {
   const { t } = useTranslation(['global']);
@@ -40,12 +41,17 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
             value={courseDetails.description}
             onChange={handleChange}
           />
-          <FormField
+          {/* <FormField
             type={"text"}
             label={'video'}
             name="video"
             value={courseDetails.video}
             onChange={handleChange}
+          /> */}
+          <VideoUpload
+            label={"video"}
+            courseDetails={courseDetails}
+            setCourseDetails={setCourseDetails}
           />
           <FormField
             type={"number"}
