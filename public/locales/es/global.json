@@ -23,6 +23,7 @@
   "Price": "Precio",
   "at": "el",
   "me": "mí",
+  "and": "y",
   "Courses by": "Cursos de",
   "My Favorite courses": "Mis cursos favoritos",
   "en-en": "es-es",
@@ -50,6 +51,10 @@
   },
   "footer": {
     "footer": "Pie de página"
+  },
+  "filter": {
+    "filtering price between": "Filtrando precio entre",
+    "reset filters": "Riniciar Filtros"
   },
   "forgot password": {
     "forgot password": "Contraseña olvidada",

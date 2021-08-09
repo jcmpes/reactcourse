@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from '../../store/selectors';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { Input } from '../shared';
+import { useTranslation } from 'react-i18next';
 import Slider from '@material-ui/core/Slider';
 
 const FilterForm = () => {
@@ -59,9 +60,11 @@ const FilterForm = () => {
     dispatch(setFilters(defaultFilters));
   }
 
+  const { t } = useTranslation(['global']);
+
   return (
     <form onSubmit={handleSubmit}>
-      <label>Title</label>
+      <label>{t('Title')}</label>
       <input
         type="text"
         value={inputTextTitle}
@@ -69,7 +72,7 @@ const FilterForm = () => {
       ></input>
       <br />
 
-      <label>Username</label>
+      <label>{t('username')}</label>
       <input
         type="text"
         value={inputTextUsername}
@@ -79,7 +82,7 @@ const FilterForm = () => {
 
       <Input
         as="select"
-        label={'Category'}
+        label={t('Category')}
         name="category"
         value={inputTextCategory}
         onChange={handleChangeCategory}
@@ -102,12 +105,13 @@ const FilterForm = () => {
           valueLabelDisplay="auto"
           style={style}
         />
-        Filtering Price between {price[0]}€ and {price[1]}€
+        {t('filter.filtering price between')} {price[0]} € {t('and')} {price[1]}{' '}
+        €
       </div>
 
-      <button type="submit">Search</button>
+      <button type="submit">{t('header.search')}</button>
       <button type="reset" onClick={handleReset}>
-        Reset
+        {t('filter.reset filters')}
       </button>
     </form>
   );

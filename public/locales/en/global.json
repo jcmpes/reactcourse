@@ -23,6 +23,7 @@
   "Price": "Price",
   "me": "me",
   "at": "at",
+  "and": "and",
   "Courses by": "Courses by",
   "My Favorite courses": "My Favorite courses",
   "en-en": "en-en",
@@ -50,6 +51,10 @@
   },
   "footer": {
     "footer": "Footer"
+  },
+  "filter": {
+    "filtering price between": "Filtering price between",
+    "reset filters": "Reset Filters"
   },
   "forgot password": {
     "forgot password": "Forgot password",
