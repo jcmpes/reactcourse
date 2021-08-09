@@ -7,7 +7,6 @@ import Layout from '../../layout/Layout';
 import { Button } from '../../shared';
 import CourseDetail from './CourseDetail';
 
-import StripeCheckout from 'react-stripe-checkout';
 require('dotenv').config();
 
 function CoursePage() {

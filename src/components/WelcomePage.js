@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { authLogout } from '../store/actions/logout';
-import { setFilters } from '../store/actions/load-courses';
-import { loadCoursesAction } from '../store/actions/load-courses';
 import { getAuth, getUI, getFilters } from '../store/selectors';
 import Layout from './layout/Layout';
 import { useTranslation } from 'react-i18next';
@@ -52,6 +50,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
     }
     //dispatch(loadCoursesAction());
     getCourses(filters).then(setCourses);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
 
   return error || loading ? (
