@@ -1,4 +1,9 @@
-import { GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS } from '../types';
+import {
+  GET_USER_FAILURE,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  UPDATE_USERNAME,
+} from '../types';
 
 import { whoAmI } from '../../api/auth';
 // Get User actions
@@ -34,5 +39,18 @@ export const getUserAction = (username, history) => {
     } catch (error) {
       dispatch(getUserFailure());
     }
+  };
+};
+
+export const updateUsernameSuccess = (username) => {
+  console.log('caca', username);
+  return {
+    type: UPDATE_USERNAME,
+    payload: username,
+  };
+};
+export const updateUsernameAction = (username) => {
+  return async function (dispatch, getState) {
+    dispatch(updateUsernameSuccess(username));
   };
 };

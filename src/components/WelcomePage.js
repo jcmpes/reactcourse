@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
 import CoursesList from './courses/CoursesList';
 import Scroll from './shared/Scroll';
+import { aboutMe } from '../api/auth';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -34,10 +35,13 @@ function WelcomePage({ auth, onLogout, ...props }) {
     setCourses(coursesAux.concat(newCourses));
   };
 
-  const { username } = auth;
+  const [username, setUsername] = React.useState(null);
 
   const [courses, setCourses] = React.useState([]);
   React.useEffect(() => {
+    aboutMe().then((data) => {
+      setUsername(data.username);
+    });
     if (firstLoad) {
       setFirstLoad(false);
       filters.skip = 0;

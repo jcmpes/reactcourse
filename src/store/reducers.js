@@ -16,6 +16,7 @@ import {
   COURSE_CREATE_SUCCESS,
   ADD_TO_CART_SUCCESS,
   REMOVE_FROM_CART_SUCCESS,
+  UPDATE_USERNAME,
 } from './types';
 
 export const initialState = {
@@ -53,6 +54,11 @@ export function auth(state = initialState.auth, action) {
         purchased: action.payload.purchased,
         favs: action.payload.favs,
         cart: [],
+      };
+    case UPDATE_USERNAME:
+      return {
+        ...state,
+        username: action.payload,
       };
     case AUTH_LOGOUT:
       return {
