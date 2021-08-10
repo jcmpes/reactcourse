@@ -31,30 +31,30 @@ function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
             type="text"
             label={'username'}
             name="username"
-            value={userDetails.username}
+            value={userDetails.username || ''}
             onChange={handleChange}
           />
           <FormField
             type="text"
             label={'email'}
             name="email"
-            value={userDetails.email}
+            value={userDetails.email || ''}
             onChange={handleChange}
           />
           <FormField
             type="password"
             label={'password'}
             name="password"
-            value={userDetails.password}
+            value={userDetails.password || ''}
             onChange={handleChange}
           />
-          {/* <FormField
+          <FormField
             type="password"
             label={'password'}
             name="password2"
-            value={userDetails.password2}
+            value={userDetails.password2 || ''}
             onChange={handleChange}
-          /> */}
+          />
 
           <Button
             type="submit"
