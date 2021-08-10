@@ -2,11 +2,11 @@ import S3 from 'react-aws-s3';
 
 function VideoUpload({ label, setCourseDetails }) {
   const config = {
-    bucketName: 'final-project-video-bucket',
-    region: 'us-east-1',
-    accessKeyId: 'AKIARHTNHDNQPLQTDEBW',
-    secretAccessKey: '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',
-    s3Url: 'http://s3.amazonaws.com/final-project-video-bucket' /* optional */,
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
+    region: process.env.REACT_APP_REGION,
+    accessKeyId: process.env.REACT_APP_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_SECRET_ACCESS_KEY,
+    s3Url: process.env.REACT_APP_S3_URL /* optional */,
   };
 
   
