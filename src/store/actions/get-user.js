@@ -43,7 +43,6 @@ export const getUserAction = (username, history) => {
 };
 
 export const updateUsernameSuccess = (username) => {
-  console.log('caca', username);
   return {
     type: UPDATE_USERNAME,
     payload: username,
