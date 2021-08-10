@@ -27,6 +27,12 @@
   "Ascending": "Ascendente",
   "me": "mí",
   "Courses by": "Cursos de",
+  "Passwords should match": "Las contraseñas deben coincidir",
+  "Edit Profile": "Editar Perfil",
+  "Profile updated": "Perfil actualizado",
+  "Username already taken": "Nombre de usuario ya en uso",
+  "email already taken": "email ya en uso",
+  "Something went wrong": "Algo ha ido mal",
   "My Favorite courses": "Mis cursos favoritos",
   "en-en": "es-es",
   "users": {

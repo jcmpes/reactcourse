@@ -25,7 +25,10 @@ const StudentPage = ({ username }) => {
               {t('users.learning')}
             </Link>
             {/* Filed changed */}
-            <Link to={`/courses-by/${username}`} className="my-profile-nav-item">
+            <Link
+              to={`/courses-by/${username}`}
+              className="my-profile-nav-item"
+            >
               {t('users.teaching')}
             </Link>
             <Link to="/myfavs" className="my-profile-nav-item">
@@ -34,7 +37,7 @@ const StudentPage = ({ username }) => {
             <Link to="/" className="my-profile-nav-item">
               {t('users.chats')}
             </Link>
-            <Link to="/" className="my-profile-nav-item">
+            <Link to="/edit-user" className="my-profile-nav-item">
               {t('users.edit profile')}
             </Link>
           </ul>

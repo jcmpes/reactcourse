@@ -54,6 +54,15 @@ export const resetPassword = (resetToken, newPassword) => {
     .catch((error) => console.error('Error', error));
 };
 
+export const aboutMe = (setDetails) => {
+  return client
+    .get('/api/v1/aboutme')
+    .then(setDetails)
+    .catch((error) => {
+      console.log('Error', error);
+    });
+};
+
 export const whoAmI = () => {
   return client
     .get('/api/v1/aboutme')
@@ -77,4 +86,8 @@ export const myFavsDetail = (setFavs) => {
   return client.get(`/api/v1/aboutme//myfavsdetails`).then((data) => {
     setFavs(data);
   });
+};
+
+export const editUser = (userDetails) => {
+  return client.put(`/api/v1/user/edit`, userDetails).catch((error) => error);
 };

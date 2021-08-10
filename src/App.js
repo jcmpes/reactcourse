@@ -23,6 +23,7 @@ import CoursePage from './components/courses/CourseDetailPage/CoursePage';
 import { toast, ToastContainer } from 'react-toastify';
 import EditCoursePage from './components/courses/EditCoursePage/EditCoursePage';
 import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
+import EditUserPage from './components/users/EditUserPage';
 
 function Translations() {
   return (
@@ -36,6 +37,9 @@ function Translations() {
         </Route>
         <Route path="/user">
           <User />
+        </Route>
+        <Route exact path="/edit-user">
+          <EditUserPage />
         </Route>
         <Route path="/courses-by/:username">
           <UserCourse />

@@ -50,7 +50,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
     }
     //dispatch(loadCoursesAction());
     getCourses(filters).then(setCourses);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
 
   return error || loading ? (
@@ -70,7 +70,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
       </div>
 
       <div>{t('headline')}</div>
-      <label for="order-checkbox">{t('Ascending')}</label>
+      <label htmlFor="order-checkbox">{t('Ascending')}</label>
       <input
         type="checkbox"
         id="order-checkbox"
