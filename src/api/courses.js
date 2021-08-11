@@ -2,15 +2,29 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const title = filters.title || '';
-  const limit = filters.limit || 10;
-  const skip = filters.skip || 0;
-  const sort = filters.sort || -1;
+  const { title, user, category, price } = filters;
+  let query = '?';
+  if (title) {
+    query += `&title=${title}`;
+  }
+  if (user) {
+    query += `&user=${user}`;
+  }
+  if (category) {
+    query += `&category=${category}`;
+  }
+  console.log('price antes de if', price);
+  if (price) {
+    query +=
+      price[0] === 0 && price[1] === 600
+        ? ''
+        : `&price=${price[0]}-${price[1]}`;
+  }
+  console.log('QUERY', query);
   return (
     client
-      .get(
-        `/api/v1/courses?title=${title}&limit=${limit}&skip=${skip}&sort=${sort}`,
-      )
+      .get(`/api/v1/courses${query}`)
+      //  /api/v1/courses?title=&category=teili
       // Temporary fix to populate all courses with username
       // if the course author is not in the DB anymore.
       .then((data) => {
