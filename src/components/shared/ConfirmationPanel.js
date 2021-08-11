@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ConfirmationPanel = ({ okAction, cancelAction, message, subtitle }) => {
+  const { t } = useTranslation(['global']);
+
   return (
     <div
       style={{
@@ -32,9 +35,9 @@ const ConfirmationPanel = ({ okAction, cancelAction, message, subtitle }) => {
           justifyContent: 'space-evenly',
         }}
       >
-        <button onClick={cancelAction}>Cancel</button>
+        <button onClick={cancelAction}>{t('Cancel')}</button>
         <button className="delete-button-panel" onClick={okAction}>
-          Sure
+          {t('Sure')}
         </button>
       </div>
     </div>

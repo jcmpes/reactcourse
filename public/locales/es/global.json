@@ -34,6 +34,11 @@
   "email already taken": "email ya en uso",
   "Something went wrong": "Algo ha ido mal",
   "Delete account": "Borrar cuenta",
+  "Unauthorized": "No autorizado",
+  "Are you sure?": "¿Estás seguro?",
+  "Cancel": "Cancelar",
+  "Sure": "Seguro",
+  "This action will delete all of your courses and it can't be undone.": "Esta acción borrará todos tus cursos y es irreversible.",
   "My Favorite courses": "Mis cursos favoritos",
   "en-en": "es-es",
   "users": {

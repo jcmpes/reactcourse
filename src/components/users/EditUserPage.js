@@ -10,9 +10,11 @@ import { toast } from 'react-toastify';
 import { updateUsernameAction } from '../../store/actions/get-user';
 import ConfirmButton from '../shared/ConfirmButton';
 import { authLogout } from '../../store/actions/logout';
+
 const EditUserPage = () => {
   const { t } = useTranslation(['global']);
   const isLogged = useSelector(getIsLogged);
+  const [profileUpdated, setProfileUpdated] = React.useState(false);
   const dispatch = useDispatch();
   const [details, setDetails] = React.useState({
     username: '',
@@ -33,6 +35,9 @@ const EditUserPage = () => {
         logout();
         dispatch(authLogout());
         console.log('logout');
+      } else {
+        console.log(result.message);
+        toast.error(t(result.message));
       }
     });
   };
@@ -41,7 +46,7 @@ const EditUserPage = () => {
 
     if (updated && updated.username) {
       toast.success(t('Profile updated'));
-      //TODO: Actualizar eusername en redux
+      setProfileUpdated(true);
       dispatch(updateUsernameAction(updated.username));
     } else {
       if (updated.data.error.indexOf('E11000 duplicate key error') !== -1) {
@@ -66,6 +71,8 @@ const EditUserPage = () => {
     }
   }, [isLogged]);
 
+  if (profileUpdated) return <Redirect to="/" />;
+
   return isLogged ? (
     <Layout>
       <h1>{t('Edit Profile')}</h1>
@@ -80,17 +87,19 @@ const EditUserPage = () => {
         iconButton={null}
         titleButton={t('Delete account')}
         okAction={performDelete}
-        message={<div>Are you sure?</div>}
+        message={<div>{t('Are you sure?')}</div>}
         subtitle={
           <div>
-            Password:{' '}
+            {t('password')}:{' '}
             <input
               type="password"
               value={confirm}
               onChange={handleConfirmChange}
             />
             <br />
-            This action will delete all of your courses and it's not reversible
+            {t(
+              "This action will delete all of your courses and it can't be undone.",
+            )}
           </div>
         }
       />

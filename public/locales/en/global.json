@@ -34,6 +34,11 @@
   "email already taken": "email already taken",
   "Something went wrong": "Something went wrong",
   "Delete account": "Delete account",
+  "Unauthorized": "Unauthorized",
+  "Are you sure?": "Are you sure?",
+  "Cancel": "Cancel",
+  "Sure": "Sure",
+  "This action will delete all of your courses and it can't be undone.": "This action will delete all of your courses and it can't be undone.",
   "My Favorite courses": "My Favorite courses",
   "en-en": "en-en",
   "users": {
