@@ -35,7 +35,6 @@ const FilterForm = () => {
 
   async function handleSubmit(ev) {
     ev.preventDefault();
-    handleReset();
     dispatch(
       setFilters({
         title: inputTextTitle,
@@ -56,8 +55,15 @@ const FilterForm = () => {
     setinputCategory(ev.target.value);
   }
 
+  function emptyFiltersform() {
+    setinputText('');
+    setinputCategoryUsername('');
+    setinputCategory('');
+  }
+
   async function handleReset() {
     dispatch(setFilters(defaultFilters));
+    emptyFiltersform();
   }
 
   const { t } = useTranslation(['global']);
