@@ -91,3 +91,9 @@ export const myFavsDetail = (setFavs) => {
 export const editUser = (userDetails) => {
   return client.put(`/api/v1/user/edit`, userDetails).catch((error) => error);
 };
+
+export const deleteAccount = (password) => {
+  return client
+    .post(`/api/v1/user/delete-account`, password)
+    .catch((error) => error);
+};
