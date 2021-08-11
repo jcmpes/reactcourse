@@ -59,6 +59,7 @@ const FilterForm = () => {
     setinputText('');
     setinputCategoryUsername('');
     setinputCategory('');
+    setPrice([0, 600]);
   }
 
   async function handleReset() {
