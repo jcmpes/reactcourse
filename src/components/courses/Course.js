@@ -8,6 +8,7 @@ import { getAuth } from '../../store/selectors';
 import { useTranslation } from 'react-i18next';
 import { addToCartAction } from '../../store/actions/purchase';
 import { toast } from 'react-toastify';
+import NoImg from '../../assets/img/noimg.png';
 import './Course.css';
 
 const Course = ({ course, faved, purchased, inCart }) => {
@@ -26,7 +27,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
               <div className="img-rounded-wrapper">
                 <img
                   className="border border-dark"
-                  src={`${course.image}`}
+                  src={course.image ? `${course.image}` : NoImg}
                   min-height="120"
                   max-height="auto"
                   // height="320"
