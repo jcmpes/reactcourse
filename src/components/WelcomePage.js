@@ -8,7 +8,10 @@ import { getCourses } from '../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
 import CoursesList from './courses/CoursesList';
+import FiltersForm from './FiltersForm/FiltersForm';
 import Scroll from './shared/Scroll';
+import styles from './WelcomePage.module.css';
+import { setFilters } from '../store/actions/load-courses';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -22,21 +25,25 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
     filters.skip = 0;
+    dispatch(setFilters(filters));
   };
 
   const gimmeMore = async () => {
     filters.skip = filters.skip + 10;
-    //dispatch(setFilters(filters));
+    dispatch(setFilters(filters));
     const coursesAux = courses;
     const newCourses = await getCourses(filters);
-
-    if (newCourses.length === 0) setAllResultsListed(true);
+    if (newCourses.length < filters.limit) setAllResultsListed(true);
     setCourses(coursesAux.concat(newCourses));
   };
 
   const { username } = auth;
 
   const [courses, setCourses] = React.useState([]);
+
+  React.useEffect(() => {
+    setAllResultsListed(false);
+  }, [filters]);
 
   React.useEffect(() => {
     if (firstLoad) {
@@ -49,8 +56,11 @@ function WelcomePage({ auth, onLogout, ...props }) {
     } else {
       filters.sort = -1;
     }
-    //dispatch(loadCoursesAction());
-    getCourses(filters).then(setCourses);
+    dispatch(setFilters(filters));
+    getCourses(filters).then((results) => {
+      if (results.length < filters.limit) setAllResultsListed(true);
+      setCourses(results);
+    });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
 
@@ -65,10 +75,6 @@ function WelcomePage({ auth, onLogout, ...props }) {
           fontSize: 40,
         }}
       >
-        <br />
-        <br />
-        <br />
-        <br />
         {t('welcome to')}
         {t('title')}
         {username ? `, ${username}` : ''}
@@ -86,18 +92,24 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
+      <div className={styles.filtersPageContainer}>
+        {/*className={styles.searchBarForm}*/}
+        <FiltersForm />
+        <div className={styles.resultsContainer}>
+          <CoursesList courses={courses} />
 
-      <CoursesList courses={courses} />
-      <br />
-      {!allResultsListed ? (
-        <>
-          <div>{courses ? courses.length : '0'} results</div>
+          <br />
+          {!allResultsListed ? (
+            <>
+              <div>{courses ? courses.length : '0'} results</div>
 
-          <button onClick={gimmeMore}>{t('Show more')}</button>
-        </>
-      ) : (
-        "There's no more results"
-      )}
+              <button onClick={gimmeMore}>{t('Show more')}</button>
+            </>
+          ) : (
+            "There's no more results"
+          )}
+        </div>
+      </div>
     </Layout>
   );
 }
