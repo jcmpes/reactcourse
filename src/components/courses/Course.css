@@ -1,0 +1,86 @@
+a {
+  color: var(--color-french-rose);
+}
+a:hover {
+  color: var(--color-french-rose);
+  text-decoration: none;
+}
+.card-title a {
+  font-size: x-large;
+  color: black;
+}
+.card {
+  display: flex;
+  border-radius: 20px;
+  background-color: var(--color-whisper);
+  justify-content: center;
+  align-content: center;
+}
+.card p {
+  text-align: left;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+.img-rounded-wrapper img {
+  float: left;
+  border-radius: 20px;
+}
+.curseButton {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  width: 300px;
+  font-size: 1rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  background-color: var(--color-french-rose);
+  color: var(--color-whisper);
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.curseButton:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #e43f7c;
+  box-shadow: 1px 1px 5px black;
+}
+
+.shopping-course,
+.purchased-course {
+  border: none;
+  border-radius: 10px;
+  padding: 15px;
+  width: 300px;
+  font-size: 1rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  color: var(--color-whisper);
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.purchased-course {
+  background-color: #5cb85c;
+}
+.shopping-course {
+  background-color: #5bc0de;
+}
+
+.shopping-course:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #49b8da;
+  box-shadow: 1px 1px 5px black;
+}
+@media (max-width: 880px) {
+  .img-rounded-wrapper img {
+    width: 100%;
+    float: none;
+  }
+}
