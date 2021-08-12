@@ -1,50 +1,116 @@
 import React from 'react';
 import { setFilters } from '../../store/actions/load-courses';
-import { useDispatch } from 'react-redux';
-import styles from '../../components/layout/Header/Header.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories, getFilters } from '../../store/selectors';
+import { categoriesLoadAction } from '../../store/actions/categories-load';
+import { Input } from '../shared';
 import { useTranslation } from 'react-i18next';
+import Slider from '@material-ui/core/Slider';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
-  const [inputText, setinputText] = React.useState('');
+  const filters = useSelector(getFilters);
 
-  // const defaultFilters = { title: '' };
+  const categories = useSelector(getCategories);
+
+  const rangeSelector = (ev, newValue) => {
+    const newFilter = { ...filters, price: newValue };
+    dispatch(setFilters(newFilter));
+  };
+
+  const style = { color: '#f24b88' };
+
+  React.useEffect(() => {
+    dispatch(categoriesLoadAction());
+  }, [dispatch]);
+
+  const defaultFilters = {
+    title: '',
+    category: '',
+    username: '',
+    categories: [],
+    price: [0, 600],
+  };
 
   async function handleSubmit(ev) {
     ev.preventDefault();
-    // handleReset();
-    dispatch(
-      setFilters({
-        title: inputText,
-        skip: 0,
-        limit: 10,
-      }),
-    );
+    // dispatch(
+    //   setFilters({
+    //     title: filters.title,
+    //     username: filters.username,
+    //     category: filters.category,
+    //     price: filters.price,
+    //     limit: filters.limit,
+    //     sort: filters.sort,
+    //     skip: filters.skip,
+    //   }),
+    // );
   }
 
   function handleChange(ev) {
-    setinputText(ev.target.value);
+    const newFilter = { ...filters, [ev.target.name]: ev.target.value };
+    dispatch(setFilters(newFilter));
   }
 
-  // async function handleReset() {
-  //   dispatch(setFilters(defaultFilters));
-  // }
+  async function handleReset() {
+    dispatch(setFilters(defaultFilters));
+  }
 
   const { t } = useTranslation(['global']);
 
   return (
     <form onSubmit={handleSubmit}>
+      <label>{t('Title')}</label>
       <input
-        className={styles.searchBarForm}
         type="text"
-        value={inputText}
+        name="title"
+        value={filters.title}
         onChange={handleChange}
-        placeholder={t('header.search') + '...'}
       ></input>
-      {/* <button type="submit">Search</button>
+      <br />
+
+      <label>{t('username')}</label>
+      <input
+        type="text"
+        name="username"
+        value={filters.username}
+        onChange={handleChange}
+      ></input>
+      <br />
+
+      <Input
+        as="select"
+        label={t('Category')}
+        name="category"
+        value={filters.category}
+        onChange={handleChange}
+        searcher={true}
+        options={[{ name: 'Select category', _id: '000' }, ...categories]}
+      />
+      <br />
+
+      <div
+        style={{
+          margin: 'auto',
+          display: 'block',
+          width: 'fit-content',
+        }}
+      >
+        <Slider
+          value={filters.price}
+          onChange={rangeSelector}
+          max={600}
+          valueLabelDisplay="auto"
+          style={style}
+        />
+        {t('filter.filtering price between')} {filters.price[0]} € {t('and')}{' '}
+        {filters.price[1]} €
+      </div>
+
+      <button type="submit">{t('header.search')}</button>
       <button type="reset" onClick={handleReset}>
-        Reset
-      </button> */}
+        {t('filter.reset filters')}
+      </button>
     </form>
   );
 };

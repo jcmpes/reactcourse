@@ -65,6 +65,10 @@ function WelcomePage({ auth, onLogout, ...props }) {
           fontSize: 40,
         }}
       >
+        <br />
+        <br />
+        <br />
+        <br />
         {t('welcome to')}
         {t('title')}
         {username ? `, ${username}` : ''}
