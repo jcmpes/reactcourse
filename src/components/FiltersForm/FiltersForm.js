@@ -6,6 +6,7 @@ import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { Input } from '../shared';
 import { useTranslation } from 'react-i18next';
 import Slider from '@material-ui/core/Slider';
+import styles from './FiltersForm.module.css';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const FilterForm = () => {
   const { t } = useTranslation(['global']);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.filterContainer}>
       <label>{t('Title')}</label>
       <input
         type="text"

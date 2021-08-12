@@ -8,7 +8,9 @@ import { getCourses } from '../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../store/actions/categories-load';
 import CoursesList from './courses/CoursesList';
+import FiltersForm from './FiltersForm/FiltersForm';
 import Scroll from './shared/Scroll';
+import styles from './WelcomePage.module.css';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -65,10 +67,6 @@ function WelcomePage({ auth, onLogout, ...props }) {
           fontSize: 40,
         }}
       >
-        <br />
-        <br />
-        <br />
-        <br />
         {t('welcome to')}
         {t('title')}
         {username ? `, ${username}` : ''}
@@ -86,18 +84,21 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
+      <div className={styles.filtersContainer}>
+        {/*className={styles.searchBarForm}*/}
+        <FiltersForm />
+        <CoursesList courses={courses} />
+        <br />
+        {!allResultsListed ? (
+          <>
+            <div>{courses ? courses.length : '0'} results</div>
 
-      <CoursesList courses={courses} />
-      <br />
-      {!allResultsListed ? (
-        <>
-          <div>{courses ? courses.length : '0'} results</div>
-
-          <button onClick={gimmeMore}>{t('Show more')}</button>
-        </>
-      ) : (
-        "There's no more results"
-      )}
+            <button onClick={gimmeMore}>{t('Show more')}</button>
+          </>
+        ) : (
+          "There's no more results"
+        )}
+      </div>
     </Layout>
   );
 }

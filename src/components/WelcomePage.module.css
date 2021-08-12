@@ -1,0 +1,4 @@
+.filtersContainer {
+  display: flex;
+  flex-direction: row;
+}

@@ -6,7 +6,6 @@ import { getIsLogged } from '../../../store/selectors';
 import { authLogout } from '../../../store/actions/logout';
 import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import FiltersForm from '../../FiltersForm/FiltersForm';
 import ToggleButton from '../../shared/ToggleButton';
 import styles from './Header.module.css';
 import logo from '../../../assets/img/logo.png';
@@ -99,7 +98,6 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <span className={styles.loupeIconSpan}>
             <img src={loupeIcon} alt="" />
           </span>
-          <FiltersForm className={styles.searchBarForm} />
         </div>
 
         {temporaryMenu && !isLogged && (
