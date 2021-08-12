@@ -31,6 +31,9 @@ const FilterForm = () => {
     username: '',
     categories: [],
     price: [0, 600],
+    limit: 10,
+    skip: 0,
+    sort: -1,
   };
 
   async function handleSubmit(ev) {
@@ -38,6 +41,7 @@ const FilterForm = () => {
   }
 
   function handleChange(ev) {
+    filters.skip = 0;
     const newFilter = { ...filters, [ev.target.name]: ev.target.value };
     dispatch(setFilters(newFilter));
   }

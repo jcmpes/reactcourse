@@ -1,10 +1,11 @@
 .filterContainer {
   position: sticky;
-  top: 50;
+  top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   width: 30vh;
+  margin-left: 10px;
 }
 @media (max-width: 880px) {
   .filterContainer {
