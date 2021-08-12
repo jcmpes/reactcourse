@@ -1,4 +1,16 @@
-.filtersContainer {
+.filtersPageContainer {
   display: flex;
   flex-direction: row;
+}
+.resultsContainer {
+  display: flex;
+  flex-direction: column;
+
+  /* width: 70vw; */
+  float: right;
+}
+@media (max-width: 880px) {
+  .filtersPageContainer {
+    flex-direction: column;
+  }
 }

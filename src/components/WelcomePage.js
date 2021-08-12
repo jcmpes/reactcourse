@@ -84,20 +84,23 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      <div className={styles.filtersContainer}>
+      <div className={styles.filtersPageContainer}>
         {/*className={styles.searchBarForm}*/}
         <FiltersForm />
-        <CoursesList courses={courses} />
-        <br />
-        {!allResultsListed ? (
-          <>
-            <div>{courses ? courses.length : '0'} results</div>
+        <div className={styles.resultsContainer}>
+          <CoursesList courses={courses} />
 
-            <button onClick={gimmeMore}>{t('Show more')}</button>
-          </>
-        ) : (
-          "There's no more results"
-        )}
+          <br />
+          {!allResultsListed ? (
+            <>
+              <div>{courses ? courses.length : '0'} results</div>
+
+              <button onClick={gimmeMore}>{t('Show more')}</button>
+            </>
+          ) : (
+            "There's no more results"
+          )}
+        </div>
       </div>
     </Layout>
   );
