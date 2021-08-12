@@ -1,7 +1,7 @@
 import React from 'react';
 import { setFilters } from '../../store/actions/load-courses';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories } from '../../store/selectors';
+import { getCategories, getFilters } from '../../store/selectors';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { Input } from '../shared';
 import { useTranslation } from 'react-i18next';
@@ -9,13 +9,13 @@ import Slider from '@material-ui/core/Slider';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
-  const [inputTextTitle, setinputText] = React.useState('');
-  const [inputTextUsername, setinputCategoryUsername] = React.useState('');
-  const [price, setPrice] = React.useState([0, 600]);
+  const filters = useSelector(getFilters);
+
   const categories = useSelector(getCategories);
 
   const rangeSelector = (ev, newValue) => {
-    setPrice(newValue);
+    const newFilter = { ...filters, price: newValue };
+    dispatch(setFilters(newFilter));
   };
 
   const style = { color: '#f24b88' };
@@ -24,47 +24,36 @@ const FilterForm = () => {
     dispatch(categoriesLoadAction());
   }, [dispatch]);
 
-  const [inputTextCategory, setinputCategory] = React.useState('');
-
   const defaultFilters = {
-    title: null,
-    category: null,
+    title: '',
+    category: '',
+    username: '',
     categories: [],
     price: [0, 600],
   };
 
   async function handleSubmit(ev) {
     ev.preventDefault();
-    dispatch(
-      setFilters({
-        title: inputTextTitle,
-        user: inputTextUsername,
-        category: inputTextCategory,
-        price: price,
-      }),
-    );
+    // dispatch(
+    //   setFilters({
+    //     title: filters.title,
+    //     username: filters.username,
+    //     category: filters.category,
+    //     price: filters.price,
+    //     limit: filters.limit,
+    //     sort: filters.sort,
+    //     skip: filters.skip,
+    //   }),
+    // );
   }
 
-  function handleChangeTitle(ev) {
-    setinputText(ev.target.value);
-  }
-  function handleChangeUsername(ev) {
-    setinputCategoryUsername(ev.target.value);
-  }
-  function handleChangeCategory(ev) {
-    setinputCategory(ev.target.value);
-  }
-
-  function emptyFiltersform() {
-    setinputText('');
-    setinputCategoryUsername('');
-    setinputCategory('');
-    setPrice([0, 600]);
+  function handleChange(ev) {
+    const newFilter = { ...filters, [ev.target.name]: ev.target.value };
+    dispatch(setFilters(newFilter));
   }
 
   async function handleReset() {
     dispatch(setFilters(defaultFilters));
-    emptyFiltersform();
   }
 
   const { t } = useTranslation(['global']);
@@ -74,16 +63,18 @@ const FilterForm = () => {
       <label>{t('Title')}</label>
       <input
         type="text"
-        value={inputTextTitle}
-        onChange={handleChangeTitle}
+        name="title"
+        value={filters.title}
+        onChange={handleChange}
       ></input>
       <br />
 
       <label>{t('username')}</label>
       <input
         type="text"
-        value={inputTextUsername}
-        onChange={handleChangeUsername}
+        name="username"
+        value={filters.username}
+        onChange={handleChange}
       ></input>
       <br />
 
@@ -91,8 +82,8 @@ const FilterForm = () => {
         as="select"
         label={t('Category')}
         name="category"
-        value={inputTextCategory}
-        onChange={handleChangeCategory}
+        value={filters.category}
+        onChange={handleChange}
         searcher={true}
         options={[{ name: 'Select category', _id: '000' }, ...categories]}
       />
@@ -106,14 +97,14 @@ const FilterForm = () => {
         }}
       >
         <Slider
-          value={price}
+          value={filters.price}
           onChange={rangeSelector}
           max={600}
           valueLabelDisplay="auto"
           style={style}
         />
-        {t('filter.filtering price between')} {price[0]} € {t('and')} {price[1]}{' '}
-        €
+        {t('filter.filtering price between')} {filters.price[0]} € {t('and')}{' '}
+        {filters.price[1]} €
       </div>
 
       <button type="submit">{t('header.search')}</button>

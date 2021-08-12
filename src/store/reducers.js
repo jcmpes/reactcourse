@@ -30,7 +30,16 @@ export const initialState = {
   courses: {
     loaded: false,
     data: [],
-    filters: { limit: 10, skip: 0, sort: -1 },
+    filters: {
+      title: '',
+      category: '',
+      categories: [],
+      username: '',
+      price: [0, 600],
+      limit: 10,
+      skip: 0,
+      sort: -1,
+    },
   },
   categories: {
     loaded: false,

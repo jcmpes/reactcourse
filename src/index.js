@@ -28,6 +28,11 @@ const preState = {
     },
     courses: {
       filters: {
+        title: '',
+        category: '',
+        username: '',
+        categories: [],
+        price: [0, 600],
         limit: 10,
         skip: 0,
         sort: -1,

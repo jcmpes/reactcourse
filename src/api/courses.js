@@ -2,23 +2,31 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const { title, user, category, price } = filters;
+  const { title, username, category, price, limit, skip, sort } = filters;
   let query = '?';
   if (title) {
     query += `&title=${title}`;
   }
-  if (user) {
-    query += `&user=${user}`;
+  if (username) {
+    query += `&user=${username}`;
   }
   if (category) {
     query += `&category=${category}`;
   }
-  console.log('price antes de if', price);
   if (price) {
     query +=
       price[0] === 0 && price[1] === 600
         ? ''
         : `&price=${price[0]}-${price[1]}`;
+  }
+  if (limit) {
+    query += `&limit=${limit}`;
+  }
+  if (skip) {
+    query += `&skip=${skip}`;
+  }
+  if (sort) {
+    query += `&sort=${sort}`;
   }
   console.log('QUERY', query);
   return (
