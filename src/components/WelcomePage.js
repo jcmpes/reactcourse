@@ -10,7 +10,7 @@ import { categoriesLoadRequest } from '../store/actions/categories-load';
 import CoursesList from './courses/CoursesList';
 import FiltersForm from './FiltersForm/FiltersForm';
 import Scroll from './shared/Scroll';
-import styles from './WelcomePage.module.css';
+// import styles from './WelcomePage.module.css';
 import { setFilters } from '../store/actions/load-courses';
 
 function WelcomePage({ auth, onLogout, ...props }) {
@@ -92,10 +92,10 @@ function WelcomePage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      <div className={styles.filtersPageContainer}>
+      <div>
         {/*className={styles.searchBarForm}*/}
         <FiltersForm />
-        <div className={styles.resultsContainer}>
+        <div>
           <CoursesList courses={courses} />
 
           <br />
