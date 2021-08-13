@@ -24,6 +24,7 @@
   "Price": "Price",
   "me": "me",
   "at": "at",
+  "and": "and",
   "Show more": "Show more",
   "Ascending": "Ascending",
   "Courses by": "Courses by",
@@ -62,6 +63,10 @@
     "create": "Create course",
     "search": "Search",
     "myfavs": "My favs"
+  },
+  "filter": {
+    "filtering price between": "Filtering price between",
+    "reset filters": "Reset Filters"
   },
   "footer": {
     "footer": "Footer"

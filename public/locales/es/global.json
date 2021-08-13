@@ -23,9 +23,10 @@
   "Created by": "Creado por",
   "Price": "Precio",
   "at": "el",
+  "me": "mí",
+  "and": "y",
   "Show more": "Mostrar más",
   "Ascending": "Ascendente",
-  "me": "mí",
   "Courses by": "Cursos de",
   "Passwords should match": "Las contraseñas deben coincidir",
   "Edit Profile": "Editar Perfil",
@@ -62,6 +63,10 @@
     "create": "Crear curso",
     "search": "Buscar",
     "myfavs": "Mis favoritos"
+  },
+  "filter": {
+    "filtering price between": "Filtrando precio entre",
+    "reset filters": "Riniciar Filtros"
   },
   "footer": {
     "footer": "Pie de página"
