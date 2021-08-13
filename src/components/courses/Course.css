@@ -31,6 +31,7 @@ a:hover {
   max-height: 22.5rem;
   max-width: 22.5rem;
   min-height: 22.5rem;
+  min-width: 22.5rem;
   background-size: cover;
 }
 .curseButton {
