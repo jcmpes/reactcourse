@@ -84,6 +84,9 @@
   "course": {
     "course intro": "Introduce your course",
     "save course": "Save Course",
-    "create lesson": "Create lesson"
+    "create lesson": "Create lesson",
+    "Go to course": "Go to course",
+    "has": "Has",
+    "favorites": "Favorites"
   }
 }

@@ -1,8 +1,19 @@
 import { Twitter, Facebook } from 'react-social-sharing';
 import { YoutubeEmbed } from '../../shared';
+import { useTranslation } from 'react-i18next';
 
-function CourseDetail({ title, video, description, content, image, lessons, slug, numFavs }) {
-  console.log(lessons)
+function CourseDetail({
+  title,
+  video,
+  description,
+  content,
+  image,
+  lessons,
+  slug,
+  numFavs,
+}) {
+  console.log(lessons);
+  const { t } = useTranslation(['global']);
   return (
     <div className="detail-container">
       <div className="detail-image">
@@ -17,7 +28,8 @@ function CourseDetail({ title, video, description, content, image, lessons, slug
         <Twitter link={window.location.href} />
       </div>
       <div>
-        Tiene {numFavs} favorito{numFavs === 1 ? '' : 's'}
+        {t('course.has')} {numFavs} {t('course.favorites')}
+        {/* {numFavs === 1 ? '' : 's'} */}
       </div>
     </div>
   );

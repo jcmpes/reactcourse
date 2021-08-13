@@ -84,6 +84,9 @@
   "course": {
     "course intro": "Presenta tu curso",
     "save course": "Guardar mi curso",
-    "create lesson": "Crear lección"
+    "create lesson": "Crear lección",
+    "Go to course": "Ir a curso",
+    "has": "Tiene",
+    "favorites": "Favoritos"
   }
 }
