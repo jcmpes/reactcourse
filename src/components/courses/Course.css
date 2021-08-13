@@ -26,6 +26,12 @@ a:hover {
 .img-rounded-wrapper img {
   float: left;
   border-radius: 20px;
+  /* width: 360px;
+  height: 360px; */
+  max-height: 22.5rem;
+  max-width: 22.5rem;
+  min-height: 22.5rem;
+  background-size: cover;
 }
 .curseButton {
   border: none;
@@ -82,5 +88,8 @@ a:hover {
   .img-rounded-wrapper img {
     width: 100%;
     float: none;
+    max-height: 100%;
+    max-width: 100%;
+    min-height: 100%;
   }
 }

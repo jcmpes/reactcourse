@@ -28,10 +28,10 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 <img
                   className="border border-dark"
                   src={course.image ? `${course.image}` : NoImg}
-                  min-height="120"
-                  max-height="auto"
-                  // height="320"
-                  // width="240"
+                  // min-height="100%"
+                  // max-height="auto"
+                  // // height="320"
+                  // // width="240"
                   alt={`${course.title}`}
                 />
               </div>
