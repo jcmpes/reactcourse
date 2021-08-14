@@ -16,6 +16,8 @@ import ItemsInCart from '../../courses/ItemsInCart';
 import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
+import userIcon from '../../../assets/svg/user.svg';
+import heartIcon from '../../../assets/svg/heart.svg';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
   const { t, i18n } = useTranslation(['global']);
   const switchLanguage = (ev) => {
-    // TODO: improve this function getting available languages dinamically
+    // TODO: improve this function in order to get available languages dinamically
     if (ev.target.innerHTML === 'es') {
       i18n.changeLanguage('es');
     } else if (ev.target.innerHTML === 'en') {
@@ -60,35 +62,49 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <div className={styles.categoriesBtn}>Categories</div>
 
           <div className={styles.navButtonsContainer}>
-            <Link to="/register" className={styles.registerBtn}>
-              <button>Register</button>
-            </Link>
-            <Link to="/login" className={styles.loginBtn}>
-              <button>Log in</button>
-            </Link>
+            {!isLogged ? (
+              <div className={styles.myAccountBtns}>
+                <div className={styles.registerLinkContainer}>
+                  <Link to="/register" className={styles.registerBtn}>
+                    <button>Register</button>
+                  </Link>
+                </div>
+                <div className={styles.loginLinkContainer}>
+                  <Link to="/login" className={styles.loginBtn}>
+                    <button>Log in</button>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.myAccountBtns}>
+                <div className={styles.userIcon}>
+                  <img src={userIcon} alt="user icon" />
+                </div>
+                <div className={styles.heartIcon}>
+                  <img src={heartIcon} alt="heart icon" />
+                </div>
+              </div>
+            )}
 
-            {/* TODO: If logged in => hide Login and Register links and display My account (user icon) */}
-            {/* <Link to="/my-account" className={styles.myAccountBtn}>
-                <button>User</button>
-              </Link> */}
-
-            <div className={styles.shoppingCartIcon}>
-              <ItemsInCart />
-              <img src={shoppingCartIcon} alt="shopping cart icon" />
-            </div>
-            <div className={styles.darkModeIcon}>
-              <img src={darkModeIcon} alt="" />
-            </div>
-            <div className={styles.translationIcon}>
-              <img src={translationIcon} alt="language selector icon" />
-            </div>
-            <div className={styles.hamburgerMenuIcon}>
-              <img
-                //
-                onClick={handleClick}
-                src={hamburgerMenuIcon}
-                alt="hamburger menu icon"
-              />
+            <div className={styles.navBarIcons}>
+              <div className={styles.shoppingCartIcon}>
+                <ItemsInCart />
+                <img src={shoppingCartIcon} alt="shopping cart icon" />
+              </div>
+              <div className={styles.darkModeIcon}>
+                <img src={darkModeIcon} alt="" />
+              </div>
+              <div className={styles.translationIcon}>
+                <img src={translationIcon} alt="language selector icon" />
+              </div>
+              <div className={styles.hamburgerMenuIcon}>
+                <img
+                  //
+                  onClick={handleClick}
+                  src={hamburgerMenuIcon}
+                  alt="hamburger menu icon"
+                />
+              </div>
             </div>
           </div>
         </div>
