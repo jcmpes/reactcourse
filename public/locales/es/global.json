@@ -57,12 +57,13 @@
   "header": {
     "home": "Inicio",
     "user": "Mi perfil",
-    "register": "Registrarse",
+    "register": "Registrarme",
     "log in": "Entrar",
     "log out": "Cerrar sesión",
     "create": "Crear curso",
     "search": "Buscar",
-    "myfavs": "Mis favoritos"
+    "myfavs": "Mis favoritos",
+    "categories": "Categorías"
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",

@@ -61,19 +61,19 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             </Link>
           </div>
 
-          <div className={styles.categoriesBtn}>Categories</div>
+          <div className={styles.categoriesBtn}>{t('header.categories')}</div>
 
           <div className={styles.navButtonsContainer}>
             {!isLogged ? (
               <div className={styles.myAccountBtns}>
                 <div className={styles.registerLinkContainer}>
                   <Link to="/register" className={styles.registerBtn}>
-                    <button>Register</button>
+                    <button>{t('header.register')}</button>
                   </Link>
                 </div>
                 <div className={styles.loginLinkContainer}>
                   <Link to="/login" className={styles.loginBtn}>
-                    <button>Log in</button>
+                    <button>{t('header.log in')}</button>
                   </Link>
                 </div>
               </div>

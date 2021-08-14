@@ -62,7 +62,8 @@
     "log out": "Log out",
     "create": "Create course",
     "search": "Search",
-    "myfavs": "My favs"
+    "myfavs": "My favs",
+    "categories": "Categories"
   },
   "filter": {
     "filtering price between": "Filtering price between",
