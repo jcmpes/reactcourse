@@ -13,7 +13,7 @@
   "log in": "Iniciar sesión",
   "log in button": "Acceder",
   "log in your account": "Acceder a tu cuenta",
-  "forgot option": "He olvidado mi contraseña",
+  "forgot my password": "He olvidado mi contraseña",
   "activation succeded": "Tu cuenta ha sido activada. Ahora puedes ",
   "activation failed": "Lo sentimos, no hemos podido activar tu cuenta. Por favor, inténtalo de nuevo.",
   "next": "Siguiente",
@@ -57,12 +57,13 @@
   "header": {
     "home": "Inicio",
     "user": "Mi perfil",
-    "register": "Registrarse",
+    "register": "Registrarme",
     "log in": "Entrar",
     "log out": "Cerrar sesión",
     "create": "Crear curso",
     "search": "Buscar",
-    "myfavs": "Mis favoritos"
+    "myfavs": "Mis favoritos",
+    "categories": "Categorías"
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",

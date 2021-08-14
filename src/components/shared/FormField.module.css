@@ -45,4 +45,6 @@ i:hover {
   top: 14px;
 }
 
-/* provisional */
+[type='checkbox'] {
+  margin-right: 10px;
+}
