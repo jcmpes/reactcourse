@@ -49,7 +49,24 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  /* border: solid 1px blue; */
+}
+
+.shoppingCartIcon {
+  position: relative;
   /* border: solid 1px red; */
+}
+
+.cartItemsNumber {
+  position: absolute;
+  top: -5px;
+  right: -3px;
+  padding: 0.1px 4px;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 10px;
+  color: white;
+  background-color: var(--color-french-rose);
 }
 
 .myAccountBtns {
