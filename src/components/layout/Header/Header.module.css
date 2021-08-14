@@ -135,6 +135,13 @@ hr {
     display: inherit;
     margin-right: auto;
     padding: 30px 0 0 35px;
+    font-weight: bold;
+    color: var(--color-mid-grey);
+  }
+
+  .categoriesBtn:hover {
+    color: var(--color-french-rose);
+    cursor: pointer;
   }
 
   .myAccountContainer {
@@ -200,10 +207,20 @@ hr {
     cursor: pointer;
   }
 
+  .registerBtn button {
+    color: var(--color-mid-grey);
+  }
+
+  .loginBtn button {
+    color: var(--color-whisper);
+    background-color: var(--color-mid-grey);
+  }
+
   .navButtonsContainer button:hover {
     background-color: var(--color-french-rose);
+    border: solid 1px var(--color-french-rose);
+
     color: white;
-    border: none;
   }
 
   .darkModeIcon img {

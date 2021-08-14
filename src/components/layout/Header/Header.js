@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next';
 import ToggleButton from '../../shared/ToggleButton';
 import styles from './Header.module.css';
 import logo from '../../../assets/img/logo.png';
+
+// icons:
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
