@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button } from '../../shared';
 import { logout } from '../../../api/auth';
-import { getIsLogged } from '../../../store/selectors';
+import { getCart, getIsLogged } from '../../../store/selectors';
 import { authLogout } from '../../../store/actions/logout';
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import ToggleButton from '../../shared/ToggleButton';
 import styles from './Header.module.css';
@@ -12,7 +12,6 @@ import logo from '../../../assets/img/logo.png';
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
-import ItemsInCart from '../../courses/ItemsInCart';
 import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
@@ -22,6 +21,7 @@ import heartIcon from '../../../assets/svg/heart.svg';
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const cart = useSelector(getCart);
 
   const handleLogoutClick = () => {
     logout(); // clear local storage
@@ -88,7 +88,9 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
             <div className={styles.navBarIcons}>
               <div className={styles.shoppingCartIcon}>
-                <ItemsInCart />
+                {cart.length > 0 && (
+                  <span className={styles.cartItemsNumber}>{cart.length}</span>
+                )}
                 <img src={shoppingCartIcon} alt="shopping cart icon" />
               </div>
               <div className={styles.darkModeIcon}>
