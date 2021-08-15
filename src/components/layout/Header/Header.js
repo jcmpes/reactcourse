@@ -10,7 +10,6 @@ import { connect, useDispatch, useSelector } from 'react-redux';
 import { getCart, getIsLogged } from '../../../store/selectors';
 
 // components:
-import { Button } from '../../shared';
 import ToggleButton from '../../shared/ToggleButton';
 import MobileMenu from '../../ModalElements/MobileMenu';
 import LanguageSelector from '../../ModalElements/LanguageSelector';

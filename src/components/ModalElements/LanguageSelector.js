@@ -20,7 +20,7 @@ const LanguageSelector = ({ closeModal }) => {
   return (
     <ModalWindow
       closeModal={closeModal}
-      title={t('language selector.choose language')}
+      title={t('language selector.languages')}
       children={
         <div className={styles.languageSelectorContainer}>
           <p type="text" onClick={switchLanguage}>

@@ -10,7 +10,7 @@ const MobileMenu = ({ closeModal }) => {
   return (
     <div>
       <ModalWindow
-        title={t('header.menu')}
+        title={t('mobile menu.menu')}
         closeModal={closeModal}
         children={
           <div className={styles.mobileMenu} onClick={closeModal}>
