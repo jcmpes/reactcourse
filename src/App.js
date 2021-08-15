@@ -24,6 +24,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import EditCoursePage from './components/courses/EditCoursePage/EditCoursePage';
 import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
 import EditUserPage from './components/users/EditUserPage';
+import Loading from './components/shared/Loading/Loading';
 
 function Translations() {
   return (
@@ -91,7 +92,7 @@ function Translations() {
 
 function App() {
   return (
-    <Suspense fallback="Loading translations...">
+    <Suspense fallback={<Loading isLoading={true} />}>
       <Translations />
       <ToastContainer position={toast.POSITION.BOTTOM_RIGHT} />
     </Suspense>

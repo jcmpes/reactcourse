@@ -72,16 +72,17 @@ const FilterForm = () => {
           onChange={handleChange}
         ></input>
         <br />
-
-        <Input
-          as="select"
-          label={t('Category')}
-          name="category"
-          value={filters.category}
-          onChange={handleChange}
-          searcher={true}
-          options={[{ name: 'Select category', _id: '000' }, ...categories]}
-        />
+        {categories && (
+          <Input
+            as="select"
+            label={t('Category')}
+            name="category"
+            value={filters.category}
+            onChange={handleChange}
+            searcher={true}
+            options={[{ name: 'Select category', _id: '000' }, ...categories]}
+          />
+        )}
         <br />
 
         <div>

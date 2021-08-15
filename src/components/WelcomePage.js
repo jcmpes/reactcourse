@@ -11,7 +11,10 @@ import CoursesList from './courses/CoursesList';
 import FiltersForm from './FiltersForm/FiltersForm';
 import Scroll from './shared/Scroll';
 // import styles from './WelcomePage.module.css';
-import { setFilters } from '../store/actions/load-courses';
+import { setFilters, loadCoursesAction } from '../store/actions/load-courses';
+import Loading from './shared/Loading/Loading';
+import ErrorMessage from './shared/ErrorMessage';
+import Course from './courses/Course';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -57,16 +60,27 @@ function WelcomePage({ auth, onLogout, ...props }) {
       filters.sort = -1;
     }
     dispatch(setFilters(filters));
+    dispatch(
+      loadCoursesAction(
+        getCourses,
+        setCourses,
+        filters,
+        setAllResultsListed,
+        filters.limit,
+      ),
+    );
     getCourses(filters).then((results) => {
-      if (results.length < filters.limit) setAllResultsListed(true);
+      if (results && results.length < filters.limit) setAllResultsListed(true);
       setCourses(results);
     });
+    // getCourses(filters).then((results) => {
+    //   if (results.length < filters.limit) setAllResultsListed(true);
+    //   setCourses(results);
+    // });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
-
-  return error || loading ? (
-    'Loading...'
-  ) : (
+  if (error) return <ErrorMessage error={error} resetError={null} />;
+  return (
     <Layout {...props}>
       <Scroll showBellow={250} />
       <div
@@ -96,17 +110,43 @@ function WelcomePage({ auth, onLogout, ...props }) {
         {/*className={styles.searchBarForm}*/}
         <FiltersForm />
         <div>
-          <CoursesList courses={courses} />
-
-          <br />
-          {!allResultsListed ? (
+          {loading ? (
             <>
-              <div>{courses ? courses.length : '0'} results</div>
+              <Course
+                course={{
+                  title: 'La prisa mata',
+                  description: 'Relajado todo es mejor',
+                  user: { username: 'Alguien que sabe' },
+                  category: { name: 'Cualquiera será buena' },
+                  createdAt: Date.now(),
+                  price: 0,
 
-              <button onClick={gimmeMore}>{t('Show more')}</button>
+                  image: 'https://i.postimg.cc/wTFWZ0BG/sandwatch.png',
+                }}
+                key={'a'}
+                faved={false}
+                purchased={false}
+                inCart={null}
+              />
+              <Loading isLoading={true} />
             </>
           ) : (
-            "There's no more results"
+            <>
+              <CoursesList courses={courses} />
+              <br />
+              {!allResultsListed ? (
+                <>
+                  <div>{courses ? courses.length : '0'} results</div>
+
+                  <button onClick={gimmeMore}>{t('Show more')}</button>
+                </>
+              ) : (
+                <>
+                  <div>{courses ? courses.length : '0'} results</div>
+                  <div>There's no more results</div>
+                </>
+              )}
+            </>
           )}
         </div>
       </div>
