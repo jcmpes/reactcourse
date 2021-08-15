@@ -14,6 +14,7 @@ import Scroll from './shared/Scroll';
 import { setFilters, loadCoursesAction } from '../store/actions/load-courses';
 import Loading from './shared/Loading/Loading';
 import ErrorMessage from './shared/ErrorMessage';
+import Course from './courses/Course';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -110,7 +111,25 @@ function WelcomePage({ auth, onLogout, ...props }) {
         <FiltersForm />
         <div>
           {loading ? (
-            <Loading isLoading={true} />
+            <>
+              <Course
+                course={{
+                  title: 'La prisa mata',
+                  description: 'Relajado todo es mejor',
+                  user: { username: 'Alguien que sabe' },
+                  category: { name: 'Cualquiera será buena' },
+                  createdAt: Date.now(),
+                  price: 0,
+
+                  image: 'https://i.postimg.cc/wTFWZ0BG/sandwatch.png',
+                }}
+                key={'a'}
+                faved={false}
+                purchased={false}
+                inCart={null}
+              />
+              <Loading isLoading={true} />
+            </>
           ) : (
             <>
               <CoursesList courses={courses} />
