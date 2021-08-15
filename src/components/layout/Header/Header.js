@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button } from '../../shared';
 import { logout } from '../../../api/auth';
-import { getCart, getIsLogged } from '../../../store/selectors';
+import { useTranslation } from 'react-i18next';
+import logo from '../../../assets/img/logo.png';
+
+// redux:
 import { authLogout } from '../../../store/actions/logout';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import { getCart, getIsLogged } from '../../../store/selectors';
+
+// components:
+import { Button } from '../../shared';
 import ToggleButton from '../../shared/ToggleButton';
-import styles from './Header.module.css';
-import logo from '../../../assets/img/logo.png';
+import MobileMenu from '../../ModalElements/MobileMenu';
 
 // icons:
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
@@ -19,6 +23,9 @@ import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
+
+// styles:
+import styles from './Header.module.css';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const dispatch = useDispatch();
@@ -43,9 +50,12 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
   const [temporaryMenu, setTemporaryMenu] = useState(false);
 
-  function handleClick() {
-    setTemporaryMenu(!temporaryMenu);
+  function handleClickMenu() {
+    // setTemporaryMenu(!temporaryMenu);
+    setMenuOpen(true);
   }
+
+  const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -104,7 +114,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
               <div className={styles.hamburgerMenuIcon}>
                 <img
                   //
-                  onClick={handleClick}
+                  onClick={handleClickMenu}
                   src={hamburgerMenuIcon}
                   alt="hamburger menu icon"
                 />
@@ -120,6 +130,18 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </span>
         </div>
 
+        {/* MODAL hamburger menu */}
+        {/* /// lo pongo temporalmente en negativo ! para crear los estilos */}
+        {isMenuOpen && (
+          <MobileMenu
+            isMenuOpen={isMenuOpen}
+            closeMenu={() => setMenuOpen(false)}
+            title={t('header.menu')}
+            onClick={handleClickMenu}
+          />
+        )}
+
+        {/* temporary menu */}
         {temporaryMenu && !isLogged && (
           <Link to="/register">
             <Button>{t('header.register')}</Button>
