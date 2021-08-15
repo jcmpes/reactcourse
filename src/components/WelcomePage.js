@@ -16,6 +16,7 @@ import Loading from './shared/Loading/Loading';
 import ErrorMessage from './shared/ErrorMessage';
 import Course from './courses/Course';
 import loader from '../assets/img/loading-mini.gif';
+import { debounce } from '../utils/debounce';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -27,6 +28,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const [allResultsListed, setAllResultsListed] = React.useState(false);
   const [sort, setSort] = React.useState(-1);
   const [moreLoading, setMoreLoading] = React.useState(false);
+
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
     filters.skip = 0;
@@ -53,11 +55,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
 
   const [courses, setCourses] = React.useState([]);
 
-  React.useEffect(() => {
-    setAllResultsListed(false);
-  }, [filters]);
-
-  React.useEffect(() => {
+  const getCoursesDebounce = () => {
     if (firstLoad) {
       setFirstLoad(false);
       filters.skip = 0;
@@ -78,10 +76,22 @@ function WelcomePage({ auth, onLogout, ...props }) {
         filters.limit,
       ),
     );
-    getCourses(filters).then((results) => {
-      if (results && results.length < filters.limit) setAllResultsListed(true);
-      setCourses(results);
-    });
+  };
+
+  const debouncing = React.useCallback(debounce(getCoursesDebounce, 300), [
+    debounce,
+  ]);
+
+  React.useEffect(() => {
+    setAllResultsListed(false);
+  }, [filters]);
+
+  React.useEffect(() => {
+    debouncing();
+    // getCourses(filters).then((results) => {
+    //   if (results && results.length < filters.limit) setAllResultsListed(true);
+    //   setCourses(results);
+    // });
     // getCourses(filters).then((results) => {
     //   if (results.length < filters.limit) setAllResultsListed(true);
     //   setCourses(results);
