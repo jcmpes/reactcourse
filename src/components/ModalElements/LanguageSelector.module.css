@@ -1,0 +1,4 @@
+.languageSelectorContainer p:hover {
+  cursor: pointer;
+  color: var(--color-french-rose);
+}
