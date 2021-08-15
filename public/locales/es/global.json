@@ -63,7 +63,8 @@
     "create": "Crear curso",
     "search": "Buscar",
     "myfavs": "Mis favoritos",
-    "categories": "Categorías"
+    "categories": "Categorías",
+    "menu": "Menú"
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",
@@ -89,5 +90,14 @@
     "Go to course": "Ir a curso",
     "has": "Tiene",
     "favorites": "Favoritos"
+  },
+  "mobile menu": {
+    "log in": "Iniciar sesión",
+    "register": "Registrarme",
+    "courses": "Cursos",
+    "create course": "Crear curso",
+    "my account": "Mi cuenta",
+    "my favourites": "Mis favoritos",
+    "categories": "Categorías"
   }
 }
