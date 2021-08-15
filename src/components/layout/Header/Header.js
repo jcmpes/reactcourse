@@ -131,7 +131,6 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         </div>
 
         {/* MODAL hamburger menu */}
-        {/* /// lo pongo temporalmente en negativo ! para crear los estilos */}
         {isMenuOpen && (
           <MobileMenu
             isMenuOpen={isMenuOpen}

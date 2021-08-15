@@ -10,7 +10,6 @@ const MobileMenu = ({ title, isMenuOpen, closeMenu }) => {
   return (
     <div>
       <ModalWindow
-        ///
         title={title}
         isMenuOpen={isMenuOpen}
         closeMenu={closeMenu}
@@ -39,9 +38,7 @@ const MobileMenu = ({ title, isMenuOpen, closeMenu }) => {
             </Link>
           </div>
         }
-      >
-        {/* faltan enlaces para: /user, /login, /register, /myfavs */}
-      </ModalWindow>
+      ></ModalWindow>
     </div>
   );
 };

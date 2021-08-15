@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './ModalWindow.module.css';
 import closeIcon from '../../assets/svg/close.svg';
 
-// const ModalWindow = ({ title, isMenuOpen, closeMenu }) => {
 const ModalWindow = ({ title, isMenuOpen, closeMenu, children }) => {
   return (
     <div className={styles.modalContainer}>

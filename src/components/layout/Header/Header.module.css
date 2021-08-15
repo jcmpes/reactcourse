@@ -7,20 +7,16 @@
 
 .navBar {
   margin: 10px 15px 10px 15px;
-  /* background-color: antiquewhite; */
-  /* background-color: black; */
   display: flex;
   justify-content: space-between;
 }
 
 .logoContainer {
-  /* background-color: yellow; */
   width: 185px;
 }
 
 .logo {
   width: 80%;
-  /* background-color: paleturquoise; */
   display: flex;
   align-self: flex-start;
 }
@@ -33,13 +29,11 @@
   display: flex;
   align-items: center;
   width: 90px;
-  /* background-color: yellowgreen; */
 }
 
 .navButtonsContainer img {
   width: 25px;
   cursor: pointer;
-  /* background-color: paleturquoise; */
 }
 
 .navButtonsContainer button {
@@ -50,12 +44,10 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  /* border: solid 1px blue; */
 }
 
 .shoppingCartIcon {
   position: relative;
-  /* border: solid 1px red; */
 }
 
 .cartItemsNumber {
@@ -83,7 +75,6 @@
   height: 20px;
   width: 100%;
   margin-bottom: 10px;
-  /* background-color: lightcoral; */
 }
 
 .searchBarForm {
@@ -120,7 +111,6 @@ hr {
 
   .navBar {
     margin-bottom: 0;
-    /* border: solid 1px salmon; */
   }
 
   .navBar button {
@@ -169,7 +159,6 @@ hr {
     justify-content: space-between;
     min-width: 350px;
     height: 40px;
-    /* background-color: lightgreen; */
   }
 
   .navButtonsContainer div {
@@ -181,7 +170,6 @@ hr {
     display: flex;
     justify-content: flex-end;
     width: 230px;
-    /* border: solid 2px blue; */
   }
 
   .myAccountBtns div:first-child {
@@ -194,11 +182,10 @@ hr {
   }
 
   .navBarIcons div:nth-child(2) {
-    /* background-color: blue; */
     margin: 0 15px;
   }
 
-  /* botones login y register */
+  /*  login and register buttons */
   .navButtonsContainer button {
     display: inherit;
     border: solid 1px var(--color-mid-grey);
@@ -220,7 +207,6 @@ hr {
   .navButtonsContainer button:hover {
     background-color: var(--color-french-rose);
     border: solid 1px var(--color-french-rose);
-
     color: white;
   }
 
