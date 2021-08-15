@@ -15,6 +15,7 @@ import { setFilters, loadCoursesAction } from '../store/actions/load-courses';
 import Loading from './shared/Loading/Loading';
 import ErrorMessage from './shared/ErrorMessage';
 import Course from './courses/Course';
+import loader from '../assets/img/loading-mini.gif';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -25,6 +26,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const [firstLoad, setFirstLoad] = React.useState(true);
   const [allResultsListed, setAllResultsListed] = React.useState(false);
   const [sort, setSort] = React.useState(-1);
+  const [moreLoading, setMoreLoading] = React.useState(false);
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
     filters.skip = 0;
@@ -35,9 +37,16 @@ function WelcomePage({ auth, onLogout, ...props }) {
     filters.skip = filters.skip + 10;
     dispatch(setFilters(filters));
     const coursesAux = courses;
-    const newCourses = await getCourses(filters);
-    if (newCourses.length < filters.limit) setAllResultsListed(true);
-    setCourses(coursesAux.concat(newCourses));
+    setMoreLoading(true);
+    try {
+      const newCourses = await getCourses(filters);
+      if (newCourses.length < filters.limit) setAllResultsListed(true);
+      setCourses(coursesAux.concat(newCourses));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setMoreLoading(false);
+    }
   };
 
   const { username } = auth;
@@ -136,14 +145,22 @@ function WelcomePage({ auth, onLogout, ...props }) {
               <br />
               {!allResultsListed ? (
                 <>
-                  <div>{courses ? courses.length : '0'} results</div>
+                  <div>
+                    {courses ? courses.length : '0'} {t('results')}
+                  </div>
 
-                  <button onClick={gimmeMore}>{t('Show more')}</button>
+                  {!moreLoading ? (
+                    <button onClick={gimmeMore}>{t('Show more')}</button>
+                  ) : (
+                    <img width="20px" src={loader} alt="loading" />
+                  )}
                 </>
               ) : (
                 <>
-                  <div>{courses ? courses.length : '0'} results</div>
-                  <div>There's no more results</div>
+                  <div>
+                    {courses ? courses.length : '0'} {t('results')}
+                  </div>
+                  <div>{t("There's no more results")}</div>
                 </>
               )}
             </>

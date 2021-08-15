@@ -28,6 +28,8 @@
   "Show more": "Mostrar más",
   "Ascending": "Ascendente",
   "Courses by": "Cursos de",
+  "results": "resultados",
+  "There's no more results": "No hay más resultados",
   "Passwords should match": "Las contraseñas deben coincidir",
   "Edit Profile": "Editar Perfil",
   "Profile updated": "Perfil actualizado",
@@ -67,7 +69,7 @@
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",
-    "reset filters": "Riniciar Filtros"
+    "reset filters": "Reiniciar Filtros"
   },
   "footer": {
     "footer": "Pie de página"
