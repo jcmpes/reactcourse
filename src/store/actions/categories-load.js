@@ -28,7 +28,7 @@ export const categoriesLoadFailure = (error) => {
 };
 
 export const categoriesLoadAction = () => {
-  return async function(dispatch, getState) {
+  return async function (dispatch, getState) {
     dispatch(categoriesLoadRequest());
     try {
       const categories = await getCategoriesApiCall();
@@ -37,5 +37,5 @@ export const categoriesLoadAction = () => {
     } catch (err) {
       dispatch(categoriesLoadFailure(err));
     }
-  }
-}
+  };
+};
