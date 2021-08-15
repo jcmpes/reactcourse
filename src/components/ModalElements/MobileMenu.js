@@ -4,36 +4,35 @@ import { Link } from 'react-router-dom';
 import ModalWindow from '../shared/ModalWindow';
 import styles from './MobileMenu.module.css';
 
-const MobileMenu = ({ title, isMenuOpen, closeMenu }) => {
+const MobileMenu = ({ closeModal }) => {
   const { t } = useTranslation(['global']);
 
   return (
     <div>
       <ModalWindow
-        title={title}
-        isMenuOpen={isMenuOpen}
-        closeMenu={closeMenu}
+        title={t('header.menu')}
+        closeModal={closeModal}
         children={
-          <div className={styles.mobileMenu} onClick={closeMenu}>
-            <Link className={styles.link} onClick={closeMenu} to="/login">
+          <div className={styles.mobileMenu} onClick={closeModal}>
+            <Link className={styles.link} onClick={closeModal} to="/login">
               {t('mobile menu.log in')}
             </Link>
-            <Link className={styles.link} onClick={closeMenu} to="/register">
+            <Link className={styles.link} onClick={closeModal} to="/register">
               {t('mobile menu.register')}
             </Link>
-            <Link className={styles.link} onClick={closeMenu} to="/courses">
+            <Link className={styles.link} onClick={closeModal} to="/courses">
               {t('mobile menu.courses')}
             </Link>
-            <Link className={styles.link} onClick={closeMenu} to="/create">
+            <Link className={styles.link} onClick={closeModal} to="/create">
               {t('mobile menu.create course')}
             </Link>
-            <Link className={styles.link} onClick={closeMenu} to="/user">
+            <Link className={styles.link} onClick={closeModal} to="/user">
               {t('mobile menu.my account')}
             </Link>
-            <Link className={styles.link} onClick={closeMenu} to="/myfavs">
+            <Link className={styles.link} onClick={closeModal} to="/myfavs">
               {t('mobile menu.my favourites')}
             </Link>
-            <Link className={styles.link} onClick={closeMenu} to="/categories">
+            <Link className={styles.link} onClick={closeModal} to="/categories">
               {t('mobile menu.categories')}
             </Link>
           </div>

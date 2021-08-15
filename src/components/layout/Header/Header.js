@@ -129,14 +129,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         </div>
 
         {/* MODAL hamburger menu */}
-        {isMenuOpen && (
-          <MobileMenu
-            isMenuOpen={isMenuOpen}
-            closeMenu={() => setMenuOpen(false)}
-            title={t('header.menu')}
-            onClick={handleClickMenu}
-          />
-        )}
+        {isMenuOpen && <MobileMenu closeModal={() => setMenuOpen(false)} />}
 
         {/* MODAL language selector */}
         {isLanguageOpen && (
