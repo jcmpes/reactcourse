@@ -1,0 +1,28 @@
+.modalContainer {
+  background-color: var(--color-whisper);
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: -10px;
+}
+
+.closeBtnContainer {
+  margin-top: 15px;
+  height: 40px;
+  text-align: right;
+}
+
+.closeBtnContainer img {
+  height: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.modalTitle {
+  font-weight: bolder;
+  font-size: 1rem;
+  line-height: 4rem;
+  text-transform: uppercase;
+}
+
+/* vista escritorio */
