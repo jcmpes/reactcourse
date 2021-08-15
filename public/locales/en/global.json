@@ -91,5 +91,18 @@
     "Go to course": "Go to course",
     "has": "Has",
     "favorites": "Favorites"
+  },
+  "mobile menu": {
+    "menu": "Menu",
+    "log in": "Log in",
+    "register": "Register",
+    "courses": "Courses",
+    "create course": "Create course",
+    "my account": "My account",
+    "my favourites": "My favourites",
+    "categories": "Categories"
+  },
+  "language selector": {
+    "languages": "Languages"
   }
 }

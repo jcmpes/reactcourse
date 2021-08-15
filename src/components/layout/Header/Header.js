@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button } from '../../shared';
 import { logout } from '../../../api/auth';
-import { getCart, getIsLogged } from '../../../store/selectors';
+import { useTranslation } from 'react-i18next';
+import logo from '../../../assets/img/logo.png';
+
+// redux:
 import { authLogout } from '../../../store/actions/logout';
 import { connect, useDispatch, useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
+import { getCart, getIsLogged } from '../../../store/selectors';
+
+// components:
 import ToggleButton from '../../shared/ToggleButton';
-import styles from './Header.module.css';
-import logo from '../../../assets/img/logo.png';
+import MobileMenu from '../../ModalElements/MobileMenu';
+import LanguageSelector from '../../ModalElements/LanguageSelector';
 
 // icons:
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
@@ -20,10 +24,16 @@ import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
 
+// styles:
+import styles from './Header.module.css';
+
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isLanguageOpen, setLanguageOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector(getCart);
+  const { t } = useTranslation(['global']);
 
   const handleLogoutClick = () => {
     logout(); // clear local storage
@@ -31,20 +41,14 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     history.push('/');
   };
 
-  const { t, i18n } = useTranslation(['global']);
-  const switchLanguage = (ev) => {
-    // TODO: improve this function in order to get available languages dinamically
-    if (ev.target.innerHTML === 'es') {
-      i18n.changeLanguage('es');
-    } else if (ev.target.innerHTML === 'en') {
-      i18n.changeLanguage('en');
-    }
-  };
-
   const [temporaryMenu, setTemporaryMenu] = useState(false);
 
-  function handleClick() {
-    setTemporaryMenu(!temporaryMenu);
+  function handleClickMenu() {
+    setMenuOpen(true);
+  }
+
+  function handleClickLanguage() {
+    setLanguageOpen(true);
   }
 
   return (
@@ -99,12 +103,15 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
                 <img src={darkModeIcon} alt="" />
               </div>
               <div className={styles.translationIcon}>
-                <img src={translationIcon} alt="language selector icon" />
+                <img
+                  onClick={handleClickLanguage}
+                  src={translationIcon}
+                  alt="language selector icon"
+                />
               </div>
               <div className={styles.hamburgerMenuIcon}>
                 <img
-                  //
-                  onClick={handleClick}
+                  onClick={handleClickMenu}
                   src={hamburgerMenuIcon}
                   alt="hamburger menu icon"
                 />
@@ -120,45 +127,14 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </span>
         </div>
 
-        {temporaryMenu && !isLogged && (
-          <Link to="/register">
-            <Button>{t('header.register')}</Button>
-          </Link>
-        )}
-        {isLogged
-          ? temporaryMenu && (
-              <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
-            )
-          : temporaryMenu && (
-              <Link to="/login">
-                <Button>{t('header.log in')}</Button>
-              </Link>
-            )}
-        {temporaryMenu && (
-          <>
-            <Button type="text" onClick={switchLanguage}>
-              en
-            </Button>
-            <Button type="text" onClick={switchLanguage}>
-              es
-            </Button>
-          </>
-        )}
-        <br />
-        {temporaryMenu && isLogged && (
-          <div>
-            <Link to="/create">
-              <Button>{t('header.create')}</Button>
-            </Link>
+        {/* MODAL hamburger menu */}
+        {isMenuOpen && <MobileMenu closeModal={() => setMenuOpen(false)} />}
 
-            <Link to="/user">
-              <Button>{t('header.user')}</Button>
-            </Link>
-            <Link to="/myfavs">
-              <Button>{t('header.myfavs')}</Button>
-            </Link>
-          </div>
+        {/* MODAL language selector */}
+        {isLanguageOpen && (
+          <LanguageSelector closeModal={() => setLanguageOpen(false)} />
         )}
+
         {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
       </header>
       <hr className={styles.hr} />
