@@ -145,7 +145,9 @@ function WelcomePage({ auth, onLogout, ...props }) {
               <br />
               {!allResultsListed ? (
                 <>
-                  <div>{courses ? courses.length : '0'} results</div>
+                  <div>
+                    {courses ? courses.length : '0'} {t('results')}
+                  </div>
 
                   {!moreLoading ? (
                     <button onClick={gimmeMore}>{t('Show more')}</button>
@@ -155,8 +157,10 @@ function WelcomePage({ auth, onLogout, ...props }) {
                 </>
               ) : (
                 <>
-                  <div>{courses ? courses.length : '0'} results</div>
-                  <div>There's no more results</div>
+                  <div>
+                    {courses ? courses.length : '0'} {t('results')}
+                  </div>
+                  <div>{t("There's no more results")}</div>
                 </>
               )}
             </>

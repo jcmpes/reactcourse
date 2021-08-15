@@ -33,7 +33,7 @@ function LoginForm({ passwordShown, onSubmit }) {
           <FormField
             type="text"
             name="email"
-            placeholder={t('username')}
+            placeholder={t('email')}
             value={credentials.email}
             icon={userIcon}
             onChange={handleChange}
