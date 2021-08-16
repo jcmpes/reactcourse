@@ -43,7 +43,7 @@ function EditCoursePage() {
   }
 
   return (
-    <div className="new-course-page">
+    <div className="edit-course-page">
       <Layout>
         <h1>Edit course</h1>
         {courseDetails && categories &&

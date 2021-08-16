@@ -1,10 +1,14 @@
 import React from 'react';
+import client from '../../../api/client'
 import { useTranslation } from "react-i18next";
+import { useHistory } from 'react-router-dom';
 import { FormField, Button, Input } from "../../../components/shared";
 import FileUpload from '../../shared/FileUpload';
+require('dotenv').config()
 
 function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories }) {
   const { t } = useTranslation(['global']);
+  const history = useHistory();
   const { title, description, category, video, image, content } = courseDetails
   const [featuredImage, setFeaturedImage] = React.useState(null)
   const [newCourseDetails, setNewCourseDetails] = React.useState({
@@ -16,6 +20,16 @@ function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories 
     'image': image ,
     'preview': { file: image }
   });
+
+  const deleteCourse = () => {
+    client.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/courses/${courseDetails._id}`)
+      .then(() => {
+        history.push('/')
+      })
+      .catch(err => {
+        console.log('Error deleting course: ', err)
+      })
+  }
 
   const handleChange = (ev) => {
     setNewCourseDetails((oldCredentials) => ({
@@ -91,6 +105,9 @@ function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories 
             type="submit"
           >
             {t('submit')}
+          </Button>
+          <Button onClick={deleteCourse}>
+            Delete 🗑
           </Button>
         </form>
       </div>
