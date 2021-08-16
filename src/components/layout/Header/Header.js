@@ -21,6 +21,8 @@ import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
 import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
+import darkModeIcon2 from '../../../assets/img/dark-mode.png';
+
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
 
@@ -102,7 +104,11 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
                 <img src={shoppingCartIcon} alt="shopping cart icon" />
               </div>
               <div className={styles.darkModeIcon}>
-                <img src={darkModeIcon} alt="" />
+                <img
+                  src={darkMode ? darkModeIcon2 : darkModeIcon}
+                  alt=""
+                  onClick={toggleDarkMode}
+                />
               </div>
               <div className={styles.translationIcon}>
                 <img
@@ -127,6 +133,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <span className={styles.loupeIconSpan}>
             <img src={loupeIcon} alt="" />
           </span>
+          <input className={styles.searchBarForm} />
         </div>
 
         {/* MODAL hamburger menu */}
