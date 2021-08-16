@@ -55,7 +55,29 @@ function WelcomePage({ auth, onLogout, ...props }) {
 
   const [courses, setCourses] = React.useState([]);
 
-  const getCoursesDebounce = () => {
+  const getCoursesDebounce = (filter) => {
+    dispatch(
+      loadCoursesAction(
+        getCourses,
+        setCourses,
+        filter,
+        setAllResultsListed,
+        filter.limit,
+      ),
+    );
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getCoursesCall = React.useCallback(
+    debounce(getCoursesDebounce, 300),
+    [],
+  );
+
+  React.useEffect(() => {
+    setAllResultsListed(false);
+  }, [filters]);
+
+  React.useEffect(() => {
     if (firstLoad) {
       setFirstLoad(false);
       filters.skip = 0;
@@ -67,35 +89,8 @@ function WelcomePage({ auth, onLogout, ...props }) {
       filters.sort = -1;
     }
     dispatch(setFilters(filters));
-    dispatch(
-      loadCoursesAction(
-        getCourses,
-        setCourses,
-        filters,
-        setAllResultsListed,
-        filters.limit,
-      ),
-    );
-  };
+    getCoursesCall(filters);
 
-  const debouncing = React.useCallback(debounce(getCoursesDebounce, 300), [
-    debounce,
-  ]);
-
-  React.useEffect(() => {
-    setAllResultsListed(false);
-  }, [filters]);
-
-  React.useEffect(() => {
-    debouncing();
-    // getCourses(filters).then((results) => {
-    //   if (results && results.length < filters.limit) setAllResultsListed(true);
-    //   setCourses(results);
-    // });
-    // getCourses(filters).then((results) => {
-    //   if (results.length < filters.limit) setAllResultsListed(true);
-    //   setCourses(results);
-    // });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
   if (error) return <ErrorMessage error={error} resetError={null} />;
