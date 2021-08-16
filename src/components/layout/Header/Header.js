@@ -35,12 +35,14 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
 
+  // eslint-disable-next-line no-unused-vars
   const handleLogoutClick = () => {
     logout(); // clear local storage
     dispatch(authLogout()); // change isLogged state
     history.push('/');
   };
 
+  // eslint-disable-next-line no-unused-vars
   const [temporaryMenu, setTemporaryMenu] = useState(false);
 
   function handleClickMenu() {
