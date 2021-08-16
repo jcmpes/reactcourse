@@ -28,64 +28,32 @@ export const getCourses = (filters) => {
   if (sort) {
     query += `&sort=${sort}`;
   }
-  console.log('QUERY', query);
-  return (
-    client
-      .get(`/api/v1/courses${query}`)
-      //  /api/v1/courses?title=&category=teili
-      // Temporary fix to populate all courses with username
-      // if the course author is not in the DB anymore.
-      .then((data) => {
-        data.map((course) => {
-          if (!course.user) {
-            course.user = { username: 'Anonymous user' };
-            return course;
-          }
-          return course;
-        });
-        return data;
-      })
-      .catch((error) => console.log('Error', error))
-  );
+  return client.get(`/api/v1/courses${query}`);
 };
 
 // Get course detail
 export const getCourse = (courseSlug) => {
-  return client
-    .get(`/api/v1/courses/${courseSlug}`)
-    .then((data) => data)
-    .catch((err) => console.log('Error getting course: ', err));
+  return client.get(`/api/v1/courses/${courseSlug}`);
 };
 
 // Post a new course
 export const postCourse = async (courseDetails) => {
-  return client
-    .post('/api/v1/courses/', courseDetails)
-    .then((data) => data)
-    .catch((err) => err);
+  return client.post('/api/v1/courses/', courseDetails);
 };
 
 // Edit an existing course
 export const editCourse = async (courseDetails) => {
-  return client
-    .put('/api/v1/courses/', courseDetails)
-    .then((data) => data)
-    .catch((err) => err);
+  return client.put('/api/v1/courses/', courseDetails);
 };
 
 // Get categories
 export const getCategoriesApiCall = () => {
-  return client
-    .get('/api/v1/categories')
-    .then((data) => data)
-    .catch((err) => console.log('Error getting categories: ', err));
+  return client.get('/api/v1/categories');
 };
 
 // Filter coures
 export const filterCourses = (text) => {
-  return client
-    .get(`/api/v1/courses?title=${text}`)
-    .then((data) => console.log(data));
+  return client.get(`/api/v1/courses?title=${text}`);
 };
 
 //Mark as fav

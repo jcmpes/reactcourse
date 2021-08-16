@@ -13,7 +13,7 @@
   "log in": "Iniciar sesión",
   "log in button": "Acceder",
   "log in your account": "Acceder a tu cuenta",
-  "forgot option": "He olvidado mi contraseña",
+  "forgot my password": "He olvidado mi contraseña",
   "activation succeded": "Tu cuenta ha sido activada. Ahora puedes ",
   "activation failed": "Lo sentimos, no hemos podido activar tu cuenta. Por favor, inténtalo de nuevo.",
   "next": "Siguiente",
@@ -28,6 +28,8 @@
   "Show more": "Mostrar más",
   "Ascending": "Ascendente",
   "Courses by": "Cursos de",
+  "results": "resultados",
+  "There's no more results": "No hay más resultados",
   "Passwords should match": "Las contraseñas deben coincidir",
   "Edit Profile": "Editar Perfil",
   "Profile updated": "Perfil actualizado",
@@ -57,16 +59,17 @@
   "header": {
     "home": "Inicio",
     "user": "Mi perfil",
-    "register": "Registrarse",
+    "register": "Registrarme",
     "log in": "Entrar",
     "log out": "Cerrar sesión",
     "create": "Crear curso",
     "search": "Buscar",
-    "myfavs": "Mis favoritos"
+    "myfavs": "Mis favoritos",
+    "categories": "Categorías"
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",
-    "reset filters": "Riniciar Filtros"
+    "reset filters": "Reiniciar Filtros"
   },
   "footer": {
     "footer": "Pie de página"
@@ -88,5 +91,18 @@
     "Go to course": "Ir a curso",
     "has": "Tiene",
     "favorites": "Favoritos"
+  },
+  "mobile menu": {
+    "menu": "Menú",
+    "log in": "Iniciar sesión",
+    "register": "Registrarme",
+    "courses": "Cursos",
+    "create course": "Crear curso",
+    "my account": "Mi cuenta",
+    "my favourites": "Mis favoritos",
+    "categories": "Categorías"
+  },
+  "language selector": {
+    "languages": "Idiomas"
   }
 }

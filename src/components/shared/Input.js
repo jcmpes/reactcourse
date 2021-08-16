@@ -14,7 +14,6 @@ function Input({ as: Component, label, options, searcher, ...props }) {
             ))
           : null}
       </Component>
-      ;
     </label>
   );
 }

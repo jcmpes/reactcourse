@@ -27,7 +27,6 @@ export const loadCoursesFailure = (error) => {
 };
 
 export const setFilters = (filters) => {
-  console.log(filters);
   return {
     type: SET_FILTERS_SUCCESS,
     payload: filters,
@@ -35,16 +34,23 @@ export const setFilters = (filters) => {
 };
 
 // Load courses middleware
-export const loadCoursesAction = (getCourses, setCourses, filters) => {
+export const loadCoursesAction = (
+  getCourses,
+  setCourses,
+  filters,
+  setAllResultsListed,
+  limit,
+) => {
   return async function (dispatch, getState) {
     dispatch(loadCoursesRequest());
     try {
-      getCourses(filters)
-        .then(setCourses)
-        .then(() => {
-          dispatch(loadCoursesSuccess());
-        });
+      getCourses(filters).then((results) => {
+        setCourses(results);
+        if (results && results.length < limit) setAllResultsListed(true);
+        dispatch(loadCoursesSuccess());
+      });
     } catch (error) {
+      console.log('llega');
       dispatch(loadCoursesFailure(error));
     }
   };

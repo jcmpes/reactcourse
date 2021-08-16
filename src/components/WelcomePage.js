@@ -11,7 +11,12 @@ import CoursesList from './courses/CoursesList';
 import FiltersForm from './FiltersForm/FiltersForm';
 import Scroll from './shared/Scroll';
 // import styles from './WelcomePage.module.css';
-import { setFilters } from '../store/actions/load-courses';
+import { setFilters, loadCoursesAction } from '../store/actions/load-courses';
+import Loading from './shared/Loading/Loading';
+import ErrorMessage from './shared/ErrorMessage';
+import Course from './courses/Course';
+import loader from '../assets/img/loading-mini.gif';
+import { debounce } from '../utils/debounce';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -22,6 +27,8 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const [firstLoad, setFirstLoad] = React.useState(true);
   const [allResultsListed, setAllResultsListed] = React.useState(false);
   const [sort, setSort] = React.useState(-1);
+  const [moreLoading, setMoreLoading] = React.useState(false);
+
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
     filters.skip = 0;
@@ -32,14 +39,39 @@ function WelcomePage({ auth, onLogout, ...props }) {
     filters.skip = filters.skip + 10;
     dispatch(setFilters(filters));
     const coursesAux = courses;
-    const newCourses = await getCourses(filters);
-    if (newCourses.length < filters.limit) setAllResultsListed(true);
-    setCourses(coursesAux.concat(newCourses));
+    setMoreLoading(true);
+    try {
+      const newCourses = await getCourses(filters);
+      if (newCourses.length < filters.limit) setAllResultsListed(true);
+      setCourses(coursesAux.concat(newCourses));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setMoreLoading(false);
+    }
   };
 
   const { username } = auth;
 
   const [courses, setCourses] = React.useState([]);
+
+  const getCoursesDebounce = (filter) => {
+    dispatch(
+      loadCoursesAction(
+        getCourses,
+        setCourses,
+        filter,
+        setAllResultsListed,
+        filter.limit,
+      ),
+    );
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getCoursesCall = React.useCallback(
+    debounce(getCoursesDebounce, 300),
+    [],
+  );
 
   React.useEffect(() => {
     setAllResultsListed(false);
@@ -57,16 +89,12 @@ function WelcomePage({ auth, onLogout, ...props }) {
       filters.sort = -1;
     }
     dispatch(setFilters(filters));
-    getCourses(filters).then((results) => {
-      if (results.length < filters.limit) setAllResultsListed(true);
-      setCourses(results);
-    });
+    getCoursesCall(filters);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
-
-  return error || loading ? (
-    'Loading...'
-  ) : (
+  if (error) return <ErrorMessage error={error} resetError={null} />;
+  return (
     <Layout {...props}>
       <Scroll showBellow={250} />
       <div
@@ -96,17 +124,51 @@ function WelcomePage({ auth, onLogout, ...props }) {
         {/*className={styles.searchBarForm}*/}
         <FiltersForm />
         <div>
-          <CoursesList courses={courses} />
-
-          <br />
-          {!allResultsListed ? (
+          {loading ? (
             <>
-              <div>{courses ? courses.length : '0'} results</div>
+              <Course
+                course={{
+                  title: 'La prisa mata',
+                  description: 'Relajado todo es mejor',
+                  user: { username: 'Alguien que sabe' },
+                  category: { name: 'Cualquiera será buena' },
+                  createdAt: Date.now(),
+                  price: 0,
 
-              <button onClick={gimmeMore}>{t('Show more')}</button>
+                  image: 'https://i.postimg.cc/wTFWZ0BG/sandwatch.png',
+                }}
+                key={'a'}
+                faved={false}
+                purchased={false}
+                inCart={null}
+              />
+              <Loading isLoading={true} />
             </>
           ) : (
-            "There's no more results"
+            <>
+              <CoursesList courses={courses} />
+              <br />
+              {!allResultsListed ? (
+                <>
+                  <div>
+                    {courses ? courses.length : '0'} {t('results')}
+                  </div>
+
+                  {!moreLoading ? (
+                    <button onClick={gimmeMore}>{t('Show more')}</button>
+                  ) : (
+                    <img width="20px" src={loader} alt="loading" />
+                  )}
+                </>
+              ) : (
+                <>
+                  <div>
+                    {courses ? courses.length : '0'} {t('results')}
+                  </div>
+                  <div>{t("There's no more results")}</div>
+                </>
+              )}
+            </>
           )}
         </div>
       </div>

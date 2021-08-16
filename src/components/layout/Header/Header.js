@@ -1,25 +1,39 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Button } from '../../shared';
 import { logout } from '../../../api/auth';
-import { getIsLogged } from '../../../store/selectors';
-import { authLogout } from '../../../store/actions/logout';
-import { connect, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import ToggleButton from '../../shared/ToggleButton';
-import styles from './Header.module.css';
 import logo from '../../../assets/img/logo.png';
+
+// redux:
+import { authLogout } from '../../../store/actions/logout';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { getCart, getIsLogged } from '../../../store/selectors';
+
+// components:
+import ToggleButton from '../../shared/ToggleButton';
+import MobileMenu from '../../ModalElements/MobileMenu';
+import LanguageSelector from '../../ModalElements/LanguageSelector';
+
+// icons:
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
-import ItemsInCart from '../../courses/ItemsInCart';
 import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
+import userIcon from '../../../assets/svg/user.svg';
+import heartIcon from '../../../assets/svg/heart.svg';
+
+// styles:
+import styles from './Header.module.css';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+  const [isLanguageOpen, setLanguageOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
+  const cart = useSelector(getCart);
+  const { t } = useTranslation(['global']);
 
   const handleLogoutClick = () => {
     logout(); // clear local storage
@@ -27,20 +41,14 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     history.push('/');
   };
 
-  const { t, i18n } = useTranslation(['global']);
-  const switchLanguage = (ev) => {
-    // TODO: improve this function getting available languages dinamically
-    if (ev.target.innerHTML === 'es') {
-      i18n.changeLanguage('es');
-    } else if (ev.target.innerHTML === 'en') {
-      i18n.changeLanguage('en');
-    }
-  };
-
   const [temporaryMenu, setTemporaryMenu] = useState(false);
 
-  function handleClick() {
-    setTemporaryMenu(!temporaryMenu);
+  function handleClickMenu() {
+    setMenuOpen(true);
+  }
+
+  function handleClickLanguage() {
+    setLanguageOpen(true);
   }
 
   return (
@@ -57,38 +65,57 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             </Link>
           </div>
 
-          <div className={styles.categoriesBtn}>Categories</div>
+          <div className={styles.categoriesBtn}>{t('header.categories')}</div>
 
           <div className={styles.navButtonsContainer}>
-            <Link to="/register" className={styles.registerBtn}>
-              <button>Register</button>
-            </Link>
-            <Link to="/login" className={styles.loginBtn}>
-              <button>Log in</button>
-            </Link>
+            {!isLogged ? (
+              <div className={styles.myAccountBtns}>
+                <div className={styles.registerLinkContainer}>
+                  <Link to="/register" className={styles.registerBtn}>
+                    <button>{t('header.register')}</button>
+                  </Link>
+                </div>
+                <div className={styles.loginLinkContainer}>
+                  <Link to="/login" className={styles.loginBtn}>
+                    <button>{t('header.log in')}</button>
+                  </Link>
+                </div>
+              </div>
+            ) : (
+              <div className={styles.myAccountBtns}>
+                <div className={styles.userIcon}>
+                  <img src={userIcon} alt="user icon" />
+                </div>
+                <div className={styles.heartIcon}>
+                  <img src={heartIcon} alt="heart icon" />
+                </div>
+              </div>
+            )}
 
-            {/* TODO: If logged in => hide Login and Register links and display My account (user icon) */}
-            {/* <Link to="/my-account" className={styles.myAccountBtn}>
-                <button>User</button>
-              </Link> */}
-
-            <div className={styles.shoppingCartIcon}>
-              <ItemsInCart />
-              <img src={shoppingCartIcon} alt="shopping cart icon" />
-            </div>
-            <div className={styles.darkModeIcon}>
-              <img src={darkModeIcon} alt="" />
-            </div>
-            <div className={styles.translationIcon}>
-              <img src={translationIcon} alt="language selector icon" />
-            </div>
-            <div className={styles.hamburgerMenuIcon}>
-              <img
-                //
-                onClick={handleClick}
-                src={hamburgerMenuIcon}
-                alt="hamburger menu icon"
-              />
+            <div className={styles.navBarIcons}>
+              <div className={styles.shoppingCartIcon}>
+                {cart.length > 0 && (
+                  <span className={styles.cartItemsNumber}>{cart.length}</span>
+                )}
+                <img src={shoppingCartIcon} alt="shopping cart icon" />
+              </div>
+              <div className={styles.darkModeIcon}>
+                <img src={darkModeIcon} alt="" />
+              </div>
+              <div className={styles.translationIcon}>
+                <img
+                  onClick={handleClickLanguage}
+                  src={translationIcon}
+                  alt="language selector icon"
+                />
+              </div>
+              <div className={styles.hamburgerMenuIcon}>
+                <img
+                  onClick={handleClickMenu}
+                  src={hamburgerMenuIcon}
+                  alt="hamburger menu icon"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -100,45 +127,14 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </span>
         </div>
 
-        {temporaryMenu && !isLogged && (
-          <Link to="/register">
-            <Button>{t('header.register')}</Button>
-          </Link>
-        )}
-        {isLogged
-          ? temporaryMenu && (
-              <Button onClick={handleLogoutClick}>{t('header.log out')}</Button>
-            )
-          : temporaryMenu && (
-              <Link to="/login">
-                <Button>{t('header.log in')}</Button>
-              </Link>
-            )}
-        {temporaryMenu && (
-          <>
-            <Button type="text" onClick={switchLanguage}>
-              en
-            </Button>
-            <Button type="text" onClick={switchLanguage}>
-              es
-            </Button>
-          </>
-        )}
-        <br />
-        {temporaryMenu && isLogged && (
-          <div>
-            <Link to="/create">
-              <Button>{t('header.create')}</Button>
-            </Link>
+        {/* MODAL hamburger menu */}
+        {isMenuOpen && <MobileMenu closeModal={() => setMenuOpen(false)} />}
 
-            <Link to="/user">
-              <Button>{t('header.user')}</Button>
-            </Link>
-            <Link to="/myfavs">
-              <Button>{t('header.myfavs')}</Button>
-            </Link>
-          </div>
+        {/* MODAL language selector */}
+        {isLanguageOpen && (
+          <LanguageSelector closeModal={() => setLanguageOpen(false)} />
         )}
+
         {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
       </header>
       <hr className={styles.hr} />

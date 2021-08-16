@@ -13,7 +13,7 @@
   "log in": "Log in",
   "log in button": "Log in",
   "log in your account": "Log in to your account",
-  "forgot option": "I forgot my password",
+  "forgot my password": "I forgot my password",
   "activation succeded": "Your account has been activated. You can now ",
   "activation failed": "We are sorry, we could not activate your account. Please, try again.",
   "next": "next",
@@ -28,6 +28,8 @@
   "Show more": "Show more",
   "Ascending": "Ascending",
   "Courses by": "Courses by",
+  "results": "results",
+  "There's no more results": "There's no more results",
   "Passwords should match": "Passwords should match",
   "Edit Profile": "Edit Profile",
   "Profile updated": "Profile updated",
@@ -62,7 +64,8 @@
     "log out": "Log out",
     "create": "Create course",
     "search": "Search",
-    "myfavs": "My favs"
+    "myfavs": "My favs",
+    "categories": "Categories"
   },
   "filter": {
     "filtering price between": "Filtering price between",
@@ -88,5 +91,18 @@
     "Go to course": "Go to course",
     "has": "Has",
     "favorites": "Favorites"
+  },
+  "mobile menu": {
+    "menu": "Menu",
+    "log in": "Log in",
+    "register": "Register",
+    "courses": "Courses",
+    "create course": "Create course",
+    "my account": "My account",
+    "my favourites": "My favourites",
+    "categories": "Categories"
+  },
+  "language selector": {
+    "languages": "Languages"
   }
 }
