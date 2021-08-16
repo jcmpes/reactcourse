@@ -16,6 +16,7 @@ import Loading from './shared/Loading/Loading';
 import ErrorMessage from './shared/ErrorMessage';
 import Course from './courses/Course';
 import loader from '../assets/img/loading-mini.gif';
+import { debounce } from '../utils/debounce';
 
 function WelcomePage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -27,6 +28,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
   const [allResultsListed, setAllResultsListed] = React.useState(false);
   const [sort, setSort] = React.useState(-1);
   const [moreLoading, setMoreLoading] = React.useState(false);
+
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
     filters.skip = 0;
@@ -53,6 +55,24 @@ function WelcomePage({ auth, onLogout, ...props }) {
 
   const [courses, setCourses] = React.useState([]);
 
+  const getCoursesDebounce = (filter) => {
+    dispatch(
+      loadCoursesAction(
+        getCourses,
+        setCourses,
+        filter,
+        setAllResultsListed,
+        filter.limit,
+      ),
+    );
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const getCoursesCall = React.useCallback(
+    debounce(getCoursesDebounce, 300),
+    [],
+  );
+
   React.useEffect(() => {
     setAllResultsListed(false);
   }, [filters]);
@@ -69,23 +89,8 @@ function WelcomePage({ auth, onLogout, ...props }) {
       filters.sort = -1;
     }
     dispatch(setFilters(filters));
-    dispatch(
-      loadCoursesAction(
-        getCourses,
-        setCourses,
-        filters,
-        setAllResultsListed,
-        filters.limit,
-      ),
-    );
-    getCourses(filters).then((results) => {
-      if (results && results.length < filters.limit) setAllResultsListed(true);
-      setCourses(results);
-    });
-    // getCourses(filters).then((results) => {
-    //   if (results.length < filters.limit) setAllResultsListed(true);
-    //   setCourses(results);
-    // });
+    getCoursesCall(filters);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
   if (error) return <ErrorMessage error={error} resetError={null} />;
