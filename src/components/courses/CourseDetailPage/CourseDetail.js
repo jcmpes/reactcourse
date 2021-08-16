@@ -32,7 +32,7 @@ function CourseDetail({
             <div className="row">
               <h4 className="col-11 card-title">{title}</h4>
               <div className="favoriteDetail">
-                <div style={{ cursor: 'pointer' }}>
+                <div style={{ cursor: 'pointer', marginTop: '1rem' }}>
                   {faved === true ? '❤️' : '🖤'}
                 </div>
               </div>
