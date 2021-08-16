@@ -90,7 +90,12 @@
     "create lesson": "Create lesson",
     "Go to course": "Go to course",
     "has": "Has",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "instructor": "Instructor",
+    "buy": "buy",
+    "What you will learn": "What you will learn",
+    "Course content": "Course content",
+    "Requirements": "Requirements"
   },
   "mobile menu": {
     "menu": "Menu",

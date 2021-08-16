@@ -90,7 +90,12 @@
     "create lesson": "Crear lección",
     "Go to course": "Ir a curso",
     "has": "Tiene",
-    "favorites": "Favoritos"
+    "favorites": "Favoritos",
+    "instructor": "Instructor",
+    "buy": "Comprar",
+    "What you will learn": "Lo que aprenderas",
+    "Course content": "Contenido del curso",
+    "Requirements": "Requisitos"
   },
   "mobile menu": {
     "menu": "Menú",

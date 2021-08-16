@@ -38,9 +38,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
               <div className="card-body">
                 <p className="card-title">
                   {/* {t('Title')}:{' '} */}
-                  <Link className="course-title" to={`/courses/${course.slug}`}>
-                    {course.title}
-                  </Link>
+                  <Link to={`/courses/${course.slug}`}>{course.title}</Link>
                 </p>
                 <p className="card-text description">
                   {/* {t('Description')}: {course.description} */}

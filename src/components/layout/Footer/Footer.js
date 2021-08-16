@@ -41,35 +41,33 @@ const Footer = ({ darkMode }) => {
 
               <ul className="footer_ul_amrc">
                 <li>
-                  <Link href="http://webenlance.com">Image Rectoucing</Link>
+                  <Link to="/">Image Rectoucing</Link>
                 </li>
                 <li>
-                  <Link href="http://webenlance.com">Clipping Path</Link>
+                  <Link to="/">Clipping Path</Link>
                 </li>
 
                 <li>
-                  <Link href="http://webenlance.com">
-                    Hair Masking/Clipping
-                  </Link>
+                  <Link to="/">Hair Masking/Clipping</Link>
                 </li>
                 <li>
-                  <Link href="http://webenlance.com">Image Cropping</Link>
+                  <Link to="/">Image Cropping</Link>
                 </li>
                 <li>
                   <section className="social mb-4">
-                    <Link>
+                    <Link to="/">
                       <FacebookIcon />
                     </Link>
 
-                    <Link>
+                    <Link to="/">
                       <InstagramIcon />
                     </Link>
 
-                    <Link>
+                    <Link to="/">
                       <GitHubIcon />
                     </Link>
 
-                    <Link>
+                    <Link to="/">
                       <LinkedInIcon />
                     </Link>
                   </section>
