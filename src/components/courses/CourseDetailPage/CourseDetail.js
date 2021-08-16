@@ -1,5 +1,7 @@
 import { Twitter, Facebook } from 'react-social-sharing';
 import { YoutubeEmbed } from '../../shared';
+import { getAuth } from '../../../store/selectors';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import './CourseDetail.css';
 
@@ -12,11 +14,14 @@ function CourseDetail({
   lessons,
   slug,
   numFavs,
-  course,
+  courses,
   user,
   price,
+  _id,
 }) {
   console.log(lessons);
+  const { favs } = useSelector(getAuth);
+  const faved = favs.includes(_id);
 
   const { t } = useTranslation(['global']);
   return (
@@ -26,7 +31,11 @@ function CourseDetail({
           <div className="card">
             <div className="row">
               <h4 className="col-11 card-title">{title}</h4>
-              <div className="favoriteDetail">🖤</div>
+              <div className="favoriteDetail">
+                <div style={{ cursor: 'pointer' }}>
+                  {faved === true ? '❤️' : '🖤'}
+                </div>
+              </div>
             </div>
             <div className="row m-3">
               <div className="col-12 col-sm-6">
