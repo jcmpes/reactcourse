@@ -44,6 +44,8 @@
   "This action will delete all of your courses and it can't be undone.": "This action will delete all of your courses and it can't be undone.",
   "My Favorite courses": "My Favorite courses",
   "en-en": "en-en",
+  "Please": "Please",
+  "to purchase": "to purchase",
   "users": {
     "student": "Student",
     "learning": "Learning",
@@ -109,5 +111,10 @@
   },
   "language selector": {
     "languages": "Languages"
+  },
+  "purchases": {
+    "in the shopping cart": "In the shopping cart",
+    "owned": "owned",
+    "buy for": "buy for"
   }
 }

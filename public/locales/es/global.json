@@ -44,6 +44,8 @@
   "This action will delete all of your courses and it can't be undone.": "Esta acción borrará todos tus cursos y es irreversible.",
   "My Favorite courses": "Mis cursos favoritos",
   "en-en": "es-es",
+  "Please": "Por favor",
+  "to purchase": "para comprar",
   "users": {
     "student": "Estudiante",
     "learning": "Cursando",
@@ -109,5 +111,10 @@
   },
   "language selector": {
     "languages": "Idiomas"
+  },
+  "purchases": {
+    "in the shopping cart": "En el carrrito",
+    "owned": "Comprado",
+    "buy for": "Comprar por"
   }
 }

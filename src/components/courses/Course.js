@@ -12,8 +12,7 @@ import NoImg from '../../assets/img/noimg.png';
 import './Course.css';
 
 const Course = ({ course, faved, purchased, inCart }) => {
-  // eslint-disable-next-line no-unused-vars
-  const { t, i18n } = useTranslation(['global']);
+  const { t } = useTranslation(['global']);
 
   const { username, isLogged } = useSelector(getAuth);
   const dispatch = useDispatch();
@@ -28,29 +27,18 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 <img
                   className="border border-dark"
                   src={course.image ? `${course.image}` : NoImg}
-                  // min-height="100%"
-                  // max-height="auto"
-                  // // height="320"
-                  // // width="240"
                   alt={`${course.title}`}
                 />
               </div>
               <div className="card-body">
                 <p className="card-title">
-                  {/* {t('Title')}:{' '} */}
                   <Link to={`/courses/${course.slug}`}>{course.title}</Link>
                 </p>
-                <p className="card-text description">
-                  {/* {t('Description')}: {course.description} */}
-                  {course.description}
-                </p>
+                <p className="card-text description">{course.description}</p>
                 <p className="card-text category">
                   {t('Category')}: {course.category.name}
                 </p>
-                <p className="card-text price">
-                  {/* {t('Price')}: {course.price} */}
-                  {course.price} €
-                </p>
+                <p className="card-text price">{course.price} €</p>
                 <p className="card-text created">
                   {t('Created by')}{' '}
                   <Link to={`/courses-by/${course.user.username}`}>
@@ -76,12 +64,13 @@ const Course = ({ course, faved, purchased, inCart }) => {
                       if (!isLogged) {
                         const Msg = ({ closeToast, toastProps }) => (
                           <div>
-                            Please, <Link to="/login">log in</Link> to purchase.
+                            {t('Please')},{' '}
+                            <Link to="/login">{t('log in')} </Link>
+                            {t('to purchase')}.
                           </div>
                         );
                         toast.warning(<Msg />);
                       } else {
-                        //dispatch(purchaseAction(course._id, '123456'));
                         dispatch(
                           addToCartAction(
                             course._id,
@@ -94,14 +83,16 @@ const Course = ({ course, faved, purchased, inCart }) => {
                   >
                     <div className="button-conainer">
                       <button className="curseButton">
-                        Comprar por {course.price} €
+                        {t('purchases.buy for')} {course.price} €
                       </button>
                     </div>
                   </div>
                 ) : inCart ? (
-                  <div className="shopping-course">en carrito</div>
+                  <div className="shopping-course">
+                    {t('purchases.in the shopping cart')}
+                  </div>
                 ) : (
-                  <div className="purchased-course">Comprado</div>
+                  <div className="purchased-course">{t('purchases.owned')}</div>
                 )}
                 <div
                   onClick={() => {
@@ -112,9 +103,6 @@ const Course = ({ course, faved, purchased, inCart }) => {
                         !faved,
                       ),
                     );
-
-                    // if (!faved) addFav(course._id);
-                    // else removeFav(course._id);
                   }}
                 >
                   {username && !isAuthor && (

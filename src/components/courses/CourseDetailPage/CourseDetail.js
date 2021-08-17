@@ -1,7 +1,12 @@
 import { Twitter, Facebook } from 'react-social-sharing';
 import { YoutubeEmbed } from '../../shared';
-import { getAuth } from '../../../store/selectors';
-import { useSelector } from 'react-redux';
+import { getAuth, isInCart } from '../../../store/selectors';
+import { addFav, removeFav } from '../../../api/courses';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { favoritesAction } from '../../../store/actions/favorites';
+import { addToCartAction } from '../../../store/actions/purchase';
 import { useTranslation } from 'react-i18next';
 import './CourseDetail.css';
 
@@ -18,10 +23,17 @@ function CourseDetail({
   user,
   price,
   _id,
+  inCart,
 }) {
-  console.log(lessons);
-  const { favs } = useSelector(getAuth);
+  const { favs, purchased } = useSelector(getAuth);
+  const getItemIsInCart = useSelector(isInCart);
   const faved = favs.includes(_id);
+  const dispatch = useDispatch();
+  const { username, isLogged } = useSelector(getAuth);
+  const isAuthor = user.username === username;
+  const purchasedCourses = purchased ? purchased.includes(_id) : false;
+  const itemIsInCart = getItemIsInCart(_id);
+  console.log(purchasedCourses);
 
   const { t } = useTranslation(['global']);
   return (
@@ -31,7 +43,14 @@ function CourseDetail({
           <div className="card">
             <div className="row">
               <h4 className="col-11 card-title">{title}</h4>
-              <div className="favoriteDetail">
+              <div
+                className="favoriteDetail"
+                onClick={() => {
+                  dispatch(
+                    favoritesAction(_id, !faved ? addFav : removeFav, !faved),
+                  );
+                }}
+              >
                 <div style={{ cursor: 'pointer', marginTop: '1rem' }}>
                   {faved === true ? '❤️' : '🖤'}
                 </div>
@@ -46,9 +65,41 @@ function CourseDetail({
                   {t('course.instructor')}: {user.username}
                 </p>
                 <p className="priceDetail">{price} €</p>
-                <div className="button-conainer">
-                  <button className="curseButton">{t('course.buy')}</button>
-                </div>
+                {isAuthor ? (
+                  <div>
+                    <Link to={`/edit/${slug}`}>✏️ Edit</Link>
+                  </div>
+                ) : !purchasedCourses && !itemIsInCart ? (
+                  <div
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      if (!isLogged) {
+                        const Msg = ({ closeToast, toastProps }) => (
+                          <div>
+                            {t('Please')},{' '}
+                            <Link to="/login">{t('log in')} </Link>
+                            {t('to purchase')}.
+                          </div>
+                        );
+                        toast.warning(<Msg />);
+                      } else {
+                        dispatch(addToCartAction(_id, title, price));
+                      }
+                    }}
+                  >
+                    <div className="button-conainer">
+                      <button className="curseButton">
+                        {t('purchases.buy for')} {price} €
+                      </button>
+                    </div>
+                  </div>
+                ) : inCart ? (
+                  <div className="shopping-course">
+                    {t('purchases.in the shopping cart')}
+                  </div>
+                ) : (
+                  <div className="purchased-course">{t('purchases.owned')}</div>
+                )}
               </div>
               <div className="col-12 col-sm-6">
                 <div className="videoInsert">
