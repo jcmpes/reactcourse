@@ -74,7 +74,8 @@
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",
-    "reset filters": "Reiniciar Filtros"
+    "reset filters": "Reiniciar Filtros",
+    "Select category": "Selecciona categoría"
   },
   "footer": {
     "footer": "Pie de página"

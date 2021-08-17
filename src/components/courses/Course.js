@@ -9,6 +9,9 @@ import { useTranslation } from 'react-i18next';
 import { addToCartAction } from '../../store/actions/purchase';
 import { toast } from 'react-toastify';
 import NoImg from '../../assets/img/noimg.png';
+import heart from '../../assets/svg/heart.svg';
+import noHeart from '../../assets/svg/heartBlank.svg';
+
 import './Course.css';
 
 const Course = ({ course, faved, purchased, inCart }) => {
@@ -107,7 +110,11 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 >
                   {username && !isAuthor && (
                     <div style={{ cursor: 'pointer' }}>
-                      {faved === true ? '❤️' : '🖤'}
+                      {faved === true ? (
+                        <img src={heart} alt="faved" width="27px" />
+                      ) : (
+                        <img src={noHeart} alt="no faved" width="27px" />
+                      )}
                     </div>
                   )}
                 </div>
