@@ -74,7 +74,8 @@
   },
   "filter": {
     "filtering price between": "Filtering price between",
-    "reset filters": "Reset Filters"
+    "reset filters": "Reset Filters",
+    "Select category": "Select category"
   },
   "footer": {
     "footer": "Footer"

@@ -19,7 +19,7 @@ const FilterForm = () => {
     dispatch(setFilters(newFilter));
   };
 
-  const style = { color: '#f24b88' };
+  const style = { color: '#f24b88', width: '85%' };
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
@@ -61,6 +61,7 @@ const FilterForm = () => {
           name="title"
           value={filters.title}
           onChange={handleChange}
+          placeholder={t('Title')}
         ></input>
         <br />
 
@@ -70,6 +71,7 @@ const FilterForm = () => {
           name="username"
           value={filters.username}
           onChange={handleChange}
+          placeholder={t('username')}
         ></input>
         <br />
         {categories && (
@@ -80,7 +82,10 @@ const FilterForm = () => {
             value={filters.category}
             onChange={handleChange}
             searcher={true}
-            options={[{ name: 'Select category', _id: '000' }, ...categories]}
+            options={[
+              { name: t('filter.Select category'), _id: '000' },
+              ...categories,
+            ]}
           />
         )}
         <br />
@@ -93,10 +98,11 @@ const FilterForm = () => {
             valueLabelDisplay="auto"
             style={style}
           />
+          <br />
           {t('filter.filtering price between')} {filters.price[0]} € {t('and')}{' '}
           {filters.price[1]} €
         </div>
-
+        <br />
         <button type="reset" onClick={handleReset}>
           {t('filter.reset filters')}
         </button>
