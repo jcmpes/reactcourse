@@ -18,10 +18,10 @@ import LanguageSelector from '../../ModalElements/LanguageSelector';
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
-import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 import darkModeIcon2 from '../../../assets/img/dark-mode.png';
+import CartModal from '../../ModalElements/CartModal';
 
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
@@ -32,6 +32,7 @@ import styles from './Header.module.css';
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isLanguageOpen, setLanguageOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
   const cart = useSelector(getCart);
@@ -57,7 +58,6 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
   return (
     <>
-      <ShoppingCart />
       <header
         className={styles.header}
         data-theme={darkMode ? 'dark' : 'light'}
@@ -97,7 +97,12 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             )}
 
             <div className={styles.navBarIcons}>
-              <div className={styles.shoppingCartIcon}>
+              <div
+                className={styles.shoppingCartIcon}
+                onClick={() => {
+                  setIsCartOpen(true);
+                }}
+              >
                 {cart.length > 0 && (
                   <span className={styles.cartItemsNumber}>{cart.length}</span>
                 )}
@@ -135,6 +140,9 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           </span>
           <input className={styles.searchBarForm} />
         </div>
+
+        {/* MODAL shopping cart menu */}
+        {isCartOpen && <CartModal closeModal={() => setIsCartOpen(false)} />}
 
         {/* MODAL hamburger menu */}
         {isMenuOpen && <MobileMenu closeModal={() => setMenuOpen(false)} />}

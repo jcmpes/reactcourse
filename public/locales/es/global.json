@@ -46,6 +46,9 @@
   "en-en": "es-es",
   "Please": "Por favor",
   "to purchase": "para comprar",
+  "Checkout": "Pagar",
+  "Shopping Cart": "Carro de la compra",
+
   "users": {
     "student": "Estudiante",
     "learning": "Cursando",
@@ -95,7 +98,7 @@
     "favorites": "Favoritos",
     "instructor": "Instructor",
     "buy": "Comprar",
-    "What you will learn": "Lo que aprenderas",
+    "What you will learn": "Lo que aprenderás",
     "Course content": "Contenido del curso",
     "Requirements": "Requisitos"
   },

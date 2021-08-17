@@ -6,8 +6,11 @@ import {
   removeFromCartAction,
   purchaseAction,
 } from '../../store/actions/purchase';
+import closeImg from '../../assets/svg/close.svg';
+import { useTranslation } from 'react-i18next';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ closeModal }) => {
+  const { t } = useTranslation(['global']);
   const cart = useSelector(getCart);
   const total = useSelector(totalInChart);
   const allCourses = useSelector(getIdsInCart);
@@ -18,27 +21,77 @@ const ShoppingCart = () => {
 
   const checkout = () => {
     dispatch(purchaseAction(allCourses, '123456'));
+    closeModal();
   };
 
   const coursesElement = cart.map((course) => {
     return (
       <div key={course.courseId}>
-        {course.courseTitle}: {course.coursePrice}€{' '}
-        <button id={course.courseId} onClick={removeItem}>
-          Remove
-        </button>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+          }}
+        >
+          <li
+            style={{
+              width: '100%',
+              padding: '10px 0 10px 0',
+              borderBottom: '1px solid',
+            }}
+          >
+            {course.courseTitle}: {course.coursePrice}€{' '}
+          </li>
+          <img
+            src={closeImg}
+            style={{
+              height: '18px',
+              backgroundColor: 'white',
+              borderRadius: '50px',
+              borderStyle: 'solid',
+              borderWidth: '2px',
+              float: 'right',
+              marginRight: '30px',
+              padding: '0px',
+              cursor: 'pointer',
+              position: 'relative',
+              top: '15px',
+              left: '10px',
+            }}
+            alt=""
+            id={course.courseId}
+            onClick={removeItem}
+          />
+        </div>
       </div>
     );
   });
   return (
     allCourses.length > 0 && (
-      <>
+      <div
+        style={{ marginLeft: '30px', marginRight: '30px', textAlign: 'left' }}
+      >
         <div>{coursesElement}</div>
-        <div>Total: {total} €</div>
-        <button onClick={checkout} disabled={allCourses.length < 1}>
-          Checkout
-        </button>
-      </>
+        <br />
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ fontSize: '1.2rem' }}>Total: {total} €</div>
+          <button
+            onClick={checkout}
+            disabled={allCourses.length < 1}
+            style={{
+              float: 'right',
+              marginRight: '30px',
+              border: 'solid 1px var(--color-mid-grey)',
+              padding: '5px 25px',
+              borderRadius: '50px',
+              cursor: 'pointer',
+            }}
+          >
+            {t('Checkout')}
+          </button>
+        </div>
+      </div>
     )
   );
 };

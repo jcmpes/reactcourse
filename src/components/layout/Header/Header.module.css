@@ -48,6 +48,7 @@
 
 .shoppingCartIcon {
   position: relative;
+  cursor: pointer;
 }
 
 .cartItemsNumber {
@@ -106,8 +107,8 @@ hr {
 
 /* DESKTOP */
 @media (min-width: 1014px) {
-  .header {
-  }
+  /* .header {
+  } */
 
   .navBar {
     margin-bottom: 0;
@@ -135,8 +136,8 @@ hr {
     cursor: pointer;
   }
 
-  .myAccountContainer {
-  }
+  /* .myAccountContainer {
+  } */
 
   .searchBarContainer {
     position: absolute;
