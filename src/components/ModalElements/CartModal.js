@@ -20,7 +20,7 @@ const MobileMenu = ({ closeModal }) => {
             {total > 0 ? (
               <ShoppingCart closeModal={closeModal} />
             ) : (
-              'Empty cart'
+              t('Empty cart')
             )}
           </>
         }
