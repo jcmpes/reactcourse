@@ -1,3 +1,4 @@
+import React from 'react';
 import { Twitter, Facebook } from 'react-social-sharing';
 import { YoutubeEmbed } from '../../shared';
 import { getAuth, isInCart } from '../../../store/selectors';
@@ -36,6 +37,10 @@ function CourseDetail({
   const purchasedCourses = purchased ? purchased.includes(_id) : false;
   const itemIsInCart = getItemIsInCart(_id);
   console.log(purchasedCourses);
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const { t } = useTranslation(['global']);
   return (
