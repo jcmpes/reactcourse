@@ -5,6 +5,8 @@ import { addFav, removeFav } from '../../../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import heart from '../../../assets/svg/heart.svg';
+import noHeart from '../../../assets/svg/heartBlank.svg';
 import { favoritesAction } from '../../../store/actions/favorites';
 import { addToCartAction } from '../../../store/actions/purchase';
 import { useTranslation } from 'react-i18next';
@@ -52,7 +54,11 @@ function CourseDetail({
                 }}
               >
                 <div style={{ cursor: 'pointer', marginTop: '1rem' }}>
-                  {faved === true ? '❤️' : '🖤'}
+                  {faved === true ? (
+                    <img src={heart} alt="faved" width="27px" />
+                  ) : (
+                    <img src={noHeart} alt="no faved" width="27px" />
+                  )}
                 </div>
               </div>
             </div>
