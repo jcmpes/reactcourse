@@ -18,7 +18,6 @@ import LanguageSelector from '../../ModalElements/LanguageSelector';
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
 import translationIcon from '../../../assets/svg/translation.svg';
 import hamburgerMenuIcon from '../../../assets/svg/menu.svg';
-import ShoppingCart from '../../courses/ShoppingCart';
 import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 import darkModeIcon2 from '../../../assets/img/dark-mode.png';
