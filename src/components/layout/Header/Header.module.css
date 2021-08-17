@@ -48,6 +48,7 @@
 
 .shoppingCartIcon {
   position: relative;
+  cursor: pointer;
 }
 
 .cartItemsNumber {
