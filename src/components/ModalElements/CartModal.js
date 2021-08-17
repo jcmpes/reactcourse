@@ -4,11 +4,11 @@ import ModalWindow from '../shared/ModalWindow';
 import styles from './CartModal.module.css';
 import ShoppingCart from '../courses/ShoppingCart';
 import { useSelector } from 'react-redux';
-import { totalInChart } from '../../store/selectors';
+import { getIdsInCart } from '../../store/selectors';
 
 const MobileMenu = ({ closeModal }) => {
   const { t } = useTranslation(['global']);
-  const total = useSelector(totalInChart);
+  const numItems = useSelector(getIdsInCart).length;
 
   return (
     <div className={styles.cartMenu}>
@@ -17,7 +17,7 @@ const MobileMenu = ({ closeModal }) => {
         closeModal={closeModal}
         children={
           <>
-            {total > 0 ? (
+            {numItems > 0 ? (
               <ShoppingCart closeModal={closeModal} />
             ) : (
               t('Empty cart')
