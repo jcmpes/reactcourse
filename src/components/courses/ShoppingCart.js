@@ -74,8 +74,17 @@ const ShoppingCart = ({ closeModal }) => {
       >
         <div>{coursesElement}</div>
         <br />
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div style={{ fontSize: '1.2rem' }}>Total: {total} €</div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: '60px',
+          }}
+        >
+          <div style={{ fontSize: '1.2rem' }}>
+            Total:&nbsp;
+            <strong>{total} €</strong>
+          </div>
           <button
             onClick={checkout}
             disabled={allCourses.length < 1}
