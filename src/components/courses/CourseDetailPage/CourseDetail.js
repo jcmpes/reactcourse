@@ -11,6 +11,7 @@ import noHeart from '../../../assets/svg/heartBlank.svg';
 import { favoritesAction } from '../../../store/actions/favorites';
 import { addToCartAction } from '../../../store/actions/purchase';
 import { useTranslation } from 'react-i18next';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import './CourseDetail.css';
 
 function CourseDetail({
@@ -36,11 +37,10 @@ function CourseDetail({
   const isAuthor = user.username === username;
   const purchasedCourses = purchased ? purchased.includes(_id) : false;
   const itemIsInCart = getItemIsInCart(_id);
-  console.log(purchasedCourses);
 
-  React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // React.useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   const { t } = useTranslation(['global']);
   return (
@@ -157,19 +157,33 @@ function CourseDetail({
               functionality and Realm, as well as explore the use of Compass.
             </p>
             <h5 className="courseContentTitle">{t('course.Course content')}</h5>
+
             <ul>
-              <div className="card m-1">
-                <li>Leccion 1</li>
-              </div>
-              <div className="card m-1">
-                <li>Leccion 2</li>
-              </div>
-              <div className="card m-1">
-                <li>Leccion 3</li>
-              </div>
-              <div className="card m-1">
-                <li>Leccion 4</li>
-              </div>
+              {lessons.length >= 1 ? (
+                lessons.map((leson, i) => {
+                  return (
+                    <li
+                      className="list-group-item list-group-item-secondary"
+                      key={lessons[i].id}
+                      margin="2px"
+                    >
+                      <PlayCircleOutlineIcon />
+                      <div className="lessonInfo">
+                        Leccion {i + 1} {lessons[i].title}
+                      </div>
+                    </li>
+                  );
+                })
+              ) : (
+                <li
+                  className="list-group-item list-group-item-secondary"
+                  key={title}
+                  margin="2px"
+                >
+                  <PlayCircleOutlineIcon />
+                  <div className="lessonInfo">Leccion 1 {title}</div>
+                </li>
+              )}
             </ul>
           </div>
           <div className="col-12 col-sm-4">

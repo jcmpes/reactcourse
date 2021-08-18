@@ -10,8 +10,14 @@ h4 {
   display: inline-block;
   position: relative;
 }
+.infoCourse li {
+  display: flex;
+}
+.lessonInfo {
+  margin-left: 1rem;
+}
 .courseIstructorTitle {
-  top: 20px;
+  top: 1.25rem;
 }
 .priceDetail {
   display: flex;
@@ -26,7 +32,7 @@ h5::after {
   height: 1px;
   background-color: currentColor;
   top: 0.9em;
-  right: -145px;
+  right: 9rem;
 }
 .courseWhatTitle::after {
   right: -34.4rem;
