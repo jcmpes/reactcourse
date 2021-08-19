@@ -123,7 +123,10 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <span className={styles.loupeIconSpan}>
             <img src={loupeIcon} alt="" />
           </span>
-          <input className={styles.searchBarForm} />
+          <input
+            className={styles.searchBarForm}
+            placeholder={t('header.search')}
+          />
         </div>
 
         {/* MODAL shopping cart menu */}
