@@ -13,6 +13,13 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
     }));
   };
 
+  const verifyForm = () => {
+    if(!courseDetails.title || !courseDetails.category || courseDetails.price < 0) {
+      return true
+    }
+    return false
+  }
+
   return (
     <div className="new-course-form">
       <h2>{t('course.course intro')}</h2>
@@ -50,6 +57,8 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
           <FormField
             type={"number"}
             label={'price'}
+            min="0"
+            max="1000"
             name="price"
             value={courseDetails.price}
             onChange={handleChange}
@@ -68,6 +77,7 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
           />
           
           <Button
+            disabled={verifyForm()}
             type="submit"
           >
             {t('submit')}

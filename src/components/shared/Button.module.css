@@ -20,3 +20,10 @@
   background-color: #e43f7c;
   box-shadow: 1px 1px 5px black;
 }
+
+.button:disabled {
+  background-color: var(--color-french-rose);
+  color: var(--color-whisper);
+  box-shadow: 0px 0px 0px black;
+  cursor:not-allowed
+}
