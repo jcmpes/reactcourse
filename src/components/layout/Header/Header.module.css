@@ -1,8 +1,9 @@
 .header {
-  background-color: rgba(255, 255, 255, 0.954);
+  background-color: white;
   position: sticky;
   top: 0;
   z-index: 1;
+  padding-bottom: 20px;
 }
 
 .navBar {
@@ -107,8 +108,10 @@ hr {
 
 /* DESKTOP */
 @media (min-width: 1014px) {
-  /* .header {
-  } */
+  .header {
+    padding-bottom: 30px;
+    border-bottom: 1px lightgrey solid;
+  }
 
   .navBar {
     margin-bottom: 0;
@@ -221,10 +224,5 @@ hr {
 
   .hamburgerMenuIcon img {
     display: none;
-  }
-
-  .hr {
-    display: inherit;
-    margin-bottom: 40px;
   }
 }

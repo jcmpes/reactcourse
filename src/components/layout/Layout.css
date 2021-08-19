@@ -2,13 +2,17 @@
   padding-bottom: 4rem;
 }
 
+h1 {
+  padding-bottom: 35px;
+}
+
+main {
+  margin: 40px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 4rem;
-}
-
-h1 {
-  padding-bottom: 35px;
 }
