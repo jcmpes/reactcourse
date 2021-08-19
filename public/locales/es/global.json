@@ -105,8 +105,9 @@
   },
   "mobile menu": {
     "menu": "Menú",
-    "log in": "Iniciar sesión",
     "register": "Registrarme",
+    "log in": "Iniciar sesión",
+    "logout": "Cerrar sesión",
     "courses": "Cursos",
     "create course": "Crear curso",
     "my account": "Mi cuenta",

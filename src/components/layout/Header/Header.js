@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { logout } from '../../../api/auth';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logo from '../../../assets/img/logo.png';
 
 // redux:
-import { authLogout } from '../../../store/actions/logout';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { getCart, getIsLogged } from '../../../store/selectors';
 
 // components:
-import ToggleButton from '../../shared/ToggleButton';
 import MobileMenu from '../../ModalElements/MobileMenu';
 import LanguageSelector from '../../ModalElements/LanguageSelector';
 
@@ -33,20 +30,8 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isLanguageOpen, setLanguageOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
-
-  // eslint-disable-next-line no-unused-vars
-  const handleLogoutClick = () => {
-    logout(); // clear local storage
-    dispatch(authLogout()); // change isLogged state
-    history.push('/');
-  };
-
-  // eslint-disable-next-line no-unused-vars
-  const [temporaryMenu, setTemporaryMenu] = useState(false);
 
   function handleClickMenu() {
     setMenuOpen(true);
@@ -151,8 +136,6 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         {isLanguageOpen && (
           <LanguageSelector closeModal={() => setLanguageOpen(false)} />
         )}
-
-        {temporaryMenu && <ToggleButton onChange={toggleDarkMode} />}
       </header>
       <hr className={styles.hr} />
     </>
