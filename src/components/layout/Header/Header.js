@@ -10,6 +10,7 @@ import { getCart, getIsLogged } from '../../../store/selectors';
 // components:
 import MobileMenu from '../../ModalElements/MobileMenu';
 import LanguageSelector from '../../ModalElements/LanguageSelector';
+import CategoryList from '../../ModalElements/CategoryList';
 
 // icons:
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
@@ -30,6 +31,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isLanguageOpen, setLanguageOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCategoryListOpen, setCategoryListOpen] = useState(false);
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
 
@@ -39,6 +41,10 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
 
   function handleClickLanguage() {
     setLanguageOpen(true);
+  }
+
+  function handleClickCategories() {
+    setCategoryListOpen(true);
   }
 
   return (
@@ -54,7 +60,13 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             </Link>
           </div>
 
-          <div className={styles.categoriesBtn}>{t('header.categories')}</div>
+          <div
+            ///
+            className={styles.categoriesBtn}
+            onClick={handleClickCategories}
+          >
+            {t('header.categories')}
+          </div>
 
           <div className={styles.navButtonsContainer}>
             {!isLogged ? (
@@ -138,6 +150,11 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         {/* MODAL language selector */}
         {isLanguageOpen && (
           <LanguageSelector closeModal={() => setLanguageOpen(false)} />
+        )}
+
+        {/* MODAL category list */}
+        {isCategoryListOpen && (
+          <CategoryList closeModal={() => setCategoryListOpen(false)} />
         )}
       </header>
       <hr className={styles.hr} />
