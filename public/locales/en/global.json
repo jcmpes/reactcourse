@@ -25,6 +25,7 @@
   "me": "me",
   "at": "at",
   "and": "and",
+  "of": "of",
   "Show more": "Show more",
   "Ascending": "Ascending",
   "Courses by": "Courses by",
@@ -101,7 +102,12 @@
     "buy": "buy",
     "What you will learn": "What you will learn",
     "Course content": "Course content",
-    "Requirements": "Requirements"
+    "Requirements": "Requirements",
+    "Lessons": "Lessons",
+    "Progress": "Progress",
+    "Next lesson": "Next lesson",
+    "Previous lesson": "Previous lesson",
+    "Back to Course presentation": "Back to Course presentation"
   },
   "mobile menu": {
     "menu": "Menu",

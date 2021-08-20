@@ -35,40 +35,48 @@ h5::after {
   right: 9rem;
 }
 .courseWhatTitle::after {
-  right: -34.4rem;
-  width: 31.25rem;
+  right: -32.4rem;
+  width: 29rem;
 }
 .courseContentTitle::after {
-  right: -36.25rem;
-  width: 31.25rem;
+  right: -30.5rem;
+  width: 26rem;
 }
 .courseRequerimientsTitle::after {
-  right: -13rem;
-  width: 11.25rem;
+  right: -15rem;
+  width: 13rem;
 }
 .courseIstructorTitle::after {
   right: -7.5rem;
   width: 5.6rem;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1150px) {
   .courseWhatTitle::after {
     right: -32rem;
     width: 28.25rem;
   }
   .courseContentTitle::after {
-    right: -33.25rem;
-    width: 28rem;
+    right: -30.25rem;
+    width: 26rem;
   }
 }
-@media (max-width: 1045px) {
+
+@media (max-width: 1100px) {
+  .courseWhatTitle::after,
+  .courseContentTitle::after {
+    right: -29rem;
+    width: 26rem;
+  }
+}
+@media (max-width: 1050px) {
   .courseWhatTitle::after {
-    right: -30rem;
-    width: 25.25rem;
+    right: -27rem;
+    width: 23.25rem;
   }
   .courseContentTitle::after {
-    right: -31.7rem;
-    width: 23.5rem;
+    right: -25rem;
+    width: 23rem;
   }
   .courseRequerimientsTitle::after {
     right: -10rem;
@@ -91,43 +99,135 @@ h5::after {
 }
 @media (max-width: 940px) {
   .courseWhatTitle::after {
-    right: -21rem;
-    width: 18rem;
+    right: -23rem;
+    width: 19rem;
   }
   .courseContentTitle::after {
     right: -21.7rem;
     width: 18rem;
   }
+  .courseRequerimientsTitle::after {
+    right: -9.5rem;
+    width: 6.5rem;
+  }
+  .courseIstructorTitle::after {
+    right: -4rem;
+    width: 2.7rem;
+  }
+}
+@media (max-width: 900px) {
+  .courseWhatTitle::after {
+    right: -21rem;
+    width: 17rem;
+  }
+  .courseContentTitle::after {
+    right: -20rem;
+    width: 17rem;
+  }
 }
 @media (max-width: 880px) {
   .courseWhatTitle::after {
-    right: -16rem;
-    width: 13.5rem;
+    right: -19rem;
+    width: 15rem;
   }
   .courseContentTitle::after {
-    right: -16rem;
-    width: 13.5rem;
+    right: -18rem;
+    width: 15rem;
+  }
+  .courseRequerimientsTitle::after {
+    right: -9rem;
+    width: 6.5rem;
+  }
+  .courseIstructorTitle::after {
+    right: -4rem;
+    width: 3rem;
   }
 }
-@media (max-width: 590px) {
+@media (max-width: 800px) {
+  .courseWhatTitle::after {
+    right: -15.5rem;
+    width: 12rem;
+  }
+  .courseContentTitle::after {
+    right: -15.5rem;
+    width: 13rem;
+  }
+}
+@media (max-width: 740px) {
+  .courseWhatTitle::after {
+    right: -14rem;
+    width: 10rem;
+  }
+  .courseContentTitle::after {
+    right: -13rem;
+    width: 10rem;
+  }
+  .courseRequerimientsTitle::after {
+    right: -8rem;
+    width: 6rem;
+  }
+}
+@media (max-width: 700px) {
+  .courseWhatTitle::after {
+    right: -13rem;
+    width: 10rem;
+  }
+  .courseContentTitle::after {
+    right: -12rem;
+    width: 10rem;
+  }
+}
+@media (max-width: 660px) {
+  .courseWhatTitle::after {
+    right: -12rem;
+    width: 9rem;
+  }
+  .courseContentTitle::after {
+    right: -11rem;
+    width: 9rem;
+  }
+  .courseRequerimientsTitle::after {
+    right: -7rem;
+    width: 6rem;
+  }
+  .courseIstructorTitle::after {
+    right: -3.5rem;
+    width: 2.5rem;
+  }
+}
+@media (max-width: 630px) {
   .courseWhatTitle::after {
     right: -10rem;
     width: 8rem;
   }
   .courseContentTitle::after {
-    right: -12rem;
-    width: 9rem;
+    right: -9rem;
+    width: 8rem;
+  }
+  .courseRequerimientsTitle::after {
+    right: -6rem;
+    width: 4.3rem;
+  }
+  .courseIstructorTitle::after {
+    right: -2.7rem;
+    width: 2rem;
   }
 }
 @media (max-width: 575px) {
-  .courseWhatTitle::after,
-  .courseContentTitle::after,
+  .courseWhatTitle::after {
+    right: -19rem;
+    width: 15rem;
+  }
+  .courseContentTitle::after {
+    right: -18rem;
+    width: 14rem;
+  }
   .courseRequerimientsTitle::after {
-    right: -18.4rem;
-    width: 16.25rem;
+    right: -23.5rem;
+    width: 14rem;
   }
   .courseIstructorTitle::after {
-    right: -9.8rem;
-    width: 8rem;
+    right: -13rem;
+    width: 10rem;
   }
 }

@@ -14,6 +14,10 @@ function Layout({ children, ...props }) {
     localStorage.setItem('DARK_MODE', darkMode);
   }, [darkMode]);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="layout">
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} {...props} />
