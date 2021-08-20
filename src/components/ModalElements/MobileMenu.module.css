@@ -11,3 +11,8 @@
   font-family: monospace;
   text-align: left;
 }
+
+.link:hover {
+  cursor: pointer;
+  color: var(--color-french-rose);
+}

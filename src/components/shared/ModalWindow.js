@@ -8,9 +8,7 @@ const ModalWindow = ({ title, closeModal, children }) => {
       <div className={styles.closeBtnContainer}>
         <img src={closeIcon} onClick={closeModal} alt="close icon" />
       </div>
-
       {title && <div className={styles.modalTitle}>{title}</div>}
-
       <main>{children}</main>
     </div>
   );

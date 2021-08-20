@@ -145,7 +145,13 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         {isCartOpen && <CartModal closeModal={() => setIsCartOpen(false)} />}
 
         {/* MODAL hamburger menu */}
-        {isMenuOpen && <MobileMenu closeModal={() => setMenuOpen(false)} />}
+        {isMenuOpen && (
+          <MobileMenu
+            isCategoryListOpen={isCategoryListOpen}
+            setCategoryListOpen={setCategoryListOpen}
+            closeModal={() => setMenuOpen(false)}
+          />
+        )}
 
         {/* MODAL language selector */}
         {isLanguageOpen && (

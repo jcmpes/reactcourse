@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
@@ -9,12 +9,15 @@ import styles from './MobileMenu.module.css';
 import { getIsLogged } from '../../store/selectors';
 import CategoryList from './CategoryList';
 
-const MobileMenu = ({ closeModal }) => {
+const MobileMenu = ({
+  closeModal,
+  isCategoryListOpen,
+  setCategoryListOpen,
+}) => {
   const { t } = useTranslation(['global']);
   const dispatch = useDispatch();
   const history = useHistory();
   const isLogged = useSelector(getIsLogged);
-  const [isCategoryListOpen, setCategoryListOpen] = useState(false);
 
   const handleLogoutClick = () => {
     logout(); // clear local storage
@@ -23,9 +26,8 @@ const MobileMenu = ({ closeModal }) => {
   };
 
   const handleClickCategories = () => {
-    closeModal();
     setCategoryListOpen(true);
-    // cargar modal de las categorías
+    closeModal();
   };
 
   return (
@@ -80,9 +82,9 @@ const MobileMenu = ({ closeModal }) => {
             <p className={styles.link} onClick={handleClickCategories}>
               {t('mobile menu.categories')}
             </p>
-            {isCategoryListOpen && (
+            {isCategoryListOpen ? (
               <CategoryList closeModal={() => setCategoryListOpen(false)} />
-            )}
+            ) : null}
           </div>
         }
       ></ModalWindow>

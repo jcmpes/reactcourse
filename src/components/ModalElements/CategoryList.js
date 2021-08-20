@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { getCategories } from '../../store/selectors';
 import ModalWindow from '../shared/ModalWindow';
+import styles from './CategoryList.module.css';
 
 const CategoryList = ({ closeModal }) => {
+  const { t } = useTranslation(['global']);
   const dispatch = useDispatch();
   const categories = useSelector(getCategories);
 
@@ -15,15 +18,13 @@ const CategoryList = ({ closeModal }) => {
   return (
     <div>
       <ModalWindow
-        title="Category List.T"
+        title={t('category list.categories')}
         closeModal={closeModal}
         children={
-          <div className="categoryListContainer">
-            <div>
-              {categories.map((cat) => (
-                <div>{cat.name}</div>
-              ))}
-            </div>
+          <div className={styles.categoryListContainer}>
+            {categories.map((cat) => (
+              <div className={styles.link}>{cat.name}</div>
+            ))}
           </div>
         }
       ></ModalWindow>

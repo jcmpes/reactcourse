@@ -1,0 +1,17 @@
+.categoryListContainer {
+  width: 150px;
+  margin: 0 auto;
+}
+
+.link {
+  display: block;
+  color: black;
+  text-align: left;
+  margin-bottom: 10px;
+  font-family: monospace;
+}
+
+.link:hover {
+  cursor: pointer;
+  color: var(--color-french-rose);
+}
