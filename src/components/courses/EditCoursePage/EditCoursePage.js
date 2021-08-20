@@ -27,8 +27,8 @@ function EditCoursePage() {
     dispatch(categoriesLoadAction());
   }, [courseSlug, courseDetails, dispatch]);
 
-  function handleSubmit(courseDetails) {
-    editCourse(courseDetails)
+  function handleSubmit(newCourseDetails) {
+    editCourse(newCourseDetails)
       .then(result => {
         if (result.slug) setCreatedCourse(result)
         if (result.error === 'no token provided'

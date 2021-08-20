@@ -31,7 +31,6 @@ function NewCoursePage() {
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-    // dispatch(courseDetailAction())
   }, [dispatch]);
 
   const handleAddLesson = () => {
@@ -74,6 +73,7 @@ function NewCoursePage() {
   };
 
   function makeApiCall(courseDetails) {
+    
     postCourse(courseDetails)
       .then((result) => {
         if (result.slug) setCreatedCourse(result);

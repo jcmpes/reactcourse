@@ -42,8 +42,8 @@ export const postCourse = async (courseDetails) => {
 };
 
 // Edit an existing course
-export const editCourse = async (courseDetails) => {
-  return client.put('/api/v1/courses/', courseDetails);
+export const editCourse = async (newCourseDetails) => {
+  return client.put('/api/v1/courses/', newCourseDetails);
 };
 
 // Get categories
