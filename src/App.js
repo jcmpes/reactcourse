@@ -4,7 +4,8 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import NotFoundPage from './api/NotFoundPage';
 import { Suspense } from 'react';
 import LoginPage from './components/auth/LoginPage';
-import WelcomePage from './components/WelcomePage';
+import HomePage from './components/HomePage/HomePage';
+import SearchPage from './components/SearchPage/SearchPage';
 import {
   RegisterPage,
   ResetPasswordPage,
@@ -66,8 +67,8 @@ function Translations() {
               <CoursePage />
             </Route>
           </Route>
-          <Route exact path="/">
-            <WelcomePage />
+          <Route exact path="/search">
+            <SearchPage />
           </Route>
         </Route>
         <Route path="/create">
@@ -76,8 +77,11 @@ function Translations() {
         <Route path="/edit/:courseSlug">
           <EditCoursePage />
         </Route>
+        <Route exact path="/search">
+          <SearchPage />
+        </Route>
         <Route exact path="/">
-          <WelcomePage />
+          <HomePage />
         </Route>
         <Route exact path="/404">
           <NotFoundPage />

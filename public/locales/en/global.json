@@ -49,6 +49,11 @@
   "Checkout": "Checkout",
   "Shopping Cart": "Shopping Cart",
   "Empty cart": "Empty cart",
+  "home": {
+    "Do you want to be a tutor?": "Do you want to be a tutor?",
+    "To become an instructor": "To become an instructor",
+    "Start teaching": "Start teaching"
+  },
   "users": {
     "student": "Student",
     "learning": "Learning",

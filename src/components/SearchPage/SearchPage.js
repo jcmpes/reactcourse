@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { authLogout } from '../store/actions/logout';
-import { getAuth, getUI, getFilters } from '../store/selectors';
-import Layout from './layout/Layout';
+import { authLogout } from '../../store/actions/logout';
+import { getAuth, getUI, getFilters } from '../../store/selectors';
+import Layout from '../layout/Layout';
 import { useTranslation } from 'react-i18next';
-import { getCourses } from '../api/courses';
+import { getCourses } from '../../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
-import { categoriesLoadRequest } from '../store/actions/categories-load';
-import CoursesList from './courses/CoursesList';
-import FiltersForm from './FiltersForm/FiltersForm';
-import Scroll from './shared/Scroll';
-// import styles from './WelcomePage.module.css';
-import { setFilters, loadCoursesAction } from '../store/actions/load-courses';
-import Loading from './shared/Loading/Loading';
-import ErrorMessage from './shared/ErrorMessage';
-import Course from './courses/Course';
-import loader from '../assets/img/loading-mini.gif';
-import { debounce } from '../utils/debounce';
+import { categoriesLoadRequest } from '../../store/actions/categories-load';
+import CoursesList from '../courses/CoursesList';
+import FiltersForm from '../FiltersForm/FiltersForm';
+import Scroll from '../shared/Scroll';
+// import styles from './SearchPage.module.css';
+import {
+  setFilters,
+  loadCoursesAction,
+} from '../../store/actions/load-courses';
+import Loading from '../shared/Loading/Loading';
+import ErrorMessage from '../shared/ErrorMessage';
+import Course from '../courses/Course';
+import loader from '../../assets/img/loading-mini.gif';
+import { debounce } from '../../utils/debounce';
 
-function WelcomePage({ auth, onLogout, ...props }) {
+function SearchPage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
 
   const { loading, error } = useSelector(getUI);
@@ -51,7 +54,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
     }
   };
 
-  const { username } = auth;
+  // const { username } = auth;
 
   const [courses, setCourses] = React.useState([]);
 
@@ -97,7 +100,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
   return (
     <Layout {...props}>
       <Scroll showBellow={250} />
-      <div
+      {/* <div
         style={{
           textAlign: 'center',
           fontSize: 40,
@@ -108,7 +111,7 @@ function WelcomePage({ auth, onLogout, ...props }) {
         {username ? `, ${username}` : ''}
       </div>
 
-      <div>{t('headline')}</div>
+      <div>{t('headline')}</div> */}
       <label htmlFor="order-checkbox">{t('Ascending')}</label>
       <input
         type="checkbox"
@@ -184,4 +187,4 @@ const mapDispatchToProps = {
   onLogout: authLogout,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomePage);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

@@ -49,6 +49,11 @@
   "Checkout": "Pagar",
   "Shopping Cart": "Carro de la compra",
   "Empty cart": "Carro vacío",
+  "home": {
+    "Do you want to be a tutor?": "¿Quieres ser tutor?",
+    "To become an instructor": "Convertirse en instructor",
+    "Start teaching": "Comienza a enseñar"
+  },
   "users": {
     "student": "Estudiante",
     "learning": "Cursando",
