@@ -7,7 +7,6 @@ import { userCourses } from '../../../api/courses';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import Loading from '../../shared/Loading/Loading';
-import Course from '../Course';
 import ErrorMessage from '../../shared/ErrorMessage';
 
 export const UserCourse = (...props) => {

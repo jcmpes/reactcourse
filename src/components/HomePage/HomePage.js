@@ -8,15 +8,15 @@ import photo1 from '../../assets/img/home1.jpg';
 import photo2 from '../../assets/img/home2.jpg';
 import { useTranslation } from 'react-i18next';
 import styles from './HomePage.module.css';
-import { getCategories, getFilters } from '../../store/selectors';
+import { getCategories } from '../../store/selectors';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { setFilters } from '../../store/actions/load-courses';
 import { Link } from 'react-router-dom';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
   const dispatch = useDispatch();
-  const filter = useSelector(getFilters);
   const defaultFilters = {
     title: '',
     category: '',
@@ -30,10 +30,9 @@ const HomePage = ({ auth, onLogout, ...props }) => {
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
-  }, []);
+  }, [dispatch]);
 
   const categories = useSelector(getCategories);
-  console.log(categories);
 
   const catElements = categories.map((cat) => (
     <Link className={styles.categoriesButtons} to="/search">
@@ -41,7 +40,6 @@ const HomePage = ({ auth, onLogout, ...props }) => {
         key={cat._id}
         className={styles.categoriesButton}
         onClick={() => {
-          console.log(cat.name);
           dispatch(setFilters({ ...defaultFilters, category: cat.name }));
         }}
       >
@@ -75,10 +73,25 @@ const HomePage = ({ auth, onLogout, ...props }) => {
             </button>
           </div>
         </div>
-        <br />
-        <div>{t('header.categories')}</div>
+
+        <div className={styles.interlineContainer}>
+          <div className={styles.interlineTitleLeft}>
+            {t('home.New courses')}
+          </div>
+          <div className={styles.line3}></div>
+        </div>
+        <div className={styles.interlineContainer}>
+          <div className={styles.line}></div>
+          <div className={styles.interlineTitle}>
+            <strong>{t('header.categories')}</strong>
+          </div>
+          <div className={styles.line}></div>
+        </div>
         <div className={styles.categoriesButtons}>{catElements}</div>
-        <br />
+        <div className={styles.interlineContainer}>
+          <div className={styles.line2}></div>
+        </div>
+
         <div className={styles.section2Container}>
           <div>
             <img className="photo2" src={photo2} alt="" />
