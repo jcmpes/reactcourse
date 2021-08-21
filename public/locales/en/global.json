@@ -50,6 +50,15 @@
   "Checkout": "Checkout",
   "Shopping Cart": "Shopping Cart",
   "Empty cart": "Empty cart",
+  "home": {
+    "Do you want to be a tutor?": "Do you want to be a tutor?",
+    "To become an instructor": "To become an instructor",
+    "Start teaching": "Start teaching",
+    "Find the best online tutor for you": "Find the best online tutor for you",
+    "Build up your skills": "Build up your skills",
+    "Search": "Search",
+    "New courses": "New courses"
+  },
   "users": {
     "student": "Student",
     "learning": "Learning",
