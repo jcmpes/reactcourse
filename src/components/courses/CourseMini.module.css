@@ -6,7 +6,19 @@
 .miniCard {
   font-size: 0.8rem;
   margin-right: 0.6rem;
+  margin-top: 0.4rem;
   text-align: left;
+  color: black;
+  cursor: pointer;
+}
+
+.miniCard:hover {
+  transform: scale(1.05);
+  transition: ease 0.3s;
+}
+
+.miniCard a {
+  color: black;
 }
 
 .miniCard img {

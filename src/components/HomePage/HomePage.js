@@ -67,6 +67,11 @@ const HomePage = ({ auth, onLogout, ...props }) => {
         <div className={styles.section1Container}>
           <div>
             <img className="photo1" src={photo1} alt="" />
+            <div className={styles.txtInside}>
+              <strong>
+                {t('home.Learn anytime and anywhere with an expert')}
+              </strong>
+            </div>
           </div>
           <div className={styles.containerMessages}>
             <div className={styles.msg1}>
@@ -103,7 +108,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
         >
           <CoursesListMini courses={newCourses} />
         </div>
-        <div className={styles.interlineContainer}>
+        <div className={styles.interlineContainer2}>
           <div className={styles.line}></div>
           <div className={styles.interlineTitle}>
             <strong>{t('header.categories')}</strong>
@@ -118,6 +123,11 @@ const HomePage = ({ auth, onLogout, ...props }) => {
         <div className={styles.section2Container}>
           <div>
             <img className="photo2" src={photo2} alt="" />
+            <div className={styles.txtInside}>
+              <strong>
+                {t('home.Learn anytime and anywhere with an expert')}
+              </strong>
+            </div>
           </div>
           <div className={styles.containerMessages}>
             <div className={styles.msg1_2}>
