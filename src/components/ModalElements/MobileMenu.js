@@ -37,6 +37,33 @@ const MobileMenu = ({
         closeModal={closeModal}
         children={
           <div className={styles.mobileMenu} onClick={closeModal}>
+            {isLogged && (
+              <>
+                <Link className={styles.link} onClick={closeModal} to="/user">
+                  {t('mobile menu.my account')}
+                </Link>
+                <Link className={styles.link} onClick={closeModal} to="/myfavs">
+                  {t('mobile menu.my favourites')}
+                </Link>
+                <Link
+                  className={styles.link}
+                  onClick={closeModal}
+                  to="/courses"
+                >
+                  {t('mobile menu.courses')}
+                </Link>
+                <Link className={styles.link} onClick={closeModal} to="/create">
+                  {t('mobile menu.create course')}
+                </Link>
+              </>
+            )}
+            <p className={styles.link} onClick={handleClickCategories}>
+              {t('mobile menu.categories')}
+            </p>
+            {isCategoryListOpen ? (
+              <CategoryList closeModal={() => setCategoryListOpen(false)} />
+            ) : null}
+
             {!isLogged && (
               <>
                 <Link
@@ -52,39 +79,12 @@ const MobileMenu = ({
                 </Link>
               </>
             )}
+
             {isLogged && (
-              <>
-                <Link
-                  className={styles.link}
-                  onClick={handleLogoutClick}
-                  to="/"
-                >
-                  {t('mobile menu.logout')}
-                </Link>
-                <Link
-                  className={styles.link}
-                  onClick={closeModal}
-                  to="/courses"
-                >
-                  {t('mobile menu.courses')}
-                </Link>
-                <Link className={styles.link} onClick={closeModal} to="/create">
-                  {t('mobile menu.create course')}
-                </Link>
-                <Link className={styles.link} onClick={closeModal} to="/user">
-                  {t('mobile menu.my account')}
-                </Link>
-                <Link className={styles.link} onClick={closeModal} to="/myfavs">
-                  {t('mobile menu.my favourites')}
-                </Link>
-              </>
+              <Link className={styles.link} onClick={handleLogoutClick} to="/">
+                {t('mobile menu.logout')}
+              </Link>
             )}
-            <p className={styles.link} onClick={handleClickCategories}>
-              {t('mobile menu.categories')}
-            </p>
-            {isCategoryListOpen ? (
-              <CategoryList closeModal={() => setCategoryListOpen(false)} />
-            ) : null}
           </div>
         }
       ></ModalWindow>

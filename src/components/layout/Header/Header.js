@@ -85,7 +85,11 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             ) : (
               <div className={styles.myAccountBtns}>
                 <div className={styles.userIcon}>
-                  <img src={userIcon} alt="user icon" />
+                  <img
+                    src={userIcon}
+                    alt="user icon"
+                    onClick={handleClickMenu}
+                  />
                 </div>
                 <div className={styles.heartIcon}>
                   <img src={heartIcon} alt="heart icon" />
