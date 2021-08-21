@@ -8,7 +8,7 @@ function LoginForm({ passwordShown, onSubmit }) {
   const [credentials, setCredentials] = React.useState({
     email: '',
     password: '',
-    remember: false,
+    remember: true,
   });
 
   const handleChange = (ev) => {
