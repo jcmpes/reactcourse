@@ -10,8 +10,13 @@ import { useTranslation } from 'react-i18next';
 import styles from './HomePage.module.css';
 import { getCategories } from '../../store/selectors';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
-import { setFilters } from '../../store/actions/load-courses';
+import {
+  loadCoursesAction,
+  setFilters,
+} from '../../store/actions/load-courses';
 import { Link } from 'react-router-dom';
+import CoursesListMini from '../courses/CoursesListMini';
+import { getCourses } from '../../api/courses';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
   // eslint-disable-next-line no-unused-vars
@@ -27,10 +32,16 @@ const HomePage = ({ auth, onLogout, ...props }) => {
     skip: 0,
     sort: -1,
   };
+  const [newCourses, setNewCourses] = React.useState([]);
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
+    dispatch(
+      loadCoursesAction(getCourses, setNewCourses, defaultFilters, () => {}, 5),
+    );
   }, [dispatch]);
+
+  console.log(newCourses);
 
   const categories = useSelector(getCategories);
 
@@ -68,9 +79,11 @@ const HomePage = ({ auth, onLogout, ...props }) => {
               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
               erat volutpat.
             </div>
-            <button className={styles.starTeachingBtn}>
-              {t('home.Start teaching')}
-            </button>
+            <Link to="/create">
+              <button className={styles.starTeachingBtn}>
+                {t('home.Start teaching')}
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -79,6 +92,15 @@ const HomePage = ({ auth, onLogout, ...props }) => {
             {t('home.New courses')}
           </div>
           <div className={styles.line3}></div>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            overflow: 'auto',
+          }}
+        >
+          <CoursesListMini courses={newCourses} />
         </div>
         <div className={styles.interlineContainer}>
           <div className={styles.line}></div>
@@ -108,9 +130,16 @@ const HomePage = ({ auth, onLogout, ...props }) => {
               nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
               erat volutpat.
             </div>
-            <button className={styles.starTeachingBtn}>
-              {t('home.Search')}
-            </button>
+            <Link to="/search">
+              <button
+                className={styles.starTeachingBtn}
+                onClick={() => {
+                  dispatch(setFilters(defaultFilters));
+                }}
+              >
+                {t('home.Search')}
+              </button>
+            </Link>
           </div>
         </div>
       </Layout>
