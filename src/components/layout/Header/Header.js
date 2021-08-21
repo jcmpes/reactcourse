@@ -92,7 +92,9 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
                   />
                 </div>
                 <div className={styles.heartIcon}>
-                  <img src={heartIcon} alt="heart icon" />
+                  <Link to="myfavs">
+                    <img src={heartIcon} alt="heart icon" />
+                  </Link>
                 </div>
               </div>
             )}
