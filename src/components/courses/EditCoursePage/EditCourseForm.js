@@ -1,36 +1,51 @@
 import React from 'react';
-import client from '../../../api/client'
-import { useTranslation } from "react-i18next";
+import client from '../../../api/client';
+import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { FormField, Button, Input } from "../../../components/shared";
+import { FormField, Button, Input } from '../../../components/shared';
 import FileUpload from '../../shared/FileUpload';
-require('dotenv').config()
+import ConfirmButton from '../../shared/ConfirmButton';
+require('dotenv').config();
 
-function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories }) {
+function EditCourseForm({
+  courseDetails,
+  setCourseDetails,
+  onSubmit,
+  categories,
+}) {
   const { t } = useTranslation(['global']);
   const history = useHistory();
-  const initialCategory = categories.find(cat => cat._id === courseDetails.category)
-  const { title, description, video, image, content } = courseDetails
-  const [featuredImage, setFeaturedImage] = React.useState(null)
+  const initialCategory = categories.find(
+    (cat) => cat._id === courseDetails.category,
+  );
+  const { title, description, video, image, content } = courseDetails;
+  const [featuredImage, setFeaturedImage] = React.useState(null);
   const [newCourseDetails, setNewCourseDetails] = React.useState({
-    'title': title || '',
-    'description': description || '',
-    'category': initialCategory.name || '',
-    'video': video || '',
-    'content': content || '',
-    'image': image ,
-    'preview': { file: image }
+    title: title || '',
+    description: description || '',
+    category: initialCategory.name || '',
+    video: video || '',
+    content: content || '',
+    image: image,
+    preview: { file: image },
   });
 
-  const deleteCourse = () => {
-    client.delete(`${process.env.REACT_APP_API_BASE_URL}/api/v1/courses/${courseDetails._id}`)
-      .then(() => {
-        history.push('/')
-      })
-      .catch(err => {
-        console.log('Error deleting course: ', err)
-      })
+  const handleDelete = () => {
+    deleteCourse();
   }
+
+  const deleteCourse = () => {
+    client
+      .delete(
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/courses/${courseDetails._id}`,
+      )
+      .then(() => {
+        history.push('/');
+      })
+      .catch((err) => {
+        console.log('Error deleting course: ', err);
+      });
+  };
 
   const handleChange = (ev) => {
     setNewCourseDetails((oldCredentials) => ({
@@ -43,16 +58,17 @@ function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories 
     ev.preventDefault();
     const formData = new FormData();
     // Send course id to update in backend
-    formData.append('_id', courseDetails._id)
+    formData.append('_id', courseDetails._id);
 
     // Send the other details
-    formData.append('title', newCourseDetails.title)
-    formData.append('description', newCourseDetails.description)
-    formData.append('category', newCourseDetails.category)
-    formData.append('video', newCourseDetails.video)
-    formData.append('content', newCourseDetails.content)
-    if (newCourseDetails.image) formData.append('image', newCourseDetails.image)
-    onSubmit(formData)
+    formData.append('title', newCourseDetails.title);
+    formData.append('description', newCourseDetails.description);
+    formData.append('category', newCourseDetails.category);
+    formData.append('video', newCourseDetails.video);
+    formData.append('content', newCourseDetails.content);
+    if (newCourseDetails.image)
+      formData.append('image', newCourseDetails.image);
+    onSubmit(formData);
   };
 
   return (
@@ -75,21 +91,21 @@ function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories 
             options={[{ name: 'Select category', _id: '000' }, ...categories]}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'description'}
             name="description"
             value={newCourseDetails.description}
             onChange={handleChange}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'video'}
             name="video"
             value={newCourseDetails.video}
             onChange={handleChange}
           />
           <FormField
-            type={"textarea"}
+            type={'textarea'}
             label={'content'}
             name="content"
             value={newCourseDetails.content}
@@ -102,20 +118,27 @@ function EditCourseForm({ courseDetails, setCourseDetails, onSubmit, categories 
             setCourseDetails={setNewCourseDetails}
             courseDetails={newCourseDetails}
           />
-          <Button
-            type="submit"
-          >
-            {t('submit')}
+          <Button type="submit">{t('submit')}</Button>
+          <Button onClick={handleDelete}>
+            Delete
           </Button>
-          <Button onClick={deleteCourse}>
-            Delete 🗑
-          </Button>
+          {/* <ConfirmButton
+            iconButton={null}
+            titleButton={t('course.delete course')}
+            okAction={deleteCourse}
+            message={<div>{t('course.sure you want to delete')}</div>}
+            subtitle={
+              <div>
+                {t(
+                  "course.deletion confirmation message",
+                )}
+              </div>
+            }
+          /> */}
         </form>
       </div>
     </div>
-  )
+  );
 }
-
-
 
 export default EditCourseForm;

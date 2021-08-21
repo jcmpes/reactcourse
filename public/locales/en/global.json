@@ -101,7 +101,10 @@
     "buy": "buy",
     "What you will learn": "What you will learn",
     "Course content": "Course content",
-    "Requirements": "Requirements"
+    "Requirements": "Requirements",
+    "delete course": "Delete course",
+    "sure you want to delete": "Are you sure you want to delete your course?",
+    "deletion confirmation message": "This action can not be undone. You want to proceed?"
   },
   "mobile menu": {
     "menu": "Menu",
