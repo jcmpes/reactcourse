@@ -39,6 +39,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
     dispatch(
       loadCoursesAction(getCourses, setNewCourses, defaultFilters, () => {}, 5),
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch]);
 
   console.log(newCourses);

@@ -8,6 +8,7 @@ const CourseMini = ({ course }) => {
       <img src={course.image} alt="" />
       {course.title}
       <div className={styles.author}>{course.user.username}</div>
+      <div className={styles.author}>{course.lessons.length} lessons</div>
       <div className={styles.price}>{course.price} €</div>
     </div>
   );
