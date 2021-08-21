@@ -13,7 +13,7 @@ const CategoryList = ({ closeModal }) => {
 
   useEffect(() => {
     dispatch(categoriesLoadAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -23,7 +23,9 @@ const CategoryList = ({ closeModal }) => {
         children={
           <div className={styles.categoryListContainer}>
             {categories.map((cat) => (
-              <div className={styles.link}>{cat.name}</div>
+              <div key={cat._id} className={styles.link}>
+                {cat.name}
+              </div>
             ))}
           </div>
         }
