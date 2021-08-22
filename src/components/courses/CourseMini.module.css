@@ -10,6 +10,7 @@
   text-align: left;
   color: black;
   cursor: pointer;
+  padding-bottom: 0.2rem;
 }
 
 .miniCard:hover {

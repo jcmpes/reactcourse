@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logo from '../../../assets/img/logo.png';
+import { createBrowserHistory } from 'history';
 
 // redux:
 import { connect, useSelector } from 'react-redux';
@@ -20,6 +21,9 @@ import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 import darkModeIcon2 from '../../../assets/img/dark-mode.png';
 import CartModal from '../../ModalElements/CartModal';
+import { useDispatch } from 'react-redux';
+import { setFilters } from '../../../store/actions/load-courses';
+import { getFilters } from '../../../store/selectors';
 
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
@@ -34,6 +38,17 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isCategoryListOpen, setCategoryListOpen] = useState(false);
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
+  const history = createBrowserHistory();
+
+  const [formSubmited, setFormSubmited] = React.useState(false);
+
+  const dispatch = useDispatch();
+  const filters = useSelector(getFilters);
+  function handleChange(ev) {
+    filters.skip = 0;
+    const newFilter = { ...filters, [ev.target.name]: ev.target.value };
+    dispatch(setFilters(newFilter));
+  }
 
   function handleClickMenu() {
     setMenuOpen(true);
@@ -47,7 +62,20 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     setCategoryListOpen(true);
   }
 
-  return (
+  function handleSubmit(ev) {
+    ev.preventDefault();
+    setFormSubmited(true);
+  }
+
+  React.useEffect(() => {
+    return () => {
+      setFormSubmited(false);
+    };
+  }, [formSubmited]);
+
+  return formSubmited ? (
+    <Redirect to="/search" />
+  ) : (
     <>
       <header
         className={styles.header}
@@ -113,7 +141,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
               </div>
               <div className={styles.darkModeIcon}>
                 <img
-                  src={darkMode ? darkModeIcon2 : darkModeIcon}
+                  src={darkMode ? darkModeIcon : darkModeIcon2}
                   alt=""
                   onClick={toggleDarkMode}
                 />
@@ -141,10 +169,15 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <span className={styles.loupeIconSpan}>
             <img src={loupeIcon} alt="" />
           </span>
-          <input
-            className={styles.searchBarForm}
-            placeholder={t('header.search')}
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              name="title"
+              className={styles.searchBarForm}
+              placeholder={t('header.search')}
+              value={filters.title}
+              onChange={handleChange}
+            />
+          </form>
         </div>
 
         {/* MODAL shopping cart menu */}

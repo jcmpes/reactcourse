@@ -17,6 +17,7 @@ import {
 import { Link } from 'react-router-dom';
 import CoursesListMini from '../courses/CoursesListMini';
 import { getCourses } from '../../api/courses';
+import placeholder from '../../assets/img/homePlaceholder.jpg';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
   // eslint-disable-next-line no-unused-vars
@@ -33,6 +34,15 @@ const HomePage = ({ auth, onLogout, ...props }) => {
     sort: -1,
   };
   const [newCourses, setNewCourses] = React.useState([]);
+  const [imgLoaded, setImgLoaded] = React.useState(false);
+  const [imgLoaded2, setImgLoaded2] = React.useState(false);
+
+  const loaded = () => {
+    setImgLoaded(true);
+  };
+  const loaded2 = () => {
+    setImgLoaded2(true);
+  };
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
@@ -66,7 +76,12 @@ const HomePage = ({ auth, onLogout, ...props }) => {
         <Scroll showBellow={250} />
         <div className={styles.section1Container}>
           <div>
-            <img className="photo1" src={photo1} alt="" />
+            <img
+              className="photo1"
+              src={imgLoaded ? photo1 : placeholder}
+              alt=""
+              onLoad={loaded}
+            />
             <div className={styles.txtInside}>
               <strong>
                 {t('home.Learn anytime and anywhere with an expert')}
@@ -122,7 +137,12 @@ const HomePage = ({ auth, onLogout, ...props }) => {
 
         <div className={styles.section2Container}>
           <div>
-            <img className="photo2" src={photo2} alt="" />
+            <img
+              className="photo2"
+              src={imgLoaded2 ? photo2 : placeholder}
+              alt=""
+              onLoad={loaded2}
+            />
             <div className={styles.txtInside}>
               <strong>
                 {t('home.Learn anytime and anywhere with an expert')}
