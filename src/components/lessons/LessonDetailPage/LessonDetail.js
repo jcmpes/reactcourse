@@ -15,7 +15,7 @@ function LessonDetail({
   number,
 }) {
   const lessonNumber = number + 1;
-  const percent = (lessons / lessonNumber) * 100;
+  const percent = (lessonNumber / lessons) * 100;
 
   const { t } = useTranslation(['global']);
   return (
