@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logo from '../../../assets/img/logo.png';
-import { createBrowserHistory } from 'history';
 
 // redux:
 import { connect, useSelector } from 'react-redux';
@@ -38,7 +37,6 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isCategoryListOpen, setCategoryListOpen] = useState(false);
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
-  const history = createBrowserHistory();
 
   const [formSubmited, setFormSubmited] = React.useState(false);
 
