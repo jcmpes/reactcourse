@@ -30,6 +30,13 @@
   max-width: 66vw;
 }
 
+.placeholder {
+  border-radius: 25px;
+  background-color: lightgray 0.8;
+  min-width: 66vw;
+  min-height: 40vw;
+}
+
 .section2Container img {
   border-radius: 25px;
   max-width: 66vw;
