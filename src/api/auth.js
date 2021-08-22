@@ -83,7 +83,7 @@ export const myFavs = () => {
 };
 
 export const myFavsDetail = (setFavs) => {
-  return client.get(`/api/v1/aboutme//myfavsdetails`).then((data) => {
+  return client.get(`/api/v1/aboutme/myfavsdetails`).then((data) => {
     setFavs(data);
   });
 };
