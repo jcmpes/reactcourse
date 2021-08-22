@@ -273,3 +273,19 @@
     line-height: 5.8vw;
   }
 }
+@media (width: 375px) {
+  .txtInside {
+    top: 21vh;
+  }
+}
+@media (width: 768px) {
+  .txtInside {
+    top: 20vh;
+  }
+}
+
+@media (width: 1024px) {
+  .txtInside {
+    top: 13vh;
+  }
+}
