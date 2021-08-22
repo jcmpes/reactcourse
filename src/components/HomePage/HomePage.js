@@ -75,7 +75,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
       <Layout {...props}>
         <Scroll showBellow={250} />
         <div className={styles.section1Container}>
-          <div>
+          <div className={styles.placeholder}>
             <img
               className="photo1"
               src={imgLoaded ? photo1 : placeholder}
@@ -137,16 +137,18 @@ const HomePage = ({ auth, onLogout, ...props }) => {
 
         <div className={styles.section2Container}>
           <div>
-            <img
-              className="photo2"
-              src={imgLoaded2 ? photo2 : placeholder}
-              alt=""
-              onLoad={loaded2}
-            />
-            <div className={styles.txtInside}>
-              <strong>
-                {t('home.Learn anytime and anywhere with an expert')}
-              </strong>
+            <div className={styles.placeholder}>
+              <img
+                className="photo2"
+                src={imgLoaded2 ? photo2 : placeholder}
+                alt=""
+                onLoad={loaded2}
+              />
+              {/* <div className={styles.txtInside2}>
+                <strong>
+                  {t('home.Learn anytime and anywhere with an expert')}
+                </strong>
+              </div> */}
             </div>
           </div>
           <div className={styles.containerMessages}>

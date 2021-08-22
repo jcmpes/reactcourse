@@ -17,9 +17,9 @@ import {
 } from '../../store/actions/load-courses';
 import Loading from '../shared/Loading/Loading';
 import ErrorMessage from '../shared/ErrorMessage';
-import Course from '../courses/Course';
 import loader from '../../assets/img/loading-mini.gif';
 import { debounce } from '../../utils/debounce';
+import { CourseSkeleton } from '../courses/CourseSkeleton';
 
 function SearchPage({ auth, onLogout, ...props }) {
   const { t, i18n } = useTranslation(['global']);
@@ -100,18 +100,6 @@ function SearchPage({ auth, onLogout, ...props }) {
   return (
     <Layout {...props}>
       <Scroll showBellow={250} />
-      {/* <div
-        style={{
-          textAlign: 'center',
-          fontSize: 40,
-        }}
-      >
-        {t('welcome to')}
-        {t('title')}
-        {username ? `, ${username}` : ''}
-      </div>
-
-      <div>{t('headline')}</div> */}
       <label htmlFor="order-checkbox">{t('Ascending')}</label>
       <input
         type="checkbox"
@@ -129,22 +117,8 @@ function SearchPage({ auth, onLogout, ...props }) {
         <div>
           {loading ? (
             <>
-              <Course
-                course={{
-                  title: 'La prisa mata',
-                  description: 'Relajado todo es mejor',
-                  user: { username: 'Alguien que sabe' },
-                  category: { name: 'Cualquiera será buena' },
-                  createdAt: Date.now(),
-                  price: 0,
-
-                  image: 'https://i.postimg.cc/wTFWZ0BG/sandwatch.png',
-                }}
-                key={'a'}
-                faved={false}
-                purchased={false}
-                inCart={null}
-              />
+              <CourseSkeleton />
+              <CourseSkeleton />
               <Loading isLoading={true} />
             </>
           ) : (
