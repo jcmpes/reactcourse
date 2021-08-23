@@ -71,106 +71,108 @@ const HomePage = ({ auth, onLogout, ...props }) => {
   return (
     <>
       <Layout {...props}>
-        <Scroll showBellow={250} />
-        <div className={styles.section1Container}>
-          <div className={styles.placeholder}>
-            <img
-              className="photo1"
-              src={imgLoaded ? photo1 : placeholder}
-              alt=""
-              onLoad={loaded}
-            />
-            <div className={styles.txtInside}>
-              <strong>
-                {t('home.Learn anytime and anywhere with an expert')}
-              </strong>
-            </div>
-          </div>
-          <div className={styles.containerMessages}>
-            <div className={styles.msg1}>
-              <strong>{t('home.Do you want to be a tutor?')}</strong>
-            </div>
-            <div className={styles.msg2}>
-              <strong>{t('home.To become an instructor')}</strong>
-            </div>
-            <div className={styles.description1}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-              erat volutpat.
-            </div>
-            <Link to="/create">
-              <button className={styles.starTeachingBtn}>
-                {t('home.Start teaching')}
-              </button>
-            </Link>
-          </div>
-        </div>
-
-        <div className={styles.interlineContainer}>
-          <div className={styles.interlineTitleLeft}>
-            {t('home.New courses')}
-          </div>
-          <div className={styles.line3}></div>
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            overflow: 'auto',
-          }}
-        >
-          <CoursesListMini courses={newCourses} />
-        </div>
-        <div className={styles.interlineContainer2}>
-          <div className={styles.line}></div>
-          <div className={styles.interlineTitle}>
-            <strong>{t('header.categories')}</strong>
-          </div>
-          <div className={styles.line}></div>
-        </div>
-        <div className={styles.categoriesButtons}>{catElements}</div>
-        <div className={styles.interlineContainer}>
-          <div className={styles.line2}></div>
-        </div>
-
-        <div className={styles.section2Container}>
-          <div>
+        <div className={styles.homeContainer}>
+          <Scroll showBellow={250} />
+          <div className={styles.section1Container}>
             <div className={styles.placeholder}>
               <img
-                className="photo2"
-                src={imgLoaded2 ? photo2 : placeholder}
+                className="photo1"
+                src={imgLoaded ? photo1 : placeholder}
                 alt=""
-                onLoad={loaded2}
+                onLoad={loaded}
               />
-              {/* <div className={styles.txtInside2}>
+              <div className={styles.txtInside}>
+                <strong>
+                  {t('home.Learn anytime and anywhere with an expert')}
+                </strong>
+              </div>
+            </div>
+            <div className={styles.containerMessages}>
+              <div className={styles.msg1}>
+                <strong>{t('home.Do you want to be a tutor?')}</strong>
+              </div>
+              <div className={styles.msg2}>
+                <strong>{t('home.To become an instructor')}</strong>
+              </div>
+              <div className={styles.description1}>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                aliquam erat volutpat.
+              </div>
+              <Link to="/create">
+                <button className={styles.starTeachingBtn}>
+                  {t('home.Start teaching')}
+                </button>
+              </Link>
+            </div>
+          </div>
+
+          <div className={styles.interlineContainer}>
+            <div className={styles.interlineTitleLeft}>
+              {t('home.New courses')}
+            </div>
+            <div className={styles.line3}></div>
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              overflow: 'auto',
+            }}
+          >
+            <CoursesListMini courses={newCourses} />
+          </div>
+          <div className={styles.interlineContainer2}>
+            <div className={styles.line}></div>
+            <div className={styles.interlineTitle}>
+              <strong>{t('header.categories')}</strong>
+            </div>
+            <div className={styles.line}></div>
+          </div>
+          <div className={styles.categoriesButtons}>{catElements}</div>
+          <div className={styles.interlineContainer}>
+            <div className={styles.line2}></div>
+          </div>
+
+          <div className={styles.section2Container}>
+            <div>
+              <div className={styles.placeholder}>
+                <img
+                  className="photo2"
+                  src={imgLoaded2 ? photo2 : placeholder}
+                  alt=""
+                  onLoad={loaded2}
+                />
+                {/* <div className={styles.txtInside2}>
                 <strong>
                   {t('home.Learn anytime and anywhere with an expert')}
                 </strong>
               </div> */}
+              </div>
             </div>
-          </div>
-          <div className={styles.containerMessages}>
-            <div className={styles.msg1_2}>
-              <strong>{t('home.Find the best online tutor for you')}</strong>
+            <div className={styles.containerMessages}>
+              <div className={styles.msg1_2}>
+                <strong>{t('home.Find the best online tutor for you')}</strong>
+              </div>
+              <div className={styles.msg2_2}>
+                <strong>{t('home.Build up your skills')}</strong>
+              </div>
+              <div className={styles.description1}>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
+                diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                aliquam erat volutpat.
+              </div>
+              <Link to="/search">
+                <button
+                  className={styles.starTeachingBtn}
+                  onClick={() => {
+                    dispatch(setFilters(defaultFilters));
+                  }}
+                >
+                  {t('home.Search')}
+                </button>
+              </Link>
             </div>
-            <div className={styles.msg2_2}>
-              <strong>{t('home.Build up your skills')}</strong>
-            </div>
-            <div className={styles.description1}>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-              nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-              erat volutpat.
-            </div>
-            <Link to="/search">
-              <button
-                className={styles.starTeachingBtn}
-                onClick={() => {
-                  dispatch(setFilters(defaultFilters));
-                }}
-              >
-                {t('home.Search')}
-              </button>
-            </Link>
           </div>
         </div>
       </Layout>

@@ -176,11 +176,13 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
                 </BootstrapTooltip>
               </div>
               <div className={styles.hamburgerMenuIcon}>
-                <img
-                  onClick={handleClickMenu}
-                  src={hamburgerMenuIcon}
-                  alt="hamburger menu icon"
-                />
+                <BootstrapTooltip title={t('mobile menu.menu')}>
+                  <img
+                    onClick={handleClickMenu}
+                    src={hamburgerMenuIcon}
+                    alt="hamburger menu icon"
+                  />
+                </BootstrapTooltip>
               </div>
             </div>
           </div>
