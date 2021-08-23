@@ -100,7 +100,7 @@ function CourseDetail({
                       </button>
                     </div>
                   </div>
-                ) : inCart ? (
+                ) : itemIsInCart ? (
                   <div className="shopping-course">
                     {t('purchases.in the shopping cart')}
                   </div>
@@ -124,7 +124,6 @@ function CourseDetail({
       </div>
       <div>
         {t('course.has')} {numFavs} {t('course.favorites')}
-        {/* {numFavs === 1 ? '' : 's'} */}
       </div>
       <div className="infoCourse">
         <div className="row mb-3">
