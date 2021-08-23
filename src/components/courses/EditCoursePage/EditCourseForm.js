@@ -30,9 +30,9 @@ function EditCourseForm({
     preview: { file: image },
   });
 
-  const handleDelete = () => {
-    deleteCourse();
-  }
+  // const handleDelete = () => {
+  //   deleteCourse();
+  // }
 
   const deleteCourse = () => {
     client
@@ -120,19 +120,13 @@ function EditCourseForm({
           />
           <Button type="submit">{t('submit')}</Button>
         </form>
-          <ConfirmButton
-            iconButton={null}
-            titleButton={t('course.delete course')}
-            okAction={deleteCourse}
-            message={<div>{t('course.sure you want to delete')}</div>}
-            subtitle={
-              <div>
-                {t(
-                  "course.deletion confirmation message",
-                )}
-              </div>
-            }
-          />
+        <ConfirmButton
+          iconButton={null}
+          titleButton={t('course.delete course')}
+          okAction={deleteCourse}
+          message={<div>{t('course.sure you want to delete')}</div>}
+          subtitle={<div>{t('course.deletion confirmation message')}</div>}
+        />
       </div>
     </div>
   );
