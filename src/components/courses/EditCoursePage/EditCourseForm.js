@@ -18,7 +18,16 @@ function EditCourseForm({
   const initialCategory = categories.find(
     (cat) => cat._id === courseDetails.category,
   );
-  const { title, description, video, image, content } = courseDetails;
+  const {
+    title,
+    description,
+    video,
+    image,
+    content,
+    requirements,
+    whatYouWillLearn,
+    level,
+  } = courseDetails;
   const [featuredImage, setFeaturedImage] = React.useState(null);
   const [newCourseDetails, setNewCourseDetails] = React.useState({
     title: title || '',
@@ -26,6 +35,9 @@ function EditCourseForm({
     category: initialCategory.name || '',
     video: video || '',
     content: content || '',
+    requirements: requirements || '',
+    whatYouWillLearn: whatYouWillLearn || '',
+    level: level || '',
     image: image,
     preview: { file: image },
   });
@@ -66,6 +78,9 @@ function EditCourseForm({
     formData.append('category', newCourseDetails.category);
     formData.append('video', newCourseDetails.video);
     formData.append('content', newCourseDetails.content);
+    formData.append('requirements', newCourseDetails.requirements);
+    formData.append('whatYouWillLearn', newCourseDetails.whatYouWillLearn);
+    formData.append('level', newCourseDetails.level);
     if (newCourseDetails.image)
       formData.append('image', newCourseDetails.image);
     onSubmit(formData);
@@ -79,6 +94,7 @@ function EditCourseForm({
             type="text"
             label={'title'}
             name="title"
+            placeholder="Title"
             value={newCourseDetails.title}
             onChange={handleChange}
           />
@@ -94,6 +110,7 @@ function EditCourseForm({
             type={'text'}
             label={'description'}
             name="description"
+            placeholder="Description"
             value={newCourseDetails.description}
             onChange={handleChange}
           />
@@ -101,6 +118,7 @@ function EditCourseForm({
             type={'text'}
             label={'video'}
             name="video"
+            placeholder="Video"
             value={newCourseDetails.video}
             onChange={handleChange}
           />
@@ -108,7 +126,34 @@ function EditCourseForm({
             type={'textarea'}
             label={'content'}
             name="content"
+            placeholder="Content"
             value={newCourseDetails.content}
+            onChange={handleChange}
+          />
+          <FormField
+            type={'text'}
+            label={'requirements'}
+            name="requirements"
+            placeholder="Requirements"
+            value={newCourseDetails.requirements}
+            onChange={handleChange}
+          />
+          <FormField
+            type={'text'}
+            label={'whatYouWillLearn'}
+            name="whatYouWillLearn"
+            placeholder="What will learn"
+            value={newCourseDetails.whatYouWillLearn}
+            onChange={handleChange}
+          />
+          <FormField
+            type={'number'}
+            label={'level'}
+            name="level"
+            placeholder="Level"
+            min="0"
+            max="3"
+            value={newCourseDetails.level}
             onChange={handleChange}
           />
           <FileUpload

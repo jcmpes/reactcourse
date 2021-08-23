@@ -1,9 +1,15 @@
 import React from 'react';
-import { useTranslation } from "react-i18next";
-import { FormField, Button, Input } from "../../../components/shared"
-import FileUpload from '../../shared/FileUpload'
+import { useTranslation } from 'react-i18next';
+import { FormField, Button, Input } from '../../../components/shared';
+import FileUpload from '../../shared/FileUpload';
 
-function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, setCourseDetails }) {
+function NewCourseForm({
+  onSubmit,
+  categories,
+  lessonCounter,
+  courseDetails,
+  setCourseDetails,
+}) {
   const { t } = useTranslation(['global']);
 
   const handleChange = (ev) => {
@@ -14,11 +20,15 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
   };
 
   const verifyForm = () => {
-    if(!courseDetails.title || !courseDetails.category || courseDetails.price < 0) {
-      return true
+    if (
+      !courseDetails.title ||
+      !courseDetails.category ||
+      courseDetails.price < 0
+    ) {
+      return true;
     }
-    return false
-  }
+    return false;
+  };
 
   return (
     <div className="new-course-form">
@@ -29,6 +39,7 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
             type="text"
             label={'title'}
             name="title"
+            placeholder="Title"
             value={courseDetails.title}
             onChange={handleChange}
           />
@@ -41,33 +52,63 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
             options={[{ name: 'Select category', _id: '000' }, ...categories]}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'description'}
             name="description"
+            placeholder="Description"
             value={courseDetails.description}
             onChange={handleChange}
           />
           <FormField
-            type={"text"}
+            type={'text'}
             label={'video'}
             name="video"
+            placeholder="Video"
             value={courseDetails.video}
             onChange={handleChange}
           />
           <FormField
-            type={"number"}
+            type={'number'}
             label={'price'}
             min="0"
             max="1000"
             name="price"
+            placeholder="Price"
             value={courseDetails.price}
             onChange={handleChange}
           />
           <FormField
-            type={"textarea"}
+            type={'textarea'}
             label={'content'}
             name="content"
+            placeholder="Content"
             value={courseDetails.content}
+            onChange={handleChange}
+          />
+          <FormField
+            type={'text'}
+            label={'requirements'}
+            name="requirements"
+            placeholder="Requirements"
+            value={courseDetails.requirements}
+            onChange={handleChange}
+          />
+          <FormField
+            type={'text'}
+            label={'whatYouWillLearn'}
+            name="whatYouWillLearn"
+            placeholder="What you will learn"
+            value={courseDetails.whatYouLearn}
+            onChange={handleChange}
+          />
+          <FormField
+            type={'number'}
+            label={'level'}
+            name="level"
+            min="0"
+            max="3"
+            placeholder="Level"
+            value={courseDetails.level}
             onChange={handleChange}
           />
           <FileUpload
@@ -75,19 +116,13 @@ function NewCourseForm({ onSubmit, categories, lessonCounter, courseDetails, set
             courseDetails={courseDetails}
             setCourseDetails={setCourseDetails}
           />
-          
-          <Button
-            disabled={verifyForm()}
-            type="submit"
-          >
+          <Button disabled={verifyForm()} type="submit">
             {t('submit')}
           </Button>
         </form>
       </div>
     </div>
-  )
+  );
 }
-
-
 
 export default NewCourseForm;
