@@ -11,8 +11,8 @@
 
 .txtInside {
   position: absolute;
-  top: 30vh;
-  left: 100px;
+  top: 8vw;
+  left: 80px;
   font-size: 5vw;
   max-width: 25vw;
   line-height: 6vw;
@@ -252,7 +252,6 @@
   }
 
   .txtInside {
-    top: 33vh;
     font-size: 6.5vw;
     line-height: 7vw;
   }
@@ -280,25 +279,8 @@
   }
 
   .txtInside {
-    top: 30vh;
-    left: 20vw;
+    left: 14vw;
     font-size: 5.8vw;
     line-height: 5.8vw;
-  }
-}
-@media (width: 375px) {
-  .txtInside {
-    top: 21vh;
-  }
-}
-@media (width: 768px) {
-  .txtInside {
-    top: 20vh;
-  }
-}
-
-@media (width: 1024px) {
-  .txtInside {
-    top: 13vh;
   }
 }
