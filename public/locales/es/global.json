@@ -81,7 +81,12 @@
     "create": "Crear curso",
     "search": "Buscar un curso...",
     "myfavs": "Mis favoritos",
-    "categories": "Categorías"
+    "categories": "Categorías",
+    "My Account": "Mi cuenta",
+    "Favorites": "Favoritos",
+    "Cart": "Carrito",
+    "Dark/Light Mode": "Modo Oscuro/Claro",
+    "Languages": "Idiomas"
   },
   "filter": {
     "filtering price between": "Filtrando precio entre",

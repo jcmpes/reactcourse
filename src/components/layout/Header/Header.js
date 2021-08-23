@@ -23,11 +23,13 @@ import CartModal from '../../ModalElements/CartModal';
 import { useDispatch } from 'react-redux';
 import { setFilters } from '../../../store/actions/load-courses';
 import { getFilters } from '../../../store/selectors';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
 
 // styles:
+import { makeStyles } from '@material-ui/core/styles';
 import styles from './Header.module.css';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
@@ -37,6 +39,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isCategoryListOpen, setCategoryListOpen] = useState(false);
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
+  const colorTeachItUp = '#f24b88';
 
   const [formSubmited, setFormSubmited] = React.useState(false);
 
@@ -64,6 +67,19 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     ev.preventDefault();
     setFormSubmited(true);
   }
+  const useStylesBootstrap = makeStyles((theme) => ({
+    arrow: {
+      color: colorTeachItUp,
+    },
+    tooltip: {
+      backgroundColor: colorTeachItUp,
+    },
+  }));
+  function BootstrapTooltip(props) {
+    const classes = useStylesBootstrap();
+
+    return <Tooltip arrow classes={classes} {...props} />;
+  }
 
   React.useEffect(() => {
     return () => {
@@ -86,11 +102,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             </Link>
           </div>
 
-          <div
-            ///
-            className={styles.categoriesBtn}
-            onClick={handleClickCategories}
-          >
+          <div className={styles.categoriesBtn} onClick={handleClickCategories}>
             {t('header.categories')}
           </div>
 
@@ -111,45 +123,57 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             ) : (
               <div className={styles.myAccountBtns}>
                 <div className={styles.userIcon}>
-                  <img
-                    src={userIcon}
-                    alt="user icon"
-                    onClick={handleClickMenu}
-                  />
+                  <BootstrapTooltip title={t('header.My Account')}>
+                    <img
+                      src={userIcon}
+                      alt="user icon"
+                      onClick={handleClickMenu}
+                    />
+                  </BootstrapTooltip>
                 </div>
                 <div className={styles.heartIcon}>
-                  <Link to="myfavs">
-                    <img src={heartIcon} alt="heart icon" />
-                  </Link>
+                  <BootstrapTooltip title={t('header.Favorites')}>
+                    <Link to="myfavs">
+                      <img src={heartIcon} alt="heart icon" />
+                    </Link>
+                  </BootstrapTooltip>
                 </div>
               </div>
             )}
 
             <div className={styles.navBarIcons}>
-              <div
-                className={styles.shoppingCartIcon}
-                onClick={() => {
-                  setIsCartOpen(true);
-                }}
-              >
-                {cart.length > 0 && (
-                  <span className={styles.cartItemsNumber}>{cart.length}</span>
-                )}
-                <img src={shoppingCartIcon} alt="shopping cart icon" />
-              </div>
+              <BootstrapTooltip title={t('header.Cart')}>
+                <div
+                  className={styles.shoppingCartIcon}
+                  onClick={() => {
+                    setIsCartOpen(true);
+                  }}
+                >
+                  {cart.length > 0 && (
+                    <span className={styles.cartItemsNumber}>
+                      {cart.length}
+                    </span>
+                  )}
+                  <img src={shoppingCartIcon} alt="shopping cart icon" />
+                </div>
+              </BootstrapTooltip>
               <div className={styles.darkModeIcon}>
-                <img
-                  src={darkMode ? darkModeIcon : darkModeIcon2}
-                  alt=""
-                  onClick={toggleDarkMode}
-                />
+                <BootstrapTooltip title={t('header.Dark/Light Mode')}>
+                  <img
+                    src={darkMode ? darkModeIcon : darkModeIcon2}
+                    alt=""
+                    onClick={toggleDarkMode}
+                  />
+                </BootstrapTooltip>
               </div>
               <div className={styles.translationIcon}>
-                <img
-                  onClick={handleClickLanguage}
-                  src={translationIcon}
-                  alt="language selector icon"
-                />
+                <BootstrapTooltip title={t('header.Languages')}>
+                  <img
+                    onClick={handleClickLanguage}
+                    src={translationIcon}
+                    alt="language selector icon"
+                  />
+                </BootstrapTooltip>
               </div>
               <div className={styles.hamburgerMenuIcon}>
                 <img

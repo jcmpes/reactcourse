@@ -81,7 +81,12 @@
     "create": "Create course",
     "search": "Search your course...",
     "myfavs": "My favs",
-    "categories": "Categories"
+    "categories": "Categories",
+    "My Account": "My Account",
+    "Favorites": "Favorites",
+    "Cart": "Cart",
+    "Dark/Light Mode": "Dark/Light Mode",
+    "Languages": "Languages"
   },
   "filter": {
     "filtering price between": "Filtering price between",
