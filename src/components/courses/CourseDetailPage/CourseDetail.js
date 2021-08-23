@@ -38,10 +38,6 @@ function CourseDetail({
   const purchasedCourses = purchased ? purchased.includes(_id) : false;
   const itemIsInCart = getItemIsInCart(_id);
 
-  // React.useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
   const { t } = useTranslation(['global']);
   return (
     <div className="container-fluid">
@@ -49,7 +45,7 @@ function CourseDetail({
         <div className="col-12 mt-3">
           <div className="card">
             <div className="row">
-              <h4 className="col-11 card-title">{title}</h4>
+              <h4 className="col-10 col-md-11 card-title">{title}</h4>
               <div
                 className="favoriteDetail"
                 onClick={() => {
