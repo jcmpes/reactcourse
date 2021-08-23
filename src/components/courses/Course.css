@@ -11,6 +11,7 @@ a:hover {
 }
 .card {
   display: flex;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 20px;
   background-color: var(--color-whisper);
   justify-content: center;
@@ -18,21 +19,40 @@ a:hover {
 }
 .card p {
   text-align: left;
+  margin-left: 1.5rem;
 }
 .card-body {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+}
+.card-horizontal {
+  display: flex;
+}
+.price {
+  font-size: 1.3rem;
+}
+.category-list,
+.description-list {
+  color: gray;
+}
+.card-responsive {
+  display: flex;
+  align-items: center;
 }
 .img-rounded-wrapper img {
-  float: left;
   border-radius: 20px;
   object-fit: cover;
-  max-height: 22.5rem;
-  max-width: 22.5rem;
-  min-height: 22.5rem;
-  min-width: 22.5rem;
+  max-height: 27rem;
+  max-width: 27rem;
+  min-height: 27rem;
+  min-width: 27rem;
   background-size: cover;
 }
+.image-card {
+  margin: 1rem;
+}
+
 .curseButton {
   border: none;
   border-radius: 10px;
@@ -84,12 +104,30 @@ a:hover {
   background-color: #49b8da;
   box-shadow: 1px 1px 5px black;
 }
-@media (max-width: 880px) {
+@media (max-width: 1190px) {
   .img-rounded-wrapper img {
-    width: 100%;
-    float: none;
-    max-height: 100%;
-    max-width: 100%;
-    min-height: 100%;
+    max-height: 18rem;
+    max-width: 18rem;
+    min-height: 18rem;
+    min-width: 18rem;
+  }
+}
+@media (max-width: 1000px) {
+  .img-rounded-wrapper img {
+    max-height: 16rem;
+    max-width: 16rem;
+    min-height: 16rem;
+    min-width: 16rem;
+  }
+}
+@media (max-width: 800px) {
+  .card-responsive {
+    justify-content: center;
+  }
+  .img-rounded-wrapper img {
+    max-height: 14rem;
+    max-width: 14rem;
+    min-height: 14rem;
+    min-width: 14rem;
   }
 }

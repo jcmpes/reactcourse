@@ -25,24 +25,29 @@ const Course = ({ course, faved, purchased, inCart }) => {
       <div className="row">
         <div className="col-12 mt-3">
           <div className="card">
-            <div className="card-horizontal">
-              <div className="img-rounded-wrapper">
-                <img
-                  className="border border-dark"
-                  src={course.image ? `${course.image}` : NoImg}
-                  alt={`${course.title}`}
-                />
+            <div className="row">
+              <div className="col-12 col-md-5 card-responsive">
+                <div className="img-rounded-wrapper">
+                  <img
+                    className="border border-dark image-card"
+                    src={course.image ? `${course.image}` : NoImg}
+                    alt={`${course.title}`}
+                  />
+                </div>
               </div>
-              <div className="card-body">
+
+              <div className="card-body col-12 col-md-7">
                 <p className="card-title">
                   <Link to={`/courses/${course.slug}`}>{course.title}</Link>
                 </p>
-                <p className="card-text description">{course.description}</p>
-                <p className="card-text category">
+                {/* <div className="info-bigSize"> */}
+                <p className="card-text description-list info-description">
+                  {course.description}
+                </p>
+                <p className="card-text category-list">
                   {t('Category')}: {course.category.name}
                 </p>
-                <p className="card-text price">{course.price} €</p>
-                <p className="card-text created">
+                <p className="card-text created-list">
                   {t('Created by')}{' '}
                   <Link to={`/courses-by/${course.user.username}`}>
                     {isAuthor ? t('me') : course.user.username}
@@ -55,7 +60,8 @@ const Course = ({ course, faved, purchased, inCart }) => {
                     day: 'numeric',
                   })}
                 </p>
-                <br />
+                <p className="card-text price">{course.price} €</p>
+                {/* </div> */}
                 {isAuthor ? (
                   <div>
                     <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
