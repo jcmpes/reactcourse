@@ -119,10 +119,8 @@ function EditCourseForm({
             courseDetails={newCourseDetails}
           />
           <Button type="submit">{t('submit')}</Button>
-          <Button onClick={handleDelete}>
-            Delete
-          </Button>
-          {/* <ConfirmButton
+        </form>
+          <ConfirmButton
             iconButton={null}
             titleButton={t('course.delete course')}
             okAction={deleteCourse}
@@ -134,8 +132,7 @@ function EditCourseForm({
                 )}
               </div>
             }
-          /> */}
-        </form>
+          />
       </div>
     </div>
   );
