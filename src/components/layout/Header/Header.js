@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import logo from '../../../assets/img/logo.png';
 
@@ -10,6 +10,7 @@ import { getCart, getIsLogged } from '../../../store/selectors';
 // components:
 import MobileMenu from '../../ModalElements/MobileMenu';
 import LanguageSelector from '../../ModalElements/LanguageSelector';
+import CategoryList from '../../ModalElements/CategoryList';
 
 // icons:
 import shoppingCartIcon from '../../../assets/svg/shopping-cart.svg';
@@ -19,6 +20,9 @@ import loupeIcon from '../../../assets/svg/loupe.svg';
 import darkModeIcon from '../../../assets/svg/dark-mode.svg';
 import darkModeIcon2 from '../../../assets/img/dark-mode.png';
 import CartModal from '../../ModalElements/CartModal';
+import { useDispatch } from 'react-redux';
+import { setFilters } from '../../../store/actions/load-courses';
+import { getFilters } from '../../../store/selectors';
 
 import userIcon from '../../../assets/svg/user.svg';
 import heartIcon from '../../../assets/svg/heart.svg';
@@ -30,8 +34,19 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isLanguageOpen, setLanguageOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCategoryListOpen, setCategoryListOpen] = useState(false);
   const cart = useSelector(getCart);
   const { t } = useTranslation(['global']);
+
+  const [formSubmited, setFormSubmited] = React.useState(false);
+
+  const dispatch = useDispatch();
+  const filters = useSelector(getFilters);
+  function handleChange(ev) {
+    filters.skip = 0;
+    const newFilter = { ...filters, [ev.target.name]: ev.target.value };
+    dispatch(setFilters(newFilter));
+  }
 
   function handleClickMenu() {
     setMenuOpen(true);
@@ -41,7 +56,24 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     setLanguageOpen(true);
   }
 
-  return (
+  function handleClickCategories() {
+    setCategoryListOpen(true);
+  }
+
+  function handleSubmit(ev) {
+    ev.preventDefault();
+    setFormSubmited(true);
+  }
+
+  React.useEffect(() => {
+    return () => {
+      setFormSubmited(false);
+    };
+  }, [formSubmited]);
+
+  return formSubmited ? (
+    <Redirect to="/search" />
+  ) : (
     <>
       <header
         className={styles.header}
@@ -54,7 +86,13 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             </Link>
           </div>
 
-          <div className={styles.categoriesBtn}>{t('header.categories')}</div>
+          <div
+            ///
+            className={styles.categoriesBtn}
+            onClick={handleClickCategories}
+          >
+            {t('header.categories')}
+          </div>
 
           <div className={styles.navButtonsContainer}>
             {!isLogged ? (
@@ -73,10 +111,16 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
             ) : (
               <div className={styles.myAccountBtns}>
                 <div className={styles.userIcon}>
-                  <img src={userIcon} alt="user icon" />
+                  <img
+                    src={userIcon}
+                    alt="user icon"
+                    onClick={handleClickMenu}
+                  />
                 </div>
                 <div className={styles.heartIcon}>
-                  <img src={heartIcon} alt="heart icon" />
+                  <Link to="myfavs">
+                    <img src={heartIcon} alt="heart icon" />
+                  </Link>
                 </div>
               </div>
             )}
@@ -95,7 +139,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
               </div>
               <div className={styles.darkModeIcon}>
                 <img
-                  src={darkMode ? darkModeIcon2 : darkModeIcon}
+                  src={darkMode ? darkModeIcon : darkModeIcon2}
                   alt=""
                   onClick={toggleDarkMode}
                 />
@@ -123,21 +167,37 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
           <span className={styles.loupeIconSpan}>
             <img src={loupeIcon} alt="" />
           </span>
-          <input
-            className={styles.searchBarForm}
-            placeholder={t('header.search')}
-          />
+          <form onSubmit={handleSubmit}>
+            <input
+              name="title"
+              className={styles.searchBarForm}
+              placeholder={t('header.search')}
+              value={filters.title}
+              onChange={handleChange}
+            />
+          </form>
         </div>
 
         {/* MODAL shopping cart menu */}
         {isCartOpen && <CartModal closeModal={() => setIsCartOpen(false)} />}
 
         {/* MODAL hamburger menu */}
-        {isMenuOpen && <MobileMenu closeModal={() => setMenuOpen(false)} />}
+        {isMenuOpen && (
+          <MobileMenu
+            isCategoryListOpen={isCategoryListOpen}
+            setCategoryListOpen={setCategoryListOpen}
+            closeModal={() => setMenuOpen(false)}
+          />
+        )}
 
         {/* MODAL language selector */}
         {isLanguageOpen && (
           <LanguageSelector closeModal={() => setLanguageOpen(false)} />
+        )}
+
+        {/* MODAL category list */}
+        {isCategoryListOpen && (
+          <CategoryList closeModal={() => setCategoryListOpen(false)} />
         )}
       </header>
       <hr className={styles.hr} />

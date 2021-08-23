@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import { userCourses } from '../../../api/courses';
 import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import Loading from '../../shared/Loading/Loading';
+import ErrorMessage from '../../shared/ErrorMessage';
 
 export const UserCourse = (...props) => {
   const { username } = useParams();
@@ -18,10 +20,12 @@ export const UserCourse = (...props) => {
     userCourses(username, setCourses);
   }, [username]);
 
-  return !courses || error || loading ? (
-    <div style={{ fontSize: 20 }}>🤷‍♂️</div>
-  ) : (
+  if (!courses || error)
+    return <ErrorMessage message={error} resetError={null} />;
+
+  return (
     <Layout {...props}>
+      {loading && <Loading loading={loading} />}
       <div style={{ fontSize: 25 }}>
         {t('Courses by')} {username}
       </div>

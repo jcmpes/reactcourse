@@ -1,15 +1,14 @@
-.mobileMenu {
+.categoryListContainer {
   width: 150px;
   margin: 0 auto;
-  top: 0;
 }
 
 .link {
   display: block;
-  line-height: 3rem;
   color: black;
-  font-family: monospace;
   text-align: left;
+  margin-bottom: 10px;
+  font-family: monospace;
 }
 
 .link:hover {

@@ -25,6 +25,7 @@
   "me": "me",
   "at": "at",
   "and": "and",
+  "of": "of",
   "Show more": "Show more",
   "Ascending": "Ascending",
   "Courses by": "Courses by",
@@ -49,6 +50,16 @@
   "Checkout": "Checkout",
   "Shopping Cart": "Shopping Cart",
   "Empty cart": "Empty cart",
+  "home": {
+    "Do you want to be a tutor?": "Do you want to be a tutor?",
+    "To become an instructor": "To become an instructor",
+    "Start teaching": "Start teaching",
+    "Find the best online tutor for you": "Find the best online tutor for you",
+    "Build up your skills": "Build up your skills",
+    "Search": "Search",
+    "New courses": "New courses",
+    "Learn anytime and anywhere with an expert": "Learn anytime and anywhere with an expert"
+  },
   "users": {
     "student": "Student",
     "learning": "Learning",
@@ -104,7 +115,12 @@
     "Requirements": "Requirements",
     "delete course": "Delete course",
     "sure you want to delete": "Are you sure you want to delete your course?",
-    "deletion confirmation message": "This action can not be undone. You want to proceed?"
+    "deletion confirmation message": "This action can not be undone. You want to proceed?",
+    "Lessons": "Lessons",
+    "Progress": "Progress",
+    "Next lesson": "Next lesson",
+    "Previous lesson": "Previous lesson",
+    "Back to Course presentation": "Back to Course presentation"
   },
   "mobile menu": {
     "menu": "Menu",
@@ -124,5 +140,8 @@
     "in the shopping cart": "In the shopping cart",
     "owned": "owned",
     "buy for": "buy for"
+  },
+  "category list": {
+    "categories": "Categories"
   }
 }

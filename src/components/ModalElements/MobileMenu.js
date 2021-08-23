@@ -7,19 +7,27 @@ import { authLogout } from '../../store/actions/logout';
 import ModalWindow from '../shared/ModalWindow';
 import styles from './MobileMenu.module.css';
 import { getIsLogged } from '../../store/selectors';
+import CategoryList from './CategoryList';
 
-const MobileMenu = ({ closeModal }) => {
+const MobileMenu = ({
+  closeModal,
+  isCategoryListOpen,
+  setCategoryListOpen,
+}) => {
   const { t } = useTranslation(['global']);
-
-  const isLogged = useSelector(getIsLogged);
-
   const dispatch = useDispatch();
   const history = useHistory();
+  const isLogged = useSelector(getIsLogged);
 
   const handleLogoutClick = () => {
     logout(); // clear local storage
     dispatch(authLogout()); // change isLogged state
     history.push('/');
+  };
+
+  const handleClickCategories = () => {
+    setCategoryListOpen(true);
+    closeModal();
   };
 
   return (
@@ -29,6 +37,33 @@ const MobileMenu = ({ closeModal }) => {
         closeModal={closeModal}
         children={
           <div className={styles.mobileMenu} onClick={closeModal}>
+            {isLogged && (
+              <>
+                <Link className={styles.link} onClick={closeModal} to="/user">
+                  {t('mobile menu.my account')}
+                </Link>
+                <Link className={styles.link} onClick={closeModal} to="/myfavs">
+                  {t('mobile menu.my favourites')}
+                </Link>
+                <Link
+                  className={styles.link}
+                  onClick={closeModal}
+                  to="/courses"
+                >
+                  {t('mobile menu.courses')}
+                </Link>
+                <Link className={styles.link} onClick={closeModal} to="/create">
+                  {t('mobile menu.create course')}
+                </Link>
+              </>
+            )}
+            <p className={styles.link} onClick={handleClickCategories}>
+              {t('mobile menu.categories')}
+            </p>
+            {isCategoryListOpen ? (
+              <CategoryList closeModal={() => setCategoryListOpen(false)} />
+            ) : null}
+
             {!isLogged && (
               <>
                 <Link
@@ -44,36 +79,12 @@ const MobileMenu = ({ closeModal }) => {
                 </Link>
               </>
             )}
+
             {isLogged && (
-              <>
-                <Link
-                  className={styles.link}
-                  onClick={handleLogoutClick}
-                  to="/"
-                >
-                  {t('mobile menu.logout')}
-                </Link>
-                <Link
-                  className={styles.link}
-                  onClick={closeModal}
-                  to="/courses"
-                >
-                  {t('mobile menu.courses')}
-                </Link>
-                <Link className={styles.link} onClick={closeModal} to="/create">
-                  {t('mobile menu.create course')}
-                </Link>
-                <Link className={styles.link} onClick={closeModal} to="/user">
-                  {t('mobile menu.my account')}
-                </Link>
-                <Link className={styles.link} onClick={closeModal} to="/myfavs">
-                  {t('mobile menu.my favourites')}
-                </Link>
-              </>
+              <Link className={styles.link} onClick={handleLogoutClick} to="/">
+                {t('mobile menu.logout')}
+              </Link>
             )}
-            <Link className={styles.link} onClick={closeModal} to="/categories">
-              {t('mobile menu.categories')}
-            </Link>
           </div>
         }
       ></ModalWindow>

@@ -1,0 +1,43 @@
+@font-face {
+  font-family: Paytoone;
+  src: url('../../assets/fonts/PaytoneOne-Regular.ttf');
+}
+
+.miniCard {
+  font-size: 0.8rem;
+  margin-right: 0.6rem;
+  margin-top: 0.4rem;
+  text-align: left;
+  color: black;
+  cursor: pointer;
+  padding-bottom: 0.2rem;
+}
+
+.miniCard:hover {
+  transform: scale(1.05);
+  transition: ease 0.3s;
+}
+
+.miniCard a {
+  color: black;
+}
+
+.miniCard img {
+  border-radius: 15px;
+  max-width: 150px;
+  max-height: 120px;
+  min-width: 150px;
+  min-height: 120px;
+  object-fit: cover;
+}
+
+.author {
+  font-size: 0.7rem;
+  color: gray;
+  text-align: left;
+}
+
+.price {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 0.9rem;
+}
