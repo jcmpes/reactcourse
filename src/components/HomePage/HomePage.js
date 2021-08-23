@@ -50,14 +50,12 @@ const HomePage = ({ auth, onLogout, ...props }) => {
       loadCoursesAction(getCourses, setNewCourses, defaultFilters, () => {}, 5),
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
-
-  console.log(newCourses);
+  }, []);
 
   const categories = useSelector(getCategories);
 
   const catElements = categories.map((cat) => (
-    <Link className={styles.categoriesButtons} to="/search">
+    <Link className={styles.categoriesButtons} key={cat.name} to="/search">
       <button
         key={cat._id}
         className={styles.categoriesButton}

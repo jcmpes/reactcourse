@@ -93,7 +93,5 @@ export const editUser = (userDetails) => {
 };
 
 export const deleteAccount = (password) => {
-  return client
-    .post(`/api/v1/user/delete-account`, password)
-    .catch((error) => error);
+  return client.post(`/api/v1/user/delete-account`, password);
 };

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import {
   FAVORITES_REQUEST,
   FAVORITES_SUCCESS,
@@ -36,6 +37,7 @@ export const favoritesAction = (course, favAction, add) => {
       });
     } catch (error) {
       dispatch(favoritesFailure(error));
+      toast.error(error);
     }
   };
 };
