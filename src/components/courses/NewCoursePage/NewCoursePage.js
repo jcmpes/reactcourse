@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
@@ -10,7 +9,6 @@ import Layout from '../../layout/Layout';
 import NewCourseForm from './NewCourseForm';
 import NewLessonForm from './NewLessonForm';
 
-
 function NewCoursePage() {
   const [lessonCounter, setLessonCounter] = React.useState(0);
   const [courseDetails, setCourseDetails] = React.useState({
@@ -19,6 +17,9 @@ function NewCoursePage() {
     category: '',
     video: '',
     content: '',
+    requirements: '',
+    whatYouWillLearn: '',
+    level: '',
     image: '',
     preview: '',
     price: 0,
@@ -34,25 +35,23 @@ function NewCoursePage() {
   }, [dispatch]);
 
   const handleAddLesson = () => {
-    console.log(courseDetails)
+    console.log(courseDetails);
     setLessonCounter(lessonCounter + 1);
 
-    setCourseDetails(oldDetails => {
+    setCourseDetails((oldDetails) => {
       const newLesson = {
-        "number": lessonCounter,
-        "title": '',
-        "description": '',
-        "video": '',
-        "content": ''
-    }
+        number: lessonCounter,
+        title: '',
+        description: '',
+        video: '',
+        content: '',
+      };
       return {
-        ...oldDetails,                // Copy al the other key value pairs of onject
-        lessons:  courseDetails.lessons.concat(newLesson)
-      }
-      
-    
-    })
-  }
+        ...oldDetails, // Copy al the other key value pairs of onject
+        lessons: courseDetails.lessons.concat(newLesson),
+      };
+    });
+  };
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -61,6 +60,9 @@ function NewCoursePage() {
     formData.append('description', courseDetails.description);
     formData.append('category', courseDetails.category);
     formData.append('video', courseDetails.video);
+    formData.append('requirements', courseDetails.requirements);
+    formData.append('whatYouWillLearn', courseDetails.whatYouWillLearn);
+    formData.append('level', courseDetails.level);
     formData.append('content', courseDetails.content);
     formData.append('price', courseDetails.price);
     if (courseDetails.image) formData.append('image', courseDetails.image);
@@ -73,7 +75,6 @@ function NewCoursePage() {
   };
 
   function makeApiCall(courseDetails) {
-    
     postCourse(courseDetails)
       .then((result) => {
         if (result.slug) setCreatedCourse(result);
