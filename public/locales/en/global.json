@@ -143,5 +143,8 @@
   },
   "category list": {
     "categories": "Categories"
+  },
+  "stripe": {
+    "succeded": "Payment has succeded"
   }
 }

@@ -9,7 +9,6 @@ require('dotenv').config();
 
 function EditCourseForm({
   courseDetails,
-  setCourseDetails,
   onSubmit,
   categories,
 }) {
@@ -29,10 +28,6 @@ function EditCourseForm({
     image: image,
     preview: { file: image },
   });
-
-  const handleDelete = () => {
-    deleteCourse();
-  }
 
   const deleteCourse = () => {
     client
