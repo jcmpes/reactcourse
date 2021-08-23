@@ -23,7 +23,7 @@ export const CourseSkeleton = () => {
             backgroundColor: 'lightgray',
             width: '100%',
             borderRadius: '20px',
-            height: '3rem',
+            height: '2.5rem',
           }}
         ></div>
         <div
@@ -32,7 +32,7 @@ export const CourseSkeleton = () => {
             backgroundColor: 'lightgray',
             width: '50%',
             borderRadius: '20px',
-            height: '3rem',
+            height: '2.5rem',
           }}
         ></div>
 
@@ -42,7 +42,7 @@ export const CourseSkeleton = () => {
             backgroundColor: 'lightgray',
             width: '80%',
             borderRadius: '20px',
-            height: '3rem',
+            height: '2.5rem',
           }}
         ></div>
       </div>
