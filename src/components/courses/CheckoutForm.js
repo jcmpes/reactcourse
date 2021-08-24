@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from "react";
-import {
-  CardElement,
-  useStripe,
-  useElements
-} from "@stripe/react-stripe-js";
-import { useTranslation } from "react-i18next";
-import '../../App.css'
-import client from "../../api/client";
+import React, { useState, useEffect } from 'react';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { useTranslation } from 'react-i18next';
+import '../../App.css';
+import client from '../../api/client';
 require('dotenv').config();
 
 export default function CheckoutForm({ items }) {
@@ -22,57 +18,54 @@ export default function CheckoutForm({ items }) {
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     client
-      .post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/create-payment-intent`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ items: items })
+      .post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/create-payment-intent`,
+        { items },
+      )
+      .then((res) => {
+        return res;
       })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
+      .then((data) => {
         setClientSecret(data.clientSecret);
       });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const cardStyle = {
     style: {
       base: {
-        color: "#32325d",
+        color: '#32325d',
         fontFamily: 'Arial, sans-serif',
-        fontSmoothing: "antialiased",
-        fontSize: "16px",
-        "::placeholder": {
-          color: "#32325d"
-        }
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+          color: '#32325d',
+        },
       },
       invalid: {
-        color: "#fa755a",
-        iconColor: "#fa755a"
-      }
-    }
+        color: '#fa755a',
+        iconColor: '#fa755a',
+      },
+    },
   };
 
   const handleChange = async (event) => {
     // Listen for changes in the CardElement
     // and display any errors as the customer types their card details
     setDisabled(event.empty);
-    setError(event.error ? event.error.message : "");
+    setError(event.error ? event.error.message : '');
   };
 
-  const handleSubmit = async ev => {
+  const handleSubmit = async (ev) => {
     ev.preventDefault();
     setProcessing(true);
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
-        card: elements.getElement(CardElement)
-      }
+        card: elements.getElement(CardElement),
+      },
     });
-    console.log('PAYLOAD', payload)
+    console.log('PAYLOAD', payload.paymentIntent);
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
@@ -80,21 +73,33 @@ export default function CheckoutForm({ items }) {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+
+      // Notify backend of purchase success
+      const { id, status } = payload.paymentIntent;
+      client
+        .post(
+          `${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/notify-payment-success`,
+          { id, status },
+        )
+        .then((res) => {
+          console.log('RESPONSE ', res);
+        });
     }
   };
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
-      <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
-      <button
-        disabled={processing || disabled || succeeded}
-        id="submit"
-      >
+      <CardElement
+        id="card-element"
+        options={cardStyle}
+        onChange={handleChange}
+      />
+      <button disabled={processing || disabled || succeeded} id="submit">
         <span id="button-text">
           {processing ? (
             <div className="spinner" id="spinner"></div>
           ) : (
-            "Pay now"
+            'Pay now'
           )}
         </span>
       </button>
@@ -105,7 +110,7 @@ export default function CheckoutForm({ items }) {
         </div>
       )}
       {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
+      <p className={succeeded ? 'result-message' : 'result-message hidden'}>
         {t('stripe.succeded')}
       </p>
     </form>
