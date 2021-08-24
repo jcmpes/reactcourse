@@ -41,10 +41,14 @@ const Footer = ({ darkMode }) => {
 
               <ul className="footer_ul_amrc">
                 <li>
-                  <Link to="/">Image Rectoucing</Link>
+                  <Link to="https://www.flaticon.com/authors/pixel-perfect">
+                    Pixel Perfect
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/">Clipping Path</Link>
+                  <Link to="https://www.flaticon.com/authors/those-icons">
+                    Those Icons
+                  </Link>
                 </li>
 
                 <li>
