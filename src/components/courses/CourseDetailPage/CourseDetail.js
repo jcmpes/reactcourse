@@ -13,6 +13,7 @@ import { addToCartAction } from '../../../store/actions/purchase';
 import { useTranslation } from 'react-i18next';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import './CourseDetail.css';
+import backIcon from '../../../assets/svg/back.svg';
 
 function CourseDetail({
   title,
@@ -41,6 +42,11 @@ function CourseDetail({
   const { t } = useTranslation(['global']);
   return (
     <div className="container-fluid">
+      <div width="100%">
+        <Link to="/search">
+          <img src={backIcon} alt="back" width="35" />
+        </Link>
+      </div>
       <div className="row">
         <div className="col-12 mt-3">
           <div className="card">
