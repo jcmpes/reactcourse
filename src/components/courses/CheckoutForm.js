@@ -6,6 +6,7 @@ import {
 } from "@stripe/react-stripe-js";
 import { useTranslation } from "react-i18next";
 import '../../App.css'
+import client from "../../api/client";
 require('dotenv').config();
 
 export default function CheckoutForm({ items }) {
@@ -20,8 +21,8 @@ export default function CheckoutForm({ items }) {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    window
-      .fetch(`${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/create-payment-intent`, {
+    client
+      .post(`${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/create-payment-intent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
