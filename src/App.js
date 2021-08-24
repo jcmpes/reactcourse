@@ -17,6 +17,7 @@ import User from './components/users';
 import UserCourse from './components/courses/UserCourse/UserCourse';
 import Favs from './components/courses/Favs';
 import './App.css';
+import PrivateRoute from './components/PrivateRoute';
 import 'react-toastify/dist/ReactToastify.css';
 
 import './config/i18next-config';
@@ -37,18 +38,18 @@ function Translations() {
         <Route path="/login">
           <LoginPage />
         </Route>
-        <Route path="/user">
+        <PrivateRoute path="/user">
           <User />
-        </Route>
-        <Route exact path="/edit-user">
+        </PrivateRoute>
+        <PrivateRoute exact path="/edit-user">
           <EditUserPage />
-        </Route>
+        </PrivateRoute>
         <Route path="/courses-by/:username">
           <UserCourse />
         </Route>
-        <Route path="/myfavs">
+        <PrivateRoute path="/myfavs">
           <Favs />
-        </Route>
+        </PrivateRoute>
         <Route path="/reset-password/:resetToken">
           <ResetPasswordPage />
         </Route>
@@ -71,12 +72,12 @@ function Translations() {
             <SearchPage />
           </Route>
         </Route>
-        <Route path="/create">
+        <PrivateRoute path="/create">
           <NewCoursePage />
-        </Route>
-        <Route path="/edit/:courseSlug">
+        </PrivateRoute>
+        <PrivateRoute path="/edit/:courseSlug">
           <EditCoursePage />
-        </Route>
+        </PrivateRoute>
         <Route exact path="/search">
           <SearchPage />
         </Route>
