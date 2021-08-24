@@ -101,15 +101,18 @@ function NewCourseForm({
             value={courseDetails.whatYouLearn}
             onChange={handleChange}
           />
-          <FormField
-            type={'number'}
+          <Input
+            as="select"
             label={'level'}
             name="level"
-            min="0"
-            max="3"
-            placeholder="Level"
             value={courseDetails.level}
             onChange={handleChange}
+            options={[
+              { name: 'Easy', _id: '0', value: '0' },
+              { name: 'Medium', _id: '1', value: '1' },
+              { name: 'Hard', _id: '2', value: '2' },
+              { name: 'Expert', _id: '3', value: '3' },
+            ]}
           />
           <FileUpload
             label={'image'}
