@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../../shared';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 import userIcon from '../../../assets/svg/user.svg';
 import emailIcon from '../../../assets/svg/envelope.svg';
 import lockIcon from '../../../assets/svg/lock.svg';
@@ -82,6 +83,7 @@ const RegisterForm = ({ passwordShown, onSubmit }) => {
           {t('register')}
         </Button>
       </form>
+      {t('Already registered?')} <Link to="/login">{t('Log in!')}</Link>
     </div>
   );
 };

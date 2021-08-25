@@ -43,12 +43,13 @@ const preState = {
 };
 
 if (!!accessToken) {
+  preState.preloadedState.auth.isLogged = true;
   loginWithToken(accessToken).then((data) => {
     if (!data.displayName) {
+      preState.preloadedState.auth.isLogged = false;
       storage.remove('auth');
     } else {
       configureClient({ accessToken });
-      preState.preloadedState.auth.isLogged = true;
       preState.preloadedState.auth.username = data.displayName;
       preState.preloadedState.auth.purchased = data.purchased;
       preState.preloadedState.auth.favs = data.favs;

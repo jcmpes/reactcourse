@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button, FormField, Checkbox } from '../../shared';
+import { Link } from 'react-router-dom';
 import userIcon from '../../../assets/svg/user.svg';
 import lockIcon from '../../../assets/svg/lock.svg';
 
@@ -63,7 +64,11 @@ function LoginForm({ passwordShown, onSubmit }) {
           checked={credentials.remember}
           onChange={handleChange}
         />
-
+        <br />
+        {t("Don't have an account?")}{' '}
+        <Link to="/register">{t('Create one!')}</Link>
+        <br />
+        <br />
         <div className="password-forgotten">
           <a href="/forgot-password">{t('forgot my password')}</a>
         </div>
