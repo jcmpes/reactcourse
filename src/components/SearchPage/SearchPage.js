@@ -36,10 +36,6 @@ function SearchPage({ auth, onLogout, ...props }) {
   const [showFilters, setShowFilters] = React.useState(false);
   const onClick = () => setShowFilters(!showFilters);
   const size = useWindowSize();
-  // console.log(size.width);
-  // if (size.width > 767) {
-  //   // setShowFilters(true);
-  // }
 
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
@@ -82,6 +78,12 @@ function SearchPage({ auth, onLogout, ...props }) {
     debounce(getCoursesDebounce, 300),
     [],
   );
+
+  React.useEffect(() => {
+    if (size.width > 767) {
+      setShowFilters(true);
+    }
+  }, [size]);
 
   function useWindowSize() {
     const [windowSize, setWindowSize] = React.useState({
@@ -140,9 +142,9 @@ function SearchPage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      {/* <div>
+      <div>
         {size.width}px / {size.height}px
-      </div> */}
+      </div>
       <div className="showFilters">
         <Button type="submit" value="Advanced Search" onClick={onClick}>
           Advanced Search

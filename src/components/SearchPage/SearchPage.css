@@ -4,10 +4,9 @@
   height: 450px;
   z-index: 0;
 }
-/* state? */
-/* .showFilters {
+.showFilters {
   display: none;
-} */
+}
 @media (max-width: 767px) {
   .filtersContainer {
     position: relative;
