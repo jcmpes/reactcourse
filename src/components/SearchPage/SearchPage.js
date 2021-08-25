@@ -5,12 +5,14 @@ import { getAuth, getUI, getFilters } from '../../store/selectors';
 import Layout from '../layout/Layout';
 import { useTranslation } from 'react-i18next';
 import { getCourses } from '../../api/courses';
+import { Button } from '../shared';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../../store/actions/categories-load';
 import CoursesList from '../courses/CoursesList';
 import FiltersForm from '../FiltersForm/FiltersForm';
 import Scroll from '../shared/Scroll';
 // import styles from './SearchPage.module.css';
+import './SearchPage.css';
 import {
   setFilters,
   loadCoursesAction,
@@ -31,6 +33,13 @@ function SearchPage({ auth, onLogout, ...props }) {
   const [allResultsListed, setAllResultsListed] = React.useState(false);
   const [sort, setSort] = React.useState(-1);
   const [moreLoading, setMoreLoading] = React.useState(false);
+  const [showFilters, setShowFilters] = React.useState(false);
+  const onClick = () => setShowFilters(!showFilters);
+  const size = useWindowSize();
+  // console.log(size.width);
+  // if (size.width > 767) {
+  //   // setShowFilters(true);
+  // }
 
   const handleChange = (ev) => {
     setSort(sort === 1 ? -1 : 1);
@@ -76,6 +85,28 @@ function SearchPage({ auth, onLogout, ...props }) {
     [],
   );
 
+  function useWindowSize() {
+    const [windowSize, setWindowSize] = React.useState({
+      width: 0,
+      height: 0,
+    });
+    React.useEffect(() => {
+      function handleResize() {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+
+      window.addEventListener('resize', handleResize);
+
+      handleResize();
+
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+    return windowSize;
+  }
+
   React.useEffect(() => {
     setAllResultsListed(false);
   }, [filters]);
@@ -112,9 +143,21 @@ function SearchPage({ auth, onLogout, ...props }) {
         Current language: <strong>{i18n.language}</strong>
       </p>
       <div>
+        {size.width}px / {size.height}px
+      </div>
+      <div className="showFilters">
+        <Button type="submit" value="Advanced Search" onClick={onClick}>
+          Advanced Search
+        </Button>
+      </div>
+      <div className="row">
         {/*className={styles.searchBarForm}*/}
-        <FiltersForm />
-        <div>
+        {showFilters ? (
+          <div className="col-12 col-md-3 filtersContainer">
+            <div>{showFilters ? <FiltersForm /> : null}</div>
+          </div>
+        ) : null}
+        <div className="col-12 col-md-9">
           {loading ? (
             <>
               <CourseSkeleton />

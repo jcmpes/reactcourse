@@ -1,0 +1,76 @@
+/* .filtersFormTitle h5::after {
+  content: '';
+  position: absolute;
+  width: 2rem;
+  height: 1px;
+  background-color: currentColor;
+  top: 0.9em;
+  right: 2rem;
+} */
+.filtersWrapper {
+  width: 100%;
+  text-align: left;
+}
+.searchByTitle,
+.searchByUser,
+.searchByCategory,
+.searchByPrice {
+  color: gray;
+}
+/* .searchByTitle::after,
+.searchByUser::after,
+.searchByCategory::after,
+.searchByPrice::after {
+  content: '';
+  position: absolute;
+  width: 20rem;
+  height: 1px;
+  right: 1rem;
+  background-color: currentColor;
+}
+.searchByTitle::after {
+  top: 3.5em;
+}
+.searchByUser::after {
+  top: 7.1em;
+}
+.searchByCategory::after {
+  top: 10.6em;
+}
+.searchByPrice::after {
+  top: 14.5rem;
+} */
+.searchTitleBarContainer,
+.searchUserBarForm,
+.searchCategoryBarContainer {
+  position: relative;
+  height: 20px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.searchTitleBarForm,
+.searchUserBarForm,
+.searchCategoryBarForm {
+  width: 100%;
+  background-color: var(--color-whisper);
+  border: none;
+  font-size: 14px;
+  border-radius: 50px;
+  padding-left: 20px;
+  color: black;
+}
+
+.searchTitleBarForm::placeholder,
+.searchUserBarForm::placeholder {
+  color: var(--color-french-rose);
+  font-weight: initial;
+}
+.searchCategoryBarForm,
+option {
+  color: var(--color-french-rose);
+}
+.buttonFilterReste,
+.searchPriceBarContainer {
+  text-align: center;
+}
