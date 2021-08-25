@@ -67,7 +67,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
     ev.preventDefault();
     setFormSubmited(true);
   }
-  const useStylesBootstrap = makeStyles((theme) => ({
+  const useStylesBootstrap = makeStyles(() => ({
     arrow: {
       color: colorTeachItUp,
     },

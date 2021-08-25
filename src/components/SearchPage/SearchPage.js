@@ -63,8 +63,6 @@ function SearchPage({ auth, onLogout, ...props }) {
     }
   };
 
-  // const { username } = auth;
-
   const [courses, setCourses] = React.useState([]);
 
   const getCoursesDebounce = (filter) => {
@@ -142,9 +140,9 @@ function SearchPage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      <div>
+      {/* <div>
         {size.width}px / {size.height}px
-      </div>
+      </div> */}
       <div className="showFilters">
         <Button type="submit" value="Advanced Search" onClick={onClick}>
           Advanced Search
