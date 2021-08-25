@@ -97,6 +97,10 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
 }
+.level-list spam {
+  font-size: 1.5rem;
+  color: #e43f7c;
+}
 
 .purchased-course {
   background-color: #5cb85c;

@@ -28,7 +28,7 @@ function CourseDetail({
   user,
   price,
   _id,
-  inCart,
+  level,
 }) {
   const { favs, purchased } = useSelector(getAuth);
   const getItemIsInCart = useSelector(isInCart);
@@ -76,6 +76,20 @@ function CourseDetail({
                 <p>{description}</p>
                 <p>
                   {t('course.instructor')}: {user.username}
+                </p>
+                <p className="card-text level-list">
+                  {t('Level')}:{' '}
+                  <spam>
+                    {level === 0
+                      ? '★☆☆☆'
+                      : level === 1
+                      ? '★★☆☆'
+                      : level === 2
+                      ? '★★★☆'
+                      : level === 3
+                      ? '★★★★'
+                      : level}
+                  </spam>
                 </p>
                 <p className="priceDetail">{price} €</p>
                 {isAuthor ? (

@@ -40,7 +40,6 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 <p className="card-title">
                   <Link to={`/courses/${course.slug}`}>{course.title}</Link>
                 </p>
-                {/* <div className="info-bigSize"> */}
                 <p className="card-text description-list info-description">
                   {course.description}
                 </p>
@@ -59,6 +58,20 @@ const Course = ({ course, faved, purchased, inCart }) => {
                     month: 'long',
                     day: 'numeric',
                   })}
+                </p>
+                <p className="card-text level-list">
+                  {t('Level')}:{' '}
+                  <spam>
+                    {course.level === 0
+                      ? '★☆☆☆'
+                      : course.level === 1
+                      ? '★★☆☆'
+                      : course.level === 2
+                      ? '★★★☆'
+                      : course.level === 3
+                      ? '★★★★'
+                      : course.level}
+                  </spam>
                 </p>
                 <p className="card-text price">{course.price} €</p>
                 {/* </div> */}
