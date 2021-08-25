@@ -142,9 +142,6 @@ function SearchPage({ auth, onLogout, ...props }) {
       <p>
         Current language: <strong>{i18n.language}</strong>
       </p>
-      <div>
-        {size.width}px / {size.height}px
-      </div>
       <div className="showFilters">
         <Button type="submit" value="Advanced Search" onClick={onClick}>
           Advanced Search
