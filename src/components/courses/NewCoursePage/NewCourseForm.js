@@ -39,37 +39,37 @@ function NewCourseForm({
           <div className="row">
             <div className="col-12 ">
               <div className="row justify-content-md-center">
-                <div className="col-lg-3 col-md-6 col-sm-3">
+                <div className="col-lg-4 col-md-6 col-sm-12">
                   <FormField
                     type="text"
-                    label={'title'}
+                    label={t('Title')}
                     rows={8}
                     cols={50}
                     name="title"
-                    placeholder="Title"
+                    placeholder={t('Title')}
                     value={courseDetails.title}
                     onChange={handleChange}
                   />
                 </div>
 
-                <div className="col-lg-3 col-md-6 col-sm-3">
+                <div className="col-lg-4 col-md-6 col-sm-12">
                   <FormField
                     type={'text'}
-                    label={'video'}
+                    label={t('Video')}
                     name="video"
-                    placeholder="Video"
+                    placeholder={t('Video')}
                     value={courseDetails.video}
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-lg-3 col-md-6 col-sm-3">
+                <div className="col-lg-4 col-md-6 col-sm-12">
                   <FormField
                     type={'number'}
-                    label={'price'}
+                    label={t('Price')}
                     min="0"
                     max="1000"
                     name="price"
-                    placeholder="Price"
+                    placeholder={t('Price')}
                     value={courseDetails.price}
                     onChange={handleChange}
                   />
@@ -78,50 +78,50 @@ function NewCourseForm({
             </div>
             <div className="col-12">
               <div className="row justify-content-md-center textareaWrapper">
-                <div className="col-sm-3 col-md-6">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <textarea
                     type={'textarea'}
-                    label={'content'}
+                    label={t('Content')}
                     rows={8}
                     cols={50}
                     name="content"
-                    placeholder="Content"
+                    placeholder={t('Content')}
                     value={courseDetails.content}
                     onChange={handleChange}
                   />
                 </div>
-                <div className=" col-md-6 col-sm-3">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <textarea
                     type={'text'}
-                    label={'description'}
+                    label={t('Description')}
                     rows={8}
                     cols={50}
                     name="description"
-                    placeholder="Description"
+                    placeholder={t('Description')}
                     value={courseDetails.description}
                     onChange={handleChange}
                   />
                 </div>
-                <div className=" col-md-6 col-sm-3">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <textarea
                     type={'text'}
-                    label={'requirements'}
+                    label={t('Requirements')}
                     name="requirements"
                     rows={8}
                     cols={50}
-                    placeholder="Requirements"
+                    placeholder={t('course.Requirements')}
                     value={courseDetails.requirements}
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-sm-3 col-md-6">
+                <div className="col-sm-12 col-md-6 col-lg-3">
                   <textarea
                     type={'text'}
-                    label={'whatYouWillLearn'}
+                    label={t('What you will learn')}
                     rows={8}
                     cols={50}
                     name="whatYouWillLearn"
-                    placeholder="What you will learn"
+                    placeholder={t('course.What you will learn')}
                     value={courseDetails.whatYouLearn}
                     onChange={handleChange}
                   />
@@ -134,7 +134,7 @@ function NewCourseForm({
                   <Input
                     className="selectCategoryBarForm"
                     as="select"
-                    name="category"
+                    name={t('Category')}
                     value={courseDetails.category}
                     onChange={handleChange}
                     options={[
@@ -146,11 +146,11 @@ function NewCourseForm({
                 <div className="col-lg-2 col-md-6 col-sm-3">
                   <FormField
                     type={'number'}
-                    label={'level'}
+                    label={t('Level')}
                     name="level"
                     min="0"
                     max="3"
-                    placeholder="Level"
+                    placeholder={t('Level')}
                     value={courseDetails.level}
                     onChange={handleChange}
                   />
