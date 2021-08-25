@@ -130,6 +130,9 @@ a:hover {
     min-height: 16rem;
     min-width: 16rem;
   }
+  .curseButton {
+    width: 80%;
+  }
 }
 @media (max-width: 800px) {
   .card-responsive {
