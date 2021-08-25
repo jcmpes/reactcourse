@@ -134,7 +134,7 @@ function NewCourseForm({
                   <Input
                     className="selectCategoryBarForm"
                     as="select"
-                    name={t('Category')}
+                    name="category"
                     value={courseDetails.category}
                     onChange={handleChange}
                     options={[
@@ -144,15 +144,18 @@ function NewCourseForm({
                   />
                 </div>
                 <div className="col-lg-4 col-md-6 col-sm-12">
-                  <FormField
-                    type={'number'}
-                    label={t('Level')}
+                  <Input
+                    as="select"
+                    label={'level'}
                     name="level"
-                    min="0"
-                    max="3"
-                    placeholder={t('Level')}
                     value={courseDetails.level}
                     onChange={handleChange}
+                    options={[
+                      { name: 'Easy', _id: 0, value: 0 },
+                      { name: 'Medium', _id: 1, value: 1 },
+                      { name: 'Hard', _id: 2, value: 2 },
+                      { name: 'Expert', _id: 3, value: 3 },
+                    ]}
                   />
                 </div>
                 <div className="col-lg-4 col-md-6 col-sm-12">

@@ -13,6 +13,7 @@ import {
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
+  COURSE_CREATE_REQUEST,
   COURSE_CREATE_SUCCESS,
   ADD_TO_CART_SUCCESS,
   REMOVE_FROM_CART_SUCCESS,
@@ -142,14 +143,14 @@ export function courses(state = initialState.courses, action) {
   }
 }
 
-export function creator(state = initialState.creator, action) {
-  switch (action.type) {
-    case COURSE_CREATE_SUCCESS:
-      return { ...state, data: [...state.data, action.payload] };
-    default:
-      return state;
-  }
-}
+// export function creator(state = initialState.creator, action) {
+//   switch (action.type) {
+//     case COURSE_CREATE_SUCCESS:
+//       return { ...state, data: [...state.data, action.payload] };
+//     default:
+//       return state;
+//   }
+// }
 
 export function ui(state = initialState.ui, action) {
   // case AUTH_LOGIN_FAILURE managed with if statement
@@ -160,6 +161,7 @@ export function ui(state = initialState.ui, action) {
     case AUTH_LOGIN_REQUEST:
     case LOAD_COURSES_REQUEST:
     case PURCHASE_REQUEST:
+    case COURSE_CREATE_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -169,6 +171,7 @@ export function ui(state = initialState.ui, action) {
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
     case PURCHASE_SUCCESS:
+    case COURSE_CREATE_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {
