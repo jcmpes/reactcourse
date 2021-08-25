@@ -130,7 +130,7 @@ function NewCourseForm({
             </div>
             <div className="col-12 mt-4">
               <div className="row justify-content-md-center selectByCategory">
-                <div className="col-lg-2 col-md-6 col-sm-3 selectCategoryBarContainer">
+                <div className="col-lg-4 col-md-6 col-sm-12 selectCategoryBarContainer">
                   <Input
                     className="selectCategoryBarForm"
                     as="select"
@@ -143,7 +143,7 @@ function NewCourseForm({
                     ]}
                   />
                 </div>
-                <div className="col-lg-2 col-md-6 col-sm-3">
+                <div className="col-lg-4 col-md-6 col-sm-12">
                   <FormField
                     type={'number'}
                     label={t('Level')}
@@ -155,7 +155,7 @@ function NewCourseForm({
                     onChange={handleChange}
                   />
                 </div>
-                <div className="col-lg-2 col-md-6 col-sm-3">
+                <div className="col-lg-4 col-md-6 col-sm-12">
                   <FileUpload
                     courseDetails={courseDetails}
                     setCourseDetails={setCourseDetails}
