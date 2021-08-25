@@ -17,29 +17,6 @@
 .searchByPrice {
   color: gray;
 }
-/* .searchByTitle::after,
-.searchByUser::after,
-.searchByCategory::after,
-.searchByPrice::after {
-  content: '';
-  position: absolute;
-  width: 20rem;
-  height: 1px;
-  right: 1rem;
-  background-color: currentColor;
-}
-.searchByTitle::after {
-  top: 3.5em;
-}
-.searchByUser::after {
-  top: 7.1em;
-}
-.searchByCategory::after {
-  top: 10.6em;
-}
-.searchByPrice::after {
-  top: 14.5rem;
-} */
 .searchTitleBarContainer,
 .searchUserBarForm,
 .searchCategoryBarContainer {

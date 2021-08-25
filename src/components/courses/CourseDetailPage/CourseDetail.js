@@ -147,10 +147,15 @@ function CourseDetail({
       </div>
       <div className="infoCourse">
         <div className="row mb-3">
-          <div className="col-12 col-sm-8">
-            <h5 className="courseWhatTitle">
-              {t('course.What you will learn')}
-            </h5>
+          <div className="col-lg-8 col-sm-12">
+            <div className="interlineDetailContainer">
+              <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
+                <div className="interlineDetailTitle">
+                  {t('course.What you will learn')}
+                </div>
+              </h5>
+              <div className="lineDetail"></div>
+            </div>
             <p>
               In this course you will learn how to set up your database and
               start exploring different ways to search, create, and analyze your
@@ -171,7 +176,14 @@ function CourseDetail({
               explore the Atlas UI in more detail, investigate the Charts
               functionality and Realm, as well as explore the use of Compass.
             </p>
-            <h5 className="courseContentTitle">{t('course.Course content')}</h5>
+            <div className="interlineDetailContainer">
+              <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
+                <div className="interlineDetailTitle">
+                  {t('course.Course content')}
+                </div>
+              </h5>
+              <div className="lineDetail"></div>
+            </div>
 
             <ul>
               {lessons.length >= 1 ? (
@@ -201,10 +213,15 @@ function CourseDetail({
               )}
             </ul>
           </div>
-          <div className="col-12 col-sm-4">
-            <h5 className="courseRequerimientsTitle">
-              {t('course.Requirements')}
-            </h5>
+          <div className="col-lg-4 col-sm-12">
+            <div className="interlineDetailContainer">
+              <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
+                <div className="interlineDetailTitle">
+                  {t('course.Requirements')}
+                </div>
+              </h5>
+              <div className="lineDetail"></div>
+            </div>
             <p>
               .col-4 Lorem Ipsum is simply dummy text of the printing and
               typesetting industry.
@@ -228,10 +245,15 @@ function CourseDetail({
                   />
                 </div>
               </div>
-              <div className="col-4">
-                <h5 className="courseIstructorTitle">
-                  {t('course.instructor')}
-                </h5>
+              <div className="col-8">
+                <div className="interlineDetailContainer">
+                  <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
+                    <div className="interlineDetailTitle">
+                      {t('course.instructor')}
+                    </div>
+                  </h5>
+                  <div className="lineDetail"></div>
+                </div>
               </div>
             </div>
             <p>{user.username}</p>
