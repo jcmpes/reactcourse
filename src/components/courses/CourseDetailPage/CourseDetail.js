@@ -79,7 +79,7 @@ function CourseDetail({
                 </p>
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
-                  <spam>
+                  <span>
                     {level === 0
                       ? '★☆☆☆'
                       : level === 1
@@ -89,7 +89,7 @@ function CourseDetail({
                       : level === 3
                       ? '★★★★'
                       : level}
-                  </spam>
+                  </span>
                 </p>
                 <p className="priceDetail">{price} €</p>
                 {isAuthor ? (

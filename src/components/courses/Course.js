@@ -61,7 +61,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 </p>
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
-                  <spam>
+                  <span>
                     {course.level === 0
                       ? '★☆☆☆'
                       : course.level === 1
@@ -71,7 +71,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
                       : course.level === 3
                       ? '★★★★'
                       : course.level}
-                  </spam>
+                  </span>
                 </p>
                 <p className="card-text price">{course.price} €</p>
                 {/* </div> */}
