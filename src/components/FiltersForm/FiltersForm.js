@@ -104,11 +104,11 @@ const FilterForm = () => {
             )}
           </div>
 
-          <h6 className="searchByLevels">{t('Level')}</h6>
+          <h6 className="searchByLevel">{t('Level')}</h6>
           <div className="searchLevelyBarContainer">
             {lvls && (
               <Input
-                className="searchLevelsBarForm"
+                className="searchLevelBarForm"
                 as="select"
                 name="levels"
                 value={filters.levels}

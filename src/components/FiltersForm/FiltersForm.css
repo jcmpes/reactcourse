@@ -14,12 +14,14 @@
 .searchByTitle,
 .searchByUser,
 .searchByCategory,
-.searchByPrice {
+.searchByPrice,
+.searchByLevels {
   color: gray;
 }
 .searchTitleBarContainer,
 .searchUserBarForm,
-.searchCategoryBarContainer {
+.searchCategoryBarContainer,
+.searchLevelBarContainer {
   position: relative;
   height: 20px;
   width: 100%;
@@ -28,7 +30,8 @@
 
 .searchTitleBarForm,
 .searchUserBarForm,
-.searchCategoryBarForm {
+.searchCategoryBarForm,
+.searchLevelBarForm {
   width: 100%;
   background-color: var(--color-whisper);
   border: none;
@@ -44,6 +47,10 @@
   font-weight: initial;
 }
 .searchCategoryBarForm,
+option {
+  color: var(--color-french-rose);
+}
+.searchLevelBarForm,
 option {
   color: var(--color-french-rose);
 }

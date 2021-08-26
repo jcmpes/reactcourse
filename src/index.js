@@ -32,6 +32,7 @@ const preState = {
         category: '',
         username: '',
         categories: [],
+        levels: [],
         price: [0, 600],
         limit: 10,
         skip: 0,
