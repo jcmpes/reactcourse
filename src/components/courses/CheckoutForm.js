@@ -65,7 +65,7 @@ export default function CheckoutForm({ items }) {
         card: elements.getElement(CardElement),
       },
     });
-    console.log('PAYLOAD', payload.paymentIntent);
+    console.log('PAYLOAD', payload);
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
@@ -73,17 +73,6 @@ export default function CheckoutForm({ items }) {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
-
-      // Notify backend of purchase success
-      const { id, status } = payload.paymentIntent;
-      client
-        .post(
-          `${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/notify-payment-success`,
-          { id, status },
-        )
-        .then((res) => {
-          console.log('RESPONSE ', res);
-        });
     }
   };
 
