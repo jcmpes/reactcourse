@@ -80,15 +80,16 @@ function CourseDetail({
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
-                    {level === 0
+                    {console.log('**dentro**', level)}
+                    {level.name === 'Basic'
                       ? '★☆☆☆'
-                      : level === 1
+                      : level.name === 'Medium'
                       ? '★★☆☆'
-                      : level === 2
+                      : level.name === 'Hard'
                       ? '★★★☆'
-                      : level === 3
+                      : level.name === 'Expert'
                       ? '★★★★'
-                      : level}
+                      : null}
                   </span>
                 </p>
                 <p className="priceDetail">{price} €</p>

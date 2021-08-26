@@ -20,7 +20,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
   const { username, isLogged } = useSelector(getAuth);
   const dispatch = useDispatch();
   const isAuthor = course.user.username === username;
-  console.log('**course**', course);
+
   return (
     <div className="container-fluid">
       <div className="row">
@@ -63,15 +63,15 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
-                    {course.level === 'Basic'
+                    {course.level.name === 'Basic'
                       ? '★☆☆☆'
-                      : course.level === 'Medium'
+                      : course.level.name === 'Medium'
                       ? '★★☆☆'
-                      : course.level === 'Hard'
+                      : course.level.name === 'Hard'
                       ? '★★★☆'
-                      : course.level === 'Expert'
+                      : course.level.name === 'Expert'
                       ? '★★★★'
-                      : course.level}
+                      : null}
                   </span>
                 </p>
                 <p className="card-text price">{course.price} €</p>
