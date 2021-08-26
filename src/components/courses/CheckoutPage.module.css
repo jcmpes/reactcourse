@@ -1,0 +1,9 @@
+.stripeCardContainer {
+  padding: 100px;
+}
+
+@media (max-width: 600px) {
+  .stripeCardContainer {
+    padding: 100px 0px
+  }
+}

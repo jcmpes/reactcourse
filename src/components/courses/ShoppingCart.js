@@ -1,7 +1,4 @@
 import React from "react";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm";
 import { useSelector } from 'react-redux';
 import { getCart, totalInChart, getIdsInCart } from '../../store/selectors';
 import { useDispatch } from 'react-redux';
@@ -11,8 +8,7 @@ import {
 } from '../../store/actions/purchase';
 import closeImg from '../../assets/svg/close.svg';
 import { useTranslation } from 'react-i18next';
-
-require('dotenv').config()
+import { useHistory } from "react-router-dom";
 
 const ShoppingCart = ({ closeModal }) => {
   const { t } = useTranslation(['global']);
@@ -20,19 +16,16 @@ const ShoppingCart = ({ closeModal }) => {
   const total = useSelector(totalInChart);
   const allCourses = useSelector(getIdsInCart);
   const dispatch = useDispatch();
+  const history = useHistory();
   const removeItem = (event) => {
     dispatch(removeFromCartAction(event.target.id));
   };
 
   const checkout = () => {
-    dispatch(purchaseAction(allCourses, '123456'));
+    // dispatch(purchaseAction(allCourses, '123456'));
     closeModal();
+    history.push('/checkout');
   };
-
-  // Make sure to call loadStripe outside of a component’s render to avoid
-  // recreating the Stripe object on every render.
-  // loadStripe is initialized with your real test publishable API key.
-  const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
   const coursesElement = cart.map((course) => {
     return (
@@ -111,9 +104,6 @@ const ShoppingCart = ({ closeModal }) => {
             {t('Checkout')}
           </button>
         </div>
-        <Elements stripe={promise}>
-          <CheckoutForm items={allCourses}/>
-        </Elements>
       </div>
     )
   );
