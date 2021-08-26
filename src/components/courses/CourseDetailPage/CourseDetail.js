@@ -82,13 +82,13 @@ function CourseDetail({
                   <span>
                     {console.log('**dentro**', level)}
                     {level.name === 'Basic'
-                      ? '★☆☆☆'
+                      ? '💪'
                       : level.name === 'Medium'
-                      ? '★★☆☆'
+                      ? '💪💪'
                       : level.name === 'Hard'
-                      ? '★★★☆'
+                      ? '💪💪💪'
                       : level.name === 'Expert'
-                      ? '★★★★'
+                      ? '💪💪💪💪'
                       : null}
                   </span>
                 </p>

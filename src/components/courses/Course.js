@@ -64,13 +64,13 @@ const Course = ({ course, faved, purchased, inCart }) => {
                   {t('Level')}:{' '}
                   <span>
                     {course.level.name === 'Basic'
-                      ? '★☆☆☆'
+                      ? '💪'
                       : course.level.name === 'Medium'
-                      ? '★★☆☆'
+                      ? '💪💪'
                       : course.level.name === 'Hard'
-                      ? '★★★☆'
+                      ? '💪💪💪'
                       : course.level.name === 'Expert'
-                      ? '★★★★'
+                      ? '💪💪💪💪'
                       : null}
                   </span>
                 </p>
