@@ -4,6 +4,8 @@ import {
   AUTH_LOGOUT,
   CATEGORIES_LOAD_REQUEST,
   CATEGORIES_LOAD_SUCCESS,
+  LEVELS_LOAD_REQUEST,
+  LEVELS_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   FAVORITES_SUCCESS,
@@ -35,6 +37,7 @@ export const initialState = {
       title: '',
       category: '',
       categories: [],
+      levels: [],
       username: '',
       price: [0, 600],
       limit: 10,
@@ -46,12 +49,13 @@ export const initialState = {
     loaded: false,
     data: [],
   },
+  levels: {
+    loaded: false,
+    data: [],
+  },
   ui: {
     loading: false,
     error: null,
-  },
-  creator: {
-    data: null,
   },
 };
 
@@ -124,6 +128,17 @@ export function categories(state = initialState.categories, action) {
     case CATEGORIES_LOAD_REQUEST:
       return { ...state, loaded: false };
     case CATEGORIES_LOAD_SUCCESS:
+      return { ...state, loaded: true, data: action.payload };
+    default:
+      return state;
+  }
+}
+
+export function levels(state = initialState.levels, action) {
+  switch (action.type) {
+    case LEVELS_LOAD_REQUEST:
+      return { ...state, loaded: false };
+    case LEVELS_LOAD_SUCCESS:
       return { ...state, loaded: true, data: action.payload };
     default:
       return state;

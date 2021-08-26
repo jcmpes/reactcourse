@@ -18,6 +18,7 @@ import { Link } from 'react-router-dom';
 import CoursesListMini from '../courses/CoursesListMini';
 import { getCourses } from '../../api/courses';
 import placeholder from '../../assets/img/homePlaceholder.jpg';
+import { levelsLoadAction } from '../../store/actions/levels-load';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
   // eslint-disable-next-line no-unused-vars
@@ -46,6 +47,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
+    dispatch(levelsLoadAction());
     dispatch(
       loadCoursesAction(getCourses, setNewCourses, defaultFilters, () => {}, 5),
     );

@@ -97,7 +97,8 @@
   "filter": {
     "filtering price between": "Filtering price between",
     "reset filters": "Reset Filters",
-    "Select category": "Select category"
+    "Select category": "Select category",
+    "Select Levels": "Select level"
   },
   "footer": {
     "footer": "Footer"
