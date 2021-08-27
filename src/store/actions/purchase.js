@@ -31,11 +31,10 @@ export const purchaseFailure = (error) => {
 };
 
 // Load courses middleware
-export const purchaseAction = (courses, paymentCode) => {
+export const purchaseAction = (courses) => {
   return async function (dispatch, getState) {
     dispatch(purchaseRequest());
     try {
-      await purchase(courses, paymentCode);
       dispatch(purchaseSuccess(courses));
       toast.success('Compra realizada');
     } catch (error) {
