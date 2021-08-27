@@ -142,8 +142,13 @@ const FilterForm = () => {
               </div>
               <br />
             </div>
-            <div className="buttonFilterReste">
-              <button type="reset" onClick={handleReset}>
+
+            <div className="button-conainer">
+              <button
+                className="buttonFilterReste"
+                type="reset"
+                onClick={handleReset}
+              >
                 {t('filter.reset filters')}
               </button>
             </div>

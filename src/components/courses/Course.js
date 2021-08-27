@@ -27,7 +27,8 @@ const Course = ({ course, faved, purchased, inCart }) => {
         <div className="col-12 mt-3">
           <div className="card">
             <div className="row">
-              <div className="col-12 col-md-6 card-responsive">
+              {/* <div className="col-12 col-md-5 col-lg-4 card-responsive"> */}
+              <div className="col-sm-12 col-md-6 col-lg-5 col-xl-6 card-responsive">
                 <div className="img-rounded-wrapper">
                   <img
                     className="border border-dark image-card"
@@ -37,7 +38,8 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 </div>
               </div>
 
-              <div className="card-body col-12 col-md-6">
+              <div className="card-body col-sm-12 col-md-6 col-lg-7 col-xl-6">
+                {/* <div className="card-body col-12 col-md-7"> */}
                 <p className="card-title">
                   <Link to={`/courses/${course.slug}`}>{course.title}</Link>
                 </p>

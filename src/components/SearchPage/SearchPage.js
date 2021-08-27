@@ -22,8 +22,11 @@ import ErrorMessage from '../shared/ErrorMessage';
 import loader from '../../assets/img/loading-mini.gif';
 import { debounce } from '../../utils/debounce';
 import { CourseSkeleton } from '../courses/CourseSkeleton';
+import ascendingIcon from '../../assets/svg/ascending.svg';
+import descendingIcon from '../../assets/svg/descending.svg';
 
 function SearchPage({ auth, onLogout, ...props }) {
+  // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
 
   const { loading, error } = useSelector(getUI);
@@ -131,17 +134,27 @@ function SearchPage({ auth, onLogout, ...props }) {
   return (
     <Layout {...props}>
       <Scroll showBellow={250} />
-      <label htmlFor="order-checkbox">{t('Ascending')}</label>
       <input
         type="checkbox"
         id="order-checkbox"
         checked={sort === 1}
         onChange={handleChange}
+        style={{ visibility: 'hidden' }}
       />
+      <label htmlFor="order-checkbox">
+        <img
+          src={sort === 1 ? ascendingIcon : descendingIcon}
+          alt="sort"
+          height="30"
+          width="30"
+        />
+      </label>
 
-      <p>
-        Current language: <strong>{i18n.language}</strong>
-      </p>
+      {/* Current language:{' '} 
+      <div style={{ fontSize: '3rem' }}>
+        {i18n.language === 'es' ? '🇪🇸' : '🇺🇸'}
+      </div> */}
+
       <div className="showFilters">
         <Button type="submit" value="Advanced Search" onClick={onClick}>
           Advanced Search
