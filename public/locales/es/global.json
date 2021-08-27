@@ -1,6 +1,7 @@
 {
   "title": "Teach It Up!",
   "welcome to": "Bienvenido a ",
+  "decimals": ",",
   "headline": "Esperamos que sobrevivas a la experiencia.",
   "not-found": "Página no encontrada",
   "submit": "Enviar",
@@ -154,5 +155,6 @@
   },
   "category list": {
     "categories": "Categorías"
-  }
+  },
+  "shoppint cart": { "check out": "Finalizar compra" }
 }
