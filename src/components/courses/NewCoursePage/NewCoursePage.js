@@ -126,18 +126,32 @@ function NewCoursePage() {
                 />
               </>
             )}
-            <div className="lesson-navigate">
-              {lessonCounter !== 0 && (
-                <button onClick={() => setLessonCounter(lessonCounter - 1)}>
-                  Previous Step
-                </button>
-              )}
+            <div className="button-conainer">
+              <div className="lesson-navigate">
+                {lessonCounter !== 0 && (
+                  <button
+                    className="buttonSecondary"
+                    onClick={() => setLessonCounter(lessonCounter - 1)}
+                  >
+                    Previous Step
+                  </button>
+                )}
+              </div>
               {Object.keys(courseDetails.lessons).length !== lessonCounter ? (
-                <button onClick={() => setLessonCounter(lessonCounter + 1)}>
-                  Next step
-                </button>
+                <div className="button-conainer">
+                  <button
+                    className="buttonSecondary"
+                    onClick={() => setLessonCounter(lessonCounter + 1)}
+                  >
+                    Next step
+                  </button>
+                </div>
               ) : (
-                <button onClick={handleAddLesson}>Add a lesson</button>
+                <div className="button-conainer">
+                  <button className="buttonSecondary" onClick={handleAddLesson}>
+                    Add a lesson
+                  </button>
+                </div>
               )}
             </div>
           </>
