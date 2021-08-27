@@ -9,6 +9,7 @@ import {
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import styles from './CheckoutForm.module.css';
 require('dotenv').config();
 
 export default function CheckoutForm({ items }) {
@@ -88,13 +89,13 @@ export default function CheckoutForm({ items }) {
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form class={styles.checkoutForm} id="payment-form" onSubmit={handleSubmit}>
       <CardElement
         id="card-element"
         options={cardStyle}
         onChange={handleChange}
       />
-      <button disabled={processing || disabled || succeeded} id="submit">
+      <button class={styles.checkoutButton} disabled={processing || disabled || succeeded} id="submit">
         <span id="button-text">
           {processing ? (
             <div className="spinner" id="spinner"></div>

@@ -25,7 +25,7 @@ const CheckoutPage = () => {
           <img src={backIcon} alt="back" width="35" />
         </div>
         <Elements stripe={promise}>
-          <CheckoutForm items={allCourses} />
+          <CheckoutForm class={styles.checkoutForm} items={allCourses} />
         </Elements>
       </div>
 
