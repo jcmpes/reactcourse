@@ -145,3 +145,15 @@ a:hover {
     min-width: 14rem;
   }
 }
+
+@media (max-width: 500px) {
+  .card-responsive {
+    justify-content: center;
+  }
+  .img-rounded-wrapper img {
+    max-height: 12rem;
+    max-width: 12rem;
+    min-height: 12rem;
+    min-width: 12rem;
+  }
+}
