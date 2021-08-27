@@ -3,6 +3,11 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { useTranslation } from 'react-i18next';
 import '../../App.css';
 import client from '../../api/client';
+import {
+  purchaseAction,
+} from '../../store/actions/purchase';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
 require('dotenv').config();
 
 export default function CheckoutForm({ items }) {
@@ -14,20 +19,23 @@ export default function CheckoutForm({ items }) {
   const [clientSecret, setClientSecret] = useState('');
   const stripe = useStripe();
   const elements = useElements();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
     client
       .post(
-        `${process.env.REACT_APP_API_BASE_URL}/api/v1/paymentIntent/create-payment-intent`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/purchases/create-payment-intent`,
         { items },
       )
       .then((res) => {
-        console.log(res)
         return res;
       })
       .then((data) => {
         setClientSecret(data.clientSecret);
+      })
+      .catch(err => {
+        toast.error(err)
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -66,11 +74,11 @@ export default function CheckoutForm({ items }) {
         card: elements.getElement(CardElement),
       },
     });
-    console.log('PAYLOAD', payload);
     if (payload.error) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
+      dispatch(purchaseAction(items))
       setError(null);
       setProcessing(false);
       setSucceeded(true);
