@@ -155,5 +155,8 @@
   },
   "category list": {
     "categories": "Categorías"
+  },
+  "stripe": {
+    "succeded": "Has realizado el pago con éxito"
   }
 }
