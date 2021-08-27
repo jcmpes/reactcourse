@@ -1,7 +1,13 @@
 .stripeCardContainer {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   margin-top: 30vh;
+}
+
+.goBack {
+  margin: 2rem;
+  cursor: pointer;
 }
 
 form {

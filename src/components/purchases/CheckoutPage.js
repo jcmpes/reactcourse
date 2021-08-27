@@ -4,6 +4,9 @@ import { useSelector } from 'react-redux';
 import { getIdsInCart } from '../../store/selectors';
 import styles from './CheckoutPage.module.css';
 import CheckoutForm from './CheckoutForm';
+import { useHistory } from 'react-router-dom';
+import backIcon from '../../assets/svg/back.svg';
+import { SubtitlesOutlined } from '@material-ui/icons';
 
 require('dotenv').config()
 
@@ -14,12 +17,20 @@ const CheckoutPage = () => {
   const promise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
   const allCourses = useSelector(getIdsInCart);
 
+  const history = useHistory();
+
   return (
-    <div className={styles.stripeCardContainer}>
-      <Elements stripe={promise}>
-        <CheckoutForm items={allCourses} />
-      </Elements>
-    </div>
+    <>
+      <div className={styles.stripeCardContainer}>
+        <div className={styles.goBack} onClick={() => history.goBack()}>
+          <img src={backIcon} alt="back" width="35" />
+        </div>
+        <Elements stripe={promise}>
+          <CheckoutForm items={allCourses} />
+        </Elements>
+      </div>
+
+    </>
   );
 };
 
