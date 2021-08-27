@@ -1,13 +1,11 @@
-import React from 'react';
+import React from "react";
 import { useSelector } from 'react-redux';
 import { getCart, totalInChart, getIdsInCart } from '../../store/selectors';
 import { useDispatch } from 'react-redux';
-import {
-  removeFromCartAction,
-  purchaseAction,
-} from '../../store/actions/purchase';
+import { removeFromCartAction } from '../../store/actions/purchase';
 import closeImg from '../../assets/svg/close.svg';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from "react-router-dom";
 
 const ShoppingCart = ({ closeModal }) => {
   const { t } = useTranslation(['global']);
@@ -15,13 +13,14 @@ const ShoppingCart = ({ closeModal }) => {
   const total = useSelector(totalInChart);
   const allCourses = useSelector(getIdsInCart);
   const dispatch = useDispatch();
+  const history = useHistory();
   const removeItem = (event) => {
     dispatch(removeFromCartAction(event.target.id));
   };
 
   const checkout = () => {
-    dispatch(purchaseAction(allCourses, '123456'));
     closeModal();
+    history.push('/checkout');
   };
 
   const coursesElement = cart.map((course) => {
@@ -67,6 +66,7 @@ const ShoppingCart = ({ closeModal }) => {
       </div>
     );
   });
+
   return (
     allCourses.length > 0 && (
       <div

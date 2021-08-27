@@ -5,7 +5,6 @@ import {
   ADD_TO_CART_SUCCESS,
   REMOVE_FROM_CART_SUCCESS,
 } from '../types';
-import { purchase } from '../../api/purchases';
 import { toast } from 'react-toastify';
 
 // Load courses actions
@@ -31,13 +30,16 @@ export const purchaseFailure = (error) => {
 };
 
 // Load courses middleware
-export const purchaseAction = (courses, paymentCode) => {
+export const purchaseAction = (courses, history) => {
   return async function (dispatch, getState) {
     dispatch(purchaseRequest());
     try {
-      await purchase(courses, paymentCode);
       dispatch(purchaseSuccess(courses));
-      toast.success('Compra realizada');
+      const options = {
+        onClose: () => history.push('/'),
+        autoClose: 4000,
+      };
+      toast.success('Compra realizada con éxito', options);
     } catch (error) {
       dispatch(purchaseFailure(error));
     }
