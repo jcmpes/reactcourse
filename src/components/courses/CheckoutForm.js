@@ -8,6 +8,7 @@ import {
 } from '../../store/actions/purchase';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 require('dotenv').config();
 
 export default function CheckoutForm({ items }) {
@@ -20,6 +21,7 @@ export default function CheckoutForm({ items }) {
   const stripe = useStripe();
   const elements = useElements();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -78,7 +80,7 @@ export default function CheckoutForm({ items }) {
       setError(`Payment failed ${payload.error.message}`);
       setProcessing(false);
     } else {
-      dispatch(purchaseAction(items))
+      dispatch(purchaseAction(items, history))
       setError(null);
       setProcessing(false);
       setSucceeded(true);
