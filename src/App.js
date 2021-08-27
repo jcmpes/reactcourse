@@ -79,9 +79,9 @@ function Translations() {
         <PrivateRoute path="/edit/:courseSlug">
           <EditCoursePage />
         </PrivateRoute>
-        <Route path="/checkout">
+        <PrivateRoute path="/checkout">
           <CheckoutPage />
-        </Route>
+        </PrivateRoute>
         <Route exact path="/search">
           <SearchPage />
         </Route>
