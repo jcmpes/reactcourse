@@ -6,7 +6,6 @@ import styles from './CheckoutPage.module.css';
 import CheckoutForm from './CheckoutForm';
 import { useHistory } from 'react-router-dom';
 import backIcon from '../../assets/svg/back.svg';
-import { SubtitlesOutlined } from '@material-ui/icons';
 
 require('dotenv').config()
 
