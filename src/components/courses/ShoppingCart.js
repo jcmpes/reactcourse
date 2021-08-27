@@ -2,10 +2,7 @@ import React from "react";
 import { useSelector } from 'react-redux';
 import { getCart, totalInChart, getIdsInCart } from '../../store/selectors';
 import { useDispatch } from 'react-redux';
-import {
-  removeFromCartAction,
-  purchaseAction,
-} from '../../store/actions/purchase';
+import { removeFromCartAction } from '../../store/actions/purchase';
 import closeImg from '../../assets/svg/close.svg';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom";
@@ -22,7 +19,6 @@ const ShoppingCart = ({ closeModal }) => {
   };
 
   const checkout = () => {
-    // dispatch(purchaseAction(allCourses, '123456'));
     closeModal();
     history.push('/checkout');
   };

@@ -1,4 +1,3 @@
-import { Input } from '@material-ui/core';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
 import { useSelector } from 'react-redux';
