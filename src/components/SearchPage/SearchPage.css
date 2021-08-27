@@ -1,7 +1,7 @@
 .filtersContainer {
   position: sticky;
-  top: 125px;
-  height: 450px;
+  top: 7.8rem;
+  height: 32rem;
   z-index: 0;
 }
 .showFilters {
