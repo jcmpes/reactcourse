@@ -152,7 +152,7 @@ function NewCourseForm({
                         className="searchLevelBarForm"
                         as="select"
                         name="level"
-                        value={level}
+                        value={courseDetails.level}
                         onChange={handleChange}
                         searcher={true}
                         options={[

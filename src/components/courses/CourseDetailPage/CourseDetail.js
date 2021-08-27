@@ -47,7 +47,7 @@ function CourseDetail({
         {/* <Link to="/search">
           <img src={backIcon} alt="back" width="35" />
         </Link> */}
-        <div style={{ cursor: "pointer" }} onClick={() => history.goBack()}>
+        <div style={{ cursor: 'pointer' }} onClick={() => history.goBack()}>
           <img src={backIcon} alt="back" width="35" />
         </div>
       </div>
@@ -84,7 +84,7 @@ function CourseDetail({
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
-                    {console.log('**dentro**', level)}
+                    {/* {console.log('**dentro**', level)}
                     {level.name === 'Basic'
                       ? '💪'
                       : level.name === 'Medium'
@@ -93,7 +93,7 @@ function CourseDetail({
                       ? '💪💪💪'
                       : level.name === 'Expert'
                       ? '💪💪💪💪'
-                      : null}
+                      : null} */}
                   </span>
                 </p>
                 <p className="priceDetail">{price} €</p>
