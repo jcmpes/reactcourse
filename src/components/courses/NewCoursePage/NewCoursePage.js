@@ -2,13 +2,14 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { categoriesLoadAction } from '../../../store/actions/categories-load';
-import { getCategories } from '../../../store/selectors';
+import { getCategories, getLevels } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
 import NewCourseForm from './NewCourseForm';
 import NewLessonForm from './NewLessonForm';
 import { courseCreateAction } from '../../../store/actions/course-new';
 import { getUi } from '../../../store/selectors';
 import Loading from '../../shared/Loading/Loading';
+import { levelsLoadAction } from '../../../store/actions/levels-load';
 
 function NewCoursePage() {
   const { loading } = useSelector(getUi);
@@ -30,10 +31,12 @@ function NewCoursePage() {
 
   const [createdCourse, setCreatedCourse] = React.useState(null);
   const categories = useSelector(getCategories);
+  const lvls = useSelector(getLevels);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
+    dispatch(levelsLoadAction());
   }, [dispatch]);
 
   const handleAddLesson = () => {
@@ -107,6 +110,7 @@ function NewCoursePage() {
               <>
                 <NewCourseForm
                   onSubmit={handleSubmit}
+                  level={lvls}
                   categories={categories}
                   lessonCounter={lessonCounter}
                   setLessonCounter={setLessonCounter}
