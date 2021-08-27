@@ -1,80 +1,104 @@
 .shoppingCartContainer {
-  --margin-bottom-course: 35px;
+  --margin-bottom-course: 20px;
 }
 
 .shoppingCartContainer {
   margin: 0 auto;
   max-width: 500px;
-  border: solid 3px yellow;
 }
 
+/* COURSE CARD */
 .courseCardContainer {
   display: flex;
   margin-bottom: var(--margin-bottom-course);
-  /* temp */
   font-family: helvetica;
   font-size: 14px;
-  border: solid 3px red;
 }
 
+/* course image */
 .courseImage {
-  /* width: 40%; */
-  margin-right: 5px;
-  /* border: solid 3px yellow; */
-  /* background-color: black; */
+  margin-right: 10px;
 }
 
 .courseImage img {
   width: 120px;
-  max-width: 190px;
+  /* max-width: 190px; */
   height: auto;
   border-radius: 8px;
 }
 
+/* course name and price */
 .courseDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 100%;
+  background-color: lightgray;
+  border-radius: 8px;
+  padding: 10px 20px;
 }
 
 .courseName {
   width: 100%;
   text-align: left;
-  /* temp */
 }
 
 .courseDetailsBottom {
   display: flex;
-  border: solid 3px red;
-
-  /* justify-content: flex-end; */
-  /* temp */
+  justify-content: flex-end;
 }
 
-.deleteBtn {
-}
-
-.courseDetailsBottom img {
+.deleteButton {
   width: 16px;
-  margin-left: 12px;
+  color: var(--color-french-rose);
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .coursePrice {
-  /* temp */
-  /* width: 30px; */
   color: var(--color-french-rose);
   font-weight: bold;
 }
 
-.totalPrice {
+/* total price  */
+.priceContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 20px;
+  font-size: 16px;
+  font-weight: bolder;
+  color: var(--color-mid-grey);
+  margin: 30px 0;
+  margin-right: 20px;
+}
+
+.priceText {
+  margin-right: 15px;
+}
+
+.priceNumber {
+}
+
+/* checkout */
+.checkOutContainer {
   text-align: right;
 }
 
-.totalPrice {
-  margin-bottom: var(--margin-bottom-course);
-}
-
-.checkOutBtnContainer {
-}
-
-.checkOutBtnContainer button {
+.checkOutContainer button {
   min-width: 300px;
+  height: 40px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--color-french-rose);
+  font-size: 15px;
+  font-weight: bolder;
+  margin-left: auto;
+}
+
+.checkOutContainer button:hover {
+  border: solid 2px var(--color-french-rose);
+  background-color: var(--color-whisper);
+  color: var(--color-french-rose);
+  cursor: pointer;
 }

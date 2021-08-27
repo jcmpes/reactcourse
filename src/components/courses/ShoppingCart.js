@@ -5,38 +5,57 @@ import { getCart } from '../../store/selectors';
 import styles from './ShoppingCart.module.css';
 import deleteIcon from '../../assets/svg/delete.svg';
 
-////////// fake images for development
+// fake image // TODO: usar imágenes reales
 import fakeImg from '../../assets/img/fake-course-img.png';
 
 const ShoppingCart = () => {
-  const { t } = useTranslation(['global']);
   const shoppingCartItems = useSelector(getCart);
-  // console.log(shoppingCartItems);
+  const { t } = useTranslation(['global']);
 
   return (
     <div className={styles.shoppingCartContainer}>
+      {/* course card */}
       {shoppingCartItems.map((course) => (
         <div className={styles.courseCardContainer} key={course.courseTitle}>
           <div className={styles.courseImage}>
             <img src={fakeImg} alt="course" />
-            {/* <img src={fakeImg} alt="course" width="100%" height="100%" /> */}
           </div>
           <div className={styles.courseDetails}>
             <div className={styles.courseName}>{course.courseTitle}</div>
             <div className={styles.courseDetailsBottom}>
-              {/* <div className={styles.deleteBtn}></div> */}
+              <img
+                className={styles.deleteButton}
+                src={deleteIcon}
+                // onClick={deleteCourse}
+                alt="delete course icon"
+              />
               <div className={styles.coursePrice}>
                 {course.coursePrice.toFixed(2).replace('.', ',')} €
               </div>
-              <img src={deleteIcon} alt="delete course icon" />
             </div>
           </div>
         </div>
       ))}
-
-      <div className={styles.totalPrice}>Total 230,00 €</div>
-      <div className={styles.checkOutBtnContainer}>
-        <button>Check out</button>
+      {/* total price */}
+      <div className={styles.priceContainer}>
+        <div className={styles.priceText}>Total</div>
+        <div className={styles.priceNumber}>
+          {shoppingCartItems
+            .map((price) => price.coursePrice)
+            .reduce((price, total) => price + total)
+            .toFixed(2)
+            .replace('.', t('decimals'))}{' '}
+          €
+        </div>
+      </div>
+      {/*  checkout button */}
+      <div className={styles.checkOutContainer}>
+        {/* TODO: hacer lógica del botón: redirección, cerrar modal, etc */}
+        <button
+        // onClick={handleClickBtn}
+        >
+          {t('shoppint cart.check out')}
+        </button>
       </div>
     </div>
   );
