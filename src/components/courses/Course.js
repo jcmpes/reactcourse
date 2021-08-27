@@ -21,7 +21,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
   const dispatch = useDispatch();
   const isAuthor = course.user.username === username;
 
-  console.log('** course *** ', course);
+  console.log('** course *** ', course.level.name);
 
   return (
     <div className="container-fluid">

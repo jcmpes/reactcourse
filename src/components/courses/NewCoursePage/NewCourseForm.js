@@ -15,6 +15,9 @@ function NewCourseForm({
   const { t } = useTranslation(['global']);
 
   const handleChange = (ev) => {
+    if ([ev.target.name] !== 'level') {
+      console.log(ev.target.value);
+    }
     setCourseDetails((oldCredentials) => ({
       ...oldCredentials,
       [ev.target.name]: ev.target.value,
