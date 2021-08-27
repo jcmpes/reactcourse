@@ -47,7 +47,7 @@ function CourseDetail({
         {/* <Link to="/search">
           <img src={backIcon} alt="back" width="35" />
         </Link> */}
-        <div style={{ cursor: "pointer" }} onClick={() => history.goBack()}>
+        <div style={{ cursor: 'pointer' }} onClick={() => history.goBack()}>
           <img src={backIcon} alt="back" width="35" />
         </div>
       </div>

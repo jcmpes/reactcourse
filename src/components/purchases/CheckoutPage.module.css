@@ -1,3 +1,4 @@
+/*
 .stripeCardContainer {
   display: flex;
   justify-content: center;
@@ -61,7 +62,8 @@ input {
   margin-bottom: 32px;
 }
 /* Buttons and links */
-button {
+
+/*button {
   background: var(--color-french-rose);
   font-family: Arial, sans-serif;
   color: #ffffff;
@@ -85,7 +87,7 @@ button:disabled {
   cursor: default;
 }
 /* spinner/processing state, errors */
-.spinner,
+/*.spinner,
 .spinner:before,
 .spinner:after {
   border-radius: 50%;
@@ -152,4 +154,4 @@ button:disabled {
   form {
     width: 40vw;
   }
-}
+}*/

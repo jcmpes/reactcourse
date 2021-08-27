@@ -32,8 +32,10 @@ export const courseCreateFailure = (error) => {
 export const courseCreateAction = (courseDetails) => {
   return async function (dispatch, getState) {
     dispatch(courseCreateRequest());
+    console.log(courseDetails);
     try {
       const course = await postCourse(courseDetails);
+      console.log(course);
       if (course.title) {
         dispatch(courseCreateSuccess());
         return course;
