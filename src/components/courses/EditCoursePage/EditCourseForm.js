@@ -7,15 +7,16 @@ import FileUpload from '../../shared/FileUpload';
 import ConfirmButton from '../../shared/ConfirmButton';
 require('dotenv').config();
 
-function EditCourseForm({
-  courseDetails,
-  onSubmit,
-  categories,
-}) {
+function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
   const { t } = useTranslation(['global']);
   const history = useHistory();
   const initialCategory = categories.find(
     (cat) => cat._id === courseDetails.category,
+  );
+  console.log(courseDetails.level._id);
+  console.log();
+  const initialLevel = levels.find(
+    (lvl) => lvl._id === courseDetails.level._id,
   );
   const {
     title,
@@ -25,7 +26,6 @@ function EditCourseForm({
     content,
     requirements,
     whatYouWillLearn,
-    level,
   } = courseDetails;
   const [featuredImage, setFeaturedImage] = React.useState(null);
   const [newCourseDetails, setNewCourseDetails] = React.useState({
@@ -36,7 +36,7 @@ function EditCourseForm({
     content: content || '',
     requirements: requirements || '',
     whatYouWillLearn: whatYouWillLearn || '',
-    level: level || '',
+    level: initialLevel.name || '',
     image: image,
     preview: { file: image },
   });
@@ -66,7 +66,7 @@ function EditCourseForm({
     const formData = new FormData();
     // Send course id to update in backend
     formData.append('_id', courseDetails._id);
-
+    console.log('Mndo:------->', newCourseDetails.level);
     // Send the other details
     formData.append('title', newCourseDetails.title);
     formData.append('description', newCourseDetails.description);
@@ -141,15 +141,16 @@ function EditCourseForm({
             value={newCourseDetails.whatYouWillLearn}
             onChange={handleChange}
           />
-          <FormField
-            type={'number'}
-            label={'level'}
+          <Input
+            className="searchLevelBarForm"
+            as="select"
             name="level"
-            placeholder="Level"
-            min="0"
-            max="3"
             value={newCourseDetails.level}
             onChange={handleChange}
+            options={[
+              { name: t('filter.Select Levels'), _id: '000' },
+              ...levels,
+            ]}
           />
           <FileUpload
             label={'image'}
