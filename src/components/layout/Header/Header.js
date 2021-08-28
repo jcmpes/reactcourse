@@ -33,6 +33,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import styles from './Header.module.css';
 
 const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
+  const url = window.location.href;
+  const urlSplitted = url.split('/');
+  const site = urlSplitted[urlSplitted.length - 1];
+  const isSearcher = site === 'search';
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isLanguageOpen, setLanguageOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -133,7 +137,7 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
                 </div>
                 <div className={styles.heartIcon}>
                   <BootstrapTooltip title={t('header.Favorites')}>
-                    <Link to="myfavs">
+                    <Link to="/myfavs">
                       <img src={heartIcon} alt="heart icon" />
                     </Link>
                   </BootstrapTooltip>
@@ -189,20 +193,22 @@ const Header = ({ isLogged, darkMode, toggleDarkMode }) => {
         </div>
 
         {/* Search input bar */}
-        <div className={styles.searchBarContainer}>
-          <span className={styles.loupeIconSpan}>
-            <img src={loupeIcon} alt="" />
-          </span>
-          <form onSubmit={handleSubmit}>
-            <input
-              name="title"
-              className={styles.searchBarForm}
-              placeholder={t('header.search')}
-              value={filters.title}
-              onChange={handleChange}
-            />
-          </form>
-        </div>
+        {!isSearcher && (
+          <div className={styles.searchBarContainer}>
+            <span className={styles.loupeIconSpan}>
+              <img src={loupeIcon} alt="" />
+            </span>
+            <form onSubmit={handleSubmit}>
+              <input
+                name="title"
+                className={styles.searchBarForm}
+                placeholder={t('header.search')}
+                value={filters.title}
+                onChange={handleChange}
+              />
+            </form>
+          </div>
+        )}
 
         {/* MODAL shopping cart menu */}
         {isCartOpen && <CartModal closeModal={() => setIsCartOpen(false)} />}
