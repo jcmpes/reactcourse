@@ -28,6 +28,7 @@ import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
 import EditUserPage from './components/users/EditUserPage';
 import Loading from './components/shared/Loading/Loading';
 import CheckoutPage from './components/purchases/CheckoutPage';
+import { MyCourses } from './components/users/MyCourses';
 
 function Translations() {
   return (
@@ -41,6 +42,9 @@ function Translations() {
         </Route>
         <PrivateRoute path="/user">
           <User />
+        </PrivateRoute>
+        <PrivateRoute path="/my-courses">
+          <MyCourses />
         </PrivateRoute>
         <PrivateRoute exact path="/edit-user">
           <EditUserPage />

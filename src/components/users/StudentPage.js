@@ -21,25 +21,33 @@ const StudentPage = ({ username }) => {
 
         <div className="user-profile-nav">
           <ul>
-            <Link to="/" className="my-profile-nav-item">
-              {t('users.learning')}
-            </Link>
+            <li>
+              <Link to="/" className="my-profile-nav-item">
+                {t('users.learning')}
+              </Link>
+            </li>
             {/* Filed changed */}
-            <Link
-              to={`/courses-by/${username}`}
-              className="my-profile-nav-item"
-            >
-              {t('users.teaching')}
-            </Link>
-            <Link to="/myfavs" className="my-profile-nav-item">
-              {t('users.wishlist')}
-            </Link>
-            <Link to="/" className="my-profile-nav-item">
+            <li>
+              <Link
+                to={`/courses-by/${username}`}
+                className="my-profile-nav-item"
+              >
+                {t('users.teaching')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/myfavs" className="my-profile-nav-item">
+                {t('users.wishlist')}
+              </Link>
+            </li>
+            {/* <Link to="/" className="my-profile-nav-item">
               {t('users.chats')}
-            </Link>
-            <Link to="/edit-user" className="my-profile-nav-item">
-              {t('users.edit profile')}
-            </Link>
+            </Link> */}
+            <li>
+              <Link to="/edit-user" className="my-profile-nav-item">
+                {t('users.edit profile')}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
