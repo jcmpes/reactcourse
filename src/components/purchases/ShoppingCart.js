@@ -4,13 +4,20 @@ import { useSelector } from 'react-redux';
 import { getCart } from '../../store/selectors';
 import styles from './ShoppingCart.module.css';
 import deleteIcon from '../../assets/svg/delete.svg';
+import { useHistory } from 'react-router-dom';
 
 // fake image // TODO: usar imágenes reales
 import fakeImg from '../../assets/img/fake-course-img.png';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({ closeModal }) => {
+  const history = useHistory();
   const shoppingCartItems = useSelector(getCart);
   const { t } = useTranslation(['global']);
+
+  const handleClickCheckout = () => {
+    closeModal();
+    history.push('/checkout');
+  };
 
   return (
     <div className={styles.shoppingCartContainer}>
@@ -50,10 +57,7 @@ const ShoppingCart = () => {
       </div>
       {/*  checkout button */}
       <div className={styles.checkOutContainer}>
-        {/* TODO: hacer lógica del botón: redirección, cerrar modal, etc */}
-        <button
-        // onClick={handleClickBtn}
-        >
+        <button onClick={handleClickCheckout}>
           {t('shoppint cart.check out')}
         </button>
       </div>
