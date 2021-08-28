@@ -9,6 +9,7 @@ import { Button } from '../../shared';
 import LessonDetail from './LessonDetail';
 import { useTranslation } from 'react-i18next';
 import Loading from '../../shared/Loading/Loading';
+import { Link } from 'react-router-dom';
 
 function LessonPage() {
   const { courseSlug, lessonSlug } = useParams();
@@ -17,6 +18,7 @@ function LessonPage() {
   const [course, setCourse] = useState({});
   const [lessonCounter, setLessonCounter] = useState(0);
   const history = useHistory();
+  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +27,7 @@ function LessonPage() {
       console.log('Peticion API: ', lessonSlug);
       const singleLesson = await getLesson(courseSlug, lessonSlug);
       console.log(singleLesson);
+      if (singleLesson.title) setAuthorized(true);
       return singleLesson;
     };
     fetchData().then((singleLesson) => {
@@ -56,13 +59,18 @@ function LessonPage() {
   const { t } = useTranslation(['global']);
   console.log(lesson);
   if (error) return <div>cacota</div>;
-  return lesson && lesson.unauthorized ? (
-    <div>caca</div>
-  ) : (
+  return (
     <Layout>
       <div className="lesson-detail-page">
         {loading && <Loading isLoading={true} />}
-        {lesson && (
+        {!authorized && (
+          <div>
+            You gotta buy it!
+            <br />
+            <Link to="/">Home</Link>
+          </div>
+        )}
+        {authorized && lesson && (
           <>
             <LessonDetail {...lesson} />
             <div className="lesson-nav">
