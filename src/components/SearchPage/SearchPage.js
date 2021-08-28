@@ -185,7 +185,11 @@ function SearchPage({ auth, onLogout, ...props }) {
                   </div>
 
                   {!moreLoading ? (
-                    <button onClick={gimmeMore}>{t('Show more')}</button>
+                    <div className="button-conainer">
+                      <button className="buttonSecondary" onClick={gimmeMore}>
+                        {t('Show more')}
+                      </button>
+                    </div>
                   ) : (
                     <img width="20px" src={loader} alt="loading" />
                   )}
