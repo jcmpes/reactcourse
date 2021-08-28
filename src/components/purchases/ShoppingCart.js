@@ -1,24 +1,20 @@
-import React from "react";
-import { useSelector } from 'react-redux';
-import { getCart, totalInChart, getIdsInCart } from '../../store/selectors';
-import { useDispatch } from 'react-redux';
-import { removeFromCartAction } from '../../store/actions/purchase';
-import closeImg from '../../assets/svg/close.svg';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { getCart } from '../../store/selectors';
+import styles from './ShoppingCart.module.css';
+import deleteIcon from '../../assets/svg/delete.svg';
+import { useHistory } from 'react-router-dom';
+
+// fake image // TODO: usar imágenes reales
+import fakeImg from '../../assets/img/fake-course-img.png';
 
 const ShoppingCart = ({ closeModal }) => {
-  const { t } = useTranslation(['global']);
-  const cart = useSelector(getCart);
-  const total = useSelector(totalInChart);
-  const allCourses = useSelector(getIdsInCart);
-  const dispatch = useDispatch();
   const history = useHistory();
-  const removeItem = (event) => {
-    dispatch(removeFromCartAction(event.target.id));
-  };
+  const shoppingCartItems = useSelector(getCart);
+  const { t } = useTranslation(['global']);
 
-  const checkout = () => {
+  const handleClickCheckout = () => {
     closeModal();
     history.push('/checkout');
   };
@@ -69,40 +65,48 @@ const ShoppingCart = ({ closeModal }) => {
   });
 
   return (
-    allCourses.length > 0 && (
-      <div
-        style={{ marginLeft: '30px', marginRight: '30px', textAlign: 'left' }}
-      >
-        <div>{coursesElement}</div>
-        <br />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            marginBottom: '60px',
-          }}
-        >
-          <div style={{ fontSize: '1.2rem' }}>
-            Total:&nbsp;
-            <strong>{total} €</strong>
+    <div className={styles.shoppingCartContainer}>
+      {/* course card */}
+      {shoppingCartItems.map((course) => (
+        <div className={styles.courseCardContainer} key={course.courseTitle}>
+          <div className={styles.courseImage}>
+            <img src={fakeImg} alt="course" />
           </div>
-          <button
-            onClick={checkout}
-            disabled={allCourses.length < 1}
-            style={{
-              float: 'right',
-              marginRight: '30px',
-              border: 'solid 1px var(--color-mid-grey)',
-              padding: '5px 25px',
-              borderRadius: '50px',
-              cursor: 'pointer',
-            }}
-          >
-            {t('Checkout')}
-          </button>
+          <div className={styles.courseDetails}>
+            <div className={styles.courseName}>{course.courseTitle}</div>
+            <div className={styles.courseDetailsBottom}>
+              <img
+                className={styles.deleteButton}
+                src={deleteIcon}
+                // onClick={deleteCourse}
+                alt="delete course icon"
+              />
+              <div className={styles.coursePrice}>
+                {course.coursePrice.toFixed(2).replace('.', t('decimals'))} €
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+      {/* total price */}
+      <div className={styles.priceContainer}>
+        <div className={styles.priceText}>Total</div>
+        <div className={styles.priceNumber}>
+          {shoppingCartItems
+            .map((price) => price.coursePrice)
+            .reduce((price, total) => price + total)
+            .toFixed(2)
+            .replace('.', t('decimals'))}{' '}
+          €
         </div>
       </div>
-    )
+      {/*  checkout button */}
+      <div className={styles.checkOutContainer}>
+        <button onClick={handleClickCheckout}>
+          {t('shoppint cart.check out')}
+        </button>
+      </div>
+    </div>
   );
 };
 
