@@ -145,7 +145,7 @@ const FilterForm = () => {
 
             <div className="button-conainer">
               <button
-                className="buttonFilterReste"
+                className="buttonSecondary"
                 type="reset"
                 onClick={handleReset}
               >
