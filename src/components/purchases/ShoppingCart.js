@@ -40,6 +40,7 @@ const ShoppingCart = ({ closeModal }) => {
               borderBottom: '1px solid',
             }}
           >
+            <img style={{ width: "50px", marginRight: "1rem" }} src={course.courseImage} alt=""></img>
             {course.courseTitle}: {course.coursePrice}€{' '}
           </li>
           <img

@@ -115,7 +115,7 @@ function CourseDetail({
                         );
                         toast.warning(<Msg />);
                       } else {
-                        dispatch(addToCartAction(_id, title, price));
+                        dispatch(addToCartAction(_id, title, price, image));
                       }
                     }}
                   >

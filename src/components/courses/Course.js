@@ -105,6 +105,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
                             course._id,
                             course.title,
                             course.price,
+                            course.image
                           ),
                         );
                       }

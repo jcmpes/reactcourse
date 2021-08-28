@@ -46,17 +46,17 @@ export const purchaseAction = (courses, history) => {
   };
 };
 
-export const addToCartSuccess = (course, title, price) => {
+export const addToCartSuccess = (course, title, price, image) => {
   return {
     type: ADD_TO_CART_SUCCESS,
-    payload: { course, title, price },
+    payload: { course, title, price, image },
   };
 };
 
-export const addToCartAction = (course, title, price) => {
+export const addToCartAction = (course, title, price, image) => {
   return async function (dispatch, getState) {
     try {
-      dispatch(addToCartSuccess(course, title, price));
+      dispatch(addToCartSuccess(course, title, price, image));
     } catch (error) {
       console.log(error);
     }

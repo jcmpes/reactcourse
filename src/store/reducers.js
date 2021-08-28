@@ -110,6 +110,7 @@ export function auth(state = initialState.auth, action) {
             courseId: action.payload.course,
             courseTitle: action.payload.title,
             coursePrice: action.payload.price,
+            courseImage: action.payload.image
           },
         ],
       };
