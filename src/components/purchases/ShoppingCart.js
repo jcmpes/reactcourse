@@ -6,9 +6,6 @@ import styles from './ShoppingCart.module.css';
 import deleteIcon from '../../assets/svg/delete.svg';
 import { useHistory } from 'react-router-dom';
 
-// fake image // TODO: usar imágenes reales
-import fakeImg from '../../assets/img/fake-course-img.png';
-
 const ShoppingCart = ({ closeModal }) => {
   const history = useHistory();
   const shoppingCartItems = useSelector(getCart);
@@ -25,7 +22,7 @@ const ShoppingCart = ({ closeModal }) => {
       {shoppingCartItems.map((course) => (
         <div className={styles.courseCardContainer} key={course.courseTitle}>
           <div className={styles.courseImage}>
-            <img src={fakeImg} alt="course" />
+            <img src={course.courseImage} alt="course" />
           </div>
           <div className={styles.courseDetails}>
             <div className={styles.courseName}>{course.courseTitle}</div>
