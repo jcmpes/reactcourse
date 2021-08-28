@@ -1,15 +1,21 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCart } from '../../store/selectors';
 import styles from './ShoppingCart.module.css';
 import deleteIcon from '../../assets/svg/delete.svg';
 import { useHistory } from 'react-router-dom';
+import { removeFromCartAction } from '../../store/actions/purchase';
 
 const ShoppingCart = ({ closeModal }) => {
   const history = useHistory();
   const shoppingCartItems = useSelector(getCart);
+  const dispatch = useDispatch();
   const { t } = useTranslation(['global']);
+  const removeItem = (event) => {
+    console.log('CURSO ID ', event.target)
+    dispatch(removeFromCartAction(event.target.id));
+  };
 
   const handleClickCheckout = () => {
     closeModal();
@@ -30,7 +36,8 @@ const ShoppingCart = ({ closeModal }) => {
               <img
                 className={styles.deleteButton}
                 src={deleteIcon}
-                // onClick={deleteCourse}
+                id={course.courseId}
+                onClick={removeItem}
                 alt="delete course icon"
               />
               <div className={styles.coursePrice}>

@@ -23,7 +23,7 @@
 .courseImage img {
   width: 120px;
   /* max-width: 190px; */
-  height: auto;
+  height: 120px;
   border-radius: 8px;
 }
 
