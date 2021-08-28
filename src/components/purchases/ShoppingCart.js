@@ -19,51 +19,6 @@ const ShoppingCart = ({ closeModal }) => {
     history.push('/checkout');
   };
 
-  const coursesElement = cart.map((course) => {
-    return (
-      <div key={course.courseId}>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
-          <li
-            style={{
-              width: '100%',
-              padding: '10px 0 10px 0',
-              borderBottom: '1px solid',
-            }}
-          >
-            <img style={{ width: "50px", marginRight: "1rem" }} src={course.courseImage} alt=""></img>
-            {course.courseTitle}: {course.coursePrice}€{' '}
-          </li>
-          <img
-            src={closeImg}
-            style={{
-              height: '18px',
-              backgroundColor: 'white',
-              borderRadius: '50px',
-              borderStyle: 'solid',
-              borderWidth: '2px',
-              float: 'right',
-              marginRight: '30px',
-              padding: '0px',
-              cursor: 'pointer',
-              position: 'relative',
-              top: '15px',
-              left: '10px',
-            }}
-            alt=""
-            id={course.courseId}
-            onClick={removeItem}
-          />
-        </div>
-      </div>
-    );
-  });
-
   return (
     <div className={styles.shoppingCartContainer}>
       {/* course card */}
