@@ -33,9 +33,8 @@ const FilterForm = () => {
   const defaultFilters = {
     title: '',
     category: '',
+    levels: '',
     username: '',
-    categories: [],
-    levels: [],
     price: [0, 600],
     limit: 10,
     skip: 0,
