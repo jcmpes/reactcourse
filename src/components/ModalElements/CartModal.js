@@ -2,7 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ModalWindow from '../shared/ModalWindow';
 import styles from './CartModal.module.css';
-import ShoppingCart from '../courses/ShoppingCart';
+// import ShoppingCart from '../courses/ShoppingCart';
+import ShoppingCart from '../purchases/ShoppingCart';
 import { useSelector } from 'react-redux';
 import { getIdsInCart } from '../../store/selectors';
 

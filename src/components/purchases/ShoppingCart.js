@@ -30,7 +30,7 @@ const ShoppingCart = () => {
                 alt="delete course icon"
               />
               <div className={styles.coursePrice}>
-                {course.coursePrice.toFixed(2).replace('.', ',')} €
+                {course.coursePrice.toFixed(2).replace('.', t('decimals'))} €
               </div>
             </div>
           </div>
