@@ -8,10 +8,11 @@ import Layout from '../../layout/Layout';
 import { Button } from '../../shared';
 import LessonDetail from './LessonDetail';
 import { useTranslation } from 'react-i18next';
+import Loading from '../../shared/Loading/Loading';
 
 function LessonPage() {
   const { courseSlug, lessonSlug } = useParams();
-  const { loading } = useSelector(getUi);
+  const { loading, error } = useSelector(getUi);
   const [lesson, setLesson] = useState({});
   const [course, setCourse] = useState({});
   const [lessonCounter, setLessonCounter] = useState(0);
@@ -23,6 +24,7 @@ function LessonPage() {
       setCourse(singleCourse);
       console.log('Peticion API: ', lessonSlug);
       const singleLesson = await getLesson(courseSlug, lessonSlug);
+      console.log(singleLesson);
       return singleLesson;
     };
     fetchData().then((singleLesson) => {
@@ -52,10 +54,14 @@ function LessonPage() {
   }
 
   const { t } = useTranslation(['global']);
-  return (
+  console.log(lesson);
+  if (error) return <div>cacota</div>;
+  return lesson && lesson.unauthorized ? (
+    <div>caca</div>
+  ) : (
     <Layout>
       <div className="lesson-detail-page">
-        {loading && "I'm loading..."}
+        {loading && <Loading isLoading={true} />}
         {lesson && (
           <>
             <LessonDetail {...lesson} />

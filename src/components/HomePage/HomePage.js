@@ -28,7 +28,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
     title: '',
     category: '',
     username: '',
-    categories: [],
+    levels: '',
     price: [0, 600],
     limit: 10,
     skip: 0,
