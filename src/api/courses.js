@@ -2,7 +2,8 @@ import client from './client';
 
 // Get Courses
 export const getCourses = (filters) => {
-  const { title, username, category, price, limit, skip, sort } = filters;
+  const { title, username, category, price, levels, limit, skip, sort } =
+    filters;
   let query = '?';
   if (title) {
     query += `&title=${title}`;
@@ -12,6 +13,9 @@ export const getCourses = (filters) => {
   }
   if (category) {
     query += `&category=${category}`;
+  }
+  if (levels) {
+    query += `&levels=${levels}`;
   }
   if (price) {
     query +=
@@ -49,6 +53,11 @@ export const editCourse = async (newCourseDetails) => {
 // Get categories
 export const getCategoriesApiCall = () => {
   return client.get('/api/v1/categories');
+};
+
+// Get levels
+export const getLevelsApiCall = () => {
+  return client.get('/api/v1/levels');
 };
 
 // Filter coures

@@ -59,7 +59,6 @@ a:hover {
 .image-card {
   margin: 1rem;
 }
-
 .curseButton {
   border: none;
   border-radius: 10px;
@@ -143,5 +142,17 @@ a:hover {
     max-width: 14rem;
     min-height: 14rem;
     min-width: 14rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .card-responsive {
+    justify-content: center;
+  }
+  .img-rounded-wrapper img {
+    max-height: 12rem;
+    max-width: 12rem;
+    min-height: 12rem;
+    min-width: 12rem;
   }
 }

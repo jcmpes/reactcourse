@@ -1,12 +1,13 @@
 import React from 'react';
 import { setFilters } from '../../store/actions/load-courses';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getFilters } from '../../store/selectors';
+import { getCategories, getFilters, getLevels } from '../../store/selectors';
 import { categoriesLoadAction } from '../../store/actions/categories-load';
 import { Input } from '../shared';
 import { useTranslation } from 'react-i18next';
 import Slider from '@material-ui/core/Slider';
 import './FiltersForm.css';
+import { levelsLoadAction } from '../../store/actions/levels-load';
 // import styles from './FiltersForm.module.css';
 
 const FilterForm = () => {
@@ -14,6 +15,8 @@ const FilterForm = () => {
   const filters = useSelector(getFilters);
 
   const categories = useSelector(getCategories);
+
+  const lvls = useSelector(getLevels);
 
   const rangeSelector = (ev, newValue) => {
     const newFilter = { ...filters, price: newValue };
@@ -24,6 +27,7 @@ const FilterForm = () => {
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
+    dispatch(levelsLoadAction());
   }, [dispatch]);
 
   const defaultFilters = {
@@ -31,6 +35,7 @@ const FilterForm = () => {
     category: '',
     username: '',
     categories: [],
+    levels: [],
     price: [0, 600],
     limit: 10,
     skip: 0,
@@ -45,6 +50,7 @@ const FilterForm = () => {
     filters.skip = 0;
     const newFilter = { ...filters, [ev.target.name]: ev.target.value };
     dispatch(setFilters(newFilter));
+    console.log('NEW FILTER', newFilter);
   }
 
   async function handleReset() {
@@ -98,20 +104,19 @@ const FilterForm = () => {
             )}
           </div>
 
-          {/* Cambiar por lvl */}
-          <h6 className="searchByCategory">{t('Level')}</h6>
-          <div className="searchCategoryBarContainer">
-            {categories && (
+          <h6 className="searchByLevel">{t('Level')}</h6>
+          <div className="searchLevelyBarContainer">
+            {lvls && (
               <Input
-                className="searchCategoryBarForm"
+                className="searchLevelBarForm"
                 as="select"
-                name="category"
-                value={filters.category}
+                name="levels"
+                value={filters.levels}
                 onChange={handleChange}
                 searcher={true}
                 options={[
-                  { name: t('filter.Select category'), _id: '000' },
-                  ...categories,
+                  { name: t('filter.Select Levels'), _id: '000' },
+                  ...lvls,
                 ]}
               />
             )}
@@ -137,8 +142,13 @@ const FilterForm = () => {
               </div>
               <br />
             </div>
-            <div className="buttonFilterReste">
-              <button type="reset" onClick={handleReset}>
+
+            <div className="button-conainer">
+              <button
+                className="buttonSecondary"
+                type="reset"
+                onClick={handleReset}
+              >
                 {t('filter.reset filters')}
               </button>
             </div>

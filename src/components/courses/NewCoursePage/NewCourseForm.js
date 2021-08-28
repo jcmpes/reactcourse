@@ -7,6 +7,7 @@ import './NewCourseForm.css';
 function NewCourseForm({
   onSubmit,
   categories,
+  level,
   lessonCounter,
   courseDetails,
   setCourseDetails,
@@ -14,6 +15,9 @@ function NewCourseForm({
   const { t } = useTranslation(['global']);
 
   const handleChange = (ev) => {
+    if ([ev.target.name] !== 'level') {
+      console.log(ev.target.value);
+    }
     setCourseDetails((oldCredentials) => ({
       ...oldCredentials,
       [ev.target.name]: ev.target.value,
@@ -24,6 +28,7 @@ function NewCourseForm({
     if (
       !courseDetails.title ||
       !courseDetails.category ||
+      !courseDetails.level ||
       courseDetails.price < 0
     ) {
       return true;
@@ -134,7 +139,7 @@ function NewCourseForm({
                   <Input
                     className="selectCategoryBarForm"
                     as="select"
-                    name={t('Category')}
+                    name="category"
                     value={courseDetails.category}
                     onChange={handleChange}
                     options={[
@@ -144,16 +149,22 @@ function NewCourseForm({
                   />
                 </div>
                 <div className="col-lg-4 col-md-6 col-sm-12">
-                  <FormField
-                    type={'number'}
-                    label={t('Level')}
-                    name="level"
-                    min="0"
-                    max="3"
-                    placeholder={t('Level')}
-                    value={courseDetails.level}
-                    onChange={handleChange}
-                  />
+                  <div className="searchLevelyBarContainer">
+                    {level && (
+                      <Input
+                        className="searchLevelBarForm"
+                        as="select"
+                        name="level"
+                        value={courseDetails.level}
+                        onChange={handleChange}
+                        searcher={true}
+                        options={[
+                          { name: t('filter.Select Levels'), _id: '000' },
+                          ...level,
+                        ]}
+                      />
+                    )}
+                  </div>
                 </div>
                 <div className="col-lg-4 col-md-6 col-sm-12">
                   <FileUpload

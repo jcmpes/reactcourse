@@ -4,6 +4,8 @@ import {
   AUTH_LOGOUT,
   CATEGORIES_LOAD_REQUEST,
   CATEGORIES_LOAD_SUCCESS,
+  LEVELS_LOAD_REQUEST,
+  LEVELS_LOAD_SUCCESS,
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   FAVORITES_SUCCESS,
@@ -13,6 +15,7 @@ import {
   LOAD_COURSES_SUCCESS,
   UI_RESET_ERROR,
   SET_FILTERS_SUCCESS,
+  COURSE_CREATE_REQUEST,
   COURSE_CREATE_SUCCESS,
   ADD_TO_CART_SUCCESS,
   REMOVE_FROM_CART_SUCCESS,
@@ -34,6 +37,7 @@ export const initialState = {
       title: '',
       category: '',
       categories: [],
+      levels: [],
       username: '',
       price: [0, 600],
       limit: 10,
@@ -45,12 +49,13 @@ export const initialState = {
     loaded: false,
     data: [],
   },
+  levels: {
+    loaded: false,
+    data: [],
+  },
   ui: {
     loading: false,
     error: null,
-  },
-  creator: {
-    data: null,
   },
 };
 
@@ -129,6 +134,17 @@ export function categories(state = initialState.categories, action) {
   }
 }
 
+export function levels(state = initialState.levels, action) {
+  switch (action.type) {
+    case LEVELS_LOAD_REQUEST:
+      return { ...state, loaded: false };
+    case LEVELS_LOAD_SUCCESS:
+      return { ...state, loaded: true, data: action.payload };
+    default:
+      return state;
+  }
+}
+
 export function courses(state = initialState.courses, action) {
   switch (action.type) {
     case COURSE_DETAIL_REQUEST:
@@ -142,14 +158,14 @@ export function courses(state = initialState.courses, action) {
   }
 }
 
-export function creator(state = initialState.creator, action) {
-  switch (action.type) {
-    case COURSE_CREATE_SUCCESS:
-      return { ...state, data: [...state.data, action.payload] };
-    default:
-      return state;
-  }
-}
+// export function creator(state = initialState.creator, action) {
+//   switch (action.type) {
+//     case COURSE_CREATE_SUCCESS:
+//       return { ...state, data: [...state.data, action.payload] };
+//     default:
+//       return state;
+//   }
+// }
 
 export function ui(state = initialState.ui, action) {
   // case AUTH_LOGIN_FAILURE managed with if statement
@@ -160,6 +176,7 @@ export function ui(state = initialState.ui, action) {
     case AUTH_LOGIN_REQUEST:
     case LOAD_COURSES_REQUEST:
     case PURCHASE_REQUEST:
+    case COURSE_CREATE_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -169,6 +186,7 @@ export function ui(state = initialState.ui, action) {
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
     case PURCHASE_SUCCESS:
+    case COURSE_CREATE_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {

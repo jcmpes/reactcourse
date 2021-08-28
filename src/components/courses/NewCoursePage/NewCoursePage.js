@@ -1,15 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { postCourse } from '../../../api/courses';
 import { categoriesLoadAction } from '../../../store/actions/categories-load';
-import { getCategories } from '../../../store/selectors';
+import { getCategories, getLevels } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
 import NewCourseForm from './NewCourseForm';
 import NewLessonForm from './NewLessonForm';
+import { courseCreateAction } from '../../../store/actions/course-new';
+import { getUi } from '../../../store/selectors';
+import Loading from '../../shared/Loading/Loading';
+import { levelsLoadAction } from '../../../store/actions/levels-load';
 
 function NewCoursePage() {
+  const { loading } = useSelector(getUi);
   const [lessonCounter, setLessonCounter] = React.useState(0);
   const [courseDetails, setCourseDetails] = React.useState({
     title: '',
@@ -28,10 +31,12 @@ function NewCoursePage() {
 
   const [createdCourse, setCreatedCourse] = React.useState(null);
   const categories = useSelector(getCategories);
+  const lvls = useSelector(getLevels);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(categoriesLoadAction());
+    dispatch(levelsLoadAction());
   }, [dispatch]);
 
   const handleAddLesson = () => {
@@ -74,26 +79,29 @@ function NewCoursePage() {
     makeApiCall(formData);
   };
 
-  function makeApiCall(courseDetails) {
-    postCourse(courseDetails)
-      .then((result) => {
-        if (result.slug) setCreatedCourse(result);
-        if (
-          result.error === 'no token provided' ||
-          result.error === 'The token provided is invalid or has expired'
-        ) {
-          toast.error('Invalid token: Log back in and try again');
-        }
-      })
-      .catch((err) => err);
-  }
+  const makeApiCall = async (courseDetails) => {
+    // postCourse(courseDetails)
+    //   .then((result) => {
+    //     if (result.slug) setCreatedCourse(result);
+    //     if (
+    //       result.error === 'no token provided' ||
+    //       result.error === 'The token provided is invalid or has expired'
+    //     ) {
+    //       toast.error('Invalid token: Log back in and try again');
+    //     }
+    //   })
+    //   .catch((err) => err);
+    const created = await dispatch(courseCreateAction(courseDetails));
+    if (created) setCreatedCourse(created);
+  };
 
-  if (createdCourse) {
+  if (createdCourse && !loading) {
     return <Redirect to={`/courses/${createdCourse.slug}`} />;
   }
 
   return (
     <div className="new-course-page">
+      {loading && <Loading isLoading={true} />}
       <Layout>
         <h1>Create a course</h1>
         {categories ? (
@@ -102,6 +110,7 @@ function NewCoursePage() {
               <>
                 <NewCourseForm
                   onSubmit={handleSubmit}
+                  level={lvls}
                   categories={categories}
                   lessonCounter={lessonCounter}
                   setLessonCounter={setLessonCounter}
@@ -121,18 +130,32 @@ function NewCoursePage() {
                 />
               </>
             )}
-            <div className="lesson-navigate">
-              {lessonCounter !== 0 && (
-                <button onClick={() => setLessonCounter(lessonCounter - 1)}>
-                  Previous Step
-                </button>
-              )}
+            <div className="button-conainer">
+              <div className="lesson-navigate">
+                {lessonCounter !== 0 && (
+                  <button
+                    className="buttonSecondary"
+                    onClick={() => setLessonCounter(lessonCounter - 1)}
+                  >
+                    Previous Step
+                  </button>
+                )}
+              </div>
               {Object.keys(courseDetails.lessons).length !== lessonCounter ? (
-                <button onClick={() => setLessonCounter(lessonCounter + 1)}>
-                  Next step
-                </button>
+                <div className="button-conainer">
+                  <button
+                    className="buttonSecondary"
+                    onClick={() => setLessonCounter(lessonCounter + 1)}
+                  >
+                    Next step
+                  </button>
+                </div>
               ) : (
-                <button onClick={handleAddLesson}>Add a lesson</button>
+                <div className="button-conainer">
+                  <button className="buttonSecondary" onClick={handleAddLesson}>
+                    Add a lesson
+                  </button>
+                </div>
               )}
             </div>
           </>

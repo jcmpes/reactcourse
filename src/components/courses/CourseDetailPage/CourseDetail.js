@@ -4,7 +4,7 @@ import { YoutubeEmbed } from '../../shared';
 import { getAuth, isInCart } from '../../../store/selectors';
 import { addFav, removeFav } from '../../../api/courses';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import heart from '../../../assets/svg/heart.svg';
 import noHeart from '../../../assets/svg/heartBlank.svg';
@@ -38,14 +38,18 @@ function CourseDetail({
   const isAuthor = user.username === username;
   const purchasedCourses = purchased ? purchased.includes(_id) : false;
   const itemIsInCart = getItemIsInCart(_id);
+  const history = useHistory();
 
   const { t } = useTranslation(['global']);
   return (
     <div className="container-fluid">
       <div width="100%">
-        <Link to="/search">
+        {/* <Link to="/search">
           <img src={backIcon} alt="back" width="35" />
-        </Link>
+        </Link> */}
+        <div style={{ cursor: 'pointer' }} onClick={() => history.goBack()}>
+          <img src={backIcon} alt="back" width="35" />
+        </div>
       </div>
       <div className="row">
         <div className="col-12 mt-3">
@@ -80,15 +84,16 @@ function CourseDetail({
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
-                    {level === 0
-                      ? '★☆☆☆'
-                      : level === 1
-                      ? '★★☆☆'
-                      : level === 2
-                      ? '★★★☆'
-                      : level === 3
-                      ? '★★★★'
-                      : level}
+                    {console.log('**dentro**', level)}
+                    {level.name === 'Basic'
+                      ? '💪'
+                      : level.name === 'Medium'
+                      ? '💪💪'
+                      : level.name === 'Hard'
+                      ? '💪💪💪'
+                      : level.name === 'Expert'
+                      ? '💪💪💪💪'
+                      : null}
                   </span>
                 </p>
                 <p className="priceDetail">{price} €</p>

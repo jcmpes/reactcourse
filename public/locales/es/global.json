@@ -98,7 +98,8 @@
   "filter": {
     "filtering price between": "Filtrando precio entre",
     "reset filters": "Reiniciar Filtros",
-    "Select category": "Selecciona categoría"
+    "Select category": "Selecciona categoría",
+    "Select Levels": "Selecciona nivel"
   },
   "footer": {
     "footer": "Pie de página"
@@ -156,5 +157,8 @@
   "category list": {
     "categories": "Categorías"
   },
-  "shoppint cart": { "check out": "Finalizar compra" }
+  "shoppint cart": { "check out": "Finalizar compra" },
+  "stripe": {
+    "succeded": "Has realizado el pago con éxito"
+  }
 }

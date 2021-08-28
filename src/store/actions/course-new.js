@@ -4,7 +4,8 @@ import {
   COURSE_CREATE_SUCCESS,
 } from '../types';
 
-import { getCourse, postCourse } from '../../api/courses';
+import { postCourse } from '../../api/courses';
+import { toast } from 'react-toastify';
 
 // Course Detail actions
 export const courseCreateRequest = () => {
@@ -13,10 +14,9 @@ export const courseCreateRequest = () => {
   };
 };
 
-export const courseCreateSuccess = (course) => {
+export const courseCreateSuccess = () => {
   return {
     type: COURSE_CREATE_SUCCESS,
-    payload: course,
   };
 };
 
@@ -29,14 +29,20 @@ export const courseCreateFailure = (error) => {
 };
 
 // Course Detail middleware
-export const courseCreateAction = (courseSlug) => {
+export const courseCreateAction = (courseDetails) => {
   return async function (dispatch, getState) {
     dispatch(courseCreateRequest());
+    console.log(courseDetails);
     try {
-      const course = await postCourse(courseSlug);
-      dispatch(courseCreateSuccess(course));
-      return course;
+      const course = await postCourse(courseDetails);
+      console.log(course);
+      if (course.title) {
+        dispatch(courseCreateSuccess());
+        return course;
+      }
     } catch (err) {
+      console.log(err);
+      toast.error(err.message);
       dispatch(courseCreateFailure(err));
     }
   };

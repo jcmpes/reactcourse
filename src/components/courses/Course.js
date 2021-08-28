@@ -20,13 +20,17 @@ const Course = ({ course, faved, purchased, inCart }) => {
   const { username, isLogged } = useSelector(getAuth);
   const dispatch = useDispatch();
   const isAuthor = course.user.username === username;
+
+  console.log('** course *** ', course.level.name);
+
   return (
     <div className="container-fluid">
       <div className="row">
         <div className="col-12 mt-3">
           <div className="card">
             <div className="row">
-              <div className="col-12 col-md-6 card-responsive">
+              {/* <div className="col-12 col-md-5 col-lg-4 card-responsive"> */}
+              <div className="col-sm-12 col-md-6 col-lg-5 col-xl-6 card-responsive">
                 <div className="img-rounded-wrapper">
                   <img
                     className="border border-dark image-card"
@@ -36,7 +40,8 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 </div>
               </div>
 
-              <div className="card-body col-12 col-md-6">
+              <div className="card-body col-sm-12 col-md-6 col-lg-7 col-xl-6">
+                {/* <div className="card-body col-12 col-md-7"> */}
                 <p className="card-title">
                   <Link to={`/courses/${course.slug}`}>{course.title}</Link>
                 </p>
@@ -61,17 +66,19 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 </p>
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
-                  <span>
-                    {course.level === 0
-                      ? '★☆☆☆'
-                      : course.level === 1
-                      ? '★★☆☆'
-                      : course.level === 2
-                      ? '★★★☆'
-                      : course.level === 3
-                      ? '★★★★'
-                      : course.level}
-                  </span>
+                  {course.level && (
+                    <span>
+                      {course.level.name === 'Basic'
+                        ? '💪'
+                        : course.level.name === 'Medium'
+                        ? '💪💪'
+                        : course.level.name === 'Hard'
+                        ? '💪💪💪'
+                        : course.level.name === 'Expert'
+                        ? '💪💪💪💪'
+                        : null}
+                    </span>
+                  )}
                 </p>
                 <p className="card-text price">{course.price} €</p>
                 {/* </div> */}
