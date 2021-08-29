@@ -133,7 +133,8 @@
     "Progress": "Progreso",
     "Next lesson": "Siguiente lección",
     "Previous lesson": "Leccion Anterior",
-    "Back to Course presentation": "Volver a la presentación del curso"
+    "Back to Course presentation": "Volver a la presentación del curso",
+    "error loading course": "Ha ocurrido un error al cargar el curso. Por favor inténtelo de nuevo."
   },
   "mobile menu": {
     "menu": "Menú",
