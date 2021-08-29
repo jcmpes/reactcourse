@@ -18,6 +18,7 @@ export const MyCourses = () => {
 
   React.useEffect(() => {
     dispatch(apiCallLoadAction(myPurchases, setPurchases));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log(purchases);
   return (
