@@ -45,6 +45,13 @@ const MobileMenu = ({
                 <Link className={styles.link} onClick={closeModal} to="/myfavs">
                   {t('mobile menu.my favourites')}
                 </Link>
+                <Link
+                  className={styles.link}
+                  onClick={closeModal}
+                  to="/my-courses"
+                >
+                  {t('mobile menu.Purchased courses')}
+                </Link>
                 <Link className={styles.link} onClick={closeModal} to="/search">
                   {t('mobile menu.courses')}
                 </Link>
