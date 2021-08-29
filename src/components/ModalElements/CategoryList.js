@@ -7,22 +7,12 @@ import ModalWindow from '../shared/ModalWindow';
 import styles from './CategoryList.module.css';
 import { setFilters } from '../../store/actions/load-courses';
 import { Link } from 'react-router-dom';
+import { defaultFilters } from '../../data/constants';
 
 const CategoryList = ({ closeModal }) => {
   const { t } = useTranslation(['global']);
   const dispatch = useDispatch();
   const categories = useSelector(getCategories);
-
-  const defaultFilters = {
-    title: '',
-    category: '',
-    levels: '',
-    username: '',
-    price: [0, 600],
-    limit: 10,
-    skip: 0,
-    sort: -1,
-  };
 
   useEffect(() => {
     dispatch(categoriesLoadAction());
