@@ -8,8 +8,10 @@ import { levelsLoadAction } from '../../../store/actions/levels-load';
 import { getCategories, getLevels } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
 import EditCourseForm from './EditCourseForm';
+import { useTranslation } from 'react-i18next';
 
 function EditCoursePage() {
+  const { t } = useTranslation(['global']);
   const { courseSlug } = useParams();
   const [createdCourse, setCreatedCourse] = React.useState(null);
   const categories = useSelector(getCategories);
@@ -38,7 +40,7 @@ function EditCoursePage() {
           result.error === 'no token provided' ||
           result.error === 'The token provided is invalid or has expired'
         ) {
-          toast.error('Invalid token: Log back in and try again');
+          toast.error(t('Invalid token: Log back in and try again'));
         }
       })
       .catch((err) => err);
