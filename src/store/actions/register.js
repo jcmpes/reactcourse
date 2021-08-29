@@ -34,7 +34,6 @@ export const registerAction = (formData, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authRegisterRequest());
     try {
-      console.log('CREDENTIALS: ', formData)
       const response = await register(formData);
       if (response.error) {
         dispatch(authRegisterFailure(response.error));

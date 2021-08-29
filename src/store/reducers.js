@@ -96,7 +96,6 @@ export function auth(state = initialState.auth, action) {
         const favs = state.favs.filter((fav) => {
           return fav !== action.payload.course;
         });
-        console.log();
         return {
           ...state,
           favs,
@@ -172,15 +171,6 @@ export function courses(state = initialState.courses, action) {
   }
 }
 
-// export function creator(state = initialState.creator, action) {
-//   switch (action.type) {
-//     case COURSE_CREATE_SUCCESS:
-//       return { ...state, data: [...state.data, action.payload] };
-//     default:
-//       return state;
-//   }
-// }
-
 export function ui(state = initialState.ui, action) {
   // case AUTH_LOGIN_FAILURE managed with if statement
   if (action.error) {
@@ -193,12 +183,9 @@ export function ui(state = initialState.ui, action) {
     case COURSE_CREATE_REQUEST:
     case FAVORITES_LIST_REQUEST:
     case API_CALL_REQUEST:
-      //case FAVORITES_REQUEST:
-      return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_SUCCESS:
-      return { ...state, loading: false };
     case AUTH_LOGIN_SUCCESS:
     case LOAD_COURSES_SUCCESS:
     case PURCHASE_SUCCESS:
