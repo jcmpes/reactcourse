@@ -129,7 +129,9 @@ a:hover {
     min-height: 16rem;
     min-width: 16rem;
   }
-  .curseButton {
+  .curseButton,
+  .shopping-course,
+  .purchased-course {
     width: 80%;
   }
 }
