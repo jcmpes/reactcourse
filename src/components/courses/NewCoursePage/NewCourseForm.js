@@ -33,7 +33,7 @@ function NewCourseForm({
       !courseDetails.description ||
       !courseDetails.requirements ||
       !courseDetails.content ||
-      // !courseDetails.whatYouLearn ||
+      !courseDetails.whatYouWillLearn ||
       courseDetails.price < 0
     ) {
       return true;
@@ -132,7 +132,7 @@ function NewCourseForm({
                     cols={50}
                     name="whatYouWillLearn"
                     placeholder={t('course.What you will learn')}
-                    value={courseDetails.whatYouLearn}
+                    value={courseDetails.whatYouWillLearn}
                     onChange={handleChange}
                   />
                 </div>

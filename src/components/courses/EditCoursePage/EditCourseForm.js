@@ -90,7 +90,7 @@ function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
       !newCourseDetails.description ||
       !newCourseDetails.requirements ||
       !newCourseDetails.content ||
-      // !newCourseDetails.whatYouLearn ||
+      !newCourseDetails.whatYouWillLearn ||
       newCourseDetails.price < 0
     ) {
       return true;
