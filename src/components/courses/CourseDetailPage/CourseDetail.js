@@ -56,7 +56,9 @@ function CourseDetail({
         <div className="col-12 mt-3">
           <div className="card">
             <div className="row">
-              <h4 className="col-10 col-md-11 card-title">{title}</h4>
+              <h4 className="col-10 col-md-11 card-title detailTitle">
+                {title}
+              </h4>
               <div
                 className="favoriteDetail"
                 onClick={() => {
