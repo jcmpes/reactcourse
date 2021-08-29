@@ -21,7 +21,7 @@ export const UserCourse = (...props) => {
   }, [username]);
 
   if (!courses || error)
-    return <ErrorMessage message={error} resetError={null} />;
+    return <ErrorMessage error={error} resetError={null} />;
 
   return (
     <Layout {...props}>

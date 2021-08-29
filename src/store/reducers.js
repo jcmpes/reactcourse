@@ -9,6 +9,9 @@ import {
   COURSE_DETAIL_REQUEST,
   COURSE_DETAIL_SUCCESS,
   FAVORITES_SUCCESS,
+  FAVORITES_LIST_REQUEST,
+  FAVORITES_LIST_SUCCESS,
+  FAVORITES_LIST_FAILURE,
   PURCHASE_REQUEST,
   PURCHASE_SUCCESS,
   LOAD_COURSES_REQUEST,
@@ -110,7 +113,7 @@ export function auth(state = initialState.auth, action) {
             courseId: action.payload.course,
             courseTitle: action.payload.title,
             coursePrice: action.payload.price,
-            courseImage: action.payload.image
+            courseImage: action.payload.image,
           },
         ],
       };
@@ -178,6 +181,7 @@ export function ui(state = initialState.ui, action) {
     case LOAD_COURSES_REQUEST:
     case PURCHASE_REQUEST:
     case COURSE_CREATE_REQUEST:
+    case FAVORITES_LIST_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -188,6 +192,7 @@ export function ui(state = initialState.ui, action) {
     case LOAD_COURSES_SUCCESS:
     case PURCHASE_SUCCESS:
     case COURSE_CREATE_SUCCESS:
+    case FAVORITES_LIST_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {

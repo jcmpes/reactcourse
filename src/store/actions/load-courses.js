@@ -44,7 +44,7 @@ export const loadCoursesAction = (
   return async function (dispatch, getState) {
     dispatch(loadCoursesRequest());
     try {
-      getCourses(filters).then((results) => {
+      await getCourses(filters).then((results) => {
         setCourses(results);
         if (results && results.length < limit) setAllResultsListed(true);
         dispatch(loadCoursesSuccess());
