@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { getCourse } from '../../../api/courses';
 import { getUi } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
-import { Button } from '../../shared';
 import CourseDetail from './CourseDetail';
 import { useTranslation } from 'react-i18next';
 
@@ -21,8 +20,6 @@ function CoursePage() {
     };
     fetchData();
   }, [courseSlug]);
-
-  const { t } = useTranslation(['global']);
 
   return (
     <Layout>
