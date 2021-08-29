@@ -3,7 +3,7 @@ import Layout from '../layout/Layout';
 import Scroll from '../shared/Scroll';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { authLogout } from '../../store/actions/logout';
-import { getAuth, getUi, getUI } from '../../store/selectors';
+import { getAuth, getUi } from '../../store/selectors';
 import photo1 from '../../assets/img/home1.jpg';
 import photo2 from '../../assets/img/home2.jpg';
 import { useTranslation } from 'react-i18next';

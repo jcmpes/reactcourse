@@ -25,6 +25,7 @@ export const Favs = (...props) => {
   const [favs, setFavs] = React.useState([]);
   React.useEffect(() => {
     dispatch(favoritesListAction(myFavsDetail, setFavs));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
