@@ -8,6 +8,7 @@ import { getUi } from '../../store/selectors';
 import Loading from '../shared/Loading/Loading';
 import ErrorMessage from '../shared/ErrorMessage';
 import { apiCallLoadAction } from '../../store/actions/api-call';
+import { setErrorToNullAction } from '../../store/actions/favorites';
 
 export const MyCourses = () => {
   const { t } = useTranslation(['global']);
@@ -15,6 +16,9 @@ export const MyCourses = () => {
   const dispatch = useDispatch();
 
   const [purchases, setPurchases] = React.useState([]);
+  const resetError = () => {
+    dispatch(setErrorToNullAction());
+  };
 
   React.useEffect(() => {
     dispatch(apiCallLoadAction(myPurchases, setPurchases));
@@ -25,7 +29,7 @@ export const MyCourses = () => {
     <div>
       <Layout>
         {loading && <Loading isLoading={true} />}
-        {error && <ErrorMessage error={error} restError={null} />}
+        {error && <ErrorMessage error={error} resetError={resetError} />}
         <h1>{t('Purchased courses')}</h1>
         <CoursesList courses={purchases} />
       </Layout>
