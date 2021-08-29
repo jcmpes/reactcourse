@@ -19,8 +19,8 @@ const EditUserPage = () => {
   const [details, setDetails] = React.useState({
     username: '',
     email: '',
-    password: '',
-    password2: '',
+    password: null,
+    password2: null,
     image: ''
   });
 
@@ -46,10 +46,10 @@ const EditUserPage = () => {
 
     const formData = new FormData();
     formData.append('email', userDetails.email)
-    formData.append('password', userDetails.password)
     formData.append('username', userDetails.username)
+    if (userDetails.password) formData.append('password', userDetails.password)
     if (userDetails.image) formData.append('image', userDetails.image)
-    
+    console.log('FORMDATA: ', userDetails)
 
     const updated = await editUser(formData);
     if (updated && updated.username) {
