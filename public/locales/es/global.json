@@ -58,6 +58,8 @@
   "Level": "Nivel",
   "Content": "Contenido",
   "Filter Search": "Filtrar Busqueda",
+  "Purchased courses": "Cursos comprados",
+
   "home": {
     "Do you want to be a tutor?": "¿Quieres ser tutor?",
     "To become an instructor": "Convertirse en instructor",
@@ -136,7 +138,8 @@
     "Previous lesson": "Leccion Anterior",
     "Back to Course presentation": "Volver a la presentación del curso",
     "error loading course": "Ha ocurrido un error al cargar el curso. Por favor inténtelo de nuevo.",
-    "Edit your course": "Editar tu curso"
+    "Edit your course": "Editar tu curso",
+    "Edit course": "Editar curso"
   },
   "mobile menu": {
     "menu": "Menú",
@@ -147,7 +150,8 @@
     "create course": "Crear curso",
     "my account": "Mi cuenta",
     "my favourites": "Mis favoritos",
-    "categories": "Categorías"
+    "categories": "Categorías",
+    "Purchased courses": "Comprados"
   },
   "language selector": {
     "languages": "Idiomas"

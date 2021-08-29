@@ -45,6 +45,33 @@ export const CourseSkeleton = () => {
             height: '2.5rem',
           }}
         ></div>
+        <div
+          style={{
+            margin: '15px',
+            backgroundColor: 'lightgray',
+            width: '80%',
+            borderRadius: '20px',
+            height: '2.5rem',
+          }}
+        ></div>
+        <div
+          style={{
+            margin: '15px',
+            backgroundColor: 'lightgray',
+            width: '30%',
+            borderRadius: '20px',
+            height: '2.5rem',
+          }}
+        ></div>
+        <div
+          style={{
+            margin: '15px',
+            backgroundColor: 'lightgray',
+            width: '90%',
+            borderRadius: '20px',
+            height: '2.5rem',
+          }}
+        ></div>
       </div>
     </div>
   );

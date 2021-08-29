@@ -58,6 +58,7 @@
   "Level": "Level",
   "Content": "Content",
   "Filter Search": "Filter Search",
+  "Purchased courses": "Purchased courses",
   "home": {
     "Do you want to be a tutor?": "Do you want to be a tutor?",
     "To become an instructor": "To become an instructor",
@@ -136,7 +137,8 @@
     "Previous lesson": "Previous lesson",
     "Back to Course presentation": "Back to Course presentation",
     "error loading course": "Error while loading course. Please try again.",
-    "Edit your course": "Edit your course"
+    "Edit your course": "Edit your course",
+    "Edit course": "Edit course"
   },
   "mobile menu": {
     "menu": "Menu",
@@ -147,7 +149,8 @@
     "create course": "Create course",
     "my account": "My account",
     "my favourites": "My favourites",
-    "categories": "Categories"
+    "categories": "Categories",
+    "Purchased courses": "Purchased"
   },
   "language selector": {
     "languages": "Languages"

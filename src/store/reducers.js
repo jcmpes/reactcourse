@@ -22,6 +22,8 @@ import {
   ADD_TO_CART_SUCCESS,
   REMOVE_FROM_CART_SUCCESS,
   UPDATE_USERNAME,
+  API_CALL_REQUEST,
+  API_CALL_SUCCESS,
 } from './types';
 
 export const initialState = {
@@ -181,6 +183,7 @@ export function ui(state = initialState.ui, action) {
     case PURCHASE_REQUEST:
     case COURSE_CREATE_REQUEST:
     case FAVORITES_LIST_REQUEST:
+    case API_CALL_REQUEST:
       //case FAVORITES_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_REQUEST:
@@ -192,6 +195,7 @@ export function ui(state = initialState.ui, action) {
     case PURCHASE_SUCCESS:
     case COURSE_CREATE_SUCCESS:
     case FAVORITES_LIST_SUCCESS:
+    case API_CALL_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import Slider from '@material-ui/core/Slider';
 import './FiltersForm.css';
 import { levelsLoadAction } from '../../store/actions/levels-load';
-// import styles from './FiltersForm.module.css';
+import { defaultFilters } from '../../data/constants';
 
 const FilterForm = () => {
   const dispatch = useDispatch();
@@ -29,17 +29,6 @@ const FilterForm = () => {
     dispatch(categoriesLoadAction());
     dispatch(levelsLoadAction());
   }, [dispatch]);
-
-  const defaultFilters = {
-    title: '',
-    category: '',
-    levels: '',
-    username: '',
-    price: [0, 600],
-    limit: 10,
-    skip: 0,
-    sort: -1,
-  };
 
   async function handleSubmit(ev) {
     ev.preventDefault();
@@ -128,7 +117,7 @@ const FilterForm = () => {
               <Slider
                 value={filters.price}
                 onChange={rangeSelector}
-                max={600}
+                max={100}
                 valueLabelDisplay="auto"
                 style={style}
               />
