@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { getUserAction } from '../../store/actions/get-user';
-import { getAuth, getUsername } from '../../store/selectors';
+import { getAuth } from '../../store/selectors';
 import Layout from '../layout/Layout';
 import StudentPage from './StudentPage';
 
