@@ -21,11 +21,11 @@ export const apiCallFailure = (error) => {
   };
 };
 
-export const apiCallLoadAction = (apiCall, afterApiCall) => {
+export const apiCallLoadAction = (apiCall, afterApiCall, apiCallArg) => {
   return async function (dispatch, getState) {
     dispatch(apiCallRequest());
     try {
-      apiCall().then(afterApiCall);
+      apiCall(apiCallArg).then(afterApiCall);
       dispatch(apiCallSuccess());
     } catch (err) {
       dispatch(apiCallFailure(err));
