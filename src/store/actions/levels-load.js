@@ -33,10 +33,8 @@ export const levelsLoadAction = () => {
     try {
       const levels = await getLevelsApiCall();
       dispatch(levelsLoadSuccess(levels));
-      console.log('***levels***', levels);
       return levels;
     } catch (err) {
-      console.log('***error***', err);
       dispatch(levelsLoadFailure(err));
     }
   };
