@@ -1,5 +1,6 @@
 import React from 'react';
 import Course from './Course';
+import { CourseSkeleton } from './CourseSkeleton';
 
 import { useSelector } from 'react-redux';
 import { getAuth, isInCart } from '../../store/selectors';
@@ -30,7 +31,7 @@ export const CoursesList = (courses) => {
         );
       })
     ) : (
-      <div>Ups</div>
+      <CourseSkeleton />
     );
   return coursesElement;
 };

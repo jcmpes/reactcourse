@@ -82,10 +82,8 @@ export const myFavs = () => {
     .then((favorites) => favorites.favs);
 };
 
-export const myFavsDetail = (setFavs) => {
-  return client.get(`/api/v1/aboutme/myfavsdetails`).then((data) => {
-    setFavs(data);
-  });
+export const myFavsDetail = () => {
+  return client.get(`/api/v1/aboutme/myfavsdetails`);
 };
 
 export const editUser = (userDetails) => {

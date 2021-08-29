@@ -24,6 +24,7 @@ import { debounce } from '../../utils/debounce';
 import { CourseSkeleton } from '../courses/CourseSkeleton';
 import ascendingIcon from '../../assets/svg/ascending.svg';
 import descendingIcon from '../../assets/svg/descending.svg';
+import { setErrorToNullAction } from '../../store/actions/favorites';
 
 function SearchPage({ auth, onLogout, ...props }) {
   // eslint-disable-next-line no-unused-vars
@@ -130,10 +131,15 @@ function SearchPage({ auth, onLogout, ...props }) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, filters, sort]);
-  if (error) return <ErrorMessage error={error} resetError={null} />;
+  // if (error) return <ErrorMessage error={error} resetError={null} />;
+
+  const setError = () => {
+    dispatch(setErrorToNullAction());
+  };
   return (
     <Layout {...props}>
       <Scroll showBellow={250} />
+      {error && <ErrorMessage error={error} resetError={setError} />}
       <input
         type="checkbox"
         id="order-checkbox"

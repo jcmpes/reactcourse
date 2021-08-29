@@ -3,7 +3,7 @@ import Layout from '../layout/Layout';
 import Scroll from '../shared/Scroll';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { authLogout } from '../../store/actions/logout';
-import { getAuth } from '../../store/selectors';
+import { getAuth, getUi } from '../../store/selectors';
 import photo1 from '../../assets/img/home1.jpg';
 import photo2 from '../../assets/img/home2.jpg';
 import { useTranslation } from 'react-i18next';
@@ -19,11 +19,16 @@ import CoursesListMini from '../courses/CoursesListMini';
 import { getCourses } from '../../api/courses';
 import placeholder from '../../assets/img/homePlaceholder.jpg';
 import { levelsLoadAction } from '../../store/actions/levels-load';
+import Loading from '../shared/Loading/Loading';
+import ErrorMessage from '../shared/ErrorMessage';
+import { setErrorToNullAction } from '../../store/actions/favorites';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
   // eslint-disable-next-line no-unused-vars
   const { t, i18n } = useTranslation(['global']);
   const dispatch = useDispatch();
+  const { loading, error } = useSelector(getUi);
+
   const defaultFilters = {
     title: '',
     category: '',
@@ -54,6 +59,10 @@ const HomePage = ({ auth, onLogout, ...props }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const setError = () => {
+    dispatch(setErrorToNullAction());
+  };
+
   const categories = useSelector(getCategories);
 
   const catElements = categories.map((cat) => (
@@ -73,6 +82,8 @@ const HomePage = ({ auth, onLogout, ...props }) => {
   return (
     <>
       <Layout {...props}>
+        {error && <ErrorMessage error={error} resetError={setError} />}
+        {loading && <Loading isLoading={true} />}
         <div className={styles.homeContainer}>
           <Scroll showBellow={250} />
           <div className={styles.section1Container}>
