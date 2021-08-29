@@ -24,11 +24,12 @@ function CourseDetail({
   lessons,
   slug,
   numFavs,
-  courses,
   user,
   price,
   _id,
   level,
+  whatYouWillLearn,
+  requirements,
 }) {
   const { favs, purchased } = useSelector(getAuth);
   const getItemIsInCart = useSelector(isInCart);
@@ -39,6 +40,8 @@ function CourseDetail({
   const purchasedCourses = purchased ? purchased.includes(_id) : false;
   const itemIsInCart = getItemIsInCart(_id);
   const history = useHistory();
+
+  console.log(lessons.length);
 
   const { t } = useTranslation(['global']);
   return (
@@ -55,7 +58,9 @@ function CourseDetail({
         <div className="col-12 mt-3">
           <div className="card">
             <div className="row">
-              <h4 className="col-10 col-md-11 card-title">{title}</h4>
+              <h4 className="col-10 col-md-11 card-title detailTitle">
+                {title}
+              </h4>
               <div
                 className="favoriteDetail"
                 onClick={() => {
@@ -84,22 +89,26 @@ function CourseDetail({
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
-                    {console.log('**dentro**', level)}
                     {level.name === 'Basic'
                       ? '💪'
                       : level.name === 'Medium'
                       ? '💪💪'
-                      : level.name === 'Hard'
-                      ? '💪💪💪'
                       : level.name === 'Expert'
+                      ? '💪💪💪'
+                      : level.name === 'Professional'
                       ? '💪💪💪💪'
                       : null}
                   </span>
                 </p>
                 <p className="priceDetail">{price} €</p>
+
                 {isAuthor ? (
-                  <div>
-                    <Link to={`/edit/${slug}`}>✏️ Edit</Link>
+                  <div className="button-conainer">
+                    <Link to={`/edit/${slug}`}>
+                      <button className="buttonSecondary" type="reset">
+                        ✏️ {t('course.Edit your course')}
+                      </button>
+                    </Link>
                   </div>
                 ) : !purchasedCourses && !itemIsInCart ? (
                   <div
@@ -161,26 +170,8 @@ function CourseDetail({
               </h5>
               <div className="lineDetail"></div>
             </div>
-            <p>
-              In this course you will learn how to set up your database and
-              start exploring different ways to search, create, and analyze your
-              data with MongoDB. We will cover database performance basics, and
-              discover how to get started with creating applications and
-              visualizing your data
-            </p>
-            <p>
-              We'll start together with the ultimate basics, learning what a
-              database is and recognizing what makes MongoDB different in the
-              database space. Then you'll move on to working with data as you
-              grasp the difference between BSON and JSON and start to import,
-              export and query. Next you'll absorb how to create and manipulate
-              documents with hands-on learning, and skill-up to mastering
-              advanced Create Read Update Delete (CRUD) operations. By this time
-              you'll be ready to work on Indexing, Data Modeling, and creating
-              an Aggregation Pipeline. Lastly you'll have the opportunity to
-              explore the Atlas UI in more detail, investigate the Charts
-              functionality and Realm, as well as explore the use of Compass.
-            </p>
+            <p>{content}</p>
+            <p>{whatYouWillLearn}</p>
             <div className="interlineDetailContainer">
               <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
                 <div className="interlineDetailTitle">
@@ -227,14 +218,7 @@ function CourseDetail({
               </h5>
               <div className="lineDetail"></div>
             </div>
-            <p>
-              .col-4 Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry.
-            </p>
-            <p>
-              .col-4 Lorem Ipsum is simply dummy text of the printing and
-              typesetting industry.
-            </p>
+            <p>{requirements}</p>
             <div className="row mb-3">
               <div className="col-4">
                 <div className="detail-image">
@@ -270,6 +254,17 @@ function CourseDetail({
             </p>
           </div>
         </div>
+      </div>
+      <div className="lesson-nav">
+        {lessons.length > 0 && !purchasedCourses ? (
+          <div className="button-conainer">
+            <Link to={`/courses/${slug}/${lessons[0].slug}`}>
+              <button className="curseButton">
+                {t('course.Go to course')}
+              </button>
+            </Link>
+          </div>
+        ) : null}
       </div>
     </div>
   );

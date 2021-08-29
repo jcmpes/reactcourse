@@ -6,26 +6,34 @@ import Layout from '../../layout/Layout';
 import { Button } from '../../shared';
 import LessonDetail from './LessonDetail';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getUi } from '../../../store/selectors';
+import Loading from '../../shared/Loading/Loading';
+import { Link } from 'react-router-dom';
 
 function LessonPage() {
+  const { loading, error } = useSelector(getUi);
   const { courseSlug, lessonSlug } = useParams();
   const [lesson, setLesson] = useState({});
   const [course, setCourse] = useState({});
-  const [error, setError] = useState(null);
+  // const [error, setError] = useState(null);
   const [lessonCounter, setLessonCounter] = useState(0);
   const history = useHistory();
+  const [authorized, setAuthorized] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const singleCourse = await getCourse(courseSlug);
       setCourse(singleCourse);
       const singleLesson = await getLesson(courseSlug, lessonSlug);
+      console.log(singleLesson);
+      if (singleLesson.title) setAuthorized(true);
       return singleLesson;
     };
     fetchData().then((singleLesson) => {
       setLesson(singleLesson);
       lesson && setLessonCounter(lesson.number);
-    }).then();
+    }).catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonCounter, lessonSlug]);
 
@@ -48,11 +56,20 @@ function LessonPage() {
   }
 
   const { t } = useTranslation(['global']);
+  console.log(lesson);
+  if (error) return <div>cacota</div>;
   return (
     <Layout>
-      {error && t('course.error loading course')}
       <div className="lesson-detail-page">
-        {lesson && (
+        {loading && <Loading isLoading={true} />}
+        {!authorized && (
+          <div>
+            You gotta buy it!
+            <br />
+            <Link to="/">Home</Link>
+          </div>
+        )}
+        {authorized && lesson && (
           <>
             <LessonDetail {...lesson} />
             <div className="lesson-nav">

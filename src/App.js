@@ -28,6 +28,7 @@ import LessonPage from './components/lessons/LessonDetailPage/LessonPage';
 import EditUserPage from './components/users/EditUserPage';
 import Loading from './components/shared/Loading/Loading';
 import CheckoutPage from './components/purchases/CheckoutPage';
+import { MyCourses } from './components/users/MyCourses';
 
 function Translations() {
   return (
@@ -41,6 +42,9 @@ function Translations() {
         </Route>
         <PrivateRoute path="/user">
           <User />
+        </PrivateRoute>
+        <PrivateRoute path="/my-courses">
+          <MyCourses />
         </PrivateRoute>
         <PrivateRoute exact path="/edit-user">
           <EditUserPage />
@@ -60,18 +64,14 @@ function Translations() {
         <Route path="/verify/:verifyToken">
           <VerifyPage />
         </Route>
-        <Route path="/courses">
-          <Route path={`/courses/:courseSlug`}>
-            <Route exact path={`/courses/:courseSlug/:lessonSlug`}>
-              <LessonPage />
-            </Route>
-            <Route exact path="/courses/:courseSlug">
-              <CoursePage />
-            </Route>
-          </Route>
-          <Route exact path="/search">
-            <SearchPage />
-          </Route>
+        <PrivateRoute exact path={`/courses/:courseSlug/:lessonSlug`}>
+          <LessonPage />
+        </PrivateRoute>
+        <Route exact path="/courses/:courseSlug">
+          <CoursePage />
+        </Route>
+        <Route exact path="/search">
+          <SearchPage />
         </Route>
         <PrivateRoute path="/create">
           <NewCoursePage />
