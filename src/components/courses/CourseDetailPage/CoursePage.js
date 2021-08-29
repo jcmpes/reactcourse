@@ -31,13 +31,13 @@ function CoursePage() {
         {course && (
           <>
             <CourseDetail {...course} />
-            <div className="lesson-nav">
+            {/* <div className="lesson-nav">
               {course.lessons.length > 0 ? (
                 <Link to={`/courses/${courseSlug}/${course.lessons[0].slug}`}>
                   <Button>{t('course.Go to course')}</Button>
                 </Link>
               ) : null}
-            </div>
+            </div> */}
           </>
         )}
       </div>

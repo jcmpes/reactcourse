@@ -41,6 +41,8 @@ function CourseDetail({
   const itemIsInCart = getItemIsInCart(_id);
   const history = useHistory();
 
+  console.log(lessons.length);
+
   const { t } = useTranslation(['global']);
   return (
     <div className="container-fluid">
@@ -87,7 +89,6 @@ function CourseDetail({
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
-                    {console.log('**dentro**', level)}
                     {level.name === 'Basic'
                       ? '💪'
                       : level.name === 'Medium'
@@ -100,9 +101,14 @@ function CourseDetail({
                   </span>
                 </p>
                 <p className="priceDetail">{price} €</p>
+
                 {isAuthor ? (
-                  <div>
-                    <Link to={`/edit/${slug}`}>✏️ Edit</Link>
+                  <div className="button-conainer">
+                    <Link to={`/edit/${slug}`}>
+                      <button className="buttonSecondary" type="reset">
+                        ✏️ {t('course.Edit your course')}
+                      </button>
+                    </Link>
                   </div>
                 ) : !purchasedCourses && !itemIsInCart ? (
                   <div
@@ -248,6 +254,17 @@ function CourseDetail({
             </p>
           </div>
         </div>
+      </div>
+      <div className="lesson-nav">
+        {lessons.length > 0 && !purchasedCourses ? (
+          <div className="button-conainer">
+            <Link to={`/courses/${slug}/${lessons[0].slug}`}>
+              <button className="curseButton">
+                {t('course.Go to course')}
+              </button>
+            </Link>
+          </div>
+        ) : null}
       </div>
     </div>
   );

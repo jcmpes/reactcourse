@@ -21,8 +21,6 @@ const Course = ({ course, faved, purchased, inCart }) => {
   const dispatch = useDispatch();
   const isAuthor = course.user.username === username;
 
-  console.log('** course *** ', course.level.name);
-
   return (
     <div className="container-fluid">
       <div className="row">
@@ -83,8 +81,12 @@ const Course = ({ course, faved, purchased, inCart }) => {
                 <p className="card-text price">{course.price} €</p>
                 {/* </div> */}
                 {isAuthor ? (
-                  <div>
-                    <Link to={`/edit/${course.slug}`}>✏️ Edit</Link>
+                  <div className="button-conainer">
+                    <Link to={`/edit/${course.slug}`}>
+                      <button className="buttonSecondary" type="reset">
+                        ✏️ {t('course.Edit your course')}
+                      </button>
+                    </Link>
                   </div>
                 ) : !purchased && !inCart ? (
                   <div
