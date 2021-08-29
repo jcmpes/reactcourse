@@ -224,7 +224,7 @@ function CourseDetail({
                       borderRadius: '50%',
                       objectFit: 'cover',
                     }}
-                    src={image}
+                    src={user.avatar ? user.avatar : image}
                     alt=""
                   />
                 </div>
