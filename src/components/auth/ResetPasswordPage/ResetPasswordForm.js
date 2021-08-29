@@ -16,7 +16,7 @@ const ResetPasswordForm = ({ passwordShown, onSubmit }) => {
       toast.success('Password updated');
       onSubmit(password);
     } else {
-      toast.error('Passwords should match');
+      toast.error(t('Passwords should match'));
     }
   };
 

@@ -59,6 +59,9 @@
   "Content": "Contenido",
   "Filter Search": "Filtrar Busqueda",
   "Purchased courses": "Cursos comprados",
+  "Password updated": "Contraseña actualizada",
+  "Invalid token: Log back in and try again": "Token no válido: inténtalo de nuevo",
+  "You will receive an email if this email address is in our database": "Recibirás un correo si esa dirección está en nuestra base de datos",
 
   "home": {
     "Do you want to be a tutor?": "¿Quieres ser tutor?",

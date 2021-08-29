@@ -22,7 +22,7 @@ const RegisterForm = ({ passwordShown, onSubmit }) => {
     if (password === passwordConfirm) {
       onSubmit(credentials, password, passwordConfirm);
     } else {
-      toast.error('Passwords should match');
+      toast.error(t('Passwords should match'));
     }
   };
 

@@ -59,6 +59,9 @@
   "Content": "Content",
   "Filter Search": "Filter Search",
   "Purchased courses": "Purchased courses",
+  "Password updated": "Password updated",
+  "Invalid token: Log back in and try again": "Invalid token: Log back in and try again",
+  "You will receive an email if this email address is in our database": "You will receive an email if this email address is in our database",
   "home": {
     "Do you want to be a tutor?": "Do you want to be a tutor?",
     "To become an instructor": "To become an instructor",
