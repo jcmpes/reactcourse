@@ -29,6 +29,11 @@ function NewCourseForm({
       !courseDetails.title ||
       !courseDetails.category ||
       !courseDetails.level ||
+      !courseDetails.video ||
+      !courseDetails.description ||
+      !courseDetails.requirements ||
+      !courseDetails.content ||
+      // !courseDetails.whatYouLearn ||
       courseDetails.price < 0
     ) {
       return true;

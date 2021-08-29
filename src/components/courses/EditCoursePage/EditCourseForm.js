@@ -72,6 +72,7 @@ function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
     formData.append('description', newCourseDetails.description);
     formData.append('category', newCourseDetails.category);
     formData.append('video', newCourseDetails.video);
+    formData.append('price', newCourseDetails.price);
     formData.append('content', newCourseDetails.content);
     formData.append('requirements', newCourseDetails.requirements);
     formData.append('whatYouWillLearn', newCourseDetails.whatYouWillLearn);
@@ -81,85 +82,163 @@ function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
     onSubmit(formData);
   };
 
+  const verifyForm = () => {
+    if (
+      !newCourseDetails.title ||
+      !newCourseDetails.category ||
+      !newCourseDetails.level ||
+      !newCourseDetails.description ||
+      !newCourseDetails.requirements ||
+      !newCourseDetails.content ||
+      // !newCourseDetails.whatYouLearn ||
+      newCourseDetails.price < 0
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  console.log(verifyForm());
+
   return (
     <div className="new-course-form">
-      <div className="loginForm">
+      <div className="courseForm">
         <form className="loginForm" onSubmit={handleSubmit}>
-          <FormField
-            type="text"
-            label={'title'}
-            name="title"
-            placeholder="Title"
-            value={newCourseDetails.title}
-            onChange={handleChange}
-          />
-          <Input
-            as="select"
-            label={'category'}
-            name="category"
-            value={newCourseDetails.category}
-            onChange={handleChange}
-            options={[{ name: 'Select category', _id: '000' }, ...categories]}
-          />
-          <FormField
-            type={'text'}
-            label={'description'}
-            name="description"
-            placeholder="Description"
-            value={newCourseDetails.description}
-            onChange={handleChange}
-          />
-          <FormField
-            type={'text'}
-            label={'video'}
-            name="video"
-            placeholder="Video"
-            value={newCourseDetails.video}
-            onChange={handleChange}
-          />
-          <FormField
-            type={'textarea'}
-            label={'content'}
-            name="content"
-            placeholder="Content"
-            value={newCourseDetails.content}
-            onChange={handleChange}
-          />
-          <FormField
-            type={'text'}
-            label={'requirements'}
-            name="requirements"
-            placeholder="Requirements"
-            value={newCourseDetails.requirements}
-            onChange={handleChange}
-          />
-          <FormField
-            type={'text'}
-            label={'whatYouWillLearn'}
-            name="whatYouWillLearn"
-            placeholder="What will learn"
-            value={newCourseDetails.whatYouWillLearn}
-            onChange={handleChange}
-          />
-          <Input
-            className="searchLevelBarForm"
-            as="select"
-            name="level"
-            value={newCourseDetails.level}
-            onChange={handleChange}
-            options={[
-              { name: t('filter.Select Levels'), _id: '000' },
-              ...levels,
-            ]}
-          />
-          <FileUpload
-            label={'image'}
-            featuredImage={featuredImage}
-            setFeaturedImage={setFeaturedImage}
-            setCourseDetails={setNewCourseDetails}
-            courseDetails={newCourseDetails}
-          />
-          <Button type="submit">{t('submit')}</Button>
+          <div className="row">
+            <div className="col-12 ">
+              <div className="row justify-content-md-center">
+                <div className="col-lg-4 col-md-6 col-sm-12">
+                  <FormField
+                    type="text"
+                    label={t('Title')}
+                    rows={8}
+                    cols={50}
+                    name="title"
+                    placeholder={t('Title')}
+                    value={newCourseDetails.title}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="col-lg-4 col-md-6 col-sm-12">
+                  <FormField
+                    type={'text'}
+                    label={t('Video')}
+                    name="video"
+                    placeholder={t('Video')}
+                    value={newCourseDetails.video}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-lg-4 col-md-6 col-sm-12">
+                  <FormField
+                    type={'number'}
+                    label={t('Price')}
+                    min="0"
+                    max="1000"
+                    name="price"
+                    placeholder={t('Price')}
+                    value={newCourseDetails.price}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="col-12">
+              <div className="row justify-content-md-center textareaWrapper">
+                <div className="col-sm-12 col-md-6 col-lg-3">
+                  <textarea
+                    type={'textarea'}
+                    label={t('Content')}
+                    rows={8}
+                    cols={50}
+                    name="content"
+                    placeholder={t('Content')}
+                    value={newCourseDetails.content}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-sm-12 col-md-6 col-lg-3">
+                  <textarea
+                    type={'text'}
+                    label={t('Description')}
+                    rows={8}
+                    cols={50}
+                    name="description"
+                    placeholder={t('Description')}
+                    value={newCourseDetails.description}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-sm-12 col-md-6 col-lg-3">
+                  <textarea
+                    type={'text'}
+                    label={t('Requirements')}
+                    name="requirements"
+                    rows={8}
+                    cols={50}
+                    placeholder={t('course.Requirements')}
+                    value={newCourseDetails.requirements}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col-sm-12 col-md-6 col-lg-3">
+                  <textarea
+                    type={'text'}
+                    label={t('What you will learn')}
+                    rows={8}
+                    cols={50}
+                    name="whatYouWillLearn"
+                    placeholder={t('course.What you will learn')}
+                    value={newCourseDetails.whatYouWillLearn}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="col-12 mt-4">
+              <div className="row justify-content-md-center selectByCategory">
+                <div className="col-lg-4 col-md-6 col-sm-12 selectCategoryBarContainer">
+                  <Input
+                    className="selectCategoryBarForm"
+                    as="select"
+                    name="category"
+                    value={newCourseDetails.category}
+                    onChange={handleChange}
+                    options={[
+                      { name: 'Select category', _id: '000' },
+                      ...categories,
+                    ]}
+                  />
+                </div>
+                <div className="col-lg-4 col-md-6 col-sm-12">
+                  <div className="searchLevelyBarContainer">
+                    <Input
+                      className="searchLevelBarForm"
+                      as="select"
+                      name="level"
+                      value={newCourseDetails.level}
+                      onChange={handleChange}
+                      options={[
+                        { name: t('filter.Select Levels'), _id: '000' },
+                        ...levels,
+                      ]}
+                    />
+                  </div>
+                </div>
+                <FileUpload
+                  label={'image'}
+                  featuredImage={featuredImage}
+                  setFeaturedImage={setFeaturedImage}
+                  setCourseDetails={setNewCourseDetails}
+                  courseDetails={newCourseDetails}
+                />
+              </div>
+            </div>
+          </div>
+          <Button disabled={verifyForm()} type="submit">
+            {t('course.Edit course')}
+          </Button>
         </form>
         <ConfirmButton
           iconButton={null}
