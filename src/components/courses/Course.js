@@ -72,9 +72,9 @@ const Course = ({ course, faved, purchased, inCart }) => {
                         ? '💪'
                         : course.level.name === 'Medium'
                         ? '💪💪'
-                        : course.level.name === 'Hard'
-                        ? '💪💪💪'
                         : course.level.name === 'Expert'
+                        ? '💪💪💪'
+                        : course.level.name === 'Professional'
                         ? '💪💪💪💪'
                         : null}
                     </span>
@@ -105,7 +105,7 @@ const Course = ({ course, faved, purchased, inCart }) => {
                             course._id,
                             course.title,
                             course.price,
-                            course.image
+                            course.image,
                           ),
                         );
                       }

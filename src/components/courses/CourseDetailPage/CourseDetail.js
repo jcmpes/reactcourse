@@ -89,9 +89,9 @@ function CourseDetail({
                       ? '💪'
                       : level.name === 'Medium'
                       ? '💪💪'
-                      : level.name === 'Hard'
-                      ? '💪💪💪'
                       : level.name === 'Expert'
+                      ? '💪💪💪'
+                      : level.name === 'Professional'
                       ? '💪💪💪💪'
                       : null}
                   </span>
