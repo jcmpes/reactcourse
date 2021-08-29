@@ -95,5 +95,5 @@ export const deleteAccount = (password) => {
 };
 
 export const myPurchases = () => {
-  return client.get('/api/v1/purchases/user');
+  return client.get('/api/v1/aboutme/detailed-purchases');
 };

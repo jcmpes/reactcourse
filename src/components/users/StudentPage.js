@@ -22,7 +22,7 @@ const StudentPage = ({ username }) => {
         <div className="user-profile-nav">
           <ul>
             <li>
-              <Link to="/" className="my-profile-nav-item">
+              <Link to="/my-courses" className="my-profile-nav-item">
                 {t('users.learning')}
               </Link>
             </li>

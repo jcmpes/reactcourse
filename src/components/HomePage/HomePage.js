@@ -22,6 +22,7 @@ import { levelsLoadAction } from '../../store/actions/levels-load';
 import Loading from '../shared/Loading/Loading';
 import ErrorMessage from '../shared/ErrorMessage';
 import { setErrorToNullAction } from '../../store/actions/favorites';
+import { defaultFilters } from '../../data/constants';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
   // eslint-disable-next-line no-unused-vars
@@ -29,16 +30,6 @@ const HomePage = ({ auth, onLogout, ...props }) => {
   const dispatch = useDispatch();
   const { loading, error } = useSelector(getUi);
 
-  const defaultFilters = {
-    title: '',
-    category: '',
-    username: '',
-    levels: '',
-    price: [0, 600],
-    limit: 10,
-    skip: 0,
-    sort: -1,
-  };
   const [newCourses, setNewCourses] = React.useState([]);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [imgLoaded2, setImgLoaded2] = React.useState(false);
