@@ -5,7 +5,6 @@ import { getCourse } from '../../../api/courses';
 import { getUi } from '../../../store/selectors';
 import Layout from '../../layout/Layout';
 import CourseDetail from './CourseDetail';
-import { useTranslation } from 'react-i18next';
 
 require('dotenv').config();
 
