@@ -5,7 +5,6 @@ import { getAuth, getUI, getFilters } from '../../store/selectors';
 import Layout from '../layout/Layout';
 import { useTranslation } from 'react-i18next';
 import { getCourses } from '../../api/courses';
-import { Button } from '../shared';
 import { useDispatch, useSelector } from 'react-redux';
 import { categoriesLoadRequest } from '../../store/actions/categories-load';
 import CoursesList from '../courses/CoursesList';
