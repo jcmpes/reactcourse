@@ -1,6 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { FormField, Button } from '../shared';
+import userIcon from '../../assets/svg/user.svg';
+import emailIcon from '../../assets/svg/envelope.svg';
+import lockIcon from '../../assets/svg/lock.svg';
 //import FileUpload from '../../shared/FileUpload'
 
 function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
@@ -32,6 +35,7 @@ function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
             label={'username'}
             name="username"
             value={userDetails.username || ''}
+            icon={userIcon}
             onChange={handleChange}
           />
           <FormField
@@ -39,20 +43,25 @@ function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
             label={'email'}
             name="email"
             value={userDetails.email || ''}
+            icon={emailIcon}
             onChange={handleChange}
           />
           <FormField
             type="password"
+            placeholder={t('password')}
             label={'password'}
             name="password"
             value={userDetails.password || ''}
+            icon={lockIcon}
             onChange={handleChange}
           />
           <FormField
             type="password"
+            placeholder={t('confirm password')}
             label={'password'}
             name="password2"
             value={userDetails.password2 || ''}
+            icon={lockIcon}
             onChange={handleChange}
           />
 
