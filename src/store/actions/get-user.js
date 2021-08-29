@@ -35,7 +35,7 @@ export const getUserAction = (username, history) => {
     try {
       const user = await whoAmI();
       dispatch(getUserSuccess(user));
-      history.push(username ? `/user/${username}` : `/login`);
+      history.push(user.username ? `/user/${user.username}` : `/login`);
     } catch (error) {
       dispatch(getUserFailure());
     }

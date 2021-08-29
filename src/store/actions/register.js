@@ -30,11 +30,12 @@ export const authRegisterFailure = (error) => {
 };
 
 // Register middleware
-export const registerAction = (credentials, history, location) => {
+export const registerAction = (formData, history, location) => {
   return async function (dispatch, getState) {
     dispatch(authRegisterRequest());
     try {
-      const response = await register(credentials);
+      console.log('CREDENTIALS: ', formData)
+      const response = await register(formData);
       if (response.error) {
         dispatch(authRegisterFailure(response.error));
       } else if (response.success) {

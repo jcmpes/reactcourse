@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import userPortrait from '../../assets/img/user.png';
 
-const StudentPage = ({ username }) => {
+const StudentPage = ({ username, avatar }) => {
   const { t } = useTranslation(['global']);
 
   return (
@@ -11,7 +11,7 @@ const StudentPage = ({ username }) => {
       <div className="user-profile-section">
         <div className="user-profile-data">
           <div className="user-picture">
-            <img src={userPortrait} alt="user portrait" width="80" />
+            <img src={avatar ? avatar : userPortrait} alt="user portrait" width="120" />
           </div>
           <div className="user-details">
             <h1>{username}</h1>

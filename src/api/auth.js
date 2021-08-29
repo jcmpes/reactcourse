@@ -5,13 +5,12 @@ import storage from '../utils/storage';
 export const login = ({ remember, ...credentials }) => {
   return client
     .post('/api/v1/loginJWT', credentials)
-    .then(({ token, displayName, purchased, favs }) => {
+    .then(({ token, displayName, purchased, favs, avatar }) => {
       configureClient({ token });
       if (remember) {
         storage.set('auth', token);
       }
-      console.log('comprado ' + purchased);
-      return { displayName, token, purchased, favs };
+      return { displayName, token, purchased, favs, avatar };
     });
 };
 
@@ -19,9 +18,9 @@ export const login = ({ remember, ...credentials }) => {
 export const loginWithToken = (token) => {
   return client
     .post('/api/v1/login-with-token', { token })
-    .then(({ displayName, purchased, favs }) => {
+    .then(({ displayName, purchased, favs, avatar }) => {
       configureClient({ token });
-      return { displayName, token, purchased, favs };
+      return { displayName, token, purchased, favs, avatar };
     });
 };
 
@@ -31,9 +30,9 @@ export const logout = () => {
 };
 
 // Register
-export const register = (credentials) => {
+export const register = (formData) => {
   return client
-    .post('/api/v1/register', credentials)
+    .post('/api/v1/register', formData)
     .then((data) => data)
     .catch((error) => error);
 };
@@ -66,7 +65,7 @@ export const aboutMe = (setDetails) => {
 export const whoAmI = () => {
   return client
     .get('/api/v1/aboutme')
-    .then((name) => name.username)
+    .then((name) => ({ username: name.username, avatar: name.avatar }))
     .catch((error) => console.error('Error', error));
 };
 

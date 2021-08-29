@@ -15,6 +15,8 @@ export const getLevels = (state) => state.levels.data;
 
 export const getUsername = (state) => state.auth.username;
 
+export const getAvatar = (state) => state.auth.avatar;
+
 export const getFilters = (state) => state.courses.filters;
 
 export const getCart = (state) => state.auth.cart;

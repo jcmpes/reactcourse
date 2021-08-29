@@ -16,11 +16,15 @@ function FileUpload({ label, courseDetails, setCourseDetails }) {
         <input type="file" onChange={handleChange} />
       </label>
       <br />
-      <img 
+      {courseDetails.preview
+        ? <img 
         alt={''}
         style={{ height: '100px' }}
         src={ courseDetails.preview.file }
-      />
+        />
+        : null
+      }
+      
     </div>
   );
 }

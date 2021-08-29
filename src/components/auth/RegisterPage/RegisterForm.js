@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom';
 import userIcon from '../../../assets/svg/user.svg';
 import emailIcon from '../../../assets/svg/envelope.svg';
 import lockIcon from '../../../assets/svg/lock.svg';
+import FileUpload from '../../shared/FileUpload';
 
 const RegisterForm = ({ passwordShown, onSubmit }) => {
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
     username: '',
+    image: ''
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
 
@@ -78,6 +80,10 @@ const RegisterForm = ({ passwordShown, onSubmit }) => {
             onChange={handleChange}
           />
         </div>
+        <FileUpload
+          courseDetails={credentials}
+          setCourseDetails={setCredentials}
+        />
 
         <Button type="submit" disabled={disabledButton}>
           {t('register')}

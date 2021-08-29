@@ -24,12 +24,14 @@ import {
   UPDATE_USERNAME,
   API_CALL_REQUEST,
   API_CALL_SUCCESS,
+  GET_USER_SUCCESS
 } from './types';
 
 export const initialState = {
   auth: {
     isLogged: false,
     username: '',
+    avatar: '',
     purchased: [],
     cart: [],
     favs: [],
@@ -71,6 +73,7 @@ export function auth(state = initialState.auth, action) {
         username: action.payload.displayName,
         purchased: action.payload.purchased,
         favs: action.payload.favs,
+        avatar: action.payload.avatar,
         cart: [],
       };
     case UPDATE_USERNAME:
@@ -98,6 +101,12 @@ export function auth(state = initialState.auth, action) {
           ...state,
           favs,
         };
+      }
+    case GET_USER_SUCCESS:
+      return { 
+        ...state,
+        username: action.payload.username,
+        avatar: action.payload.avatar
       }
     case PURCHASE_SUCCESS:
       return {
