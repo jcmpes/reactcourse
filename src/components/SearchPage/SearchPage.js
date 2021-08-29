@@ -162,9 +162,11 @@ function SearchPage({ auth, onLogout, ...props }) {
       </div> */}
 
       <div className="showFilters">
-        <Button type="submit" value="Advanced Search" onClick={onClick}>
-          Advanced Search
-        </Button>
+        <div className="button-conainer">
+          <button className="curseButton" type="submit" onClick={onClick}>
+            {t('Filter Search')}
+          </button>
+        </div>
       </div>
       <div className="row">
         {/*className={styles.searchBarForm}*/}
