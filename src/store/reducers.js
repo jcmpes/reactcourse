@@ -24,7 +24,9 @@ import {
   UPDATE_USERNAME,
   API_CALL_REQUEST,
   API_CALL_SUCCESS,
-  GET_USER_SUCCESS
+  GET_USER_SUCCESS,
+  AUTH_REGISTER_REQUEST,
+  AUTH_REGISTER_SUCCESS
 } from './types';
 
 export const initialState = {
@@ -184,6 +186,7 @@ export function ui(state = initialState.ui, action) {
     case FAVORITES_LIST_REQUEST:
     case API_CALL_REQUEST:
     case COURSE_DETAIL_REQUEST:
+    case AUTH_REGISTER_REQUEST:
       return { ...state, loading: true, error: null };
     case COURSE_DETAIL_SUCCESS:
     case AUTH_LOGIN_SUCCESS:
@@ -192,6 +195,7 @@ export function ui(state = initialState.ui, action) {
     case COURSE_CREATE_SUCCESS:
     case FAVORITES_LIST_SUCCESS:
     case API_CALL_SUCCESS:
+    case AUTH_REGISTER_SUCCESS:
       return { ...state, loading: false };
     case UI_RESET_ERROR:
       return {
