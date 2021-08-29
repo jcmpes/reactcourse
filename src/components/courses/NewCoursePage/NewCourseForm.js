@@ -74,7 +74,7 @@ function NewCourseForm({
                     type={'number'}
                     label={t('Price')}
                     min="0"
-                    max="1000"
+                    max="100"
                     name="price"
                     placeholder={t('Price')}
                     value={courseDetails.price}

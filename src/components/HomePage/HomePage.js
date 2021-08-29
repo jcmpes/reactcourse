@@ -92,20 +92,25 @@ const HomePage = ({ auth, onLogout, ...props }) => {
               </div>
             </div>
             <div className={styles.containerMessages}>
-              <div className={styles.msg1}>
-                <strong>{t('home.Do you want to be a tutor?')}</strong>
+              <div className={styles.msg1_2}>
+                <strong>{t('home.Find the best online tutor for you')}</strong>
               </div>
-              <div className={styles.msg2}>
-                <strong>{t('home.To become an instructor')}</strong>
+              <div className={styles.msg2_2}>
+                <strong>{t('home.Build up your skills')}</strong>
               </div>
               <div className={styles.description1}>
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
                 diam nonummy nibh euismod tincidunt ut laoreet dolore magna
                 aliquam erat volutpat.
               </div>
-              <Link to="/create">
-                <button className={styles.starTeachingBtn}>
-                  {t('home.Start teaching')}
+              <Link to="/search">
+                <button
+                  className={styles.starTeachingBtn}
+                  onClick={() => {
+                    dispatch(setFilters(defaultFilters));
+                  }}
+                >
+                  {t('home.Search')}
                 </button>
               </Link>
             </div>
@@ -155,25 +160,20 @@ const HomePage = ({ auth, onLogout, ...props }) => {
               </div>
             </div>
             <div className={styles.containerMessages}>
-              <div className={styles.msg1_2}>
-                <strong>{t('home.Find the best online tutor for you')}</strong>
+              <div className={styles.msg1}>
+                <strong>{t('home.Do you want to be a tutor?')}</strong>
               </div>
-              <div className={styles.msg2_2}>
-                <strong>{t('home.Build up your skills')}</strong>
+              <div className={styles.msg2}>
+                <strong>{t('home.To become an instructor')}</strong>
               </div>
               <div className={styles.description1}>
                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
                 diam nonummy nibh euismod tincidunt ut laoreet dolore magna
                 aliquam erat volutpat.
               </div>
-              <Link to="/search">
-                <button
-                  className={styles.starTeachingBtn}
-                  onClick={() => {
-                    dispatch(setFilters(defaultFilters));
-                  }}
-                >
-                  {t('home.Search')}
+              <Link to="/create">
+                <button className={styles.starTeachingBtn}>
+                  {t('home.Start teaching')}
                 </button>
               </Link>
             </div>

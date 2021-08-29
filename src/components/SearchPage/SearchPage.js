@@ -152,6 +152,7 @@ function SearchPage({ auth, onLogout, ...props }) {
           alt="sort"
           height="30"
           width="30"
+          style={{ cursor: 'pointer' }}
         />
       </label>
 
