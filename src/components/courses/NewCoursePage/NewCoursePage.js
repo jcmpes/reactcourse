@@ -80,17 +80,6 @@ function NewCoursePage() {
   };
 
   const makeApiCall = async (courseDetails) => {
-    // postCourse(courseDetails)
-    //   .then((result) => {
-    //     if (result.slug) setCreatedCourse(result);
-    //     if (
-    //       result.error === 'no token provided' ||
-    //       result.error === 'The token provided is invalid or has expired'
-    //     ) {
-    //       toast.error('Invalid token: Log back in and try again');
-    //     }
-    //   })
-    //   .catch((err) => err);
     const created = await dispatch(courseCreateAction(courseDetails));
     if (created) setCreatedCourse(created);
   };

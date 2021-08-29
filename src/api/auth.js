@@ -31,9 +31,9 @@ export const logout = () => {
 };
 
 // Register
-export const register = (credentials) => {
+export const register = (formData) => {
   return client
-    .post('/api/v1/register', credentials)
+    .post('/api/v1/register', formData)
     .then((data) => data)
     .catch((error) => error);
 };

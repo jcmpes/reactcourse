@@ -15,7 +15,12 @@ const RegisterPage = () => {
   const { t } = useTranslation(['global']);
 
   const handleSubmit = (credentials) => {
-    dispatch(registerAction(credentials, history, location));
+    const formData = new FormData();
+    formData.append('email', credentials.email)
+    formData.append('password', credentials.password)
+    formData.append('username', credentials.username)
+    if (credentials.image) formData.append('image', credentials.image)
+    dispatch(registerAction(formData, history, location));
   };
 
   return (

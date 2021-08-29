@@ -4,6 +4,7 @@ import { FormField, Button } from '../shared';
 import userIcon from '../../assets/svg/user.svg';
 import emailIcon from '../../assets/svg/envelope.svg';
 import lockIcon from '../../assets/svg/lock.svg';
+import FileUpload from '../shared/FileUpload';
 //import FileUpload from '../../shared/FileUpload'
 
 function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
@@ -15,6 +16,7 @@ function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
       username: userDetails.username,
       email: userDetails.email,
       password: userDetails.password,
+      image: userDetails.image
     });
   };
 
@@ -63,6 +65,10 @@ function EditUserForm({ onSubmit, setUserDetails, userDetails }) {
             value={userDetails.password2 || ''}
             icon={lockIcon}
             onChange={handleChange}
+          />
+          <FileUpload
+            courseDetails={userDetails}
+            setCourseDetails={setUserDetails}
           />
 
           <Button

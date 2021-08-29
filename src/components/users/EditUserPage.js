@@ -21,6 +21,7 @@ const EditUserPage = () => {
     email: '',
     password: '',
     password2: '',
+    image: ''
   });
 
   const [confirm, setConfirm] = React.useState('');
@@ -42,8 +43,15 @@ const EditUserPage = () => {
     });
   };
   const onSubmit = async (userDetails) => {
-    const updated = await editUser(userDetails);
 
+    const formData = new FormData();
+    formData.append('email', userDetails.email)
+    formData.append('password', userDetails.password)
+    formData.append('username', userDetails.username)
+    if (userDetails.image) formData.append('image', userDetails.image)
+    
+
+    const updated = await editUser(formData);
     if (updated && updated.username) {
       toast.success(t('Profile updated'));
       setProfileUpdated(true);
