@@ -41,15 +41,10 @@ function CourseDetail({
   const itemIsInCart = getItemIsInCart(_id);
   const history = useHistory();
 
-  console.log(lessons.length);
-
   const { t } = useTranslation(['global']);
   return (
     <div className="container-fluid">
       <div width="100%">
-        {/* <Link to="/search">
-          <img src={backIcon} alt="back" width="35" />
-        </Link> */}
         <div style={{ cursor: 'pointer' }} onClick={() => history.goBack()}>
           <img src={backIcon} alt="back" width="35" />
         </div>
@@ -256,7 +251,7 @@ function CourseDetail({
         </div>
       </div>
       <div className="lesson-nav">
-        {lessons.length > 0 && !purchasedCourses ? (
+        {lessons.length > 0 && purchasedCourses ? (
           <div className="button-conainer">
             <Link to={`/courses/${slug}/${lessons[0].slug}`}>
               <button className="curseButton">
