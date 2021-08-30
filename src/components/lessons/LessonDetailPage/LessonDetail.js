@@ -69,7 +69,7 @@ function LessonDetail({
                       </h6>
                       <div className="progress">
                         <div
-                          class="progress-bar"
+                          className="progress-bar"
                           role="progressbar"
                           style={{
                             width: `${percent}%`,

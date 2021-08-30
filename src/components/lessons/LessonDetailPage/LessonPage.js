@@ -49,7 +49,7 @@ function LessonPage() {
   }
 
   const { t } = useTranslation(['global']);
-  console.log(lesson);
+
   if (error) return <div>cacota</div>;
   return (
     <Layout>
