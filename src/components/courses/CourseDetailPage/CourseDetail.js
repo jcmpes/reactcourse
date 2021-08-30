@@ -51,8 +51,8 @@ function CourseDetail({
       </div>
       <div className="row">
         <div className="col-12 mt-3">
-          <div className="card">
-            <div className="row">
+          <div className="card p-3">
+            <div className="row p-3">
               <h4 className="col-10 col-md-11 card-title detailTitle">
                 {title}
               </h4>
@@ -73,14 +73,11 @@ function CourseDetail({
                 </div>
               </div>
             </div>
-            <div className="row m-3">
+            <div className="row">
               <div className="col-12 col-sm-6">
                 <p className="card-text description">{content}</p>
                 <br />
                 <p>{description}</p>
-                <p>
-                  {t('course.instructor')}: {user.username}
-                </p>
                 <p className="card-text level-list">
                   {t('Level')}:{' '}
                   <span>
@@ -206,7 +203,7 @@ function CourseDetail({
           </div>
           <div className="col-lg-4 col-sm-12">
             <div className="interlineDetailContainer">
-              <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
+              <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-3">
                 <div className="interlineDetailTitle">
                   {t('course.Requirements')}
                 </div>
@@ -214,39 +211,45 @@ function CourseDetail({
               <div className="lineDetail"></div>
             </div>
             <p>{requirements}</p>
-            <div className="row mb-3">
-              <div className="col-4">
-                <div className="detail-image">
-                  <img
-                    style={{
-                      width: '75px',
-                      height: '75px',
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                    }}
-                    src={user.avatar ? user.avatar : image}
-                    alt=""
-                  />
-                </div>
-              </div>
-              <div className="col-8">
-                <div className="interlineDetailContainer">
-                  <h5 className="courseDetail col-xl-4 col-lg-5 col-sm-4">
-                    <div className="interlineDetailTitle">
-                      {t('course.instructor')}
+
+            <div className="interlineDetailContainer">
+              <h5 className="courseDetail col-12">
+                <div className="interlineDetailTitle">
+                  <div className="d-flex align-items-center">
+                    <img
+                          style={{
+                            width: '75px',
+                            height: '75px',
+                            borderRadius: '50%',
+                            objectFit: 'cover',
+                            marginRight: '1rem'
+                          }}
+                          src={user.avatar ? user.avatar : image}
+                          alt=""
+                        />
+                    <h5>{t('course.instructor')}</h5>
+                    <div 
+                      className="justify-content-end w-100"
+                      style={{ position: "relative", left: "16px" }}
+                    >
+                      <div 
+                        className="lineDetail align-self-center"
+                        style={{ top: "-3px" }}>
+                      </div>
                     </div>
-                  </h5>
-                  <div className="lineDetail"></div>
+                  </div>
                 </div>
-              </div>
+              </h5>
             </div>
-            <p>{user.username}</p>
-            <p>{title}</p>
-            <p>
-              {user.username} is a Senior Curriculum Engineer at MongoDB. Prior
-              to MongoDB Yulia worked at Stuyvesant High School where she
-              tautght Computer Science to hundreds of unsuspecting studetns
-            </p>
+            <div>
+              <p>{user.username}</p>
+              <p>{title}</p>
+              <p>
+                {user.username} is a Senior Curriculum Engineer at MongoDB. Prior
+                to MongoDB Yulia worked at Stuyvesant High School where she
+                tautght Computer Science to hundreds of unsuspecting studetns
+              </p>
+            </div>
           </div>
         </div>
       </div>
