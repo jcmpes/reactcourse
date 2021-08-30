@@ -3,17 +3,17 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import userPortrait from '../../assets/img/user.png';
 import './StudenPage.css';
-const StudentPage = ({ username, avatar }) => {
+const StudentPage = ({ username, avatar, favs, purchased }) => {
   const { t } = useTranslation(['global']);
 
   return (
     <>
-      <div class="frame">
-        <div class="center">
-          <div class="studenProfile">
-            <div class="studenImage">
-              <div class="circle-1"></div>
-              <div class="circle-2"></div>
+      <div className="frame">
+        <div className="center">
+          <div className="studenProfile">
+            <div className="studenImage">
+              <div className="circle-1"></div>
+              <div className="circle-2"></div>
               <img
                 src={avatar ? avatar : userPortrait}
                 alt="user portrait"
@@ -21,37 +21,37 @@ const StudentPage = ({ username, avatar }) => {
                 height="70"
               />
             </div>
-            <div class="studenName">{username}</div>
+            <div className="studenName">{username}</div>
             <p>{t('users.student')}</p>
-            <div class="actions">
+            <div className="actions">
               <Link to="/edit-user" className="my-profile-nav-item">
-                <button class="btn">{t('users.edit profile')}</button>
+                <button className="btn">{t('users.edit profile')}</button>
               </Link>
             </div>
           </div>
 
-          <div class="stats">
-            <div class="box">
+          <div className="stats">
+            <div className="box">
               <Link to="/my-courses" className="my-profile-nav-item">
-                <span class="value">{t('users.learning')}</span>
+                <span className="value">{t('users.learning')}</span>
               </Link>
-              {/* <span class="parameter">3</span> */}
+              <span className="parameter">{purchased.length}</span>
             </div>
-            <div class="box">
+            <div className="box">
               <Link
                 to={`/courses-by/${username}`}
                 className="my-profile-nav-item"
               >
-                <span class="value">{t('users.teaching')}</span>
+                <span className="value">{t('users.teaching')}</span>
               </Link>
               {/* <span class="parameter">0</span> */}
             </div>
 
-            <div class="box">
+            <div className="box">
               <Link to="/myfavs" className="my-profile-nav-item">
-                <span class="value">{t('users.wishlist')}</span>
+                <span className="value">{t('users.wishlist')}</span>
               </Link>
-              {/* <span class="parameter">2</span> */}
+              <span className="parameter">{favs.length}</span>
             </div>
           </div>
         </div>
