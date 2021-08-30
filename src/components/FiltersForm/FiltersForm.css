@@ -70,6 +70,9 @@ option {
   background-color: white;
   box-shadow: 1px 1px 5px black;
 }
+.resetFilter {
+  width: 100%;
+}
 @media (max-width: 1250px) {
   .buttonFilterReste {
     width: 80%;
