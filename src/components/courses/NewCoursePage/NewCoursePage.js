@@ -10,9 +10,11 @@ import { courseCreateAction } from '../../../store/actions/course-new';
 import { getUi } from '../../../store/selectors';
 import Loading from '../../shared/Loading/Loading';
 import { levelsLoadAction } from '../../../store/actions/levels-load';
+import { useTranslation } from 'react-i18next';
 
 function NewCoursePage() {
   const { loading } = useSelector(getUi);
+  const { t } = useTranslation(['global']);
   const [lessonCounter, setLessonCounter] = React.useState(0);
   const [courseDetails, setCourseDetails] = React.useState({
     title: '',
@@ -89,7 +91,7 @@ function NewCoursePage() {
     <div className="new-course-page">
       {loading && <Loading isLoading={true} />}
       <Layout>
-        <h1>Create a course</h1>
+        <h1>{t("course.create a course")}</h1>
         {categories ? (
           <>
             {lessonCounter === 0 && (
