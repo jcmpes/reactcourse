@@ -1,5 +1,10 @@
 .modalContainer {
   background-color: var(--color-whisper);
+  background: -webkit-linear-gradient(bottom left, rgb(167, 167, 167) 0%, white 100%);
+  background: -moz-linear-gradient(bottom left, rgb(167, 167, 167) 0%, white 100%);
+  background: -o-linear-gradient(bottom left, rgb(167, 167, 167) 0%, white 100%);
+  background: linear-gradient(to top right, rgb(167, 167, 167) 0%, white 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e8a8c0', endColorstr='#e8a8c0',GradientType=1);
   width: 100%;
   height: 100vh;
   position: absolute;
