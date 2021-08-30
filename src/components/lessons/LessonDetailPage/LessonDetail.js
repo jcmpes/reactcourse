@@ -66,7 +66,7 @@ function LessonDetail({
                   </div>
 
                   {lessons ? (
-                    <div className="col-12">
+                    <div className="col-12 mt-5 mb-3">
                       <h6>
                         {t('course.Lessons')} {lessonNumber} {t('of')} {lessons}
                       </h6>
@@ -92,7 +92,7 @@ function LessonDetail({
               </div>
             </div>
           </div>
-          <div className="deatail-sharer">
+          <div className="deatail-sharer mt-3 mb-3">
             <Facebook link={window.location.href} />
             <Twitter link={window.location.href} />
           </div>
