@@ -38,8 +38,8 @@ function LessonDetail({
                 <h4 className="courseInstructorTitle">
                   {t('course.instructor')}
                 </h4>
-                <div className="row">
-                  <div className="detail-image m-3">
+                <div className="row d-flex align-items-center">
+                  <div className="detail-image ml-4">
                     <img
                       style={{
                         width: '75px',
@@ -54,17 +54,15 @@ function LessonDetail({
                   <div className="col-6">
                     <p>{username}</p>
                   </div>
-                  <div className="col-12">
-                    <p className="card-text description">
+                  <div className="col-12 mt-5">
+                    <h4 className="card-text description">
                       {t('Description')}:
-                      <br />
-                      {description}
-                    </p>
-                    <p className="card-text description">
-                      {t('course.Course content')}:
-                      <br />
-                      {content}
-                    </p>
+                    </h4>
+                    <p>{description}</p>
+                    <h4 className="mt-5 card-text description">
+                      {t('course.Lesson content')}:
+                    </h4>
+                    <p>{content}</p>
                   </div>
 
                   {lessons ? (
