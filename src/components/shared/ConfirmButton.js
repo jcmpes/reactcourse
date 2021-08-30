@@ -29,7 +29,7 @@ export const ConfirmButton = ({
   return (
     <>
       <div className="button-conainer">
-        <button className="buttonSecondary" onClick={showConfirmationPanel}>
+        <button className="buttonSecondary buttonDeleteUser" onClick={showConfirmationPanel}>
           {iconButton ? <img src={iconButton} width="14" alt="logout" /> : ''}
           {titleButton}
         </button>

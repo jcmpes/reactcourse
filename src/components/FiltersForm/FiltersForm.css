@@ -70,6 +70,14 @@ option {
   background-color: white;
   box-shadow: 1px 1px 5px black;
 }
+.buttonDeleteUser {
+  background-color: white;
+}
+.buttonDeleteUser:hover {
+  border: solid 2px var(--color-french-rose);
+  box-shadow: none;
+  padding: 14px
+}
 .resetFilter {
   width: 100%;
 }
