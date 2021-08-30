@@ -11,15 +11,22 @@ import StudentPage from './StudentPage';
 const User = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { username, avatar } = useSelector(getAuth);
+  const user = useSelector(getAuth);
 
   useEffect(() => {
-    dispatch(getUserAction(username, history));
-  }, [username, dispatch, history]);
+    dispatch(getUserAction(user.username, history));
+  }, [user.username, dispatch, history]);
+
+  console.log(user);
 
   return (
     <Layout>
-      <StudentPage username={username} avatar={avatar} />
+      <StudentPage
+        username={user.username}
+        avatar={user.avatar}
+        favs={user.favs}
+        purchased={user.purchased}
+      />
     </Layout>
   );
 };
