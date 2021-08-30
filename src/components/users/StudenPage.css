@@ -38,6 +38,9 @@
   height: 70px;
   margin: 38px auto 0 auto;
 }
+.studenImage img {
+  object-fit: cover;
+}
 .studenProfile .studenImage .circle-1,
 .studenProfile .studenImage .circle-2 {
   position: absolute;
