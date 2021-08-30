@@ -6,10 +6,10 @@ import Layout from '../../layout/Layout';
 import { Button } from '../../shared';
 import LessonDetail from './LessonDetail';
 import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getUi } from '../../../store/selectors';
 import Loading from '../../shared/Loading/Loading';
-import { apiCallLoadAction } from '../../../store/actions/api-call';
+import { Link } from 'react-router-dom';
 
 function LessonPage() {
   const { loading, error } = useSelector(getUi);
@@ -19,14 +19,18 @@ function LessonPage() {
   // const [error, setError] = useState(null);
   const [lessonCounter, setLessonCounter] = useState(0);
   const history = useHistory();
-  // const [authorized, setAuthorized] = useState(false);
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(apiCallLoadAction(getCourse, setCourse, courseSlug))
-    dispatch(apiCallLoadAction(getLesson, setLesson, courseSlug, lessonSlug))
-    setLessonCounter(lesson.number);
-
+    const fetchData = async () => {
+      const singleCourse = await getCourse(courseSlug);
+      setCourse(singleCourse);
+      const singleLesson = await getLesson(courseSlug, lessonSlug);
+      return singleLesson;
+    };
+    fetchData().then((singleLesson) => {
+      setLesson(singleLesson);
+      lesson && setLessonCounter(lesson.number);
+    }).catch(err => console.log(err));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonCounter, lessonSlug]);
 
@@ -49,19 +53,19 @@ function LessonPage() {
   }
 
   const { t } = useTranslation(['global']);
-
+  console.log(lesson);
   if (error) return <div>cacota</div>;
   return (
     <Layout>
       <div className="lesson-detail-page">
         {loading && <Loading isLoading={true} />}
-        {/* {!authorized && (
+        {!lesson && (
           <div>
             You gotta buy it!
             <br />
             <Link to="/">Home</Link>
           </div>
-        )} */}
+        )}
         {lesson && (
           <>
             <LessonDetail {...lesson} />

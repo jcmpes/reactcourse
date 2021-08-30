@@ -34,31 +34,17 @@ function LessonDetail({
               </div>
               <div className="col-12">
                 <br />
-                <h4 className="courseIstructorTitle">
-                  {t('course.instructor')}
-                </h4>
                 <div className="row mb-3">
-                  <div className="detail-image">
-                    <img
-                      style={{
-                        width: '75px',
-                        height: '75px',
-                        borderRadius: '50%',
-                        objectFit: 'cover',
-                      }}
-                      src={image}
-                      alt=""
-                    />
-                  </div>
-                  <div className="col-6">
-                    <p>{username}</p>
-                  </div>
-                  <div className="col-5">
+                  <div className="col-12">
                     <p className="card-text description">
-                      {t('course.Course content')}: {content}
+                      {t('Description')}:
+                      <br />
+                      {description}
                     </p>
                     <p className="card-text description">
-                      {t('Description')}: {description}
+                    {t('Content')}:
+                    <br />
+                    {content}
                     </p>
                   </div>
 
