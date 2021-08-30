@@ -35,9 +35,7 @@ const EditUserPage = () => {
       if (result.deleted) {
         logout();
         dispatch(authLogout());
-        console.log('logout');
       } else {
-        console.log(result.message);
         toast.error(t(result.message));
       }
     });
@@ -49,7 +47,6 @@ const EditUserPage = () => {
     formData.append('username', userDetails.username)
     if (userDetails.password) formData.append('password', userDetails.password)
     if (userDetails.image) formData.append('image', userDetails.image)
-    console.log('FORMDATA: ', userDetails)
 
     const updated = await editUser(formData);
     if (updated && updated.username) {

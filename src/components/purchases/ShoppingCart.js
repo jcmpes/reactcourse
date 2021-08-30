@@ -13,7 +13,6 @@ const ShoppingCart = ({ closeModal }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation(['global']);
   const removeItem = (event) => {
-    console.log('CURSO ID ', event.target)
     dispatch(removeFromCartAction(event.target.id));
   };
 

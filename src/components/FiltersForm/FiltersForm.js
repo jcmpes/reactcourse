@@ -38,7 +38,6 @@ const FilterForm = () => {
     filters.skip = 0;
     const newFilter = { ...filters, [ev.target.name]: ev.target.value };
     dispatch(setFilters(newFilter));
-    console.log('NEW FILTER', newFilter);
   }
 
   async function handleReset() {

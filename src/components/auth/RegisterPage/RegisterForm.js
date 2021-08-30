@@ -7,6 +7,9 @@ import userIcon from '../../../assets/svg/user.svg';
 import emailIcon from '../../../assets/svg/envelope.svg';
 import lockIcon from '../../../assets/svg/lock.svg';
 import FileUpload from '../../shared/FileUpload';
+import Loading from '../../shared/Loading/Loading';
+import { useSelector } from 'react-redux';
+import { getUi } from '../../../store/selectors';
 
 const RegisterForm = ({ passwordShown, onSubmit }) => {
   const [credentials, setCredentials] = useState({
@@ -16,6 +19,7 @@ const RegisterForm = ({ passwordShown, onSubmit }) => {
     image: ''
   });
   const [passwordConfirm, setPasswordConfirm] = useState('');
+  const { loading } = useSelector(getUi)
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -86,7 +90,7 @@ const RegisterForm = ({ passwordShown, onSubmit }) => {
         />
 
         <Button type="submit" disabled={disabledButton}>
-          {t('register')}
+          {loading ? <Loading isLoading={true} /> : t('register')}
         </Button>
       </form>
       {t('Already registered?')} <Link to="/login">{t('Log in!')}</Link>

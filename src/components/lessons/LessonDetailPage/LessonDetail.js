@@ -13,6 +13,7 @@ function LessonDetail({
   image,
   lessons,
   number,
+  avatar
 }) {
   const lessonNumber = number + 1;
   const percent = (lessonNumber / lessons) * 100;
@@ -22,9 +23,9 @@ function LessonDetail({
     <div className="container-fluid">
       <div className="row">
         <div className="col-12 mt-3">
-          <div className="card">
-            <div className="row">
-              <h4 className="col-11 card-title">
+          <div className="card p-3">
+            <div className="row p-3">
+              <h4 className="col-10 card-title">
                 {t('course.Lessons')} {lessonNumber}: {title}
               </h4>
             </div>
@@ -34,11 +35,11 @@ function LessonDetail({
               </div>
               <div className="col-12">
                 <br />
-                <h4 className="courseIstructorTitle">
+                <h4 className="courseInstructorTitle">
                   {t('course.instructor')}
                 </h4>
-                <div className="row mb-3">
-                  <div className="detail-image">
+                <div className="row d-flex align-items-center">
+                  <div className="detail-image ml-4">
                     <img
                       style={{
                         width: '75px',
@@ -46,20 +47,22 @@ function LessonDetail({
                         borderRadius: '50%',
                         objectFit: 'cover',
                       }}
-                      src={image}
+                      src={avatar}
                       alt=""
                     />
                   </div>
                   <div className="col-6">
                     <p>{username}</p>
                   </div>
-                  <div className="col-5">
-                    <p className="card-text description">
-                      {t('course.Course content')}: {content}
-                    </p>
-                    <p className="card-text description">
-                      {t('Description')}: {description}
-                    </p>
+                  <div className="col-12 mt-5">
+                    <h4 className="card-text description">
+                      {t('Description')}:
+                    </h4>
+                    <p>{description}</p>
+                    <h4 className="mt-5 card-text description">
+                      {t('course.Lesson content')}:
+                    </h4>
+                    <p>{content}</p>
                   </div>
 
                   {lessons ? (
@@ -69,7 +72,7 @@ function LessonDetail({
                       </h6>
                       <div className="progress">
                         <div
-                          class="progress-bar"
+                          className="progress-bar"
                           role="progressbar"
                           style={{
                             width: `${percent}%`,
