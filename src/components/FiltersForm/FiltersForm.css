@@ -76,7 +76,7 @@ option {
 .buttonDeleteUser:hover {
   border: solid 2px var(--color-french-rose);
   box-shadow: none;
-  padding: 14px
+  padding: 14px;
 }
 .resetFilter {
   width: 100%;
