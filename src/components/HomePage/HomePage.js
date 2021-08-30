@@ -127,6 +127,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
               display: 'flex',
               flexDirection: 'row',
               overflow: 'auto',
+              paddingBottom: '1.5rem'
             }}
           >
             <CoursesListMini courses={newCourses} />
