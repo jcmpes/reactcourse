@@ -31,7 +31,6 @@ export const totalInChart = (state) => {
 
 export const isInCart = (state) => (item) => {
   const inCart = state.auth.cart.filter((id) => {
-    //console.log(`${id.courseId} compared with ${item}`);
     return id.courseId === item;
   });
 

@@ -24,7 +24,6 @@ export const MyCourses = () => {
     dispatch(apiCallLoadAction(myPurchases, setPurchases));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(purchases);
   return (
     <div>
       <Layout>

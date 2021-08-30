@@ -23,7 +23,6 @@ function NewLessonForm({
       };
     });
   };
-  console.log(courseDetails.lessons);
   return (
     <div className="new-lesson-form">
       <h2>{t('course.create lesson') + ' ' + lessonCounter}</h2>

@@ -40,7 +40,6 @@ function NewCoursePage() {
   }, [dispatch]);
 
   const handleAddLesson = () => {
-    console.log(courseDetails);
     setLessonCounter(lessonCounter + 1);
 
     setCourseDetails((oldDetails) => {
@@ -72,8 +71,6 @@ function NewCoursePage() {
     formData.append('price', courseDetails.price);
     if (courseDetails.image) formData.append('image', courseDetails.image);
     if (courseDetails.lessons) {
-      console.log('courseDetails a enviar: ', courseDetails);
-      console.log('lessons is array: ', Array.isArray(courseDetails.lessons));
       formData.append('lessons', JSON.stringify(courseDetails.lessons));
     }
     makeApiCall(formData);

@@ -35,9 +35,7 @@ const EditUserPage = () => {
       if (result.deleted) {
         logout();
         dispatch(authLogout());
-        console.log('logout');
       } else {
-        console.log(result.message);
         toast.error(t(result.message));
       }
     });

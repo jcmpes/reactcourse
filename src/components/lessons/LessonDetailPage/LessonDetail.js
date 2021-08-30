@@ -13,6 +13,7 @@ function LessonDetail({
   image,
   lessons,
   number,
+  avatar
 }) {
   const lessonNumber = number + 1;
   const percent = (lessonNumber / lessons) * 100;
@@ -22,9 +23,9 @@ function LessonDetail({
     <div className="container-fluid">
       <div className="row">
         <div className="col-12 mt-3">
-          <div className="card">
-            <div className="row">
-              <h4 className="col-11 card-title">
+          <div className="card p-3">
+            <div className="row p-3">
+              <h4 className="col-10 card-title">
                 {t('course.Lessons')} {lessonNumber}: {title}
               </h4>
             </div>
@@ -34,7 +35,25 @@ function LessonDetail({
               </div>
               <div className="col-12">
                 <br />
-                <div className="row mb-3">
+                <h4 className="courseInstructorTitle">
+                  {t('course.instructor')}
+                </h4>
+                <div className="row">
+                  <div className="detail-image m-3">
+                    <img
+                      style={{
+                        width: '75px',
+                        height: '75px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                      }}
+                      src={avatar}
+                      alt=""
+                    />
+                  </div>
+                  <div className="col-6">
+                    <p>{username}</p>
+                  </div>
                   <div className="col-12">
                     <p className="card-text description">
                       {t('Description')}:
@@ -42,9 +61,9 @@ function LessonDetail({
                       {description}
                     </p>
                     <p className="card-text description">
-                    {t('Content')}:
-                    <br />
-                    {content}
+                      {t('course.Course content')}:
+                      <br />
+                      {content}
                     </p>
                   </div>
 

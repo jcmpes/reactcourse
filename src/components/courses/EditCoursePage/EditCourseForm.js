@@ -13,8 +13,6 @@ function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
   const initialCategory = categories.find(
     (cat) => cat._id === courseDetails.category,
   );
-  console.log(courseDetails.level._id);
-  console.log();
   const initialLevel = levels.find(
     (lvl) => lvl._id === courseDetails.level._id,
   );
@@ -66,7 +64,6 @@ function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
     const formData = new FormData();
     // Send course id to update in backend
     formData.append('_id', courseDetails._id);
-    console.log('Mndo:------->', newCourseDetails.level);
     // Send the other details
     formData.append('title', newCourseDetails.title);
     formData.append('description', newCourseDetails.description);
@@ -97,8 +94,6 @@ function EditCourseForm({ courseDetails, onSubmit, categories, levels }) {
     }
     return false;
   };
-
-  console.log(verifyForm());
 
   return (
     <div className="new-course-form">

@@ -53,7 +53,6 @@ function LessonPage() {
   }
 
   const { t } = useTranslation(['global']);
-  console.log(lesson);
   if (error) return <div>cacota</div>;
   return (
     <Layout>
@@ -66,9 +65,9 @@ function LessonPage() {
             <Link to="/">Home</Link>
           </div>
         )}
-        {lesson && (
+        {lesson && course && (
           <>
-            <LessonDetail {...lesson} />
+            <LessonDetail {...lesson} avatar={course.user ? course.user.avatar : null} />
             <div className="lesson-nav">
               {lesson.number === 0 ? (
                 <Button onClick={() => backToCourse()}>
