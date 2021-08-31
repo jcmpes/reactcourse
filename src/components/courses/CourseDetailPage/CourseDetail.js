@@ -179,7 +179,7 @@ function CourseDetail({
                   return (
                     <li
                       className="list-group-item list-group-item-secondary"
-                      key={lessons[i].id}
+                      key={lessons[i]._id}
                       margin="2px"
                     >
                       <PlayCircleOutlineIcon />
@@ -217,25 +217,25 @@ function CourseDetail({
                 <div className="interlineDetailTitle">
                   <div className="d-flex align-items-center">
                     <img
-                          style={{
-                            width: '75px',
-                            height: '75px',
-                            borderRadius: '50%',
-                            objectFit: 'cover',
-                            marginRight: '1rem'
-                          }}
-                          src={user.avatar ? user.avatar : image}
-                          alt=""
-                        />
+                      style={{
+                        width: '75px',
+                        height: '75px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        marginRight: '1rem',
+                      }}
+                      src={user.avatar ? user.avatar : image}
+                      alt=""
+                    />
                     <h5>{t('course.instructor')}</h5>
-                    <div 
+                    <div
                       className="justify-content-end w-100"
-                      style={{ position: "relative", left: "16px" }}
+                      style={{ position: 'relative', left: '16px' }}
                     >
-                      <div 
+                      <div
                         className="lineDetail align-self-center"
-                        style={{ top: "-3px" }}>
-                      </div>
+                        style={{ top: '-3px' }}
+                      ></div>
                     </div>
                   </div>
                 </div>
@@ -245,9 +245,10 @@ function CourseDetail({
               <p>{user.username}</p>
               <p>{title}</p>
               <p>
-                {user.username} is a Senior Curriculum Engineer at MongoDB. Prior
-                to MongoDB Yulia worked at Stuyvesant High School where she
-                tautght Computer Science to hundreds of unsuspecting studetns
+                {user.username} is a Senior Curriculum Engineer at MongoDB.
+                Prior to MongoDB Yulia worked at Stuyvesant High School where
+                she tautght Computer Science to hundreds of unsuspecting
+                studetns
               </p>
             </div>
           </div>
