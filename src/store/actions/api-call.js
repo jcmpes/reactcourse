@@ -30,8 +30,11 @@ export const apiCallLoadAction = (
   return async function (dispatch, getState) {
     dispatch(apiCallRequest());
     try {
-      await apiCall(apiCallArg, apiCallArg2).then(afterApiCall);
-      dispatch(apiCallSuccess());
+      await apiCall(apiCallArg, apiCallArg2)
+        .then(afterApiCall)
+        .then(() => {
+          dispatch(apiCallSuccess());
+        });
     } catch (err) {
       dispatch(apiCallFailure(err));
     }
