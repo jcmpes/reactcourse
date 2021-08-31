@@ -27,10 +27,10 @@ export const MyCourses = () => {
   return (
     <div>
       <Layout>
+        <h1>{t('Purchased courses')}</h1>
         {loading && <Loading isLoading={true} />}
         {error && <ErrorMessage error={error} resetError={resetError} />}
-        <h1>{t('Purchased courses')}</h1>
-        <CoursesList courses={purchases} />
+        {!error && <CoursesList courses={purchases} />}
       </Layout>
     </div>
   );
