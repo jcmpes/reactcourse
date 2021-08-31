@@ -10,8 +10,10 @@ import { useSelector } from 'react-redux';
 import { getUi } from '../../../store/selectors';
 import Loading from '../../shared/Loading/Loading';
 import { Link } from 'react-router-dom';
-
+import { apiCallLoadAction } from '../../../store/actions/api-call';
+import { useDispatch } from 'react-redux';
 function LessonPage() {
+  const dispatch = useDispatch();
   const { loading, error } = useSelector(getUi);
   const { courseSlug, lessonSlug } = useParams();
   const [lesson, setLesson] = useState({});
@@ -21,16 +23,18 @@ function LessonPage() {
   const history = useHistory();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const singleCourse = await getCourse(courseSlug);
+    const fetchData = async (courseSlug2, lessonSlug2) => {
+      const singleCourse = await getCourse(courseSlug2);
       setCourse(singleCourse);
-      const singleLesson = await getLesson(courseSlug, lessonSlug);
+      const singleLesson = await getLesson(courseSlug2, lessonSlug2);
       return singleLesson;
     };
-    fetchData().then((singleLesson) => {
+    const otra = (singleLesson) => {
       setLesson(singleLesson);
       lesson && setLessonCounter(lesson.number);
-    }).catch(err => console.log(err));
+    };
+
+    dispatch(apiCallLoadAction(fetchData, otra, courseSlug, lessonSlug));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonCounter, lessonSlug]);
 
@@ -67,7 +71,10 @@ function LessonPage() {
         )}
         {lesson && course && (
           <>
-            <LessonDetail {...lesson} avatar={course.user ? course.user.avatar : null} />
+            <LessonDetail
+              {...lesson}
+              avatar={course.user ? course.user.avatar : null}
+            />
             <div className="lesson-nav">
               {lesson.number === 0 ? (
                 <Button onClick={() => backToCourse()}>
