@@ -17,8 +17,6 @@ const User = () => {
     dispatch(getUserAction(user.username, history));
   }, [user.username, dispatch, history]);
 
-  console.log(user);
-
   return (
     <Layout>
       <StudentPage

@@ -50,7 +50,6 @@ export const loadCoursesAction = (
         dispatch(loadCoursesSuccess());
       });
     } catch (error) {
-      console.log('llega');
       dispatch(loadCoursesFailure(error));
     }
   };

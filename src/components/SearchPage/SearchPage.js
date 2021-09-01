@@ -23,7 +23,7 @@ import { debounce } from '../../utils/debounce';
 import { CourseSkeleton } from '../courses/CourseSkeleton';
 import ascendingIcon from '../../assets/svg/ascending.svg';
 import descendingIcon from '../../assets/svg/descending.svg';
-import { setErrorToNullAction } from '../../store/actions/favorites';
+import { setErrorToNullAction } from '../../store/actions/reset-error';
 
 function SearchPage({ auth, onLogout, ...props }) {
   // eslint-disable-next-line no-unused-vars

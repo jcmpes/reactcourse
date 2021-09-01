@@ -21,7 +21,7 @@ import placeholder from '../../assets/img/homePlaceholder.jpg';
 import { levelsLoadAction } from '../../store/actions/levels-load';
 import Loading from '../shared/Loading/Loading';
 import ErrorMessage from '../shared/ErrorMessage';
-import { setErrorToNullAction } from '../../store/actions/favorites';
+import { setErrorToNullAction } from '../../store/actions/reset-error';
 import { defaultFilters } from '../../data/constants';
 
 const HomePage = ({ auth, onLogout, ...props }) => {
@@ -127,7 +127,7 @@ const HomePage = ({ auth, onLogout, ...props }) => {
               display: 'flex',
               flexDirection: 'row',
               overflow: 'auto',
-              paddingBottom: '1.5rem'
+              paddingBottom: '1.5rem',
             }}
           >
             <CoursesListMini courses={newCourses} />
