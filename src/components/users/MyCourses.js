@@ -8,7 +8,7 @@ import { getUi } from '../../store/selectors';
 import Loading from '../shared/Loading/Loading';
 import ErrorMessage from '../shared/ErrorMessage';
 import { apiCallLoadAction } from '../../store/actions/api-call';
-import { setErrorToNullAction } from '../../store/actions/favorites';
+import { setErrorToNullAction } from '../../store/actions/reset-error';
 
 export const MyCourses = () => {
   const { t } = useTranslation(['global']);

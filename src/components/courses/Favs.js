@@ -7,10 +7,8 @@ import { useTranslation } from 'react-i18next';
 import { myFavsDetail } from '../../api/auth';
 import Loading from '../shared/Loading/Loading';
 import ErrorMessage from '../shared/ErrorMessage';
-import {
-  favoritesListAction,
-  setErrorToNullAction,
-} from '../../store/actions/favorites';
+import { setErrorToNullAction } from '../../store/actions/reset-error';
+import { apiCallLoadAction } from '../../store/actions/api-call';
 
 export const Favs = (...props) => {
   const { loading, error } = useSelector(getUI);
@@ -24,7 +22,8 @@ export const Favs = (...props) => {
 
   const [favs, setFavs] = React.useState([]);
   React.useEffect(() => {
-    dispatch(favoritesListAction(myFavsDetail, setFavs));
+    //dispatch(favoritesListAction(myFavsDetail, setFavs));
+    dispatch(apiCallLoadAction(myFavsDetail, setFavs));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
