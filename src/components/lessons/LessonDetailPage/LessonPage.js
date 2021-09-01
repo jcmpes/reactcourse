@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { getUi } from '../../../store/selectors';
 import Loading from '../../shared/Loading/Loading';
 import { Link } from 'react-router-dom';
+import ErrorMessage from '../../shared/ErrorMessage';
 
 function LessonPage() {
   const { loading, error } = useSelector(getUi);
@@ -53,7 +54,7 @@ function LessonPage() {
   }
 
   const { t } = useTranslation(['global']);
-  if (error) return <div>cacota</div>;
+  if (error) return <ErrorMessage error={error} />;
   return (
     <Layout>
       <div className="lesson-detail-page">
